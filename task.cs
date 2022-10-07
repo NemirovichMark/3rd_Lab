@@ -1,7 +1,7 @@
  #region lvl2Task6
             double minimum = 1000000000000;
             double value = 0;
-            int huy = 0;
+            int x = 0;
             Console.WriteLine("Enter count of array values");
             int n = Convert.ToInt32(Console.ReadLine());
             double[] array = new double[n];
@@ -19,13 +19,13 @@
                 if (value < minimum)
                 {
                     minimum = value;
-                    huy = Array.IndexOf(array,array[i]);
+                    x = Array.IndexOf(array,array[i]);
                 }
             }
-            for (int i = n-2; i >= huy +1;i--)
+            for (int i = n-2; i >= x +1;i--)
             {
                 array[i + 1] = array[i];
-                array[huy + 1] = P;
+                array[x + 1] = P;
             }
             Console.WriteLine(String.Join(" ",array));
             #endregion
