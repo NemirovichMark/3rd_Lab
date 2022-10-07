@@ -29,3 +29,28 @@
             }
             Console.WriteLine(String.Join(" ",array));
             #endregion
+            
+             #region lvl3Task13
+            Console.WriteLine("Enter count values");
+            int n = Convert.ToInt32(Console.ReadLine());
+            double[] array = new double[n];
+            for (int i=0;i<n;i++)
+            {
+                array[i] = Convert.ToDouble(Console.ReadLine());
+            }
+            string value = "";
+            for (int i=0;i<n;i++)
+            {
+                if (value.Contains(Convert.ToString(array[i])))
+                {
+                    continue;
+                }
+                else
+                {
+                    value += Convert.ToString(array[i]);
+                }
+            }
+            Console.WriteLine(value);
+
+
+            #endregion
