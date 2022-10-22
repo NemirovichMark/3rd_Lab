@@ -1,0 +1,689 @@
+// Лабораторная работа № 3
+// Алгоритмы
+// 11
+/*#region
+Console.WriteLine("Enter the size of array: ");
+int n = Convert.ToInt32(Console.ReadLine());
+var A = new List<double>();
+var B = new List<double>();
+var C = new List<int>();
+double sum = 0;
+double sred = 0;
+int k = 0;
+bool b = false;
+int t = 0;
+int x = 0;
+Console.WriteLine("Enter the desired value: ");
+x = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the array: ");
+for (int i = 0; i < n; i++)
+{
+    A.Add(Convert.ToInt32(Console.ReadLine()));
+}
+k = n / 2 - 1;
+for (int i = 0; i < n; i++)
+{
+    if (A[k] == x) { Console.WriteLine("The index of desired value: " + k); t++; break; }
+    if (A[k] > x) k = (n - k) / 2;
+    if (A[k] < x) k = k / 2;
+
+}
+if (t == 0) { Console.WriteLine("There is no desired value."); }
+return 0;
+#endregion*/
+// 12
+/*#region
+Console.WriteLine("Enter the size of first array: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the size of second array: ");
+int m = Convert.ToInt32(Console.ReadLine());
+var A = new List<double>();
+var B = new List<double>();
+var C = new List<double>();
+double sum = 0;
+double sred = 0;
+int k = 0;
+bool b = false;
+int t = 0;
+int x = 0;
+int LB = 0;
+int LA = 0;
+Console.WriteLine("Enter the first array: ");
+for (int i=0; i<n; i++)
+{
+     A.Add(Convert.ToInt32(Console.ReadLine()));
+}
+Console.WriteLine("Enter the second array: ");
+for (int i = 0; i < m; i++)
+{
+     B.Add(Convert.ToInt32(Console.ReadLine()));
+}
+LB = B.Count();
+LA = A.Count();
+if (LB > LA)
+{
+     for (int i = 0; i < LA; i++)
+{
+    C.Add(A[i]);
+    C.Add(B[i]);
+}
+    t = 1;
+}
+else
+{
+    for (int i = 0; i < LB; i++)
+    {
+        C.Add(A[i]);
+        C.Add(B[i]);
+    }
+    t = 2;
+}
+    if (t == 1)
+    {
+        for (int i = 0; i < LB-LA; i++)
+        {
+           C.Add(B[i]);
+        }
+}
+if (t == 2)
+{
+    for (int i = 0; i < LA - LB; i++)
+    {
+         C.Add(A[i]);
+    }
+}
+Console.WriteLine("The new array: ");
+for (int i=0; i<n+m; i++)
+{
+     Console.WriteLine(C[i]);
+}
+return 0;
+#endregion*/
+// 13
+/*#region
+Console.WriteLine("Enter the size of first array: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the size of second array: ");
+int m = Convert.ToInt32(Console.ReadLine());
+var A = new List<double>();
+var B = new List<double>();
+var C = new List<double>();
+double sum = 0;
+double sred = 0;
+int k = 0;
+bool b = false;
+int t = 0;
+int x = 0;
+int LB = 0;
+int LA = 0;
+double f;
+Console.WriteLine("Enter the first array: ");
+for (int i = 0; i < n; i++)
+{
+    A.Add(Convert.ToDouble(Console.ReadLine()));
+}
+Console.WriteLine("Enter the second array: ");
+for (int i = 0; i < m; i++)
+{
+    B.Add(Convert.ToDouble(Console.ReadLine()));
+}
+while (k < n || t < m)
+{
+    if (k == n) { C.Add(B[t]); t++; continue; }
+    if (t == m) { C.Add(A[k]); k++; continue; }
+    if (A[k] >= B[t]) { C.Add(A[k]); k++; }
+    else { C.Add(B[t]); t++; }
+}
+Console.WriteLine("The new array: ");
+for (int i = 0; i < C.Count; i++)
+{
+    Console.WriteLine(C[i]);
+}
+return 0;
+#endregion*/
+// 14
+/*#region
+Console.WriteLine("Enter the size of first array: ");
+int n = Convert.ToInt32(Console.ReadLine());
+var A = new List<double>();
+var B = new List<double>();
+var C = new List<double>();
+double sum = 0;
+double sred = 0;
+int k = 0;
+bool b = false;
+int t = 0;
+int x = 0;
+int LB = 0;
+int LA = 0;
+double f;
+Console.WriteLine("Enter the first array: ");
+for (int i = 0; i < n; i++)
+{
+    A.Add(Convert.ToInt32(Console.ReadLine()));
+}
+for (int i = 0; i < n / 2; i++)
+{
+    f = A[i];
+    A[i] = A[n - 1 - i];
+    A[n - 1 - i] = f;
+}
+Console.WriteLine("The new array: ");
+for (int i = 0; i < n; i++)
+{
+    Console.WriteLine(A[i]);
+}
+return 0;
+#endregion*/
+// 15
+/*#region
+Console.WriteLine("Enter the size of first array: ");
+int n = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the value by which you want to shift the array elements: ");
+int d = Convert.ToInt32(Console.ReadLine());
+var A = new List<double>();
+var B = new List<double>();
+var C = new List<double>();
+double sum = 0;
+double sred = 0;
+int k = 0;
+bool b = false;
+int t = 0;
+int x = 0;
+int LB = 0;
+int LA = 0;
+double f;
+Console.WriteLine("Enter the first array: ");
+for (int i = 0; i < n; i++)
+{
+    A.Add(Convert.ToDouble(Console.ReadLine()));
+}
+for (int i = 0; i < d; i++)
+{
+    f = A[n - 1];
+    for (int j = n - 1; j > 0; j--)
+    {
+        A[j] = A[j - 1];
+    }
+    A[0] = f;
+}
+Console.WriteLine("The new array: ");
+for (int i = 0; i < n; i++)
+{
+    Console.WriteLine(A[i]);
+}
+return 0;
+#endregion*/
+// Уровень 1
+// Номер 6
+/*#region
+int[] a = new int[5];
+int sum = 0;
+for (int i = 0; i < 5; i++)
+{
+    a[i] = Convert.ToInt32(Console.ReadLine());
+    sum += a[i];
+}
+double L = Math.Sqrt(sum);
+Console.WriteLine(L);
+#endregion*/
+
+// Номер 10
+/*#region
+double[] a = new double[10];
+double P = Convert.ToDouble(Console.ReadLine()), Q = Convert.ToDouble(Console.ReadLine());
+int count = 0;
+for (int i = 0; i < 10; i++)
+{
+    a[i] = Convert.ToDouble(Console.ReadLine());
+    if (a[i] > P && a[i] < Q)
+    {
+        count += 1;
+    }
+}
+Console.WriteLine(count);
+#endregion*/
+
+// Номер 11
+/*#region
+using System;
+
+double[] a = new double[10];
+double[] b = new double[10];
+for (int i = 0; i < a.Length; i++)
+{
+    a[i] = Convert.ToDouble(Console.ReadLine());
+    if (a[i] > 0)
+    {
+        b[i] = a[i];
+    }
+}
+for (int i = 0; i < b.Length; i++)
+{
+    double item = 0;
+    b = Array.FindAll(b, i => i != item).ToArray();
+    Console.WriteLine(b[i]);
+}
+#endregion*/
+
+// Номер 12
+/*#region
+int index = 0;
+double num = 0;
+double[] a = new double[8];
+for (int i = 0; i < 8; i++)
+{
+    a[i] = Convert.ToDouble(Console.ReadLine());
+    if (a[i] < 0)
+    {
+        index = i;
+        num = a[i];
+    }
+}
+Console.WriteLine(num);
+Console.WriteLine(index);
+#endregion*/
+
+// Номер 13
+/*#region
+int n = 10;
+double[] mas = new double[n];
+double[] chet = new double[5];
+double[] nechet = new double[5];
+int k = 0;
+int p = 0;
+for (int i=0; i<n; i++)
+{
+     mas[i]=Convert.ToDouble(Console.ReadLine());
+}
+for (int i = 0; i < n; i++)
+    {
+        if (i % 2 == 0) { chet[k] = mas[i]; k++; }
+        else { nechet[p] = mas[i]; p++; }
+    }
+    Console.WriteLine("Array of values with even numbers: ");
+    for (int i = 0; i < k; i++)
+    {
+        Console.Write(chet[i] + " ");
+    }
+    Console.WriteLine();
+    Console.WriteLine("An array of values with odd numbers: ");
+    for (int i = 0; i < p; i++)
+    {
+        Console.Write(nechet[i] + " ");
+    }
+    return 0;
+#endregion*/
+
+// Уровень 2
+// Номер 5
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+var a = new List<int>();
+var b = new List<int>();
+int max = -1000000000;
+int min = 1000000000;
+for(int i = 0; i < n; i++)
+{
+    a.Add(Convert.ToInt32(Console.ReadLine()));
+}
+for (int i = 0; i < n; i++)
+{
+    if (a[i] > max)
+    {
+        max = a[i];
+    }
+    if (a[i] < min)
+    {
+        min = a[i];
+    }
+}
+for (int i = 0; i < n; i++)
+{
+    if ((a[i] < max) && (a[i] > min) && a[i] < 0)
+    {
+        b.Add(a[i]);
+    }
+}
+for (int i = 0; i < n + 1; i++)
+{
+    Console.Write(b[i] + " ");
+}
+// тут надо вывести массив b
+#endregion*/
+
+// Номер 6
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+int P = Convert.ToInt32(Console.ReadLine());
+var a = new List<int>();
+double sum = 0;
+double sr = 0;
+double num;
+Console.WriteLine("Enter the array: ");
+for (int i = 0; i < n; i++)
+{
+    a.Add(Convert.ToInt32(Console.ReadLine()));
+}
+for (int i = 0; i < n; i++)
+{
+    sum = sum + a[i];
+}
+sr = sum / n;
+double minsred = a.Max();
+int k = 0;
+for (int i = 0; i < n; i++)
+{
+    num = a[i] - sr;
+    if (num < 0) num *= (-1);
+    if (num < minsred) { minsred = num; k = i; }
+}
+a.Insert(k + 1, P);
+for (int i = 0; i < n + 1; i++)
+{
+    Console.Write(a[i] + " ");
+}
+#endregion*/
+
+// Номер 9
+/*#region
+using System.Diagnostics.CodeAnalysis;
+
+int n = Convert.ToInt32(Console.ReadLine());
+var a = new List<int>();
+int max = -1000000000;
+int min = 1000000000;
+double sum = 0, count = 0;
+for (int i = 0; i < n; i++)
+{
+    a.Add(Convert.ToInt32(Console.ReadLine()));
+}
+for (int i = 0; i < n; i++)
+{
+    if (a[i] > max)
+    {
+        max = a[i];
+    }
+    if (a[i] < min)
+    {
+        min = a[i];
+    }
+}
+for (int i = 0; i < n; i++)
+{
+    if ((a[i] < max) && (a[i] > min))
+    {
+        sum += a[i];
+        count++;
+    }
+}
+Console.WriteLine(sum/count);
+#endregion*/
+
+// Номер 10
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+var a = new List<int>();
+int min = 1000000000;
+int k = 0;
+for (int i = 0; i < n; i++)
+{
+    a.Add(Convert.ToInt32(Console.ReadLine()));
+}
+for (int i = 0; i < n; i++)
+{
+    if (a[i] < min)
+    {
+        min = a[i];
+        k = i;
+    }
+}
+a.RemoveAt(a.IndexOf(k));
+#endregion*/
+
+// Номер 11
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+int P = Convert.ToInt32(Console.ReadLine());
+var a = new List<int>();
+int k = 0;
+for (int i = 0; i < n; i++)
+{
+    a.Add(Convert.ToInt32(Console.ReadLine()));
+}
+for (int i = 0; i < n; i++)
+{
+    if (a[i] > 0) k = i;
+}
+a.Insert(k + 1, P);
+for (int i = 0; i < n + 1; i++)
+{
+    Console.Write(a[i] + " ");
+}
+return 0;
+#endregion*/
+
+// Номер 13
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+double[] a = new double[n];
+double[] nechet = new double[5];
+int p = 0;
+Console.WriteLine("Enter the array elements: ");
+for (int i = 0; i < n; i++)
+{
+    a[i] = Convert.ToDouble(Console.ReadLine());
+}
+double max = a[0];
+double min = a[0];
+for (int i = 0; i < n; i++)
+{
+    if (a[i] > max && i % 2 == 0) { p = i; max = a[i]; }
+}
+a[p] = p;
+Console.WriteLine();
+Console.WriteLine("New array: ");
+for (int i = 0; i < n; i++)
+{
+    Console.Write(a[i] + " ");
+}
+return 0;
+#endregion*/
+
+// Номер 15
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+int m = Convert.ToInt32(Console.ReadLine());
+int k = Convert.ToInt32(Console.ReadLine());
+var A = new List<int>();
+var B = new List<int>();
+for (int i = 0; i < n; i++)
+{
+    A.Add(Convert.ToInt32(Console.ReadLine()));
+}
+for (int i = 0; i < m; i++)
+{
+    B.Add(Convert.ToInt32(Console.ReadLine()));
+}
+A.InsertRange(k, B);
+for (int i = 0; i < n + m; i++)
+{
+    Console.Write(A[i] + " ");
+}
+return 0;
+#endregion*/
+
+// Уровень 3
+// Номер 1
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+var A = new List<double>();
+var B = new List<int>();
+double k = 0;
+for (int i = 0; i < n; i++)
+{
+    A.Add(Convert.ToInt32(Console.ReadLine()));
+}
+double max = A.Max();
+for (int i = 0; i < n; i++)
+{
+    if (A[i] == max) { B.Add(i); k++; }
+}
+for (int i = 0; i < k; i++)
+{
+    Console.Write(B[i] + " ");
+}
+return 0;
+#endregion*/
+
+// Номер 5
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+var A = new List<double>();
+var B = new List<double>();
+int k = 0;
+for (int i = 0; i < n; i++)
+{
+    A.Add(Convert.ToInt32(Console.ReadLine()));
+}
+double max = A.Max() + 1;
+for (int i = 0; i < n; i++)
+{
+    if (i % 2 == 0) { B.Add(A[i]); }
+    else { B.Add(max); }
+}
+B.Sort();
+for (int i = 0; i < n; i++)
+{
+    if (i % 2 == 0) { A[i] = B[k]; k++; }
+
+}
+for (int i = 0; i < n; i++)
+{
+    Console.Write(A[i] + " ");
+}
+return 0;
+#endregion*/
+
+// Номер 8
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+var A = new List<double>();
+var B = new List<double>();
+var C = new List<int>();
+int k = 0;
+int t = 0;
+for (int i = 0; i < n; i++)
+{
+    A.Add(Convert.ToInt32(Console.ReadLine()));
+}
+double max = A.Max() + 1;
+for (int i = 0; i < n; i++)
+{
+    if (A[i] < 0) { B.Add(A[i]); C.Add(i); t++; }
+}
+B.Sort();
+B.Reverse();
+if (t != 0)
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (C.Contains(i) == true) { A[i] = B[k]; k++; }
+    }
+}
+for (int i = 0; i < n; i++)
+{
+    Console.Write(A[i] + " ");
+}
+return 0;
+#endregion*/
+
+// Номер 9
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+var A = new List<double>();
+var B = new List<double>();
+var C = new List<int>();
+int k = 0;
+for (int i = 0; i < n; i++)
+{
+    A.Add(Convert.ToInt32(Console.ReadLine()));
+}
+double max = 0;
+for (int i = 0; i < n - 1; i++)
+{
+    if (A[i] > A[i + 1]) { k++; }
+    else
+    {
+        if (k > max) { max = k; k = 1; }
+        k = 1;
+    }
+}
+if (k > max) max = k;
+k = 1;
+for (int i = 0; i < n - 1; i++)
+{
+    if (A[i] < A[i + 1]) { k++; }
+    else
+    {
+        if (k > max) { max = k; k = 1; }
+        k = 1;
+    }
+}
+if (k > max) max = k;
+Console.WriteLine(max);
+return 0;
+#endregion*/
+
+// Номер 12
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+var A = new List<double>();
+var B = new List<double>();
+var C = new List<int>();
+for (int i = 0; i < n; i++)
+{
+    A.Add(Convert.ToInt32(Console.ReadLine()));
+}
+for (int i = 0; i < n; i++)
+{
+    if (A[i] < 0) { A.Remove(A[i]); n--; i--; }
+}
+for (int i = 0; i < n; i++)
+{
+    Console.Write(A[i] + " ");
+}
+return 0;
+#endregion*/
+
+// Номер 13
+/*#region
+int n = Convert.ToInt32(Console.ReadLine());
+var A = new List<double>();
+var B = new List<double>();
+var C = new List<int>();
+for (int i = 0; i < n; i++)
+{
+    A.Add(Convert.ToInt32(Console.ReadLine()));
+}
+for (int i = 0; i < n; i++)
+{
+    if (B.Contains(A[i]) == true)
+    {
+        C.Add(i);
+    }
+    if (B.Contains(A[i]) == false)
+    {
+        B.Add(A[i]);
+    }
+}
+for (int i = 0; i < n; i++)
+{
+    if (C.Contains(i + t) == true) { A.RemoveAt(i); n--; t++; i--; }
+}
+for (int i = 0; i < n; i++)
+{
+    Console.Write(A[i] + " ");
+}
+return 0;
+#endregion*/
