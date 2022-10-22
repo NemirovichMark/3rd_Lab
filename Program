@@ -349,7 +349,6 @@ for (int i = 0; i < n + 1; i++)
 {
     Console.Write(b[i] + " ");
 }
-// тут надо вывести массив b
 #endregion*/
 
 // Номер 6
