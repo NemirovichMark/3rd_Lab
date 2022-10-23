@@ -1,0 +1,638 @@
+  //1 part 5 task
+            int L = 0;
+
+            int[] str = new int[5];
+            Console.WriteLine("Введите числа");
+            for (int i = 0; i < str.Length; i++)
+            {
+                Console.Write($"Число с индексом {i} :");
+                str[i] = int.Parse(Console.ReadLine());
+
+
+            }
+
+            for (int i = 0; i < str.Length; i++)
+            {
+
+
+                L += (int)Math.Pow(str[i], 2);
+
+
+            }
+            Console.WriteLine(Math.Sqrt(L));
+            Console.ReadLine();
+            
+            
+            
+            //1 part task 10
+            int[] a = new int[10];
+            Console.Write(" введите индекс P: ");
+            int p = int.Parse(Console.ReadLine());
+            Console.Write("введите индекс Q: ");
+            int q = int.Parse(Console.ReadLine());
+            Console.Write("Введите число P");
+            int P = int.Parse(Console.ReadLine());
+            Console.Write("Введите число Q");
+            int Q = int.Parse(Console.ReadLine());
+            int count = 0;
+            if (q > 10 && q < 0 && p < 0 && p > 10 && P > Q && p > q )
+            {
+                Console.WriteLine("Введено неверно");
+            }
+            else
+            {
+                for (int i = 0; i < a.Length; i++)
+                {
+                    a[i] = int.Parse(Console.ReadLine());
+                }
+                a[p] = P;
+                a[q] = Q;
+
+                for (int i = p; i < q; i++)
+                {
+                    count++;
+                }
+            }
+            Console.WriteLine(count);
+            Console.ReadLine();
+            
+             //1 часть 11 номер
+            int[] a = new int[10];
+            int count = 0;
+            int c = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                a[i] = int.Parse(Console.ReadLine());
+            }
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] > 0)
+                {
+                    count++;
+                }
+            }
+            int[] b = new int[count];
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] < 0)
+                {
+                    b[c] = a[i];
+                    c++;
+                }
+               
+            }
+            foreach (int x in b)
+                Console.Write("{0:d} ", x);
+            Console.ReadLine();
+            
+            
+            
+            //1 part task 12
+            int[] a = new int[8];
+            int am = 0;
+            int im = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                a[i] = int.Parse(Console.ReadLine());
+            }
+            for (int i = a.Length - 1; i >= 0; i--)
+            {
+                if (a[i] < 0)
+                {
+                    am = a[i];
+                    im = i;
+                    break;
+                }
+            }
+            Console.WriteLine($"Значение элемента {am}, индекс элемента  {im}");
+            Console.ReadLine();
+            
+            
+             //1 part 13 task
+            int[] str = new int[10];
+            int[] B = new int[5];//четные
+            int[] C = new int[5];//нечётные
+            int c = 0;
+            int b = 0;
+            Console.WriteLine("Введите числа");
+            for (int i = 0; i < str.Length; i++)
+            {
+                str[i] = int.Parse(Console.ReadLine());
+
+
+            }
+            for (int i = 0; i <= str.Length - 2; i += 2)
+            {
+                B[b] = str[i];
+                b++;
+            }
+            for (int i = 1; i <= str.Length - 1; i += 2)
+            {
+                C[c] = str[i];
+                c++;
+
+            }
+            foreach (int x in B)
+            {
+                Console.Write("{0:d} ", x);
+            }
+            Console.WriteLine();
+            foreach (int f in C)
+            {
+                Console.Write("{0:d} ", f);
+            }
+            Console.ReadLine();
+            
+            
+            
+            // 2 PART
+            
+            
+            
+            //часть 2 задание 5
+            Console.Write("Введите кол-во элементов массива str: ");
+            int kol = int.Parse(Console.ReadLine());
+            int[] str = new int[kol];
+            int amax = str[0];
+            int amin = str[0];
+            int imax = 0;
+            int imin = 0;
+            int Count = 0;
+            int index = 0;
+            Console.WriteLine("Введите числа");
+            for (int i = 0; i < str.Length; i++)
+            {
+                Console.Write($"Элемент с индексом {i} равен: ");
+                str[i] = int.Parse(Console.ReadLine());
+
+
+            }
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] > amax)
+                {
+                    amax = str[i];
+                    imax = i;
+                }  
+               
+                
+            }                                        
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (str[i] < amin)
+                {
+                    amin = str[i];
+                    imin = i;
+                }
+            }
+            for (int i = imin + 1; i < imax; i++)
+            {
+                if (str[i] < 0) 
+                {
+                    Count++;
+                }
+            }
+            int[] b = new int[Count];
+
+            for (int i = imin + 1; i < imax; i++)
+            {
+                if (str[i] < 0)
+                {
+                    b[index] = str[i];
+                    index += 1;
+                }
+            }
+            for (int i = 0; i < b.Length; i++)
+                Console.Write("{0:d} ", b[i]);
+            Console.ReadLine();
+            
+            
+            
+            //part 2 taks 6
+            Console.Write("Введите кол-во элементов массива str: ");
+            int kol = int.Parse(Console.ReadLine());
+            Console.Write("Введите число P, которое хотитет включить: ");
+            int P = int.Parse(Console.ReadLine());
+            int[] str = new int[kol];
+            int sum = 0;
+            int count = 0;
+            var srednee = 0;
+            var i_pered_srend = 0;
+            for (int i = 0; i < str.Length - 1; i++)
+            {
+                Console.Write($"Элемент с индексом {i} равен: ");
+                str[i] = int.Parse(Console.ReadLine());
+
+
+            }
+            foreach (int x in str)
+            {
+                sum += x;
+                count++;
+            }
+            srednee = sum / count;
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (Math.Abs((str[i] - srednee)) < 1)
+                {
+                    i_pered_srend = i;
+                }
+            }
+            for (int i = str.Length - 2; i > i_pered_srend; i--)
+            {
+                str[i + 1] = str[i];
+            }
+            str[i_pered_srend + 1] = P;
+            for (int i = 0; i < str.Length; i++)
+                Console.Write("{0:d} ", str[i]);
+            Console.ReadLine();
+            
+            
+            
+             //часть 2 задание 10
+            Console.Write("Введите кол-во элементов массива Array: ");
+            int kol = int.Parse(Console.ReadLine());
+            int[] Array = new int[kol];
+            int amin = Array[0];          
+            int imin = 0;         
+            Console.WriteLine("Введите числа");
+            for (int i = 0; i < kol; i++)
+            {
+                Console.Write($"Элемент с индексом {i} равен: ");
+                Array[i] = int.Parse(Console.ReadLine());
+                if (Array[i] < 0)
+                {
+                    Console.WriteLine("Число введено неверно!");
+                    break;
+                }
+
+
+            }
+            for (int i = 0; i < Array.Length; i++)
+            {
+                if (Array[i] < amin)
+                {
+                    amin = Array[i];
+                    imin = i;
+                }
+            }
+            Console.WriteLine(amin);
+            for (int i = imin; i < Array.Length - 1; i++)
+                Array[i] = Array[i + 1];
+
+           
+            
+            for (int i = 0; i < Array.Length - 1; i++)
+                Console.Write("{0:d} ", Array[i]);
+            Console.ReadLine();
+            
+            
+            //2 part task 11
+             Console.Write("Введите кол-во элементов массива a: ");
+            int kol = int.Parse(Console.ReadLine());
+            Console.Write("Введите число P, которое хотитет включить: ");
+            int P = int.Parse(Console.ReadLine());
+            int[] a = new int[kol];
+            int posl_element = 0;
+            for (int i = 0; i < a.Length - 1; i++)
+            {
+                Console.Write($"Элемент с индексом {i} равен: ");
+                a[i] = int.Parse(Console.ReadLine());
+
+
+            }
+            for (int i = kol - 1; i >= 0; i--)
+            {
+                if (a[i] > 0)
+                {
+                    posl_element = i;
+                    break;
+                }
+            }
+            for (int i = kol - 2; i > posl_element; i--)
+            {
+                a[i + 1] = a[i]; 
+            }
+            a[posl_element + 1] = P;
+            foreach (int x in a)
+                Console.Write("{0:d} ", x);
+            Console.ReadLine();
+            
+            
+            //2 part task 13
+             int kol_vo = int.Parse(Console.ReadLine());
+            int[] a = new int[kol_vo];
+           
+            for (int i = 0; i < a.Length; i++)
+            {
+                Console.Write($"Элемент с индексом {i} равен: ");
+                a[i] = int.Parse(Console.ReadLine());
+            }
+            int amax = a[0];
+            int imax = 0;
+            for (int i = 0; i < kol_vo; i+=2)
+            {
+                if (a[i] > amax)
+                {
+                    a[i] = amax;
+                    imax = i;
+                }
+            }
+            for (int i = 0; i < kol_vo ; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    a[i] = imax;
+                }
+            }
+            Console.WriteLine();
+            foreach (int x in a)
+                Console.Write("{0:d} ", x);
+            Console.ReadLine();
+           
+           
+           //part 2 task 15
+            Console.Write($"Кол-во элементов а: ");
+            int kol_vo = int.Parse(Console.ReadLine());
+            int[] a = new int[kol_vo];
+            
+            Console.Write($"Кол-во элементов b: ");
+            int kol_vo1 = int.Parse(Console.ReadLine());
+            int[] b = new int[kol_vo1];
+            
+            Console.WriteLine();
+            int count = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                Console.Write($"Элемент a с индексом {i} равен: ");
+                a[i] = int.Parse(Console.ReadLine());
+            }
+
+            Console.WriteLine();
+
+            for (int i = 0; i < b.Length; i++)
+            {
+                Console.Write($"Элемент b с индексом {i} равен: ");
+                b[i] = int.Parse(Console.ReadLine());
+            }
+            Console.WriteLine();
+
+            Console.Write("Введите элемент K: ");
+
+            int k = int.Parse(Console.ReadLine());
+
+            Console.WriteLine();
+
+            if (k < 0 && k > (kol_vo - 1))
+            {
+                Console.WriteLine("Число K введено неверно!");
+                
+
+                
+            }
+            else
+            {
+                int[] C = new int[kol_vo + kol_vo1];
+                for (int i = 0; i <= k; i++)
+                {
+                    count++;
+                }
+                for (int i = 0; i <= k; i++)
+                {
+                    C[i] = a[i];
+                }
+              
+                for (int i = k + 1,f = 0; i < (count + kol_vo1) && (f < b.Length) ; i++,f++)
+                {
+                    C[i] = b[f];
+                   
+                }
+                for (int i = count + kol_vo1,f = k + 1 ; (i < C.Length) && (f < a.Length)  ; i++,f++)
+                {
+                    C[i] = a[f];
+                }
+                Console.WriteLine();
+                foreach (int x in C)
+                    Console.Write("{0:d} ", x);
+                Console.ReadLine();
+            }
+            
+            //PART 3
+            
+            
+             //3 часть 1 номер
+            int kol_vo = int.Parse(Console.ReadLine());
+            int[] a = new int[kol_vo];
+            int amax = a[0];
+            
+            int count = 0;
+            int f = 0;
+            for (int j = 0; j < a.Length; j++)
+            {
+                if (a[j] > amax)
+                {
+                    amax = a[j];
+                }
+            }
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] == amax)
+                {
+                    count++;
+                }
+            }
+            int[] b = new int[count];
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] == amax)
+                {
+                    b[f] = i;
+                    f++;
+                }
+            }
+            foreach (int x in b)
+             Console.Write("{0:d} ", x);
+            Console.ReadLine();
+            
+            
+            
+            //3 часть 5 номер
+            int kol_vo = int.Parse(Console.ReadLine());
+            int[] a = new int[kol_vo];
+            int amax = a[0];
+            int imax = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                Console.Write($"Элемент с индексом {i} равен: ");
+                a[i] = int.Parse(Console.ReadLine());
+            }
+            for (int i = 0; i < a.Length - 2; i+=2)
+            {
+                amax = a[i];
+                imax = i;
+                for (int j = i + 2; j < a.Length; j+=2)
+                {
+                    if (a[j] > amax)
+                    {
+                        amax = a[j];
+                        imax = j;
+                    }
+                }
+                a[imax] = a[i];
+                a[i] = amax;
+
+            }
+            foreach (int x in a)
+                Console.Write("{0:d} ", x);
+            Console.ReadLine();
+            
+            
+            
+            
+             //3 часть 9 номер
+            Console.Write("Кол-во элементов последовательности: ");
+            int kol_Vo = int.Parse(Console.ReadLine());
+            int[] posl = new int[kol_Vo];
+            int istart = 0;
+            int i_end = 0;
+            int nach_Posl = 0;
+            int len_posl = 1;
+            int max_len_posl = 0;
+            int istart_max = 0;
+            int i_end_max = 0;
+            for (int i = 0; i < posl.Length; i++)
+            {
+                Console.Write($"Элемент с индексом {i} равен: ");
+                posl[i] = int.Parse(Console.ReadLine());
+            }
+            do
+            {
+                for (int i = 0; i < posl.Length - 1; i++)
+                {
+
+                    if (posl[i] < posl[i + 1])
+                    {
+                        istart = nach_Posl;
+                        i_end = i;
+                        len_posl += 1;
+                    }
+                    if (len_posl > max_len_posl)
+                    {
+                        max_len_posl = len_posl;
+                        istart_max = istart;
+                        i_end_max = i_end;
+
+                    }
+                }
+                nach_Posl++;
+                len_posl = 1;
+
+
+            } while (nach_Posl != posl.Length);
+            for (int i = istart_max; i <= i_end_max; i++)
+                Console.Write("{0:d} ", posl[i]);
+            Console.WriteLine();
+            Console.Write($"Самая большая последовательность:  {max_len_posl} ");
+            Console.ReadLine();
+            
+            
+            
+            
+            
+            
+              // 3 часть 8 номер
+            int kol = int.Parse(Console.ReadLine());
+            int[] up = new int[kol];
+            int temp = 0;
+            for (int i = 0; i < kol; i++)
+            {
+                up[i] = int.Parse(Console.ReadLine());
+            }
+            for (int i = 0; i < up.Length - 1; i++)
+            {
+                for (int j = i + 1; j < up.Length; j++)
+                {
+                    if ((up[i] < 0) && (up[j] < 0))
+                    {
+                        if (up[i] < up[j])
+                        {
+                            temp = up[i];
+                            up[i] = up[j];
+                            up[j] = temp;
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < 10; i++)
+
+                Console.Write(" " + up[i]);
+            Console.ReadLine();
+            
+            
+            
+            
+             //3 часть 12 номер
+            int[] a = new int[12];
+            
+            for (int i = 0; i < 12; i++)
+            {
+                Console.Write($"Значение элемента с индексом {i}: ");
+                a[i] = int.Parse(Console.ReadLine());
+            }
+            int amax = a[0];
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] > amax)
+                {
+                    a[i] = amax;
+                }
+            }
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] < 0)
+                {
+                    amax += 1;
+                    a[i] = amax;
+                  
+                }
+            }
+            foreach (int x in a)
+                Console.Write("{0:d} ", x);
+            Console.ReadLine();
+            
+            
+            
+            
+            
+             //3 часть 13 номер
+            int n = int.Parse(Console.ReadLine());
+            int[] a = new int[n];
+
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write($"Значение элемента с индексом {i}: ");
+                a[i] = int.Parse(Console.ReadLine());
+            }
+            int amax = a[0];
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] > amax)
+                {
+                    a[i] = amax;
+                }
+            }
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (int j = i + 1; j < a.Length; j++)
+                {
+                    if (a[i] == a[j])
+                    {
+                        amax += 1;
+                        a[j] = amax;
+                    }
+                }
+            }
+            foreach (int x in a)
+                Console.Write("{0:d} ", x);
+            Console.ReadLine();
+        
