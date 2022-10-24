@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Lab_3
 {
@@ -8,7 +9,6 @@ namespace Lab_3
         static void Main(string[] args)
         {
             string ERROR = "Input incorrect!";
-            goto Task;
 
             #region Task_1_6
             Console.WriteLine("Task 1.6");
@@ -39,25 +39,29 @@ namespace Lab_3
                 }
             }
             Console.WriteLine($"Between P and Q: {k}\n");
-            #endregion
+        #endregion
 
             #region Task_1_11
             Console.WriteLine("Task 1.11");
             double[] b = new double[] { -1, -2, 0, 3, 4, 5, 6, 7, 8, 9 };
-            double[] bb = new double[10];
             int m = 0;
             foreach (double i in b)
             {
                 if (i > 0)
                 {
-                    bb[m] = i;
                     m++;
                 }
             }
-
-            for (int i = 0; i < m; i++)
+            double[] bb = new double[m];
+            k = 0;
+            for (int i = 0; i < b.Length; i++)
             {
-                Console.Write($"{bb[i]} ");
+                if (b[i] > 0)
+                {
+                    bb[k] = b[i];
+                    Console.Write($"{bb[k]} ");
+                    k++;
+                }
             }
             Console.WriteLine("\n");
             #endregion
@@ -102,7 +106,7 @@ namespace Lab_3
                 Console.Write($"{i} ");
             }
             Console.WriteLine("\n");
-            #endregion
+        #endregion
 
             #region Task_2_5
             Console.WriteLine("Task 2.5");
@@ -114,7 +118,6 @@ namespace Lab_3
                 return;
             }
             double[] mas = new double[nn];
-            double[] amountot = new double[nn - 2];
             double x;
             for (int i = 0; i < mas.Length; i++)
             {
@@ -143,36 +146,23 @@ namespace Lab_3
                     index_min = i;
                 }
             }
+            if (index_max < index_min) (index_max, index_min) = (index_min, index_max);
             int mm = 0;
-            if (index_max > index_min)
+            double[] amountot = new double[Math.Abs(index_max-index_min)-1];
+            for (int i = index_min + 1; i < index_max; i++)
             {
-                for (int i = index_min + 1; i < index_max; i++)
+                if (mas[i] < 0)
                 {
-                    if (mas[i] < 0)
-                    {
-                        amountot[mm] = mas[i];
-                        mm++;
-                    }
+                    amountot[mm] = mas[i];
+                    mm++;
                 }
             }
-            if (mm == 0) mm = 0;
-            if (index_max < index_min)
+            foreach (double i in amountot)
             {
-                for (int i = index_max + 1; i < index_min; i++)
-                {
-                    if (mas[i] < 0)
-                    {
-                        amountot[mm] = mas[i];
-                        mm++;
-                    }
-                }
-            }
-            for (int i = 0; i < mm; i++)
-            {
-                Console.Write(amountot[i] + " ");
+                Console.Write(i + " ");
             }
             Console.WriteLine("\n");
-        #endregion
+            #endregion
 
             #region Task_2_6
             Console.WriteLine("Task 2.6");
@@ -251,27 +241,15 @@ namespace Lab_3
             }
             sum = 0;
             n = 0;
+            if (mini > maxi) (maxi, mini) = (mini, maxi);
             if (maxi == mini) Console.WriteLine("Arithmetic mean = 0\n");
-            else if (maxi > mini)
+            for (int i = (mini + 1); i < maxi; i++)
             {
-                for (int i = (mini + 1); i < maxi; i++)
-                {
-                    sum += M[i];
-                    n += 1;
-                }
-                Console.WriteLine($"Arithmetic mean = {sum / n}\n");
+                sum += M[i];
+                n += 1;
             }
-            else
-            {
-                for (int i = (maxi + 1); i < mini; i++)
-                {
-                    sum += M[i];
-                    n += 1;
-                }
-                Console.WriteLine($"Arithmetic mean = {sum / n}\n");
-
-            }
-        #endregion
+            Console.WriteLine($"Arithmetic mean = {sum / n}\n");
+            #endregion
 
             #region Task_2_10
             Console.WriteLine("Task 2.10");
@@ -650,7 +628,6 @@ namespace Lab_3
             Console.WriteLine();
         #endregion
 
-        Task: Console.WriteLine();
             #region Task_3_13
             Console.WriteLine("Task 3.13");
             Console.Write("Write length of massive: ");
@@ -675,6 +652,264 @@ namespace Lab_3
             {
                 Console.Write(i + " ");
             }
+            Console.WriteLine();
+        #endregion
+
+            #region Task_0_11
+            Console.WriteLine("Task 0.11");
+            Console.Write("Write length of massive: ");
+            if (!int.TryParse(Console.ReadLine(), out k) || k <= 0)
+            {
+                Console.WriteLine(ERROR);
+                return;
+            }
+            M = new double[k];
+            for (int i = 0; i < k; i++)
+            {
+                Console.Write("Write A: ");
+                if (!double.TryParse(Console.ReadLine(), out x))
+                {
+                    Console.WriteLine(ERROR);
+                    return;
+                }
+                M[i] = x;
+            }
+            Console.Write("Write X: ");
+            if (!double.TryParse(Console.ReadLine(), out double X))
+            {
+                Console.WriteLine(ERROR);
+                return;
+            }
+            Array.Sort(M);
+            int l = 0, r = M.Length - 1;
+            l = -1;
+            while (l <= r)
+            {
+                int MID = (l + r) / 2;
+                if (M[MID] == X)
+                {
+                    l = MID;
+                    break;
+                }
+                if (M[MID] < X)
+                {
+                    l = MID + 1;
+                }
+                if (M[MID] > X)
+                {
+                    r = MID - 1;
+                }
+            }
+            if (l >= 0)
+            {
+                Console.WriteLine($"Index of number X: {l}");
+            }
+            else
+            {
+                Console.WriteLine("In massive there is no such number!");
+            }
+            Console.WriteLine();
+        #endregion
+
+            #region Task_0_12
+            Console.WriteLine("Task 0.12");
+            Console.Write("Write length of massives: ");
+            if (!int.TryParse(Console.ReadLine(), out k) || k <= 0)
+            {
+                Console.WriteLine(ERROR);
+                return;
+            }
+            M = new double[k];
+            C = new double[k];
+            double[] Z = new double[k + k];
+            for (int i = 0; i < k; i++)
+            {
+                Console.Write("Write for M: ");
+                if (!double.TryParse(Console.ReadLine(), out x))
+                {
+                    Console.WriteLine(ERROR);
+                    return;
+                }
+                M[i] = x;
+            }
+            Console.WriteLine();
+            for (int i = 0; i < k; i++)
+            {
+                Console.Write("Write for C: ");
+                if (!double.TryParse(Console.ReadLine(), out x))
+                {
+                    Console.WriteLine(ERROR);
+                    return;
+                }
+                C[i] = x;
+            }
+            Console.WriteLine();
+            for (int i = 0; i < k; i++)
+            {
+                (Z[i * 2], Z[i * 2 + 1]) = (M[i], C[i]);
+            }
+            foreach (double i in Z) Console.Write(i + " ");
+            #endregion
+
+            #region Task_0_13
+            Console.WriteLine("Task 0.13");
+            Console.Write("Write length of massive A: ");
+            if (!int.TryParse(Console.ReadLine(), out k) || k <= 0)
+            {
+                Console.WriteLine(ERROR);
+                return;
+            }
+            M = new double[k];
+            Console.Write("Write length of massive B: ");
+            if (!int.TryParse(Console.ReadLine(), out K) || K <= 0)
+            {
+                Console.WriteLine(ERROR);
+                return;
+            }
+            C = new double[K];
+            for (int i = 0; i < k; i++)
+            {
+                Console.Write("Write for A: ");
+                if (!double.TryParse(Console.ReadLine(), out x))
+                {
+                    Console.WriteLine(ERROR);
+                    return;
+                }
+                M[i] = x;
+            }
+            Console.WriteLine();
+            for (int i = 0; i < K; i++)
+            {
+                Console.Write("Write for B: ");
+                if (!double.TryParse(Console.ReadLine(), out x))
+                {
+                    Console.WriteLine(ERROR);
+                    return;
+                }
+                C[i] = x;
+            }
+            Array.Sort(M);
+            Array.Sort(C);
+            l = 0; 
+            L = 0;
+            List<double> lst = new List<double>(K+k);
+            while (l < M.Length || L < C.Length)
+            {
+                if (l == M.Length)
+                {
+                    lst.Add(C[L]);
+                    L++;
+                    continue;
+                }
+
+                if (L == C.Length)
+                {
+                    lst.Add(M[l]);
+                    l++;
+                    continue;
+                }
+                if (M[l] <= C[L])
+                {
+                    lst.Add(M[l]);
+                    l++;
+                }
+                else
+                {
+                    lst.Add(C[L]);
+                    L++;
+                }
+            }
+            foreach(double i in lst)
+            {
+                Console.Write(i + " ");
+            }
+            Console.WriteLine();
+        #endregion
+
+            #region Task_0_14
+            Console.WriteLine("Task 0.14");
+            Console.Write("Write length of massive: ");
+            if (!int.TryParse(Console.ReadLine(), out k) || k <= 0)
+            {
+                Console.WriteLine(ERROR);
+                return;
+            }
+            M = new double[k];
+            for (int i = 0; i < k; i++)
+            {
+                Console.Write("Write for massive: ");
+                if (!double.TryParse(Console.ReadLine(), out x))
+                {
+                    Console.WriteLine(ERROR);
+                    return;
+                }
+                M[i] = x;
+            }
+            Console.WriteLine();
+            Array.Reverse(M);
+            foreach(double i in M)
+            {
+                Console.Write(i + " ");
+            }
+            Console.WriteLine();
+        #endregion
+
+            #region Task_0_15
+            Console.WriteLine("Task 0.15");
+            Console.Write("Write length of massive: ");
+            if (!int.TryParse(Console.ReadLine(), out k) || k <= 0)
+            {
+                Console.WriteLine(ERROR);
+                return;
+            }
+            M = new double[k];
+            for (int i = 0; i < k; i++)
+            {
+                Console.Write("Write numbers: ");
+                if (!double.TryParse(Console.ReadLine(), out x))
+                {
+                    Console.WriteLine(ERROR);
+                    return;
+                }
+                M[i] = x;
+            }
+            Console.WriteLine();
+            Console.Write("Write M: ");
+            lst = new List<double>(k);
+            if (!int.TryParse(Console.ReadLine(), out l) || l <= 0)
+            {
+                Console.WriteLine(ERROR);
+                return;
+            }
+            l %= k;
+            if (l < 0)
+            {
+                l = Math.Abs(l);
+                for (int i = l; i < M.Length; ++i)
+                {
+                    lst.Add(M[i]);
+                }
+                for (int i = 0; i < l; ++i)
+                {
+                    lst.Add(M[i]);
+                }
+            }
+            else
+            {
+                for (int i = M.Length - l; i < M.Length; ++i)
+                {
+                    lst.Add(M[i]);
+                }
+                for (int i = 0; i < M.Length - l; ++i)
+                {
+                    lst.Add(M[i]);
+                }
+            }
+            foreach(double i in lst)
+            {
+                Console.Write(i + " ");
+            }
+            Console.WriteLine();
             #endregion
         }
     }
