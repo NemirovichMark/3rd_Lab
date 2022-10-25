@@ -30,6 +30,31 @@
             Console.WriteLine(String.Join(" ",array));
             #endregion
             
+#region lvl1Task10
+double[] array = new double[10];
+int count = 0;
+Console.WriteLine("Enter Q and P values (P>Q)");
+double Q = Convert.ToDouble(Console.ReadLine());
+double P = Convert.ToDouble(Console.ReadLine());
+if (P > Q)
+{
+    Console.WriteLine("Enter array values:");
+    for (int i = 0; i < 10; i++)
+    {
+        array[i] = Convert.ToDouble(Console.ReadLine());
+        if (Q < array[i] && array[i] < P)
+        {
+            count++;
+        }
+    }
+    Console.WriteLine($"{count} elements of array stand between P and Q");
+}
+else
+{
+    Console.WriteLine("Error");
+}
+#endregion
+            
              #region lvl3Task13
             Console.WriteLine("Enter count values");
             int n = Convert.ToInt32(Console.ReadLine());
