@@ -75,6 +75,31 @@ for (int i = 0; i < 10; i++)
 }
 Console.WriteLine(string.Join("", array_positive));
 #endregion
+
+#region lvl1Task12
+double[] array = new double[8];
+double negative_value = 0;
+double negative_index = 0;
+Console.WriteLine("Enter array value");
+for (int i = 0; i < 8; i++)
+{
+    array[i] = Convert.ToDouble(Console.ReadLine());
+    if (array[i] < 0)
+    {
+        negative_value = array[i];
+        negative_index = i;
+    }
+}
+if (negative_value == 0)
+{
+    Console.Write("You don't enter negative value");
+}
+else
+{
+    Console.WriteLine($"Value - {negative_value}\nNubmer - {negative_index +1}");
+}
+#endregion
+
             
              #region lvl3Task13
             Console.WriteLine("Enter count values");
