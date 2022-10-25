@@ -54,6 +54,27 @@ else
     Console.WriteLine("Error");
 }
 #endregion
+
+#region lvl1Task11
+double[] array = new double[10];
+int count = 0;
+Console.WriteLine("Enter array values");
+for (int i = 0; i < 10; i++)
+{
+    array[i] = Convert.ToDouble(Console.ReadLine());
+    if (array[i] > 0) count++;
+}
+double[] array_positive = new double[count];
+for (int i = 0; i < 10; i++)
+{
+    if (array[i] > 0)
+    {
+        array_positive[count-1] = array[i];
+        count--;
+    }
+}
+Console.WriteLine(string.Join("", array_positive));
+#endregion
             
              #region lvl3Task13
             Console.WriteLine("Enter count values");
