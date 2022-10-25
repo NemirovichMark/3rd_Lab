@@ -100,6 +100,34 @@ else
 }
 #endregion
 
+#region lvl1Task12
+double[] array = new double[10];
+double[] array_1 = new double[5];
+int index1 = 0;
+double[] array_2 = new double[5];
+int index2 = 0;
+Console.WriteLine("Enter array values");
+for (int i = 0; i < 10; i++)
+{
+    array[i] = Convert.ToDouble(Console.ReadLine());
+}
+for (int i = 0; i < 10; i++)
+{
+    if (i % 2 == 0)
+    {
+        array[index1] = array[i];
+        index1++;
+    }
+    if (i%2 != 0)
+    {
+        array[index2] = array[i];
+        index2++;
+    }
+}
+Console.WriteLine($"1st array - {String.Join("", array_1)}");
+Console.WriteLine($"2nd array - {String.Join("", array_2)}");
+#endregion
+
             
              #region lvl3Task13
             Console.WriteLine("Enter count values");
