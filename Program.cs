@@ -713,18 +713,24 @@ namespace Lab_3
 
             #region Task_0_12
             Console.WriteLine("Task 0.12");
-            Console.Write("Write length of massives: ");
+            Console.Write("Write length of massive A: ");
             if (!int.TryParse(Console.ReadLine(), out k) || k <= 0)
             {
                 Console.WriteLine(ERROR);
                 return;
             }
             M = new double[k];
-            C = new double[k];
-            double[] Z = new double[k + k];
+            Console.Write("Write length of massive B: ");
+            if (!int.TryParse(Console.ReadLine(), out K) || K <= 0)
+            {
+                Console.WriteLine(ERROR);
+                return;
+            }
+            C = new double[K];
+            double[] Z = new double[k + K];
             for (int i = 0; i < k; i++)
             {
-                Console.Write("Write for M: ");
+                Console.Write("Write for A: ");
                 if (!double.TryParse(Console.ReadLine(), out x))
                 {
                     Console.WriteLine(ERROR);
@@ -733,9 +739,9 @@ namespace Lab_3
                 M[i] = x;
             }
             Console.WriteLine();
-            for (int i = 0; i < k; i++)
+            for (int i = 0; i < K; i++)
             {
-                Console.Write("Write for C: ");
+                Console.Write("Write for B: ");
                 if (!double.TryParse(Console.ReadLine(), out x))
                 {
                     Console.WriteLine(ERROR);
@@ -744,11 +750,36 @@ namespace Lab_3
                 C[i] = x;
             }
             Console.WriteLine();
-            for (int i = 0; i < k; i++)
+            int p = 0;
+            k = 0;
+            m = 0;
+            for (int i = 0; i < M.Length && i < C.Length; i++)
             {
-                (Z[i * 2], Z[i * 2 + 1]) = (M[i], C[i]);
+                Z[p] = M[m];
+                m++;
+                p++;
+                Z[p] = C[k];
+                k++;
+                p++;
             }
-            foreach (double i in Z) Console.Write(i + " ");
+            for (int i = p; i < Z.Length; i++)
+            {
+                if (M.Length > C.Length)
+                {
+                    Z[i] = M[m];
+                    m++;
+                }
+                else
+                {
+                    Z[i] = C[k];
+                    k++;
+                }
+            }
+            foreach (int i in Z)
+            {
+                Console.Write(i + " ");
+            }
+            Console.WriteLine();
             #endregion
 
             #region Task_0_13
@@ -835,6 +866,7 @@ namespace Lab_3
                 return;
             }
             M = new double[k];
+            double h = 0;
             for (int i = 0; i < k; i++)
             {
                 Console.Write("Write for massive: ");
@@ -846,7 +878,12 @@ namespace Lab_3
                 M[i] = x;
             }
             Console.WriteLine();
-            Array.Reverse(M);
+            for (int i = 0, j = M.Length - 1; i < j; i++, j--)
+            {
+                h = M[i];
+                M[i] = M[j];
+                M[j] = h;
+            }
             foreach(double i in M)
             {
                 Console.Write(i + " ");
