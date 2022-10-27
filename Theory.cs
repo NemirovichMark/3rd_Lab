@@ -110,11 +110,13 @@ namespace _3rd_Lab
                     }
                 }
                 double[] second_arr = new double[plus_count];
+                int j = 0;
                 for (int i = 0; i < arr.Length; ++i)
                 {
                     if (arr[i] > 0)
                     {
-                        second_arr[i] = arr[i];
+                        second_arr[j] = arr[i];
+                        ++j;
                     }
                 }
                 for (int i = 0; i < second_arr.Length; ++i) 
@@ -357,6 +359,8 @@ namespace _3rd_Lab
             
             #region Num_10
             {
+                #region Num_10
+            {
                 double min_plus = 0;
                 int imin = 0;
                 bool save = false;
@@ -383,20 +387,26 @@ namespace _3rd_Lab
                             Console.WriteLine("Error");
                         }
                     }
-                    --n;
-                    for (int i = imin; i < n; ++i)
+                    double[] arr2 = new double[n - 1];
+                    for (int j = 0; j < imin; ++j)
                     {
-                        arr[i] = arr[i + 1];
+                        arr2[j] = arr[j];
                     }
-                    for (int i = 0; i < n; ++i)
+                    for (int j = imin + 1; j < n; ++j)
                     {
-                        Console.WriteLine($"{arr[i]} ");
+                        arr2[j - 1] = arr[j];
+                    }
+                    for (int i = 0; i < n - 1; ++i)
+                    {
+                        Console.WriteLine($"{arr2[i]} ");
                     }
                 }
                 else
                 {
                     Console.WriteLine("Error");
                 }
+            }
+            #endregion
             }
             #endregion
             
@@ -696,7 +706,8 @@ namespace _3rd_Lab
             #endregion
             
             #region Num_9
-            int plus_count = 0, neg_count = 0;
+            int neg = 0,plus = 0;
+            int plus_count = 1, neg_count = 1;
             if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
             {
                 double[] arr = new double[n];
@@ -712,17 +723,18 @@ namespace _3rd_Lab
                     }
                 }
                 for (int i = 0; i < arr.Length - 1; ++i)
-                {
+                {   
                     if (arr[i] > arr[i + 1])
                     {
                         ++neg_count;
+                        neg = Math.Max(neg, neg_count);
+                        plus_count = 1;
                     }
-                }
-                for (int i = 0; i < arr.Length - 1; ++i)
-                {
                     if (arr[i] < arr[i + 1])
                     {
                         ++plus_count;
+                        plus = Math.Max(plus, plus_count);
+                        neg_count = 1;
                     }
                 }
             }
@@ -730,7 +742,7 @@ namespace _3rd_Lab
             {
                 Console.WriteLine("Error");
             }
-            Console.WriteLine($"max = {Math.Max(plus_count, neg_count)}");
+            Console.WriteLine($"max = {Math.Max(plus, neg)}");
             #endregion
             
             #region Num_12
@@ -887,11 +899,12 @@ namespace _3rd_Lab
                             Console.WriteLine("Error");
                         }
                     }
-                    int min_ = Math.Min(n,m);
-                    int p = min_ * 2;
-                    double[] arr3 = new double[p];
+                    int p = Math.Min(n,m);
+                    int p1 = Math.Max(n,m);
+                    int leng = p + p1;
+                    double[] arr3 = new double[leng];
                     int iarr1 = 0,iarr2 = 0;
-                    for (int z = 0; z < p; ++z)
+                    for (int z = 0; z < p * 2; ++z)
                     {
                         if (z % 2 == 0)
                         {
@@ -899,6 +912,19 @@ namespace _3rd_Lab
                             ++iarr1;
                         }
                         else
+                        {
+                            arr3[z] = arr2[iarr2];
+                            ++iarr2;
+                        }
+                    }
+                    for (int z = p * 2; z < leng; ++z)
+                    {
+                        if (n > m)
+                        {
+                            arr3[z] = arr1[iarr1];
+                            ++iarr1;
+                        }
+                        if (n < m)
                         {
                             arr3[z] = arr2[iarr2];
                             ++iarr2;
@@ -921,27 +947,55 @@ namespace _3rd_Lab
             #endregion
             
             #region a_13
-            double[] arr1 = new double[7] {100,90,80,70,60,50,40};
-            double[] arr2 = new double[6] {95,85,75,65,55,45};
-            double[] arr3 = new double[7 + 6];
-            int i = 0, j = 0, p = 0;
-            while ((i < 7) && (j < 6))
-                if (arr1[i] >= arr2[j])
+            if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+            {
+                double[] arr1 = new double[n];
+                for (int i = 0; i < arr1.Length; ++i)
                 {
-                    arr3[p++] = arr1[i++];
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr1[i] = digit;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
                 }
-                else
+                if ((int.TryParse(Console.ReadLine(), out int m)) && (m > 0))
                 {
-                    arr3[p++] = arr2[j++];
+                    double[] arr2 = new double[m];
+                    for (int j = 0; j < arr2.Length; ++j)
+                    {
+                        if (double.TryParse(Console.ReadLine(), out double digit))
+                        {
+                            arr2[j] = digit;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error");
+                        }
+                    }
+                    double[] arr3 = new double[n + m];
+                    int v = 0, z = 0, p = 0;
+                    while ((v < n) && (z < m))
+                    if (arr1[v] >= arr2[z])
+                    {
+                        arr3[p++] = arr1[v++];
+                    }
+                    else
+                    {
+                        arr3[p++] = arr2[z++];
+                    }
+                    while (v < n)
+                        arr3[p++] = arr1[v++];
+                    while (z < m)
+                        arr3[p++] = arr2[z++];
+                    for (int s = 0; s < arr3.Length; ++s)
+                    {   
+                    Console.WriteLine($"{arr3[s]} ");
+                    }
                 }
-            while (i < 7)
-                arr3[p++] = arr1[i++];
-            while (j < 6)
-                arr3[p++] = arr2[j++];
-            for (int s = 0; s < arr3.Length; ++s)
-                {   
-                Console.WriteLine($"{arr3[s]} ");
-                }
+            }
             #endregion
             
             #region a_14
