@@ -6,10 +6,10 @@ public class HelloWorld
 {
     public static void Main(string[] args)
     {
-        algorithms.alg15();
+        algorithms.alg12();
     }
 }
- public class Lab3Level1
+    public class Lab3Level1
     {
         public static void Ex6() 
         {
@@ -96,18 +96,14 @@ public class HelloWorld
                         Console.WriteLine("Incorrect value");
                         continue;
                     }
-                    if (x < 0)
-                    {
-                        Console.WriteLine("X should be positive");
-                        continue;
-                    }
                     arr[i] = x;
                     break;
                 }
             }
+            double[] Arr = Array.FindAll(arr, i => i > 0);
             for (int i = 0; i < arr.Length; i++)
             {
-                Console.Write($"{arr[i]}  ");
+                Console.Write($"{Arr[i]}  ");
             }
         }
         public static void Ex12() 
@@ -441,7 +437,7 @@ public class HelloWorld
                 }
                 break;
             }
-            List<double> arr = new List<double>();
+            double[] arr = new double[n];
             double x;
             Console.WriteLine("Enter X: ");
             for (int i = 0; i < n; i++)
@@ -453,7 +449,7 @@ public class HelloWorld
                         Console.WriteLine("Incorrect value");
                         continue;
                     }
-                    arr.Add(x);
+                    arr[i] = x;
                     break;
                 }
                 
@@ -562,7 +558,7 @@ public class HelloWorld
                 }
                 break;
             }
-            A.InsertRange(k, B);
+            A.InsertRange(k+1, B);
             Console.WriteLine(new string('_',100));
             for (int i = 0; i < A.Count; i++)
             {
@@ -1002,7 +998,7 @@ public class HelloWorld
         }
         public static void alg12() 
         {
-            Console.WriteLine("Enter the amout of values of 2 arrays");
+            Console.WriteLine("Enter the amout of values of the first array");
             int n;
             while (true)
             {
@@ -1036,8 +1032,25 @@ public class HelloWorld
                     break;
                 }
             }
+            Console.WriteLine("Enter the amout of values of the second array");
+            int m;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out m))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (m <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+
             Console.WriteLine("Enter Y: ");
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < m; i++)
             {
                 while (true)
                 {
@@ -1051,7 +1064,7 @@ public class HelloWorld
                 }
             }
             int counter = 0, counter1 = 0;
-            for (int i = 0; i < n+n; i++)
+            for (int i = 0; i < n+m; i++)
             {
                 if (i%2==0)
                 {
@@ -1292,3 +1305,4 @@ public class HelloWorld
         }
     }
    
+  
