@@ -1,121 +1,1082 @@
-﻿using System;
+using System;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Threading;
+using System.Collections.Generic;
 
 namespace _3rd_Lab
 {
     class Theory
     {
+        static int Binary_search(double[] arr, int l, int r, double x)
+        {
+            if (arr[l] == x)
+            {
+                return l;
+            }
+            if (arr[r] == x)
+            {
+                return r;
+            }
+            if (l + 1 == r)
+            {
+                return -1;
+            }
+            if (arr[(l + r) / 2] == x)
+            {
+                return (l + r) / 2;
+            }
+            else if (arr[(l + r) / 2] < x)
+            {
+                return Binary_search(arr, (l+r) / 2, r, x);
+            }
+            else
+            {
+                return Binary_search(arr, l, (l+r) / 2, x);
+            }
+        }
         static void Main(string[] args)
         {
-            #region Collections Theory
-            /* Array - static (restricted) massive of data in the memory. If we want to extend it, we should create a new array and copy existing data there.
-             * access to each number of array have static time that don't depend on size of array. So get arr[10] and arr[25426] consume equal time.
-             * use it when you have determinative amount of elements.
-             * 
-             *
-             *
-             * These more suitable collections available if you add System.Collections.Generic library
-             *
-             *
-             * Stack<type of data> - pile of elements (like a books on the table or plates in the sink) 
-             * that lay one over another and you can add new one to the top, look at the uppest one or take it
-             * 
-             * Queue<type of data> - like in the shop or on escalator in the subway. You can add to the end, look the first element or take the first element.
-             * 
-             * List<type of data> - linked array when you don't know the limit of your array and ought to add or remove elements sometimes (linked array)
-             * the PC create an array and when you want to add new element, it create a new array and copy all existing elements there.
-             *
-             * LinkedList<type of data> - array with a reference to the next and previous element (twice-linked array)
-             * 
-             * Dictionary<type of key, type of data> - pair key-value. You can add new key, find key, get value by key, set value by key. 
-             * Very fast access (as simple array), but more flexible
-             * 
-             */
+            
+            #region Lvl_1
+            #region Num_6
+            {
+                double[] arr = new double[5];
+                double len_arr;
+                double sum = 0;
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    if ((double.TryParse(Console.ReadLine(), out double poh)) && (poh > 0))
+                    {
+                        arr[i] = poh;
+                        sum += Math.Pow(poh, 2);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                Console.WriteLine($"len = {len_arr = Math.Sqrt(sum)}");
+            }
             #endregion
 
-            #region Arrays
+            #region Num_10
+            {
+                double[] arr = new double[10];
+                int count = 0;
+                if (double.TryParse(Console.ReadLine(), out double p))
+                {
+                    if ((double.TryParse(Console.ReadLine(), out double q)) && (q > p))
+                    {
+                        for (int i = 0; i < arr.Length; ++i)
+                        {
+                            if (double.TryParse(Console.ReadLine(), out double digit))
+                            {
+                                arr[i] = digit;
+                                if ((arr[i] > p) && (arr[i] < q))
+                                {
+                                    ++count;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error");
+                            }
+                        }
+                    }
+                }
+                Console.WriteLine($"belong elems = {count}");
+            }
+            #endregion
+            
+            #region Num_11
+            {
+                double[] arr = new double[10];
+                int plus_count = 0;
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr[i] = digit;
+                        if (digit > 0)
+                        {
+                            ++plus_count;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                double[] second_arr = new double[plus_count];
+                int j = 0;
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    if (arr[i] > 0)
+                    {
+                        second_arr[j] = arr[i];
+                        ++j;
+                    }
+                }
+                for (int i = 0; i < second_arr.Length; ++i) 
+                {
+                    Console.WriteLine(second_arr[i]);
+                }
+            }
+            #endregion
+            
+            #region Num_12
+            {
+                double[] arr = new double[8];
+                int num = 0;
+                double value = 0;
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr[i] = digit;
+                        if (digit < 0)
+                        {
+                            value = digit;
+                            num = i;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                Console.WriteLine($"value = {value}, number = {num + 1}");
+            }
+            #endregion
+            
+            #region Num_13
+            {
+                double[] arr_1 = new double[10];
+                double[] arr_2 = new double[5];
+                double[] arr_3 = new double[5];
+                int j = 0, n = 0;
+                for (int i = 0; i < arr_1.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr_1[i] = digit;
+                        if (i % 2 == 0)
+                        {
+                            arr_2[j] = digit;
+                            ++j;
+                        }
+                        else
+                        {
+                            arr_3[n] = digit;
+                            ++n;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                for (int i = 0; i < arr_1.Length; ++i)
+                {
+                    Console.Write($"{arr_1[i]} ");
+                }
+                Console.Write("\n");
+                for (int i = 0; i < arr_2.Length; ++i)
+                {
+                    Console.Write($"{arr_2[i]} ");
+                }
+                Console.Write("\n");
+                for (int i = 0; i < arr_3.Length; ++i)
+                {
+                    Console.Write($"{arr_3[i]} ");
+                }
+            }
+            #endregion
+            #endregion
+            
+            #region Lvl_2
+            #region Num_5
+            {
+                int imin = 0, imax = 0, negative_count = 0;
+                double arrmax = 0, arrmin = 0;
+                if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+                {
+                    double[] arr = new double[n];
+                    for (int i = 0; i < arr.Length; ++i)
+                    {
+                        if (double.TryParse(Console.ReadLine(), out double digit))
+                        {
+                            arr[i] = digit;
+                            if (i == 0)
+                            {
+                                arrmax = arr[i];
+                                arrmin = arr[i];
+                            }
+                            if (arr[i] > arrmax)
+                            {
+                                arrmax = arr[i];
+                                imax = i;
+                            }
+                            if (arr[i] < arrmin)
+                            {
+                                arrmin = arr[i];
+                                imin = i;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error");
+                        }
+                    }
+                    for (int i = Math.Min(imin, imax) + 1; i < Math.Max(imin, imax); ++i)
+                    {
+                        if (arr[i] < 0)
+                        {
+                            ++negative_count;
+                        }
+                    }
+                    double[] arr_2 = new double[negative_count];
+                    int j = 0;
+                    for (int i = Math.Min(imin, imax) + 1; i < Math.Max(imin, imax); ++i)
+                    {
+                        if (arr[i] < 0)
+                        {
+                            arr_2[j] = arr[i];
+                            ++j;
+                        }
+                    }
+                    for (int i = 0; i < arr_2.Length; ++i)
+                    {
+                        Console.Write($"{arr_2[i]} ");
+                    }
+                }
+            }
+            #endregion
 
-            //Dimensions:
-            int[] oneDimension = new int[1000000]; // row with a 1 million if zeros
-            double[] oneDimensionInitializedArray; // undefined array
-            int[,] twoDimension = new int[1000, 1000]; // matrix 1000 x 1000, filled by zeros
-            string[,,] threeDimension = new string[5, 10, 255]; 
-            // 5 rows, 10 columns and 255 elements in the column. Each element can contain a string (so it 4-th dimension array actually)
+            #region Num_6
+            { 
+                double sum = 0;
+                if (int.TryParse(Console.ReadLine(), out int p))
+                {
+                    if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+                    {
+                        double[] arr = new double[n + 1];
+                        for (int i = 0; i < n; ++i)
+                        {
+                            if (double.TryParse(Console.ReadLine(), out double digit))
+                            {
+                                arr[i] = digit;
+                                sum += digit;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error");
+                            }
+                        }
+                        double avg = sum / n;
+                        double mindiff = 0;
+                        int imin = 0;
+                        for (int i = 0; i < n; ++i)
+                        {
+                            mindiff = Math.Abs(arr[i] - avg);
+                            double diff = Math.Abs(arr[i] - avg);
+                            if (diff < mindiff)
+                            {
+                                mindiff = diff;
+                                imin = i;
+                            }
+                        }
+                        for (int i = arr.Length - 1; i > imin; --i)
+                        {
+                            arr[i] = arr[i - 1];
+                        }
+                        arr[imin + 1] = p;
+                        for (int i = 0; i < arr.Length; ++i)
+                        {
+                            Console.Write($"{arr[i]} ");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error");
+                }
+            }
+            #endregion
 
-            int[][] notSquarMatrix = new int[15][]; // array where each element contain an array (different or equal lengths) -> [ [0,1,2,3,4] , [10,25] , [8] ];
+            #region Num_9
+            { 
+                int imin = 0, imax = 0, count = 0;
+                double arrmax = 0, arrmin = 0, sum = 0;
+                if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+                {
+                    double[] arr = new double[n];
+                    for (int i = 0; i < n; ++i)
+                    {
+                        if (double.TryParse(Console.ReadLine(), out double digit))
+                        {
+                            arr[i] = digit;
+                            if (i == 0)
+                            {
+                                arrmax = arr[i];
+                                arrmin = arr[i];
+                            }
+                            if (arr[i] > arrmax)
+                            {
+                                arrmax = arr[i];
+                                imax = i;
+                            }
+                            if (arr[i] < arrmin)
+                            {
+                                arrmin = arr[i];
+                                imin = i;
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error");
+                        }
+                    }
+                    for (int i = Math.Min(imin, imax) + 1; i < Math.Max(imin, imax); ++i)
+                    {
+                        sum += arr[i];
+                        ++count;
+                    }
+                    Console.WriteLine($"avg arith = {sum / count}");
+                }
+                else
+                {
+                    Console.WriteLine("Error");
+                }
+            }
+            #endregion
+            
+            #region Num_10
+            {
+                #region Num_10
+            {
+                double min_plus = 0;
+                int imin = 0;
+                bool save = false;
+                if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+                {
+                    double[] arr = new double[n];
+                    for (int i = 0; i < n; ++i)
+                    {
+                        if (double.TryParse(Console.ReadLine(), out double digit))
+                        {
+                            arr[i] = digit;
+                            if (digit > 0)
+                            {
+                                if ((!save) || (digit < min_plus))
+                                {
+                                    min_plus = digit;
+                                    imin = i;
+                                    save = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error");
+                        }
+                    }
+                    double[] arr2 = new double[n - 1];
+                    for (int j = 0; j < imin; ++j)
+                    {
+                        arr2[j] = arr[j];
+                    }
+                    for (int j = imin + 1; j < n; ++j)
+                    {
+                        arr2[j - 1] = arr[j];
+                    }
+                    for (int i = 0; i < n - 1; ++i)
+                    {
+                        Console.WriteLine($"{arr2[i]} ");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error");
+                }
+            }
+            #endregion
+            }
+            #endregion
+            
+            #region Num_11
+            { 
+                double last_plus = 0;
+                int ilast = 0;
+                if (int.TryParse(Console.ReadLine(), out int p))
+                {
+                    if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+                    {
+                        double[] arr = new double[n + 1];
+                        for (int i = 0; i < n; ++i)
+                        {
+                            if (double.TryParse(Console.ReadLine(), out double digit))
+                            {
+                                arr[i] = digit;
+                                if (digit > 0)
+                                {
+                                    last_plus = arr[i];
+                                    ilast = i;
+                                }
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error");
+                            }
+                        }
+                        for (int i = arr.Length - 1; i > ilast; --i)
+                        {
+                            arr[i] = arr[i - 1];
+                        }
+                        arr[ilast + 1] = p;
+                        for (int i = 0; i < arr.Length; ++i)
+                        {
+                            Console.Write($"{arr[i]} ");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error");
+                }
+            }
+            #endregion
 
-            //and so on
+            #region Num_13
+            {
+                int imax = 0;
+                double arrmax = 0;
+                if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+                {
+                    double[] arr = new double[n];
+                    for (int i = 0; i < arr.Length; ++i)
+                    {
+                        if (double.TryParse(Console.ReadLine(), out double digit))
+                        {
+                            if (i == 0)
+                            {
+                                arrmax = arr[i];
+                            }
+                            arr[i] = digit;
+                            if ((i % 2 == 0) && (arr[i] > arr[imax]))
+                            {
+                                imax = i;
+                                arrmax = arr[i];
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error");
+                        }
+                    }
+                    for (int i = 0; i < arr.Length; ++i)
+                    {
+                        if (i == imax)
+                        {
+                            arr[i] = i;
+                        }
+                    }
+                    for (int i = 0; i < arr.Length; ++i)
+                    {
+                        Console.WriteLine($"{arr[i]} ");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error");
+                }
+            }
+            #endregion
+            
+            #region Num_15
+            if ((int.TryParse(Console.ReadLine(), out int m)) && (m > 0))
+            {
+                double[] b = new double[m];
+                for (int i = 0; i < b.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit1))
+                    {
+                    b[i] = digit1;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+                {   
+                    if ((int.TryParse(Console.ReadLine(), out int k)) && (k > 0) && (k < n))
+                    {
+                        double[] a = new double[n];
+                        for (int j = 0; j < a.Length; ++j)
+                        {
+                            if (double.TryParse(Console.ReadLine(), out double digit2))
+                            {
+                            a[j] = digit2;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Error");
+                            }
+                        }
+                        double[] c = new double[m+n];
+                        for (int i = 0; i < k; ++i)
+                        {
+                            c[i] = a[i];
+                        }
+                        for (int i = 0; i < b.Length; ++i)
+                        {
+                            c[i + k] = b[i];
+                        }
+                        for (int i = k; i < a.Length; ++i)
+                        {
+                            c[i + b.Length] = a[i];
+                        }
+                        for (int i = 0; i < c.Length; ++i)
+                        {   
+                        Console.WriteLine($"{c[i]} ");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+            #endregion
+            #endregion 
+            
+            #region Lvl_3
 
-            // Access to element:
-
-            threeDimension[threeDimension.Length-1, 0, threeDimension.GetLength(2)-1] = "I am the latest element here!"; 
-            // do not forget that start with 0 and end with Length-1!
-
-
-            double[] shortExample = new double[4] { 1.2, 0.154564, -454, 0 }; // will be crated a new massive with 4 elements
-
-            // Use arrays for limited length. Otherwise - List.
-            // For fast search - Dictionary
-            // Efficient simple solutions usually realizing by Stack and Queue
-            // LinkedList is used seldom
+            #region Num_1
+            double arrmax = 0;
+            int count = 0;
+            if ((int.TryParse(Console.ReadLine(), out int m)) && (m > 0))
+            {
+                double[] arr = new double[m];
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr[i] = digit;
+                        if (i == 0)
+                        {
+                            arrmax = arr[i];
+                        }
+                        if (arr[i] > arrmax)
+                        {
+                            arrmax = arr[i];
+                            count = 1;
+                        }
+                        if (arr[i] == arrmax)
+                        {
+                            ++count;
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                double[] arr_2 = new double[count];
+                int j = 0;
+                for (int n = 0; n < arr.Length; ++n)
+                {
+                    if (arr[n] == arrmax)
+                    {
+                        arr_2[j] = n;
+                        ++j;
+                    }
+                } 
+                for (int n = 0; n < arr_2.Length; ++n)
+                {   
+                Console.WriteLine($"{arr_2[n]} ");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+            #endregion
+            
+            #region Num_5
+            if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+            {
+                double[] arr = new double[n];
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr[i] = digit;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                for (int i = 0; i < n - 1; i += 2)
+                {
+                    for (int j = i + 2; j < n - 1; j += 2)
+                    {
+                        if (arr[i] > arr[j])
+                        {
+                            (arr[i], arr[j]) = (arr[j], arr[i]);
+                        }
+                    }
+                }
+                for (int i = 0; i < arr.Length; ++i)
+                {   
+                Console.WriteLine($"{arr[i]} ");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+            #endregion
+            
+            #region Num_8
+            if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+            {
+                double[] arr = new double[n];
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr[i] = digit;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    if (arr[i] < 0)
+                    {
+                        double maxarr = arr[i]; 
+                        int maxi = i;
+                        for (int j = i + 1; j < arr.Length; ++j)
+                        {
+                            if (arr[j] < 0)
+                            {
+                                if (maxarr < arr[j])
+                                {
+                                    maxarr = arr[j];
+                                    maxi = j;
+                                }
+                            }
+                        }
+                        arr[maxi] = arr[i];
+                        arr[i] = maxarr;
+                    }
+                }
+                for (int p = 0; p < arr.Length; ++p)
+                {   
+                Console.WriteLine($"{arr[p]} ");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+            #endregion
+            
+            #region Num_9
+            int neg = 0,plus = 0;
+            int plus_count = 1, neg_count = 1;
+            if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+            {
+                double[] arr = new double[n];
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr[i] = digit;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                for (int i = 0; i < arr.Length - 1; ++i)
+                {   
+                    if (arr[i] > arr[i + 1])
+                    {
+                        ++neg_count;
+                        neg = Math.Max(neg, neg_count);
+                        plus_count = 1;
+                    }
+                    if (arr[i] < arr[i + 1])
+                    {
+                        ++plus_count;
+                        plus = Math.Max(plus, plus_count);
+                        neg_count = 1;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+            Console.WriteLine($"max = {Math.Max(plus, neg)}");
+            #endregion
+            
+            #region Num_12
+            int n = 12;
+            double[] arr = new double[n];
+            Console.WriteLine("Pls, enter >0 negative value");
+            for (int i = 0; i < arr.Length; ++i)
+            {
+                if (double.TryParse(Console.ReadLine(), out double digit))
+                {
+                    arr[i] = digit;
+                }
+                else
+                {
+                    Console.WriteLine("Error");
+                }
+            }
+            for (int i = 0; i < arr.Length; ++i)
+            {
+                if (arr[i] < 0)
+                {
+                    double[] arr_2 = new double[n-1];
+                    for (int j = 0; j < i; ++j)
+                    {
+                        arr_2[j] = arr[j];
+                    }
+                    for (int j = i; j < arr.Length - 1; ++j)
+                    {
+                        arr_2[j] = arr[j + 1];
+                    }
+                    arr = arr_2;
+                    --i;
+                    --n;
+                }
+            }
+            for (int p = 0; p < arr.Length; ++p)
+            {   
+            Console.WriteLine($"{arr[p]} ");
+            }
 
             #endregion
-                
-            #region Tuples
-
-            //It is linked links to several variables in the fixed order:
-            (string name, int age, double height) student = ("Vasiliy", 20, 1.89);
-            (int[] marks, int average) table = ({1,2,3,4,5}, 3);.
-                
-            string Name = student.name; // or student.Item1
             
-            var tuple = (count:5, sum:10);
-            Console.WriteLine(tuple.count); // 5
-            Console.WriteLine(tuple.sum); // 10
-            
-            // It is the simpliest structure of data (not an array!)
+            #region Num_13
+            List<double> new_arr = new List<double>();
+            int count = 0;
+            if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 1))
+            {
+                double[] arr = new double[n];
+                Console.WriteLine("Pls, enter at least one duplicate value");
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr[i] = digit;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    count = 0;
+                    for ( int j = 0; j < arr.Length; ++j)
+                    {
+                        if (arr[i] != arr[j])
+                        {
+                            ++count;
+                        }
+                    }
+                    if (count == arr.Length - 1)
+                    {
+                        new_arr.Add(arr[i]);
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+            Console.WriteLine(String.Join("; ", new_arr));
             #endregion
-           
-            #region Enum
 
-            //It is order of integers (Int 8 / 16 / 32 / 64) where you create a list of names and each name get the value (increment by 1 of previous):              
-            enum Marks
-            {
-                Bad = 2,
-                Nice, // auto-incremented to 3
-                Good, // 4 ...
-                Excellent // not coma at the end!
-            }
-            
-            enum Classes
-            {
-                Math = 1,
-                PhysicalCulture = 3, // Jump over
-                History = 4,
-                Dinner = 2 // Instead Informatics
-            }
-            
-            int myAvgMark = (int)Marks.Bad + (int)Marks.Excellent; // cast to int!
-            Console.WriteLine((Classes)10); // expancion to enum values
-            
-            public enum Season
-            {
-                Spring,
-                Summer,
-                Autumn,
-                Winter
-            }
-            
-            Season a = Season.Autumn;
-            Console.WriteLine($"Integral value of {a} is {(int)a}");  // output: Integral value of Autumn is 2
+            #endregion
 
-            var b = (Season)1;
-            Console.WriteLine(b);  // output: Summer
+            #region Algorithms
 
-            var c = (Season)4;
-            Console.WriteLine(c);  // output: 4
             
-            // More informative than variables, more flexible than constans, more strict than string, more effective than dictionary :) cool thing!
-            #endregion       
+            #region a_11
+            int j;
+            if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+            {
+                double[] arr = new double[n];
+                for (int i = 0; i < arr.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr[i] = digit;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                if (int.TryParse(Console.ReadLine(), out int x))
+                {   
+                    j = Binary_search(arr, 0, (n-1), x);
+                    if (j == -1)
+                    {
+                        Console.WriteLine("Try new x");
+                    }
+                    else
+                    {
+                        Console.WriteLine($"index = {j}, value = {x}");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+            #endregion
+            
+            #region a_12
+            if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+            {
+                double[] arr1 = new double[n];
+                for (int i = 0; i < arr1.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr1[i] = digit;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                if ((int.TryParse(Console.ReadLine(), out int m)) && (m > 0))
+                {
+                    double[] arr2 = new double[m];
+                    for (int j = 0; j < arr2.Length; ++j)
+                    {
+                        if (double.TryParse(Console.ReadLine(), out double digit))
+                        {
+                            arr2[j] = digit;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error");
+                        }
+                    }
+                    int p = Math.Min(n,m);
+                    int p1 = Math.Max(n,m);
+                    int leng = p + p1;
+                    double[] arr3 = new double[leng];
+                    int iarr1 = 0,iarr2 = 0;
+                    for (int z = 0; z < p * 2; ++z)
+                    {
+                        if (z % 2 == 0)
+                        {
+                            arr3[z] = arr1[iarr1];
+                            ++iarr1;
+                        }
+                        else
+                        {
+                            arr3[z] = arr2[iarr2];
+                            ++iarr2;
+                        }
+                    }
+                    for (int z = p * 2; z < leng; ++z)
+                    {
+                        if (n > m)
+                        {
+                            arr3[z] = arr1[iarr1];
+                            ++iarr1;
+                        }
+                        if (n < m)
+                        {
+                            arr3[z] = arr2[iarr2];
+                            ++iarr2;
+                        }
+                    }
+                    for (int s = 0; s < arr3.Length; ++s)
+                    {   
+                    Console.WriteLine($"{arr3[s]} ");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+            #endregion
+            
+            #region a_13
+            if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+            {
+                double[] arr1 = new double[n];
+                for (int i = 0; i < arr1.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr1[i] = digit;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                if ((int.TryParse(Console.ReadLine(), out int m)) && (m > 0))
+                {
+                    double[] arr2 = new double[m];
+                    for (int j = 0; j < arr2.Length; ++j)
+                    {
+                        if (double.TryParse(Console.ReadLine(), out double digit))
+                        {
+                            arr2[j] = digit;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Error");
+                        }
+                    }
+                    double[] arr3 = new double[n + m];
+                    int v = 0, z = 0, p = 0;
+                    while ((v < n) && (z < m))
+                    if (arr1[v] >= arr2[z])
+                    {
+                        arr3[p++] = arr1[v++];
+                    }
+                    else
+                    {
+                        arr3[p++] = arr2[z++];
+                    }
+                    while (v < n)
+                        arr3[p++] = arr1[v++];
+                    while (z < m)
+                        arr3[p++] = arr2[z++];
+                    for (int s = 0; s < arr3.Length; ++s)
+                    {   
+                    Console.WriteLine($"{arr3[s]} ");
+                    }
+                }
+            }
+            #endregion
+            
+            #region a_14
+            if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+            {
+                double[] arr1 = new double[n];
+                for (int i = 0; i < arr1.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr1[i] = digit;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                double[] arr2 = new double[n];
+                int j = 0;
+                for (int i = n - 1; i >= 0; --i)
+                {
+                    arr2[j] = arr1[i];
+                    ++j;
+                }
+                for (int s = 0; s < arr2.Length; ++s)
+                {   
+                Console.WriteLine($"{arr2[s]} ");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+            #endregion
+            
+            #region a_15
+            if ((int.TryParse(Console.ReadLine(), out int n)) && (n > 0))
+            {
+                double[] arr1 = new double[n];
+                for (int i = 0; i < arr1.Length; ++i)
+                {
+                    if (double.TryParse(Console.ReadLine(), out double digit))
+                    {
+                        arr1[i] = digit;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error");
+                    }
+                }
+                if ((int.TryParse(Console.ReadLine(), out int m)) && (m < n))
+                {
+                    double[] arr2 = new double[n];
+                    for (int j = 0; j < m; ++j)
+                    {
+                        arr2[j] = arr1[j + n - m];
+                    }
+                    for (int i = arr1.Length - 1; i >= m; --i)
+                    {
+                        arr1[i] = arr1[i - m];
+                    }
+                    for (int j = 0; j < m; ++j)
+                    {
+                        arr1[j] = arr2[j];
+                    }
+                    for (int s = 0; s < arr1.Length; ++s)
+                    {   
+                    Console.WriteLine($"{arr1[s]} ");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Error");
+                }   
+            }
+            else
+            {
+                Console.WriteLine("Error");
+            }
+            #endregion
+            
         }
     }
 }
