@@ -241,7 +241,7 @@ namespace lab3
             Console.WriteLine("Enter amount of elements");
             int.TryParse(Console.ReadLine(), out n);
             array = new double[n];
-            
+
             Console.WriteLine("Enter {0} elements", n);
             indexMin = -1;
             mini = 99999999999;
@@ -249,19 +249,19 @@ namespace lab3
             {
                 double.TryParse(Console.ReadLine(), out x);
                 array[i] = x;
-                if (x>0 && x < mini)
+                if (x > 0 && x < mini)
                 {
                     mini = x;
                     indexMin = i;
                 }
-                
+
             }
             if (indexMin == -1) Console.WriteLine("No positive elements");
             else
             {
                 for (int i = 0; i < n; i++)
                 {
-                    if (i != indexMin) Console.Write("{0} ", array[i]);
+                    if (array[i] != array[indexMin]) Console.Write("{0} ", array[i]);
                 }
             }
             Console.WriteLine();
@@ -365,6 +365,11 @@ namespace lab3
             }
             Console.WriteLine("Enter k");
             int.TryParse(Console.ReadLine(), out k);
+            while (k > n)
+            {
+                Console.WriteLine("Enter k<n");
+                int.TryParse(Console.ReadLine(), out k);
+            }
             Console.WriteLine("Array:");
             for (int i = 0; i < n; i++)
             {
@@ -526,9 +531,11 @@ namespace lab3
 
             #region level 3 number 12
             Console.WriteLine("--------level 3 number 12--------");
-            array = new double[12];
+            const int array_size = 12;
+            array = new double[array_size];
             Console.WriteLine("Enter 12 elements of array");
-            for (int i = 0; i < 12; i++)
+
+            for (int i = 0; i < array_size; i++)
             {
                 double.TryParse(Console.ReadLine(), out x);
                 array[i] = x;
@@ -538,7 +545,7 @@ namespace lab3
             {
                 if (array[i] < 0)
                 {
-                    for (int l = i; l < 12 - 1; l++)
+                    for (int l = i; l < array_size - 1; l++)
                     {
                         array[l] = array[l + 1];
 
