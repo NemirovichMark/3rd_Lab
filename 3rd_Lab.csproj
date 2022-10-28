@@ -1,9 +1,641 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>_3rd_Lab</RootNamespace>
-  </PropertyGroup>
-
-</Project>
+using System;
+using System.Collections.Generic;
+ 
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        // level 1
+        Console.WriteLine("level 1");
+        // #6
+        Console.WriteLine("#6");
+        double [] vekt = new double[5] {-2, 5, 4, -9, 10};
+        int lennnnn = vekt.Length;
+        double su = 0;
+        for (int i = 0; i < lennnnn; i++)
+        {
+            su = su + vekt[i] * vekt[i];
+        }
+        Console.WriteLine(Math.Sqrt(su));
+        
+        // #10
+        Console.WriteLine("#10");
+        try
+        {
+            double [] a = new double[10] {-14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+            Console.WriteLine("Введите P");
+            double P = double.Parse(Console.ReadLine());
+            Console.WriteLine("Введите Q");
+            double Q = double.Parse(Console.ReadLine());
+            int count = 0;
+            if (P >= Q)
+            {
+                Console.WriteLine("Неправильные входные данные");
+            }
+            else
+            {
+                int len = a.Length;
+                for (int i = 0; i < len; i++)
+                {
+                    if (a[i] > P && a[i] < Q)
+                    {
+                        count = count + 1;
+                    }
+                }
+            }
+            Console.WriteLine(count);
+        }
+        catch { Console.WriteLine("Неправильные входные данные"); }
+        
+        
+        
+        // #11
+        Console.WriteLine("#11");
+        double [] aa = new double[10] {-14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+        List<double> neww = new List<double>();
+        int lenn = aa.Length;
+        int lenn2;
+        for (int i = 0; i < lenn; i++)
+        {
+            if (aa[i] > 0)
+            {
+                neww.Add(aa[i]);
+                
+            }
+        }
+        lenn2 = neww.Count;
+        for (int i = 0; i<lenn2 ; i++)
+            {
+                Console.Write("{0:f} ", neww[i]);
+            }
+        Console.WriteLine("");
+        
+        
+        
+        
+        // #12
+        Console.WriteLine("#12");
+        double [] aaa = new double[8] {-14, 10, 1.6, -12.4, 100, 12, -4.4, 23};
+        int lennn = aaa.Length;
+        for (int i = lennn - 1; i >= 0; i--)
+        {
+            if (aaa[i] < 0)
+            {
+                Console.WriteLine("Значение");
+                Console.WriteLine(aaa[i]);
+                Console.WriteLine("Номер");
+                Console.WriteLine(i);
+                break;
+            }
+        }
+        
+        
+        // #13
+        Console.WriteLine("#13");
+        double [] aaaa = new double[10] {-14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+        int chet = 1;
+        List<double> new1 = new List<double>();
+        List<double> new2 = new List<double>();
+        int lennnn = aaaa.Length;
+        int len1;
+        int len2;
+        for (int i = 0; i < lennnn; i++) // Будем считать 0 четным числом
+        {
+            if (chet == 1)
+            {
+                new1.Add(aaaa[i]);
+            }
+            else
+            {
+                new2.Add(aaaa[i]);
+            }
+            chet = chet * (-1);
+        }
+        
+        len1 = new1.Count;
+        for (int i = 0; i < len1 ; i++)
+            {
+                Console.Write("{0:f} ", new1[i]);
+            }
+        Console.WriteLine("");
+        
+        len2 = new1.Count;
+        for (int i = 0; i < len2 ; i++)
+            {
+                Console.Write("{0:f} ", new2[i]);
+            }
+        Console.WriteLine("");
+        
+        
+        
+        
+        // level 2
+        Console.WriteLine("level 2");
+        // #5
+        Console.WriteLine("#5");
+        double [] b = new double[10] {14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+        double min = b[0];
+        int nom_min = 0;
+        double max = b[0];
+        int nom_max = 0;
+        int len_new_b;
+        List<double> new_b = new List<double>();
+        int len_b = b.Length;
+        for (int i = 0; i < len_b; i++)
+        {
+            if (b[i] < min)
+            {
+                nom_min = i;
+                min = b[i];
+            }
+            if (b[i] > max)
+            {
+                nom_max = i;
+                max = b[i];
+            }
+        }
+        if (nom_min > nom_max)
+        {
+            int t = nom_max;
+            nom_max = nom_min;
+            nom_min = t;
+        }
+        for (int i = nom_min + 1; i < nom_max; i++)
+        {
+            if (b[i] < 0)
+            {
+                new_b.Add(b[i]);
+            }
+        }
+        
+        len_new_b = new_b.Count;
+        for (int i = 0; i < len_new_b; i = i + 1)
+        {
+            Console.Write("{0:f} ", new_b[i]);
+        }
+        Console.WriteLine("");
+        
+        
+        // #6
+        try
+        {
+            Console.WriteLine("#6");
+            List<double> b2 = new List<double>() {14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+            int len_b2 = b2.Count;
+            Console.WriteLine("Введите P");
+            double PP = double.Parse(Console.ReadLine());
+            double sr_zn = 0;
+            double poxog = 0;
+            double poxog_min;
+            int n_poxog = 0;
+            
+            foreach(double ii in b2) sr_zn += ii;
+            
+            sr_zn = sr_zn / len_b2;
+            
+            poxog_min = (b2[0] - sr_zn) * (b2[0] - sr_zn);
+            for (int i = 0; i < len_b2; i++)
+            {
+                poxog = b2[i] - sr_zn;
+                if (poxog < 0)
+                {
+                    poxog = 0 - poxog;
+                }
+                
+                if (poxog < poxog_min) 
+                {
+                    poxog_min = poxog;
+                    n_poxog = i;
+                }
+            }
+            
+            b2.Add(b2[len_b2 - 1]);
+            len_b2 = b2.Count;
+            for (int i = len_b2 - 1; i > n_poxog; i--)
+            {
+                b2[i] = b2[i - 1];
+            }
+            b2[n_poxog + 1] = PP;
+            
+            len_b2 = b2.Count;
+            for (int i = 0; i < len_b2; i = i + 1)
+            {
+                Console.Write("{0:f} ", b2[i]);
+            }
+            Console.WriteLine("");
+        }
+        catch { Console.WriteLine("Неправильные входные данные"); }
+        
+        
+        
+        
+        
+        // #9
+        Console.WriteLine("#9");
+        double [] b3 = new double[10] {14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+        double min_b3 = b3[0];
+        int nom_min_b3 = 0;
+        double max_b3 = b3[0];
+        int nom_max_b3 = 0;
+        int len_b3 = b3.Length;
+        double sr_zn_b3 = 0;
+        int col = 0;
+        for (int i = 0; i < len_b3; i++)
+        {
+            if (b3[i] < min_b3)
+            {
+                nom_min_b3 = i;
+                min_b3 = b[i];
+            }
+            if (b3[i] > max_b3)
+            {
+                nom_max_b3 = i;
+                max_b3 = b3[i];
+            }
+        }
+        if (nom_min_b3 > nom_max_b3)
+        {
+            int v = nom_max_b3;
+            nom_max_b3 = nom_min_b3;
+            nom_min_b3 = v;
+        }
+        
+        for (int i = nom_min_b3 + 1; i < nom_max_b3; i++)
+        {
+            sr_zn_b3 = sr_zn_b3 + b3[i];
+            col = col + 1;
+        }
+        sr_zn_b3 = sr_zn_b3 / col;
+        Console.WriteLine(sr_zn_b3);
+        
+        
+        // #10
+        Console.WriteLine("#10");
+        double [] b4 = new double[10] {14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+        int len_b4 = b4.Length;
+        double min_b4 = b3[0];
+        int nom_min_b4 = 0;
+        for (int i = 0; i < len_b4; i++)
+        {
+            if (b4[i] < min_b4 && b4[i] > 0)
+            {
+                nom_min_b4 = i;
+                min_b4 = b[i];
+            }
+        }
+        
+        for (int i = nom_min_b4; i < len_b4 - 1; i++)
+        {
+            b4[i] = b4[i+1];
+        }
+        b4[len_b4-1] = 0;
+        
+        for (int i = 0; i < len_b4 - 1; i = i + 1)
+        {
+            Console.Write("{0:f} ", b4[i]);
+        }
+        Console.WriteLine("");
+            
+        
+        // #11
+        try
+        {
+            Console.WriteLine("#11");
+            List<double> b5 = new List<double>() {14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+            int len_b5 = b5.Count;
+            Console.WriteLine("Введите P");
+            double PPP = double.Parse(Console.ReadLine());
+            int nom_b5 = 0;
+            for (int i = 0; i < len_b5; i++)
+            {
+                if (b5[i] > 0)
+                {
+                    nom_b5 = i;
+                }
+            }
+            b5.Add(0);
+            len_b5 = b5.Count;
+            for (int i = len_b5 - 2; i > nom_b5; i--)
+            {
+                b5[i] = b5[i - 1];
+            }
+            b5[nom_b5 + 1] = PPP;
+            
+            len_b5 = b5.Count;
+            for (int i = 0; i < len_b5; i = i + 1)
+            {
+                Console.Write("{0:f} ", b5[i]);
+            }
+            Console.WriteLine("");
+        }
+        catch { Console.WriteLine("Неправильные входные данные"); }
+        
+        
+        // #13
+        Console.WriteLine("#13");
+        double [] b6 = new double[10] {14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+        double max_b6 = b6[0];
+        int nom_max_b6 = 0;
+        int len_b6 = b6.Length;
+        for (int i = 0; i < len_b6; i = i + 2)
+        {
+            if (b6[i] > max_b6)
+            {
+                nom_max_b6 = i;
+                max_b6 = b6[i];
+            }
+        }
+        b6[nom_max_b6] = nom_max_b6;
+        
+        for (int i = 0; i < len_b6; i = i + 1)
+        {
+            Console.Write("{0:f} ", b6[i]);
+        }
+        Console.WriteLine("");
+        
+        
+        // #15
+        Console.WriteLine("#15");
+        double [] A0 = new double[6] {100, 12, -4.4, 23, -23, 53};
+        double [] B0 = new double[4] {14, 10, 1.6, -12.4};
+        int k = 2;
+        int len_A0 = A0.Length;
+        int len_B0 = B0.Length;
+        List<double> b7 = new List<double>(A0);
+        int len_b7 = b7.Count;
+        int koll = k + 1;
+        if (k > 0 && k < len_A0 - 1)
+        {
+            
+            for (int i = 0; i < len_B0; i++)
+            {
+                b7.Add(0);
+            }
+            
+            len_b7 = b7.Count;
+            for (int i = len_b7 - 2; i > k; i--)
+            {
+                b7[i + 1] = A0[len_A0 - 1];
+                len_A0 = len_A0 - 1;
+            }
+            len_A0 = A0.Length;
+            
+            for (int i = 0; i < len_B0; i++)
+            {
+                b7[koll] = B0[i];
+                koll++;
+            }
+            
+            len_b7 = b7.Count;
+            for (int i = 0; i < len_b7; i = i + 1)
+            {
+                Console.Write("{0:f} ", b7[i]);
+            }
+            Console.WriteLine("");
+        }
+        else
+        {
+            Console.WriteLine("Неправильные входные данные");
+        }
+        
+        
+        
+        // level 3
+        Console.WriteLine("level 3");
+        // #1
+        Console.WriteLine("#1");
+        List<double> c = new List<double>() {14, 10, 1.6, -12.4, 100, 12, 100, 23, 100, 53};
+        int len_c = c.Count;
+        double max_c = c[0];
+        List<double> c_neww = new List<double>();
+        int len_c_neww = -1;
+        for (int i = 0; i < len_c; i++)
+        {
+            if (max_c < c[i])
+            {
+                max_c = c[i];
+                len_c_neww = c_neww.Count;
+                for (int y = 0; y < len_c_neww; y++)
+                {
+                    c_neww[y] = 0;
+                }
+                c_neww.RemoveAll(e => (e == 0));
+                c_neww.Add(i);
+            }
+            else if (max_c == c[i])
+            {
+                c_neww.Add(i);
+            }
+        }
+        len_c_neww = c_neww.Count;
+        for (int i = 0; i < len_c_neww; i = i + 1)
+        {
+            Console.Write("{0:f} ", c_neww[i]);
+        }
+        Console.WriteLine("");
+        
+        
+        
+        // #5
+        Console.WriteLine("#5");
+        List<double> c2 = new List<double>() {14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+        int len_c2 = c2.Count;
+        double vspom = 0;
+        int vspom_in = 0;
+        double min_c2 = c2[0];
+        for (int i = 0; i < len_c2; i = i + 2)
+        {
+            min_c2 = c2[i];
+            for (int y = i; y < len_c2; y = y + 2)
+            {
+                if (c2[y] < min_c2)
+                {
+                    min_c2 = c2[y];
+                    vspom_in = y;
+                }
+            }
+            vspom = c2[i];
+            c2[i] = c2[vspom_in];
+            c2[vspom_in] = vspom;
+            
+        }
+        len_c2 = c2.Count;
+        for (int i = 0; i < len_c2; i = i + 1)
+        {
+            Console.Write("{0:f} ", c2[i]);
+        }
+        Console.WriteLine("");
+        
+        
+        
+        
+        // #8
+        Console.WriteLine("#8");
+        List<double> c3 = new List<double>() {14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+        int len_c3 = c3.Count;
+        double vspom3 = 0;
+        int vspom_in3 = 0;
+        double max_c3;
+        for (int i = 0; i < len_c3; i++)
+        {
+            if (c3[i] < 0)
+            {
+                max_c3 = c3[i];
+                for (int y = i; y < len_c3; y++)
+                {
+                    
+                    if (c3[y] < 0)
+                    {
+                        if (c3[y] >= max_c3)
+                        {
+                            max_c3 = c3[y];
+                            vspom_in3 = y;
+                            
+                        }
+                    }
+                }
+            vspom3 = c3[i];
+            c3[i] = c3[vspom_in3];
+            c3[vspom_in3] = vspom3; 
+            }
+        }
+        
+        len_c3 = c3.Count;
+        for (int i = 0; i < len_c3; i = i + 1)
+        {
+            Console.Write("{0:f} ", c3[i]);
+        }
+        Console.WriteLine("");
+        
+        
+        
+        
+        // #9
+        Console.WriteLine("#9");
+        List<int> c4 = new List<int>() {-1, 0, 2, 1, 2, 5, 4, 3, 2, 1};
+        int len_c4 = c4.Count;
+        int pred = c4[0];
+        int dlina = 1;
+        int dlina_max = 0;
+        
+        for (int i = 1; i < len_c4; i++)
+        {
+            if (c4[i] - pred == 1)
+            {
+                dlina = dlina + 1;
+                if (dlina > dlina_max)
+                {
+                    dlina_max = dlina;
+                }
+            }
+            
+            else
+            {
+                if (dlina > dlina_max)
+                {
+                    dlina_max = dlina;
+                }
+                dlina = 1;
+            }
+            pred = c4[i];
+        }
+        
+        dlina = 1;
+        pred = c4[0];
+        for (int i = 1; i < len_c4; i++)
+        {
+            if (c4[i] - pred == -1)
+            {
+                dlina = dlina + 1;
+                if (dlina > dlina_max)
+                {
+                    dlina_max = dlina;
+                }
+            }
+            else
+            {
+                if (dlina > dlina_max)
+                {
+                    dlina_max = dlina;
+                }
+                dlina = 1;
+            }
+            pred = c4[i];
+        }
+        Console.WriteLine(dlina_max);
+        
+        
+        
+        // #12
+        Console.WriteLine("#12");
+        List<double> c5 = new List<double>() {14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53, -4, 43};
+        int len_c5 = c5.Count;
+        for (int i = 0; i < len_c5; i++)
+        {
+            if (c5[i] < 0)
+            {
+                c5[i] = -1;
+            }
+        }
+        c5.RemoveAll(e => (e == -1));
+        len_c5 = c5.Count;
+        for (int i = 0; i < len_c5; i = i + 1)
+        {
+            Console.Write("{0:f} ", c5[i]);
+        }
+        Console.WriteLine("");
+        
+        
+        
+        // #13
+        Console.WriteLine("#13");
+        List<double> c6 = new List<double>() {140, 10, 1.6, -12.4, 100, 12, 100, -23, -23, 53, 140};
+        int len_c6 = c6.Count;
+        int len_c6_new;
+        int Trig = 1;
+        List<double> c6_new = new List<double>();
+        for (int i = 0; i < len_c6; i++)
+        {
+            
+            for (int y = i + 1; y < len_c6 ; y++)
+            {
+                if (c6[i] == c6[y])
+                {
+                    c6_new.Add(c6[i]);
+                    
+                }
+            }
+        }
+        len_c6_new = c6_new.Count;
+        for (int i = 0; i < len_c6_new; i = i + 1)
+        {
+            Console.Write("{0:f} ", c6_new[i]);
+        }
+        Console.WriteLine("");
+        
+        len_c6_new = c6_new.Count;
+        len_c6 = c6.Count;
+        for (int i = 0; i < len_c6; i++)
+        {
+            for (int y = 0; y < len_c6_new; y++)
+            {
+                if (c6[i] == c6_new[y])
+                {
+                    c6[i] = 0; // Здесь ноль помечает мусор, пожаруйста не выкидывайте нули специально, они хорошие :)
+                    break;
+                }
+            }
+        }
+        c6.RemoveAll(e => (e == 0));
+        
+        
+        len_c6 = c6.Count;
+        for (int i = 0; i < len_c6; i = i + 1)
+        {
+            Console.Write("{0:f} ", c6[i]);
+        }
+        Console.WriteLine("");
+        
+         
+    }
+}
