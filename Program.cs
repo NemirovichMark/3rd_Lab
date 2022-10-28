@@ -740,6 +740,7 @@ namespace ConsoleApp1
                     arrA.Add(elem);
                 }
 
+                Console.Write("Input array (B): ");
                 inputB = Console.ReadLine().Split();
                 m = inputB.Length;
                 arrB = new List<int>(m);
@@ -750,22 +751,14 @@ namespace ConsoleApp1
                 }
 
                 List<int> outp = new List<int>(n + m);
-                if (n == m)
+                for (i = 0; i < Math.Min(m, n); i++)
                 {
-                    for (i = 0; i < n; i++)
-                    {
-                        outp.Add(arrA[i]);
-                        outp.Add(arrB[i]);
-                    }
+                    outp.Add(arrA[i]);
+                    outp.Add(arrB[i]);
                 }
-                else if (n > m)
-                {
-                    for (i = 0; i < m; i++)
-                    {
-                        outp.Add(arrA[i]);
-                        outp.Add(arrB[i]);
-                    }
 
+                if (n > m)
+                {
                     for (i = m; i < n; i++)
                     {
                         outp.Add(arrA[i]);
@@ -773,12 +766,6 @@ namespace ConsoleApp1
                 }
                 else
                 {
-                    for (i = 0; i < n; i++)
-                    {
-                        outp.Add(arrA[i]);
-                        outp.Add(arrB[i]);
-                    }
-
                     for (i = n; i < m; i++)
                     {
                         outp.Add(arrB[i]);
