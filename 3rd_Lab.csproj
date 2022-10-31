@@ -1,9 +1,1328 @@
-<Project Sdk="Microsoft.NET.Sdk">
+using System;
+using System.Linq;
+using System.Collections.Generic;
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>_3rd_Lab</RootNamespace>
-  </PropertyGroup>
+public class HelloWorld
+{
+    public static void Main(string[] args)
+    {
+        algorithms.alg12();
+    }
+}
+    public class Lab3Level1
+    {
+        public static void Ex6() 
+        {
+            double x;
+            double l = 0;
+            double[] arr = new double[5];
+            for (int i = 0; i < 5; i++)
+            {
+                Console.WriteLine("Enter X: ");
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(),out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr[i] = x * x;
+                    break;
+                }
+            }
+            for (int i = 0; i < 5; i++)
+                l += arr[i];
+            Console.WriteLine($"The length is {Math.Sqrt(l)}");
+        }
+        public static void Ex10() 
+        {
+            double[] arr = new double[10];
+            double P, Q, x, count = 0;
+            Console.WriteLine("Enter P:");
+            while (true)
+            {
+                if (!double.TryParse(Console.ReadLine(), out P))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                break;
+            }
+            Console.WriteLine("Enter Q:");
+            while (true)
+            {
+                if (!double.TryParse(Console.ReadLine(), out Q))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                break;
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine("Enter X");
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr[i] = x;
+                    break;
+                }
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                if (arr[i]>P && arr[i]<Q)
+                {
+                    count++;
+                }
+            }
+            Console.WriteLine($"Between P and Q is {count} elements");
+        }
+        public static void Ex11()
+        {
+            double x;
+            double[] arr = new double[10];
+            for (int i = 0; i < arr.Length; i++)
+            {
 
-</Project>
+                Console.WriteLine("Enter positive x: ");
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr[i] = x;
+                    break;
+                }
+            }
+            double[] Arr = Array.FindAll(arr, i => i > 0);
+            for (int i = 0; i < arr.Length; i++)
+            {
+                Console.Write($"{Arr[i]}  ");
+            }
+        }
+        public static void Ex12() 
+        {
+            double x,index = 0, value = 0;
+            double[] arr = new double[8];
+            for (int i = 0; i < arr.Length; i++)
+            {
+
+                Console.WriteLine("Enter x: ");
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr[i] = x;
+                    break;
+                }
+            }
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i]<0)
+                {
+                    index = i;
+                    value = arr[i];
+                }
+            }
+            Console.WriteLine($"The index is {index+1} and the value is {value}");
+        }
+    }
+    public class Lab3Level2 
+    {
+        public static void Ex5()
+        {
+            int counter = 0;
+            int len;
+            Console.WriteLine("Enetr length of massive: ");
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out len))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                break;
+            }
+            double[] mas = new double[len + 1];
+            double maximum = -10000000;
+            int minIn = -1;
+            double minimum = 10000000;
+            int maxIn = -1;
+            double x;
+            for (int i = 0; i < len; i++)
+            {
+                Console.WriteLine("Enter " + (i + 1) + " number of massive");
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    mas[i] = x;
+                    break;
+                }
+                if (mas[i] > maximum)
+                {
+                    maximum = mas[i];
+                    maxIn = i;
+                }
+                if (mas[i] < minimum)
+                {
+                    minimum = mas[i];
+                    minIn = i;
+                }
+            }
+            for (int i = Math.Min(maxIn, minIn) + 1; i < Math.Max(maxIn, minIn); i++)
+            {
+                if (mas[i] < 0)
+                {
+                    counter++;
+                }
+            }
+
+            int tmp = 0;
+            double[] masminus = new double[counter];
+            for (int i = Math.Min(maxIn, minIn) + 1; i < Math.Max(maxIn, minIn); i++)
+            {
+                if (mas[i] < 0)
+                {
+                    masminus[tmp] = mas[i];
+                    tmp++;
+                }
+            }
+            foreach (double s in masminus)
+            {
+                Console.Write(s + " ");
+            }
+        }
+        public static void Ex6()
+        {
+            List<double> arr = new List<double>();
+            int n;
+            double P, x;
+            Console.WriteLine("Enter the amount of values: ");
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            Console.WriteLine("Enter P: ");
+            while (true)
+            {
+                if (!double.TryParse(Console.ReadLine(), out P))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                break;
+            }
+            double sum = 0, midValue = 0; int midValueIndex = 0;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    sum += x;
+                    arr.Add(x);
+                    break;
+                }
+            }
+            midValue = sum / n;
+            for (int i = 0; i < n; i++)
+            {
+                if (Math.Abs(midValue - arr[midValueIndex]) > Math.Abs(midValue - arr[i]))
+                {
+                    midValueIndex = i;
+                }
+            }
+            arr.Insert(midValueIndex+1, P);
+            Console.WriteLine(new string('_', 100));
+            for (int i = 0; i < n+1; i++)
+            {
+                Console.WriteLine($"{arr[i]} ");
+            }
+        }
+        public static void Ex9()    
+        {
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            double x, sum = 0;
+            double maximum = -10000000;
+            int minIn = -1;
+            double minimum = 10000000;
+            int maxIn = -1;
+            double[] mas = new double[n + 1];
+            int counter = 0;
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine($"Enter {i+1} number");
+                if (!double.TryParse(Console.ReadLine(), out x))
+                {
+                    Console.WriteLine("Incorrect value");
+                    break;
+                }
+                mas[i] = x;
+                if (mas[i] > maximum)
+                {
+                    maximum = mas[i];
+                    maxIn = i;
+                }
+                if (mas[i] < minimum)
+                {
+                    minimum = mas[i];
+                    minIn = i;
+                }
+            }
+            for (int i = Math.Min(maxIn, minIn) + 1; i < Math.Max(maxIn, minIn); i++)
+            {
+                counter++;
+                sum += mas[i];
+            }
+            Console.WriteLine(sum/counter);
+
+        }
+        public static void Ex10() 
+        {
+            List < double> arr = new List<double> ();
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            double x;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            arr.Remove(arr.Min());
+            Console.WriteLine(new string('_',100));
+            for (int i = 0; i < n-1; i++)
+            {
+                Console.WriteLine(arr[i]);
+            }
+        }
+        public static void Ex11() 
+        {
+            List<double> arr = new List<double>();
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            double P;
+            Console.WriteLine("Enter P: ");
+            while (true)
+            {
+                if (!double.TryParse(Console.ReadLine(), out P))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                break;
+            }
+            double x;int lastIN = -1;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            for (int i = 0; i < n; i++)
+            {
+                if (arr[i]>=0)
+                {
+                    lastIN = i;
+                }
+            }
+            arr.Insert(lastIN + 1, P);
+            Console.WriteLine(new string('_',100));
+            for (int i = 0; i < n+1; i++)
+            {
+                Console.WriteLine(arr[i]+" ");
+            }
+        }
+        public static void Ex13() 
+        {
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            double[] arr = new double[n];
+            double x;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr[i] = x;
+                    break;
+                }
+                
+            }
+            double max = double.MinValue;
+            int maxIn = -1;
+            for (int i = 0; i < n; i+=2)
+            {
+                if (arr[i]>max)
+                {
+                    max = arr[i];
+                    maxIn = i;
+                }
+            }
+            arr[maxIn] = maxIn;
+            Console.WriteLine(new string('_', 100));
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine(arr[i] + " ");
+            }
+        }
+        public static void Ex15() 
+        {
+            Console.WriteLine("Enter the length of the first array");
+            int n, m;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            Console.WriteLine("Enter the length of the second array");
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out m))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (m <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            List<double> A = new List<double>();
+            double x, y;
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    Console.WriteLine("Enter x (1st array)");
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    A.Add(x);
+                    break;
+                }
+                
+            }
+            List<double> B = new List<double>();
+            for (int i = 0; i < m; i++)
+            {
+                while (true)
+                {
+                    Console.WriteLine("Enter y (2nd array)");
+                    if (!double.TryParse(Console.ReadLine(), out y))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    B.Add(y);
+                    break;
+                }
+                
+            }
+            Console.WriteLine("Enter k:");
+            int k;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out k))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (k <= 0)
+                {
+                    Console.WriteLine("Index should be positive");
+                    continue;
+                }
+                if (k > A.Count)
+                {
+                    Console.WriteLine("Must be below A's length");
+                    continue;
+                }
+                break;
+            }
+            A.InsertRange(k+1, B);
+            Console.WriteLine(new string('_',100));
+            for (int i = 0; i < A.Count; i++)
+            {
+                Console.WriteLine(A[i]+" ");
+            }
+        }
+    }
+    public class Lab3Level3 
+    {
+        public static void Ex1() 
+        {
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            List<double> arr = new List<double>();
+            double x;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+
+            }
+            double max = arr.Max();
+            List<int> maxIndexes = new List<int>();
+            for (int i = 0; i < n; i++)
+            {
+                if (arr[i]==max)
+                {
+                    maxIndexes.Add(i);
+                }
+            }
+            Console.WriteLine(new string('_', 100));
+            for (int i = 0; i < maxIndexes.Count; i++)
+            {
+                Console.WriteLine(maxIndexes[i] + " ");
+            }
+        }
+        public static void Ex5() 
+        {
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            List<double> arr = new List<double>();
+            List<double> newone = new List<double>();
+            double x;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            for (int i = 0; i < n; i+=2)
+            {
+               newone.Add(arr[i]);
+            }
+            double temp = 0;
+            for (int i = 0; i < newone.Count; i++)
+            {
+                for (int j = 0; j < newone.Count-1; j++)
+                {
+                    if (newone[j] > newone[j+1])
+                    {
+                        temp = newone[j];
+                        newone[j] = newone[j+1];
+                        newone[j+1] = temp;
+                    }
+                }
+            }
+            for (int i = 0; i < n; i++)
+            {
+                if (i%2==0)
+                {
+                    arr[i] = newone[i / 2];
+                }
+            }
+            Console.WriteLine(new String('_', 100));
+            for (int i = 0; i < arr.Count; i++)
+            {
+                Console.WriteLine(arr[i] + " ");
+            }
+        }
+        public static void Ex8() 
+        {
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            List<double> arr = new List<double>();
+            List<double> newone = new List<double>();
+            List<double> indexes = new List<double>();
+            double x;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            for (int i = 0; i < n; i++)
+            {
+                if (arr[i]<0)
+                {
+                    newone.Add(arr[i]);
+                    indexes.Add(i);
+                }
+            }
+            double temp = 0;
+            newone.Sort();
+            int counter = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (indexes.Contains(i) == true)
+                {
+                    arr[i] = newone[counter];
+                    counter++;
+                }
+            }
+            Console.WriteLine(new String('_', 100));
+            for (int i = 0; i < arr.Count; i++)
+            {
+                Console.WriteLine(arr[i] + " ");
+            }
+        }
+        public static void Ex9() 
+        {
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            List<double> arr = new List<double>();
+            List<double> newone = new List<double>();
+            List<double> indexes = new List<double>();
+            double x;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            int k1 = 0, k2= 0;
+            double max1 = double.MinValue;
+            double max2 = double.MinValue;
+            for (int i = 0; i < n-1; i++)
+            {
+                if (arr[i] < arr[i+1])
+                {
+                    k1++;
+                }
+                else
+                {
+                    max1 = Math.Max(k1, max1);
+                    k1 = 1;
+                }
+            }
+            for (int i = 0; i < n - 1; i++)
+            {
+                if (arr[i] > arr[i + 1])
+                {
+                    k2++;
+                }
+                else
+                {
+                    max2 = Math.Max(k2, max2);
+                    k2 = 1;
+                }
+            }
+            if (k1 > k2)
+            {
+                Console.WriteLine("Sequence is increasing: " + k1);
+            }
+
+            if (k1 < k2)
+            {
+                Console.WriteLine("Sequence is descending: " + k2);
+            }
+
+            if (k1 == k2)
+            {
+                Console.WriteLine("Sequence is equal: " + k1);
+            }
+        }
+        public static void Ex12() 
+        {
+            int n = 12;
+            List<double> arr = new List<double>();
+            List<double> newone = new List<double>();
+            double x;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            for (int i = 0; i < n; i++)
+            {
+                if (arr[i]>0)
+                {
+                    newone.Add(arr[i]);
+                }
+            }
+            Console.WriteLine(new String('_',100));
+            for (int i = 0; i < newone.Count; i++)
+            {
+                Console.WriteLine(newone[i]+" ");
+            }
+        }
+        public static void Ex13() 
+        {
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            List<double> arr = new List<double>();
+            List<double> newone = new List<double>();
+            List<double> indexes = new List<double>();
+            double x;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            for (int i = 0; i < n; i++)
+            {
+                if (newone.Contains(arr[i]))
+                {
+                    indexes.Add(i);
+                }
+                if (!newone.Contains(arr[i]))
+                {
+                    newone.Add(arr[i]);
+                }
+            }
+            double k = 0;
+            for (int i = 0; i < n; i++)
+            {
+                if (indexes.Contains(i + k) == true)
+                {
+                    arr.RemoveAt(i);
+                    i--;
+                    k++;
+                }
+            }
+            Console.WriteLine(new String('_', 100));
+            for (int i = 0; i < arr.Count; i++)
+            {
+                Console.WriteLine(arr[i] + " ");
+            }
+        }
+    }
+    public class algorithms 
+    {
+        public static void alg11() 
+        {
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            Console.WriteLine("Enter the value to find");
+            int f;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out f))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                break;
+            }
+            List<double> arr = new List<double>();
+            List<double> newone = new List<double>();
+            List<double> indexes = new List<double>();
+            double x;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            int i1 = 0, i2 = n - 1, avg = (i1+i2)/2;
+            arr.Sort();
+            for (int i = 0; i < arr.Count; i++)
+            {
+                avg = (i1 + i2) / 2;
+
+                if (f == arr[avg])
+                {
+                    Console.WriteLine(" The element is present in the array at the index " + avg);
+                    break;
+                }
+
+                if (f < arr[avg])
+                {
+                    i2 = avg - 1;
+                }
+
+                if (f > arr[avg])
+                {
+                    i1 = avg + 1;
+                }
+
+                if (i2 < i1)
+                {
+                    Console.WriteLine(f + "was not found");
+                }
+            }
+        }
+        public static void alg12() 
+        {
+            Console.WriteLine("Enter the amout of values of the first array");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            List<double> arr = new List<double>();
+            List<double> newone = new List<double>();
+            List<double> arr2 = new List<double>();
+            double x, y;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            int m;
+            Console.WriteLine("Enter the amout of values of the second array");
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out m))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (m < 0)
+                {
+                    Console.WriteLine("Lenght should be positive");
+                    continue;
+                }
+                break;
+            }
+
+
+            Console.WriteLine("Enter Y: ");
+            for (int k = 0; k < m; k++)
+            {
+
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out y))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr2.Add(y);
+                    break;
+                }
+            }
+            int counter = 0, counter1 = 0, amount = 0;
+            while (counter < n || counter1 < m)
+            {
+                if (counter == arr.Count())
+                {
+                    newone.Add(arr2[counter1]);
+                    counter1++;
+                    continue;
+                }
+
+                if (counter1 == arr2.Count())
+                {
+                    newone.Add(arr[counter]);
+                    counter++;
+                    continue;
+                }
+
+                if (arr[counter] >= arr2[counter1])
+                {
+                    newone.Add(arr[counter]);
+                    counter++;
+                    amount++;
+                }
+
+                if (arr[counter] < arr2[counter1])
+                {
+                    newone.Add(arr2[counter1]);
+                    counter1++;
+                    amount++;
+                }
+
+            }
+            Console.WriteLine("The result: ");
+
+            for (int k = 0; k < newone.Count; k++)
+            {
+                Console.Write(newone[k] + " ");
+            }
+        }
+        public static void alg13() 
+        {
+            Console.WriteLine("Enter the amout of values(1st arr)");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            List<double> arr = new List<double>();
+            List<double> newone = new List<double>();
+            List<double> arr2 = new List<double>();
+            double x, y;
+            Console.WriteLine("Enter X: ");
+            for (int k = 0; k < n; k++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            Console.WriteLine("Enter the amout of values(2nd arr)");
+            int m;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out m))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (m <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            Console.WriteLine("Enter Y: ");
+            for (int l = 0; l < m; l++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out y))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr2.Add(y);
+                    break;
+                }
+            }
+            int i = 0, j = 0, amount = 0;
+            while (i < n || j < m)
+            {
+                if (i == arr.Count())
+                {
+                    newone.Add(arr2[j]);
+                    j++;
+                    continue;
+                }
+                if (j == arr2.Count())
+                {
+                    newone.Add(arr[i]);
+                    i++;
+                    continue;
+                }
+                if (arr[i] >= arr2[j])
+                {
+                    newone.Add(arr[i]);
+                    i++;
+                    amount++;
+                }
+                if (arr[i] < arr2[j])
+                {
+                    newone.Add(arr2[j]);
+                    j++;
+                    amount++;
+                }
+
+            }
+            Console.WriteLine("Array C: ");
+            Console.WriteLine(new String('_',100));
+            for (int k = 0; k < newone.Count; k++)
+            {
+                Console.Write(newone[k] + " ");
+            }
+
+
+        }
+        public static void alg14()
+        {
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            List<double> arr = new List<double>();
+            List<double> newone = new List<double>();
+            List<double> arr2 = new List<double>();
+            double x, y;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            double c;
+            int k = 0;
+            for (int i = 0; i < n / 2; i++)
+            {
+                c = arr[i];
+                arr[i] = arr[n - 1 - k];
+                arr[n - 1 - k] = c;
+                k++;
+            }
+            Console.WriteLine(new String('_',100));
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write(arr[i] + " ");
+            }
+        }
+        public static void alg15() 
+        {
+            Console.WriteLine("Enter the amout of values");
+            int n;
+            while (true)
+            {
+                if (!int.TryParse(Console.ReadLine(), out n))
+                {
+                    Console.WriteLine("Incorrect value");
+                    continue;
+                }
+                if (n <= 0)
+                {
+                    Console.WriteLine("Length should be positive");
+                    continue;
+                }
+                break;
+            }
+            List<double> arr = new List<double>();
+            List<double> newone = new List<double>();
+            List<double> arr2 = new List<double>();
+            double x, y;
+            Console.WriteLine("Enter X: ");
+            for (int i = 0; i < n; i++)
+            {
+                while (true)
+                {
+                    if (!double.TryParse(Console.ReadLine(), out x))
+                    {
+                        Console.WriteLine("Incorrect value");
+                        continue;
+                    }
+                    arr.Add(x);
+                    break;
+                }
+            }
+            double m;
+            Console.WriteLine("Enter the value of the moving step");
+            while (true)
+            {
+                if (!double.TryParse(Console.ReadLine(), out m))
+                {
+                    Console.WriteLine(" Please enter the correct data");
+                    continue;
+                }
+                break;
+            }
+            double t;
+            for (int i = 0; i < m; i++)
+            {
+                t = arr[n - 1];
+                for (int j = 0; j < n - 1; j++)
+                {
+                    arr[n - 1 - j] = arr[n - 2 - j];
+                }
+                arr[0] = t;
+                Console.WriteLine(new String('_',100));
+            }
+            Console.WriteLine(new String('_', 100));
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write(arr[i] + " ");
+            }
+        }
+    }
+   
+  
