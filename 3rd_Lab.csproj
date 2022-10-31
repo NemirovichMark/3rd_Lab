@@ -1032,8 +1032,8 @@ public class HelloWorld
                     break;
                 }
             }
-            Console.WriteLine("Enter the amout of values of the second array");
             int m;
+            Console.WriteLine("Enter the amout of values of the second array");
             while (true)
             {
                 if (!int.TryParse(Console.ReadLine(), out m))
@@ -1041,17 +1041,19 @@ public class HelloWorld
                     Console.WriteLine("Incorrect value");
                     continue;
                 }
-                if (m <= 0)
+                if (m < 0)
                 {
-                    Console.WriteLine("Length should be positive");
+                    Console.WriteLine("Lenght should be positive");
                     continue;
                 }
                 break;
             }
 
+
             Console.WriteLine("Enter Y: ");
-            for (int i = 0; i < m; i++)
+            for (int k = 0; k < m; k++)
             {
+
                 while (true)
                 {
                     if (!double.TryParse(Console.ReadLine(), out y))
@@ -1063,26 +1065,44 @@ public class HelloWorld
                     break;
                 }
             }
-            int counter = 0, counter1 = 0;
-            for (int i = 0; i < n+m; i++)
+            int counter = 0, counter1 = 0, amount = 0;
+            while (counter < n || counter1 < m)
             {
-                if (i%2==0)
-                {
-                    newone.Add(arr[counter]);
-                    counter++;
-                }
-                else
+                if (counter == arr.Count())
                 {
                     newone.Add(arr2[counter1]);
                     counter1++;
+                    continue;
                 }
-            }
-            Console.WriteLine(new String('_', 100));
-            for (int i = 0; i < newone.Count; i++)
-            {
-                Console.WriteLine(newone[i] + " ");
-            }
 
+                if (counter1 == arr2.Count())
+                {
+                    newone.Add(arr[counter]);
+                    counter++;
+                    continue;
+                }
+
+                if (arr[counter] >= arr2[counter1])
+                {
+                    newone.Add(arr[counter]);
+                    counter++;
+                    amount++;
+                }
+
+                if (arr[counter] < arr2[counter1])
+                {
+                    newone.Add(arr2[counter1]);
+                    counter1++;
+                    amount++;
+                }
+
+            }
+            Console.WriteLine("The result: ");
+
+            for (int k = 0; k < newone.Count; k++)
+            {
+                Console.Write(newone[k] + " ");
+            }
         }
         public static void alg13() 
         {
