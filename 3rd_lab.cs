@@ -429,7 +429,6 @@ namespace _3rd_lab
             }
             #endregion
 
-            //3rd lvl (1, 5, 8, 9, 12, 13)
 
             #region 3.1
             Console.WriteLine("Enter the size of your array:");
@@ -529,7 +528,7 @@ namespace _3rd_lab
             }
             #endregion
 
-            #region 9
+            #region 3.9
             Console.WriteLine("Enter the size of your array:");
             int werty = Convert.ToInt32(Console.ReadLine());
             double[] S1 = new double[werty];
@@ -559,7 +558,7 @@ namespace _3rd_lab
             Console.Write(Math.Max(max9, max2));
             #endregion
 
-            #region 12
+            #region 3.12
             double[] S2 = new double[12];
             int cnt11 = 0;
             Console.WriteLine("Type the array:");
@@ -591,7 +590,7 @@ namespace _3rd_lab
             }
             #endregion
 
-            #region 13
+            #region 3.13
             Console.WriteLine("Enter the size of your array:");
             int erty = Convert.ToInt32(Console.ReadLine());
             double[] S3 = new double[erty];
@@ -621,10 +620,6 @@ namespace _3rd_lab
                 }
             }
             #endregion
-
-
-            // алгоритмы (11, 12, 13, 14, 15)
-
 
             #region 3.11
             Console.WriteLine("Enter the size of your array:");
