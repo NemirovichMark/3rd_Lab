@@ -33,6 +33,39 @@ for (int k101 = 0; k101 < array101.Length; k101++)
         count101++;
     }
 }
+
+#region NEWtask1in3
+Console.WriteLine("Task 1 at level 3");
+Console.WriteLine("Write size of array");
+if (Int32.TryParse(Console.ReadLine(), out int size13))
+{
+    double[] array13 = new double[size13];
+    for (int i = 0; i < array13.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out array13[i]);
+    }
+    int[] index13 = new int[0];
+    double max13 = array13[0];
+    for (int i = 0; i < array13.Length; i++)
+    {
+        if (array13[i] == max13)
+        {
+            Array.Resize(ref index13, index13.Length + 1);
+            index13[index13.Length - 1] = i;
+        }
+        else if (array13[i] > max13)
+        {
+            max13 = array13[i];
+            Array.Resize(ref index13, 1);
+            index13[index13.Length - 1] = i;
+        }
+    }
+    Console.WriteLine(string.Join(" ", index13));
+}
+#endregion
+Console.WriteLine("");
+
 Console.WriteLine(count101);
 #endregion
 Console.WriteLine("");
