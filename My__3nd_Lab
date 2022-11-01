@@ -1,0 +1,910 @@
+
+#region task6in1
+Console.WriteLine("Task 6 at level 1");
+double[] vector61 = new double[5];
+for (int i61 = 0; i61 < 5; i61++)
+{
+    Console.WriteLine("Write x" + i61);
+    Double.TryParse(Console.ReadLine(), out vector61[i61]);
+    vector61[i61] *= vector61[i61];
+}
+Console.WriteLine(Math.Pow((vector61[0] + vector61[1] + vector61[2] + vector61[3] + vector61[4]), 0.5));
+#endregion
+Console.WriteLine("");
+
+#region task10in1
+Console.WriteLine("Task 10 at level 1");
+double[] array101 = new double[10];
+int count101 = 0;
+Console.WriteLine("Write P");
+Double.TryParse(Console.ReadLine(), out double p101);
+Console.WriteLine("Write Q");
+Double.TryParse(Console.ReadLine(), out double q101);
+for (int i101 = 0; i101 < 10; i101++)
+{
+    Console.WriteLine("Write x" + i101);
+    Double.TryParse(Console.ReadLine(), out array101[i101]);
+}
+Array.Sort(array101);
+for (int k101 = 0; k101 < array101.Length; k101++)
+{
+    if ((array101[k101] > p101) & (array101[k101] < q101))
+    {
+        count101++;
+    }
+}
+Console.WriteLine(count101);
+#endregion
+Console.WriteLine("");
+
+#region task11in1
+Console.WriteLine("Task 11 at level 1");
+double[] array1_111 = new double[10];
+double[] array2_111 = new double[0];
+for (int i111 = 0; i111 < 10; i111++)
+{
+    Console.WriteLine("Write x" + i111);
+    Double.TryParse(Console.ReadLine(), out array1_111[i111]);
+    if (array1_111[i111] > 0)
+    {
+        Array.Resize(ref array2_111, array2_111.Length + 1);
+        array2_111[array2_111.Length - 1] = array1_111[i111];
+    }
+}
+Console.WriteLine(string.Join("", array2_111));
+#endregion
+Console.WriteLine("");
+
+#region task12in1
+Console.WriteLine("Task 12 at level 1");
+double[] array121 = new double[8];
+int p121 = 0;
+for (int i121 = 0; i121 < 8; i121++)
+{
+    Console.WriteLine("Write x" + i121);
+    Double.TryParse(Console.ReadLine(), out array121[i121]);
+    if ((array121[i121] < 0) & (i121 > p121))
+    {
+        p121 = i121;
+    }
+}
+Console.WriteLine(array121[p121] + " with number " + p121);
+#endregion
+Console.WriteLine("");
+
+#region task13in1
+Console.WriteLine("Task 13 at level 1");
+double[] array1_131 = new double[10];
+double[] array2_131 = new double[0];
+double[] array3_131 = new double[0];
+for (int i131 = 0; i131 < 10; i131++)
+{
+    Console.WriteLine("Write x" + i131);
+    array1_131[i131] = Convert.ToDouble(Console.ReadLine());
+    if (i131 % 2 == 0)
+    {
+        Array.Resize(ref array2_131, array2_131.Length + 1);
+        array2_131[array2_131.Length - 1] = array1_131[i131];
+    }
+    else
+    {
+        Array.Resize(ref array3_131, array3_131.Length + 1);
+        array3_131[array3_131.Length - 1] = array1_131[i131];
+    }
+}
+Console.WriteLine(string.Join("", array2_131));
+Console.WriteLine(string.Join("", array3_131));
+#endregion
+Console.WriteLine("");
+
+
+#region task5in2
+Console.WriteLine("Task 5 at level 2");
+Console.WriteLine("Write size of array");
+if (Int32.TryParse(Console.ReadLine(), out int size1_52))
+{
+    double[] array1_52 = new double[size1_52];
+    double[] array2_52 = new double[0];
+    for (int i52 = 0; i52 < size1_52; i52++)
+    {
+        Console.WriteLine("Write x" + i52);
+        Double.TryParse(Console.ReadLine(), out array1_52[i52]);
+    }
+    int number_min52 = Array.IndexOf(array1_52, array1_52.Min());
+    int number_max52 = Array.IndexOf(array1_52, array1_52.Max());
+    int a52 = Math.Min(number_min52, number_max52), b52 = Math.Max(number_min52, number_max52);
+    for (int j52 = (a52 + 1); j52 < b52; j52++)
+    {
+        if (array1_52[j52] < 0)
+        {
+            Array.Resize(ref array2_52, array2_52.Length + 1);
+            array2_52[array2_52.Length - 1] = array1_52[j52];
+            Console.WriteLine(array2_52[array2_52.Length - 1]);
+        }
+    }
+    if (array2_52.Length == 0)
+    {
+        Console.WriteLine("There is no negative things");
+    }
+}
+#endregion
+Console.WriteLine("");
+
+#region task6in2
+Console.WriteLine("Task 6 at level 2");
+Console.WriteLine("Write P");
+if (Double.TryParse(Console.ReadLine(), out double p62))
+{
+    Console.WriteLine("Write size of array");
+    if (Int32.TryParse(Console.ReadLine(), out int size62))
+    {
+        double[] array62 = new double[size62];
+        double mid62 = 0, box62 = 0;
+        for (int i = 0; i < size62; i++)
+        {
+            Console.WriteLine("Write x" + i);
+            Double.TryParse(Console.ReadLine(), out array62[i]);
+            mid62 += array62[i];
+            box62 += Math.Abs(array62[i]);
+        }
+        int number_mid62 = 0;
+        mid62 = mid62 / array62.Length;                              
+        for (int i = 0; i < array62.Length; i++)
+        {
+            if (mid62 + Math.Abs(array62[i]) < box62)
+            {
+                box62 = mid62 + Math.Abs(array62[i]);
+                number_mid62 = i;
+            }
+        }
+        Array.Resize(ref array62, array62.Length + 1);
+        for (int i = array62.Length - 1; i > number_mid62 + 1; i--)
+        {
+            array62[i] = array62[i - 1];
+        }
+        array62[number_mid62 + 1] = p62;
+        Console.WriteLine(string.Join(" ", array62));
+    }
+}
+Console.WriteLine("");
+#endregion
+
+#region task9in2
+Console.WriteLine("Task 9 at level 2");
+Console.WriteLine("Write size of array");
+if (Int32.TryParse(Console.ReadLine(), out int size92))
+{
+    double[] array92 = new double[size92];
+    int count92 = 0;
+    double sum92 = 0;
+    for (int i92 = 0; i92 < size92; i92++)
+    {
+        Console.WriteLine("Write x" + i92);
+        Double.TryParse(Console.ReadLine(), out array92[i92]);
+    }
+    int number_min92 = Array.IndexOf(array92, array92.Min());
+    int number_max92 = Array.IndexOf(array92, array92.Max());
+    int a92 = Math.Min(number_min92, number_max92), b92 = Math.Max(number_min92, number_max92);
+    for (int j92 = (a92 + 1); j92 < b92; j92++)
+    {
+        sum92 += array92[j92];
+        count92++;
+    }
+}
+#endregion
+Console.WriteLine("");
+
+#region task10in2
+Console.WriteLine("Task 10 at level 2");
+Console.WriteLine("Write size of array");
+if (Int32.TryParse(Console.ReadLine(), out int size102))
+{
+    double[] array102 = new double[size102];
+    for (int i102 = 0; i102 < size102; i102++)
+    {
+        Console.WriteLine("Write x" + i102);
+        Double.TryParse(Console.ReadLine(), out array102[i102]);
+    }
+    double min102 = array102.Max();
+    int number_min102 = Array.IndexOf(array102, array102.Max()), p102 = 0;
+    if (min102 > 0)
+    {
+        for (int j102 = 0; j102 < array102.Length; j102++)
+        {
+            if ((array102[j102] > 0) & (array102[j102] < min102))
+            {
+                min102 = array102[j102];
+                number_min102 = j102;
+            }
+        }
+        for (int k102 = 0; k102 < array102.Length - 1; k102++)
+        {
+            if (array102[k102] == min102)
+            {
+                p102++;
+            }
+            array102[k102] = array102[k102 + p102];
+        }
+        Array.Resize(ref array102, size102 - 1);
+        Console.WriteLine(string.Join(" ", array102));
+    }
+    else
+    {
+        Console.WriteLine("Where is no positive things");
+    }
+}
+#endregion
+Console.WriteLine("");
+
+#region task11in2
+Console.WriteLine("Task 11 at level 2");
+Console.WriteLine("Write P");
+if (Double.TryParse(Console.ReadLine(), out double p112)) { } else { Console.WriteLine("lol"); }
+Console.WriteLine("Write size of array");
+if (Int32.TryParse(Console.ReadLine(), out int size112))
+{
+    int number112 = -1;
+    double last_positive112 = -1;
+    double[] array112 = new double[size112];
+    for (int i112 = 0; i112 < size112; i112++)
+    {
+        Console.WriteLine("Write x" + i112);
+        Double.TryParse(Console.ReadLine(), out array112[i112]);
+        if (array112[i112] > 0)
+        {
+            last_positive112 = array112[i112];
+            number112 = i112;
+        }
+    }
+    if (number112 >= 0)
+    {
+        Array.Resize(ref array112, array112.Length + 1);
+        for (int j112 = array112.Length - 1; j112 > number112; j112 -= 1)
+        {
+            if (array112[j112 - 1] == last_positive112)
+            {
+                array112[j112] = p112;
+                break;
+            }
+            else
+            {
+                array112[j112] = array112[j112 - 1];
+            }
+        }
+        Console.WriteLine(string.Join(" ", array112));
+    }
+}
+#endregion
+Console.WriteLine("");
+
+#region task13in2
+Console.WriteLine("Task 13 at level 2");
+Console.WriteLine("Write size of array");
+if (Int32.TryParse(Console.ReadLine(), out int size132))
+{    
+    double[] array132 = new double[size132];
+    Console.WriteLine("Write x0");
+    Double.TryParse(Console.ReadLine(), out array132[0]);
+    int number132 = 0;
+    double max132 = array132[0];
+    for (int i132 = 1; i132 < size132; i132++)
+    {
+        Console.WriteLine("Write x" + i132);
+        Double.TryParse(Console.ReadLine(), out array132[i132]);
+        if ((array132[i132] > max132) & (i132 % 2 == 0))
+        {
+            max132 = array132[i132];
+            number132 = i132;
+        }
+    }
+    array132[number132] = number132;
+    Console.WriteLine(string.Join(" ", array132));
+}
+#endregion
+Console.WriteLine("");
+
+#region task15in2
+Console.WriteLine("Task 15 at level 2");
+Console.WriteLine("Write k");
+if (Int32.TryParse(Console.ReadLine(), out int k152))
+{
+    Console.WriteLine("Write n");
+    if (Int32.TryParse(Console.ReadLine(), out int n152))
+    {
+        double[] a152 = new double[n152];
+        for (int i152 = 0; i152 < n152; i152++)
+        {
+            Console.WriteLine("Write x" + i152);
+            Double.TryParse(Console.ReadLine(), out a152[i152]);
+        }
+        Console.WriteLine("Write m");
+        if (Int32.TryParse(Console.ReadLine(), out int m152))
+        {
+            double[] b152 = new double[m152];
+            for (int p152 = 0; p152 < m152; p152++)
+            {
+                Console.WriteLine("Write x" + p152);
+                Double.TryParse(Console.ReadLine(), out b152[p152]);
+            }
+            Array.Resize(ref a152, n152 + m152);
+            for (int j = k152 + 1; j < k152 + m152 + 1; j++)
+            {
+                if (j < n152)
+                {
+                    a152[j + m152] = a152[j];
+                }
+                a152[j] = b152[j - k152 - 1];
+            }
+            Console.WriteLine(string.Join(" ", a152));
+        }
+    }
+}
+    #endregion
+ Console.WriteLine("");
+
+#region task1in3
+Console.WriteLine("Task 1 at level 3");
+Console.WriteLine("Write size of array");
+if (Int32.TryParse(Console.ReadLine(), out int size13))
+{
+    double[] array13 = new double[size13];
+    for (int i = 0; i < array13.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out array13[i]);
+    }
+    int[] index13 = new int[0];
+    double max13 = array13.Max();
+    for (int i = 0; i < array13.Length; i++)
+    {
+        if (array13[i] == max13)
+        {
+            Array.Resize(ref index13, index13.Length + 1);
+            index13[index13.Length - 1] = i;
+        }
+    }
+    Console.WriteLine(string.Join(" ", index13));
+}
+    #endregion
+    Console.WriteLine("");
+
+#region task5in3
+Console.WriteLine("Task 5 at level 3");
+Console.WriteLine("Write size of array");
+if (Int32.TryParse(Console.ReadLine(), out int size53))
+{
+    double[] array53 = new double[size53];
+    double[] box53 = new double[0];
+    for (int i = 0; i < array53.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out array53[i]);
+        if (i % 2 == 0)
+        {
+            Array.Resize(ref box53, box53.Length + 1);
+            box53[box53.Length - 1] = array53[i];
+        }
+    }
+    Array.Sort(box53);
+    int k53 = 0;
+    for (int i = 0; i < array53.Length; i+=2)
+    {
+        array53[i] = box53[k53];
+        k53++;
+
+    }
+    Console.WriteLine(string.Join(" ", array53));
+}
+#endregion
+Console.WriteLine("");
+
+#region task8in3
+Console.WriteLine("Task 8 at level 3");
+Console.WriteLine("Write size of array");
+if (Int32.TryParse(Console.ReadLine(), out int size83))
+{
+    double[] array83 = new double[size83];
+    double[] box83 = new double[0];
+    for (int i = 0; i < array83.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out array83[i]);
+        if (array83[i] < 0)
+        {
+            Array.Resize(ref box83, box83.Length + 1);
+            box83[box83.Length - 1] = array83[i];
+        }
+    }
+    Array.Sort(box83);
+    Array.Reverse(box83);
+    int k83 = 0;
+    for (int i = 0; i < array83.Length; i ++)
+    {
+        if (array83[i] < 0)
+        {
+            array83[i] = box83[k83];
+            k83++;
+        }
+    }
+    Console.WriteLine(string.Join(" ", array83));
+}
+#endregion
+Console.WriteLine("");
+
+#region task9in3
+Console.WriteLine("Task 9 at level 3");
+Console.WriteLine("Write size of array");
+if (Int32.TryParse(Console.ReadLine(), out int size93))
+{
+    double[] array93 = new double[size93];
+    for (int i = 0; i < array93.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out array93[i]);
+    }
+    int count = 1, count1 = 1;
+    int max1 = 0, max2 = 0;
+    for (int i = 0; i < array93.Length - 1; i++)
+    {
+        if (array93[i] > array93[i + 1])
+        {
+            count++;
+            max1 = Math.Max(max1, count);
+            count1 = 1;
+            continue;
+        }
+        if (array93[i] < array93[i + 1])
+        {
+            count1++;
+            max2 = Math.Max(max2, count1);
+            count = 1;
+            continue;
+        }
+        max1 = Math.Max(max1, count);
+        max2 = Math.Max(max2, count1);
+        count = 1;
+        count1 = 1;
+    }
+    Console.WriteLine(Math.Max(max1, max2));
+    Console.WriteLine(string.Join(" ", array93));
+}
+#endregion
+Console.WriteLine("");
+
+#region task12in3
+Console.WriteLine("Task 12 at level 3");
+double[] array123 = new double[12];
+int count123 = 0, j123 = 0;
+double box123 = 0;
+for (int i = 0; i < array123.Length; i++)
+{
+    Console.WriteLine("Write x" + i);
+    Double.TryParse(Console.ReadLine(), out box123);
+    if (box123 < 0)
+    {
+        count123 ++;    
+    }
+    else
+    {
+        array123[j123] = box123;
+        j123++;
+    }
+}
+Array.Resize(ref array123, array123.Length - count123);
+Console.WriteLine(string.Join(" ", array123));
+#endregion
+Console.WriteLine("");
+
+#region task13in3
+Console.WriteLine("Task 13 at level 3");
+Console.WriteLine("Write size of array");
+if (Int32.TryParse(Console.ReadLine(), out int size133))
+{
+    double[] array133 = new double[size133];
+    for (int i = 0; i < array133.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out array133[i]);
+    }
+    double[] box133 = new double[0];
+    for (int i = 0; i < array133.Length; i++)
+    {
+        if (!box133.Contains(array133[i]))
+        {
+            Array.Resize(ref box133, box133.Length + 1);
+            box133[box133.Length - 1] = array133[i];
+        }
+    }
+    Array.Resize(ref array133, box133.Length);
+    box133.CopyTo(array133, 0);
+    Console.WriteLine(string.Join(" ", array133));
+}
+#endregion
+Console.WriteLine("");
+
+#region task11
+Console.WriteLine("Task 11");
+Console.WriteLine("Write X");
+if (Double.TryParse(Console.ReadLine(), out double x11))
+{
+    Console.WriteLine("Write n");
+    if (Int32.TryParse(Console.ReadLine(), out int n11))
+    {
+        double[] a11 = new double[n11];
+        for (int i = 0; i < a11.Length; i++)
+        {
+            Console.WriteLine("Write x" + i);
+            Double.TryParse(Console.ReadLine(), out a11[i]);
+        }
+        Array.Sort(a11);
+        bool f = false;
+        int i1_11 = 0, i2_11 = a11.Length - 1, i11 = (i1_11 + i2_11) / 2;
+        while (i2_11 > i1_11)
+        {
+            if (a11[i11] == x11)
+            {
+                f = true;
+                Console.WriteLine("Array contains " + x11 + " with number " + i11);
+                break;
+            }
+            else if (a11[i11] > x11)
+            {
+                i2_11 = i11;
+                i11 = (i1_11 + i2_11) / 2;
+            }
+            else
+            {
+                i1_11 = i11;
+                i11 = (i1_11 + i2_11) / 2;
+            }
+        }
+        if (a11[i1_11] == x11)
+        {
+            Console.WriteLine(i1_11);
+            f = true;
+        }
+        else if (a11[i2_11] == x11)
+        {
+            Console.WriteLine(i2_11);
+            f = true;
+        }
+        if (!f) Console.WriteLine("Array contains no " + x11);
+    }
+}
+#endregion
+Console.WriteLine("");
+
+#region task12
+Console.WriteLine("Task 12");
+Console.WriteLine("Write  size of array A");
+if (Int32.TryParse(Console.ReadLine(), out int size_a12))
+{
+    double[] a12 = new double[size_a12];
+    for (int i = 0; i < a12.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out a12[i]);
+    }
+    Console.WriteLine("Write  size of array B");
+    if (Int32.TryParse(Console.ReadLine(), out int size_b12))
+    {
+        double[] b12 = new double[size_b12];
+        for (int i = 0; i < b12.Length; i++)
+        {
+            Console.WriteLine("Write x" + i);
+            Double.TryParse(Console.ReadLine(), out b12[i]);
+        }
+        double[] c12 = new double[a12.Length + b12.Length];
+        int i_a12 = 0, i_b12 = 0;
+        for (int i = 0; i < c12.Length; i++)
+        {
+            if ((i % 2 == 0) & (i_a12 < a12.Length))
+            {
+                c12[i] = a12[i_a12];
+                i_a12++;
+            }
+            else if ((i % 2 != 0) & (i_b12 < b12.Length))
+            {
+                c12[i] = b12[i_b12];
+                i_b12++;
+            }
+            else if (i_a12 == a12.Length)
+            {
+                c12[i] = b12[i_b12];
+                i_b12++;
+            }
+            else if (i_b12 == b12.Length)
+            {
+                c12[i] = a12[i_a12];
+                i_a12++;
+            }
+        }
+        Console.WriteLine(String.Join(" ", c12));
+    }
+}
+#endregion
+Console.WriteLine("");
+
+#region task13
+Console.WriteLine("Task 13");
+Console.WriteLine("Write  size of array A");
+if (Int32.TryParse(Console.ReadLine(), out int 12))
+{
+    double[] a12 = new double[size_a12];
+    for (int i = 0; i < a12.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out a12[i]);
+    }
+    Console.WriteLine("Write  size of array B");
+    if (Int32.TryParse(Console.ReadLine(), out int size_b12))
+    {
+        double[] b12 = new double[size_b12];
+        for (int i = 0; i < b12.Length; i++)
+        {
+            Console.WriteLine("Write x" + i);
+            Double.TryParse(Console.ReadLine(), out b12[i]);
+        }
+        double[] c12 = new double[a12.Length + b12.Length];
+        int i_a12 = 0, i_b12 = 0;
+        for (int i = 0; i < c12.Length; i++)
+        {
+            if ((i % 2 == 0) & (i_a12 < a12.Length))
+            {
+                c12[i] = a12[i_a12];
+                i_a12++;
+            }
+            else if ((i % 2 != 0) & (i_b12 < b12.Length))
+            {
+                c12[i] = b12[i_b12];
+                i_b12++;
+            }
+            else if (i_a12 == a12.Length)
+            {
+                c12[i] = b12[i_b12];
+                i_b12++;
+            }
+            else if (i_b12 == b12.Length)
+            {
+                c12[i] = a12[i_a12];
+                i_a12++;
+            }
+        }
+        Console.WriteLine(String.Join(" ", c12));
+    }
+}
+#endregion
+Console.WriteLine("");
+
+#region task14
+Console.WriteLine("Task 14");
+#endregion
+Console.WriteLine("");
+
+#region task15
+Console.WriteLine("Task 15");
+#endregion
+Console.WriteLine("");
+
+
+
+#region task11
+Console.WriteLine("Task 11");
+Console.WriteLine("Write n");
+if (Int32.TryParse(Console.ReadLine(), out int n11))
+{
+    double[] a11 = new double[n11];
+    for (int i = 0; i < a11.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out a11[i]);
+    }
+    Array.Sort(a11);
+    Console.WriteLine("Write desired number");
+    if (Double.TryParse(Console.ReadLine(), out double x11))
+    {
+        int f11 = 0;
+        int left = 0, right = n11;
+        if (a11[left] == x11)
+        {
+            Console.WriteLine("Array contains " + x11 + " with number " + left);
+            f11++;
+        }
+        else
+        {
+            while ((left + 1 != right) && (left != right))
+            {
+                if (a11[(left + right) / 2] < x11)
+                {
+                    left = (left + right) / 2;
+                }
+                else
+                {
+                    if (a11[(left + right) / 2] > x11)
+                    {
+                        right = (left + right) / 2;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Array contains " + x11 + " with number " + ((left + right) / 2));
+                        f11++;
+                        break;
+                    }
+                }
+            }
+        }
+        if (f11 == 0)
+        {
+            Console.WriteLine("Array contains no " + x11);
+        }
+    }
+}
+#endregion
+Console.WriteLine("");
+
+
+#region task12
+Console.WriteLine("Task 12");
+Console.WriteLine("Write  size of array A");
+if (Int32.TryParse(Console.ReadLine(), out int size_a12))
+{
+    double[] a12 = new double[size_a12];
+    for (int i = 0; i < a12.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out a12[i]);
+    }
+    Console.WriteLine("Write  size of array B");
+    if (Int32.TryParse(Console.ReadLine(), out int size_b12))
+    {
+        double[] b12 = new double[size_b12];
+        for (int i = 0; i < b12.Length; i++)
+        {
+            Console.WriteLine("Write x" + i);
+            Double.TryParse(Console.ReadLine(), out b12[i]);
+        }
+        double[] c12 = new double[a12.Length + b12.Length];
+        int i_a12 = 0, i_b12 = 0;
+        for (int i = 0; i < c12.Length; i++)
+        {
+            if ((i % 2 == 0) & (i_a12 < a12.Length))
+            {
+                c12[i] = a12[i_a12];
+                i_a12++;
+            }
+            else if ((i % 2 != 0) & (i_b12 < b12.Length))
+            {
+                c12[i] = b12[i_b12];
+                i_b12++;
+            }
+            else if (i_a12 == a12.Length)
+            {
+                c12[i] = b12[i_b12];
+                i_b12++;
+            }
+            else if (i_b12 == b12.Length)
+            {
+                c12[i] = a12[i_a12];
+                i_a12++;
+            }
+        }
+        Console.WriteLine(String.Join(" ", c12));
+    }
+}
+#endregion
+Console.WriteLine("");
+
+
+#region task13
+Console.WriteLine("Task 13");
+Console.WriteLine("Write  size of array A");
+if (Int32.TryParse(Console.ReadLine(), out int size_a13))
+{
+    double[] a13 = new double[size_a13];
+    for (int i = 0; i < a13.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out a13[i]);
+    }
+    Console.WriteLine("Write  size of array B");
+    if (Int32.TryParse(Console.ReadLine(), out int size_b13))
+    {
+        double[] b13 = new double[size_b13];
+        for (int i = 0; i < b13.Length; i++)
+        {
+            Console.WriteLine("Write x" + i);
+            Double.TryParse(Console.ReadLine(), out b13[i]);
+        }
+        double[] c13 = new double[a13.Length + b13.Length];
+        Array.Sort(a13);
+        Array.Reverse(a13);
+        Array.Sort(b13);
+        Array.Reverse(b13);
+        int j_a13 = 0, j_b13 = 0;
+        for (int i = 0; i < c12.Length; i++)
+        {
+            if (j_a13 < a13.Length)
+            {
+                if (j_b13 < b13.Length)
+                {
+                    if (a13[j_a13] > b13[j_b13])
+                    {
+                        c13[i] = a13[j_a13];
+                        j_a13++;
+                    }
+                    else
+                    {
+                        c13[i] = b13[j_b13];
+                        j_b13++;
+                    }
+                }
+                else
+                {
+                    c13[i] = a13[j_a13];
+                    j_a13++;
+                }
+            }
+            else
+            {
+                c13[i] = b13[j_b13];
+                j_b13++;
+            }
+        }
+        Console.WriteLine(String.Join(" ", c13));
+    }
+}
+#endregion
+Console.WriteLine("");
+
+#region task14
+Console.WriteLine("Task 14");
+Console.WriteLine("Write  size of array A");
+if (Int32.TryParse(Console.ReadLine(), out int size_a14))
+{
+    double[] a14 = new double[size_a14];
+    for (int i = 0; i < a14.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out a14[i]);
+    }
+    double box14 = 0;
+    for (int i = 0; i < (a14.Length / 2); i++)
+    {
+        box14 = a14[i];
+        a14[i] = a14[a14.Length - 1 - i];
+        a14[a14.Length - 1 - i] = box14;
+    }
+    Console.WriteLine(String.Join(" ", a14));
+}
+#endregion
+Console.WriteLine("");
+
+#region task15
+Console.WriteLine("Task 15");
+Console.WriteLine("Write  size of array A");
+if (Int32.TryParse(Console.ReadLine(), out int size_a15))
+{
+    double[] a15 = new double[size_a15];
+    for (int i = 0; i < a15.Length; i++)
+    {
+        Console.WriteLine("Write x" + i);
+        Double.TryParse(Console.ReadLine(), out a15[i]);
+    }
+    Console.WriteLine("Write m");
+    if (Int32.TryParse(Console.ReadLine(), out int m15))
+    {
+        double box15;
+        for (int i = 0; i < m15; i++)
+        {
+            box15 = a15[a15.Length - 1];
+            for (int j = a15.Length - 1; j > 0; j--)
+            {
+                a15[j] = a15[j - 1];
+            }
+            a15[0] = box15;
+        }
+        Console.WriteLine(String.Join(" ", a15));
+    }
+}
+#endregion
+Console.WriteLine("");
