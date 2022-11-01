@@ -1,0 +1,203 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+using System.IO.Pipes;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Xml.Schema;
+
+class HelloWorld
+{
+    static void Main()
+    {
+        {
+            #region 11
+            Console.WriteLine("Enter the size of array: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            var a = new List<double>();
+            var b = new List<double>();
+            var C = new List<int>();
+            int k = 0;
+            bool b = false;
+            int t = 0;
+            int x = 0;
+            Console.WriteLine("Enter the desired value: ");
+            x = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the array: ");
+            for (int i = 0; i < n; i++)
+            {
+                a.add(Convert.ToInt32(Console.ReadLine()));
+            }
+            k = n / 2 - 1;
+            for (int i = 0; i < n; i++)
+            {
+                if (a[k] == x) { Console.WriteLine("The index of desired value: " + k); t++; break; }
+                if (a[k] > x) k = (n - k) / 2;
+                if (a[k] < x) k = k / 2;
+
+            }
+            if (t == 0)
+            {
+                Console.WriteLine("There is no desired value.");
+            }
+            return 0;
+            #endregion
+
+            #region 12
+            Console.WriteLine("Enter the size of second array: ");
+            int m = Convert.ToInt32(Console.ReadLine());
+            var a = new List<double>();
+            var b = new List<double>();
+            var C = new List<double>();
+            double sum = 0;
+            double sred = 0;
+            int k = 0;
+            bool b = false;
+            int t = 0;
+            int x = 0;
+            int lb = 0;
+            int la = 0;
+            Console.WriteLine("Enter the first array: ");
+            for (int i = 0; i < m; i++)
+            {
+                a.add(Convert.ToInt32(Console.ReadLine()));
+            }
+            Console.WriteLine("Enter the second array: ");
+            for (int i = 0; i < m; i++)
+            {
+                b.add(Convert.ToInt32(Console.ReadLine()));
+            }
+            lb = b.Count();
+            la = a.Count();
+            if (lb > la)
+            {
+                for (int i = 0; i < la; i++)
+                {
+                    C.add(a[i]);
+                    C.add(b[i]);
+                }
+                t = 1;
+            }
+            else
+            {
+                for (int i = 0; i < lb; i++)
+                {
+                    C.add(a[i]);
+                    C.add(b[i]);
+                }
+                t = 2;
+            }
+            if (t == 1)
+            {
+                for (int i = 0; i < lb - la; i++)
+                {
+                    C.add(b[i]);
+                }
+            }
+            if (t == 2)
+            {
+                for (int i = 0; i < la - lb; i++)
+                {
+                    C.add(a[i]);
+                }
+            }
+            Console.WriteLine("The new array: ");
+            for (int i = 0; i < n + m; i++)
+            {
+                Console.WriteLine(C[i]);
+            }
+            return 0;
+            #endregion
+
+            #region 13
+            Console.WriteLine("Enter the size of first array: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the size of second array: ");
+            int m = Convert.ToInt32(Console.ReadLine());
+            var a = new List<double>();
+            var b = new List<double>();
+            var C = new List<double>();
+            int k = 0;
+            int t = 0;
+            double f;
+            Console.WriteLine("Enter the first array: ");
+            for (int i = 0; i < n; i++)
+            {
+                a.add(Convert.ToDouble(Console.ReadLine()));
+            }
+            Console.WriteLine("Enter the second array: ");
+            for (int i = 0; i < m; i++)
+            {
+                b.add(Convert.ToDouble(Console.ReadLine()));
+            }
+            while (k < n || t < m)
+            {
+                if (k == n) { C.add(b[t]); t++; continue; }
+                if (t == m) { C.add(a[k]); k++; continue; }
+                if (a[k] >= b[t]) { C.add(a[k]); k++; }
+                else { C.add(b[t]); t++; }
+            }
+            Console.WriteLine("The new array: ");
+            for (int i = 0; i < C.Count; i++)
+            {
+                Console.WriteLine(C[i]);
+            }
+            return 0;
+            #endregion
+
+            #region 14
+            Console.WriteLine("Enter the size of first array: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            var a = new List<double>();
+            double f;
+            Console.WriteLine("Enter the first array: ");
+            for (int i = 0; i < n; i++)
+            {
+                a.add(Convert.ToInt32(Console.ReadLine()));
+            }
+            for (int i = 0; i < n / 2; i++)
+            {
+                f = a[i];
+                a[i] = a[n - 1 - i];
+                a[n - 1 - i] = f;
+            }
+            Console.WriteLine("The new array: ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine(a[i]);
+            }
+            return 0;
+            #endregion
+
+            #region 15
+            Console.WriteLine("Enter the size of first array: ");
+            int n = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Enter the value by which you want to shift the array elements: ");
+            int d = Convert.ToInt32(Console.ReadLine());
+            var a = new List<double>();
+            double f;
+            Console.WriteLine("Enter the first array: ");
+            for (int i = 0; i < n; i++)
+            {
+                a.add(Convert.ToDouble(Console.ReadLine()));
+            }
+            for (int i = 0; i < d; i++)
+            {
+                f = a[n - 1];
+                for (int j = n - 1; j > 0; j--)
+                {
+                    a[j] = a[j - 1];
+                }
+                a[0] = f;
+            }
+            Console.WriteLine("The new array: ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine(a[i]);
+            }
+            return 0;
+            #endregion
+        }
+    }
+}
