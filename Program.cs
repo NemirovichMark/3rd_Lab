@@ -260,6 +260,8 @@ namespace Lab_3
 
             #endregion
             #region Task 10
+            double min = 0; 
+            int min2 = 0;
             Console.WriteLine($"Task 10");
             amount = 0;
             Console.WriteLine($"Enter the amount of array elements");
@@ -270,31 +272,43 @@ namespace Lab_3
                 return;
             }
             double[] ar2 = new double[amount];
-            for (int i = 0; i < ar2.Length; i++)
-            {
-                Console.WriteLine($"Enter the {i} element" );
-                double.TryParse(Console.ReadLine(), out ar2[i]);
 
-            }
-            double amin2 = ar2[0];
-            int imin2 = 0;
-            for (int i = 0; i < ar2.Length; i++)
+
+            for (int i = 0; i < amount; i++)
             {
-                if ((ar2[i] > 0) && (ar2[i] < amin2))
+                Console.WriteLine($"Enter zzz value");
+                double zzz;
+                if (!double.TryParse(Console.ReadLine(), out zzz))
                 {
-                    amin2 = ar2[i];
-                    imin2 = i;
+                    Console.WriteLine($"Incorrect input");
+                    return;
+                }
+                ar2[i] = zzz;
+                if (zzz > 0)
+                {
+                    min = zzz;
+                    min2 = i;
+                }
+                
+            }
+            for (int i = 0; i < amount; i++)
+            {
+                if (ar2[i] > 0 && ar2[i] < min)
+                {
+                    min = ar2[i];
+                    min2 = i;
                 }
             }
-            for (int i = imin2; i < ar2.Length - 1; i++)
+
+
+            for (int i = min2; i < amount - 1; i++)
             {
                 ar2[i] = ar2[i + 1];
             }
-            for (int i = 0; i < ar2.Length - 1; i++)
+            for (int i = 0; i < amount - 1; i++)
             {
-                Console.WriteLine($"{0:f1}", ar2[i]);
+                Console.WriteLine($"{ar2[i] + " "}");
             }
-            Console.WriteLine();
             #endregion
             #region Task 11
             Console.WriteLine($"Task 11");
