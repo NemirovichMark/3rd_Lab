@@ -349,6 +349,7 @@ for (int i = 0; i < n + 1; i++)
 {
     Console.Write(b[i] + " ");
 }
+// тут надо вывести массив b
 #endregion*/
 
 // Номер 6
@@ -386,9 +387,7 @@ for (int i = 0; i < n + 1; i++)
 
 // Номер 9
 /*#region
-using System.Diagnostics.CodeAnalysis;
-
-int n = Convert.ToInt32(Console.ReadLine());
+int n = Convert.ToInt32(Console.ReadLine()), maxi = 0, mini = 0;
 var a = new List<int>();
 int max = -1000000000;
 int min = 1000000000;
@@ -402,21 +401,34 @@ for (int i = 0; i < n; i++)
     if (a[i] > max)
     {
         max = a[i];
+        maxi = i;
     }
     if (a[i] < min)
     {
         min = a[i];
+        mini = i;
     }
 }
-for (int i = 0; i < n; i++)
+if (mini < maxi)
 {
-    if ((a[i] < max) && (a[i] > min))
+    for (int i = mini + 1; i < maxi; i++)
     {
         sum += a[i];
         count++;
     }
 }
-Console.WriteLine(sum/count);
+else if (maxi < mini)
+{
+    for (int i = maxi + 1; i < mini; i++)
+    {
+        sum += a[i];
+        count++;
+    }
+}
+if (count > 0)
+{
+    Console.WriteLine(sum / count);
+}
 #endregion*/
 
 // Номер 10
@@ -431,7 +443,7 @@ for (int i = 0; i < n; i++)
 }
 for (int i = 0; i < n; i++)
 {
-    if (a[i] < min)
+    if (a[i] < min && a[i] > 0)
     {
         min = a[i];
         k = i;
