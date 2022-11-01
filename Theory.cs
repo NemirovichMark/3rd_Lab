@@ -175,7 +175,7 @@ namespace laba_3
             #endregion
 
             #region Task 2_5
-            int n, max_i = 0, min_i = 0;
+            int n, max_i = 0, min_i = 0, min_ans, max_ans;
             double max, min;
             Console.Write("Enter the number of array elements: ");
             string vvod_n = Console.ReadLine();
@@ -234,26 +234,14 @@ namespace laba_3
             }
             Console.Write("Answer: ");
             int ch = 0;
-            if (min_i < max_i)
+            min_ans = Math.Min(min_i, max_i);
+            max_ans = Math.Max(min_i, max_i);
+            for (int j = min_ans + 1; j < max_ans; j++)
             {
-                for (int j = min_i + 1; j < max_i; j++)
+                if (a[j] < 0)
                 {
-                    if (a[j] < 0)
-                    {
-                        ch += 1;
-                        Console.Write($"{a[j]} ");
-                    }
-                }
-            }
-            else
-            {
-                for (int j = max_i + 1; j < min_i; j++)
-                {
-                    if (a[j] < 0)
-                    {
-                        ch += 1;
-                        Console.Write($"{a[j]} ");
-                    }
+                    ch += 1;
+                    Console.Write($"{a[j]} ");
                 }
             }
             if (ch == 0)
@@ -421,14 +409,10 @@ namespace laba_3
             int n = 0, integer_i = -1;
             Console.Write("Enter the number 'P': ");
             string vvod_p = Console.ReadLine();
-            if (double.TryParse(vvod_p, out p))
+            if (double.TryParse(vvod_p, out p) == false)
             {
-                double.TryParse(vvod_p, out p);
-            }
-            else
-            {
-                Console.WriteLine("Error");
-                return;
+                    Console.WriteLine("Error");
+                    return;
             }
             Console.WriteLine("Enter elements separated by a space");
             string s = Console.ReadLine();
@@ -578,7 +562,7 @@ namespace laba_3
             #endregion
 
             #region Task 3_1
-            int n = 0, k = 0, max_i = 0;
+            int n = 0, max_i = 0;
             Console.WriteLine("Enter elements separated by a space");
             string s = Console.ReadLine();
             string[] c = s.Split(' ');
@@ -591,30 +575,26 @@ namespace laba_3
             {
                 double.TryParse(c[i], out a[i]);
             }
-            double max = a[0];
             Console.WriteLine("Initial numbers: ");
             for (int i = 0; i < n; i++)
             {
                 Console.Write($"{a[i]} ");
-                if (a[i] > max)
-                {
-                    max = a[i];
-                }
             }
             Console.WriteLine();
+            double max = a[0];
+            max_i = 0;
             for (int i = 0; i < n; i++)
             {
-                if (a[i] == max)
+                if (a[i] >= max)
                 {
-                    k += 1;
+                    if (a[i] > max)
+                    {
+                        max_i = 0;
+                        max = a[i];
+                    }
                     a[max_i] = i;
                     max_i += 1;
                 }
-            }
-            if (k == 1)
-            {
-                Console.WriteLine("Error");
-                return;
             }
             Console.WriteLine("New array: ");
             for (int i = 0; i < max_i; i++)
@@ -913,42 +893,25 @@ namespace laba_3
                 a[min_i] = a[i];
                 a[i] = min;
             }
-            middle = (n - 1) / 2;
-            if (x == a[middle])
+            int start = 0, end = n - 1;
+            while (start <= end)
             {
-                Console.WriteLine($"The element exists. Its index in an ordered array: {middle}");
-                return;
-            }
-            else if (x < a[middle])
-            {
-                for (int i = 0; i < middle; i++)
+                middle = (start + end) / 2;
+                if (x < a[middle])
                 {
-                    if (x == a[i])
-                    {
-                        Console.WriteLine($"The element exists. Its index in an ordered array: {i}");
-                        return;
-                    }
+                    end = middle - 1;
                 }
-                Console.WriteLine("The element is not in the array");
-                return;
-            }
-            else if (x > a[middle])
-            {
-                for (int i = middle + 1; i < n; i++)
+                else if (x > a[middle])
                 {
-                    if (x == a[i])
-                    {
-                        Console.WriteLine($"The element exists. Its index in an ordered array: {i}");
-                        return;
-                    }
+                    start = middle + 1;
                 }
-                Console.WriteLine("The element is not in the array");
-                return;
+                else
+                {
+                    Console.WriteLine($"The element exists. Its index in an ordered array: {middle}");
+                    return;
+                }
             }
-            else
-            {
-                Console.WriteLine("The array does not exist");
-            }
+            Console.WriteLine("The array does not exist");
             #endregion
 
             #region Task 12
@@ -959,10 +922,7 @@ namespace laba_3
             for (int i = 0; i < j; i++)
             {
                 c[2 * i] = a[i];
-            }
-            for (int i = 1; i <= j; i++)
-            {
-                c[2 * i - 1] = b[i - 1];
+                c[2 * i + 1] = b[i];
             }
             if (a.Length < b.Length)
             {
