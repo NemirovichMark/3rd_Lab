@@ -22,47 +22,43 @@ for (int i = 0; i < n; i++)
     A.Add(temp);
 }
 
-int max = 0;
-int k = 1;
+int up = 1;
+int down = 1;
+
+int maxup = 0;
+int maxdown = 0;
 for (int i = 0; i < n - 1; i++)
 {
     if (A[i] >= A[i + 1])
     {
-        k++;
+        up++;
     }
     else
     {
-        if (k > max)
+        if (up > maxup)
         {
-            max = k;
-            k = 1;
+            maxup = up;
         }
-        k = 1;
+        up = 1;
     }
-}
 
-if (k > max) max = k;
-
-k = 1;
-for (int i = 0; i < n - 1; i++)
-{
     if (A[i] <= A[i + 1])
     {
-        k++;
+        down++;
     }
     else
     {
-        if (k > max)
+        if (down > maxdown)
         {
-            max = k;
-            k = 1;
+            maxdown = down;
         }
-        k = 1;
+        down = 1;
     }
 }
 
-if (k > max) max = k;
+if (up > maxup) maxup = up;
+if (down > maxdown) maxdown = down;
 
-Console.WriteLine(max);
+Console.WriteLine(Math.Max(maxup, maxdown));
 
 #endregion
