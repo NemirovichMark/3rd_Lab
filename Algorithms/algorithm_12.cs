@@ -1,7 +1,14 @@
 #region algorithm 12
 
-int[] A = new int[5];
-for (int i = 0; i < 5; i++) 
+int n;
+do
+{
+    Console.Write("enter n: ");
+}
+while (!int.TryParse(Console.ReadLine(), out n));
+
+int[] A = new int[n];
+for (int i = 0; i < n; i++) 
 { 
     do 
     { 
@@ -10,9 +17,15 @@ for (int i = 0; i < 5; i++)
     while (!int.TryParse(Console.ReadLine(), out A[i]));
 }
 
+int m;
+do
+{
+    Console.Write("enter m: ");
+}
+while (!int.TryParse(Console.ReadLine(), out m));
 
-int[] B = new int[5];
-for (int i = 0; i < 5; i++) 
+int[] B = new int[m];
+for (int i = 0; i < m; i++) 
 { 
     do 
     { 
@@ -21,22 +34,50 @@ for (int i = 0; i < 5; i++)
     while (!int.TryParse(Console.ReadLine(), out B[i]));
 }
 
-int [] C = new int[10];
+Console.Write("\nA = ");
+foreach (int x in A) Console.Write($"{x} ");
+
+Console.Write("\nB = ");
+foreach (int x in B) Console.Write($"{x} ");
+
+int difference = Math.Abs(n - m);
+if (n > m) n = m;
+else m = n;
+
+int [] C = new int[2 * n + difference];
 
 int k = 0;
-for (int i = 0; i < 10; i += 2)
+int l = 0;
+for (int i = 0; i < 2 * n; i += 2)
 {
     C[i] = A[k];
+    C[i + 1] = B[k];
     k++;
+    l += 2;
 }
 
-k = 0;
-for (int i = 1; i < 10; i += 2)
+if (difference > 0)
 {
-    C[i] = B[k];
-    k++;
+    if (A.Count() > B.Count())
+    {
+        for (int i = n; i < n + difference; i++)
+        {
+            C[l] = A[i];
+            l++;
+        }
+    }
+
+    else
+    {
+        for (int i = n; i < n + difference; i++)
+        {
+            C[l] = B[i];
+            l++;
+        }
+    }
 }
 
+Console.Write("\nC = ");
 foreach (int x in C) Console.Write($"{x} ");
 
 #endregion
