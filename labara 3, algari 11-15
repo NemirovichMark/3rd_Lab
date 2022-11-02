@@ -12,192 +12,258 @@ class HelloWorld
     static void Main()
     {
         {
-            #region 11
-            Console.WriteLine("Enter the size of array: ");
-            int n = Convert.ToInt32(Console.ReadLine());
-            var a = new List<double>();
-            var b = new List<double>();
-            var C = new List<int>();
-            int k = 0;
-            bool b = false;
-            int t = 0;
-            int x = 0;
-            Console.WriteLine("Enter the desired value: ");
-            x = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter the array: ");
+            #region algara 11
+
+            int n;
+            do
+            {
+                Console.Write("введите длину ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out n));
+
+
+            int[] A = new int[n];
             for (int i = 0; i < n; i++)
             {
-                a.add(Convert.ToInt32(Console.ReadLine()));
-            }
-            k = n / 2 - 1;
-            for (int i = 0; i < n; i++)
-            {
-                if (a[k] == x) { Console.WriteLine("The index of desired value: " + k); t++; break; }
-                if (a[k] > x) k = (n - k) / 2;
-                if (a[k] < x) k = k / 2;
-
-            }
-            if (t == 0)
-            {
-                Console.WriteLine("There is no desired value.");
-            }
-            return 0;
-            #endregion
-
-            #region 12
-            Console.WriteLine("Enter the size of second array: ");
-            int m = Convert.ToInt32(Console.ReadLine());
-            var a = new List<double>();
-            var b = new List<double>();
-            var C = new List<double>();
-            double sum = 0;
-            double sred = 0;
-            int k = 0;
-            bool b = false;
-            int t = 0;
-            int x = 0;
-            int lb = 0;
-            int la = 0;
-            Console.WriteLine("Enter the first array: ");
-            for (int i = 0; i < m; i++)
-            {
-                a.add(Convert.ToInt32(Console.ReadLine()));
-            }
-            Console.WriteLine("Enter the second array: ");
-            for (int i = 0; i < m; i++)
-            {
-                b.add(Convert.ToInt32(Console.ReadLine()));
-            }
-            lb = b.Count();
-            la = a.Count();
-            if (lb > la)
-            {
-                for (int i = 0; i < la; i++)
+                do
                 {
-                    C.add(a[i]);
-                    C.add(b[i]);
+                    Console.Write("введите число ");
                 }
-                t = 1;
+                while (!int.TryParse(Console.ReadLine(), out A[i]));
+            }
+
+            Array.Sort(A);
+
+            Console.Write("A = ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write($"{A[i]} ");
+            }
+
+
+            int left = 0;
+            int right = n - 1;
+            int index = 0;
+
+            int q;
+            do
+            {
+                Console.Write("напишите число ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out q));
+
+            int res = -1;
+
+            while (left <= right)
+            {
+                index = (right + left) / 2;
+
+                if (A[index] == q)
+                {
+                    res = index;
+                    break;
+                }
+
+                if (A[index] < q)
+                {
+                    left = index + 1;
+                }
+
+                else
+                {
+                    right = index - 1;
+                }
+            }
+
+            if (res != -1)
+            {
+                Console.WriteLine(q +" " + res);
+
             }
             else
             {
-                for (int i = 0; i < lb; i++)
-                {
-                    C.add(a[i]);
-                    C.add(b[i]);
-                }
-                t = 2;
+                Console.WriteLine("ошибка");
             }
-            if (t == 1)
-            {
-                for (int i = 0; i < lb - la; i++)
-                {
-                    C.add(b[i]);
-                }
-            }
-            if (t == 2)
-            {
-                for (int i = 0; i < la - lb; i++)
-                {
-                    C.add(a[i]);
-                }
-            }
-            Console.WriteLine("The new array: ");
-            for (int i = 0; i < n + m; i++)
-            {
-                Console.WriteLine(C[i]);
-            }
-            return 0;
+
             #endregion
 
-            #region 13
-            Console.WriteLine("Enter the size of first array: ");
-            int n = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter the size of second array: ");
-            int m = Convert.ToInt32(Console.ReadLine());
-            var a = new List<double>();
-            var b = new List<double>();
-            var C = new List<double>();
+            #region algara 12
+
+            int[] A = new int[5];
+            for (int i = 0; i < 5; i++)
+            {
+                do
+                {
+                    Console.Write("введите число из а ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out A[i]));
+            }
+
+
+            int[] B = new int[5];
+            for (int i = 0; i < 5; i++)
+            {
+                do
+                {
+                    Console.Write($"введите число из б ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out B[i]));
+            }
+
+            int[] C = new int[10];
+
             int k = 0;
-            int t = 0;
-            double f;
-            Console.WriteLine("Enter the first array: ");
+            for (int i = 0; i < 10; i += 2)
+            {
+                C[i] = A[k];
+                k++;
+            }
+
+            k = 0;
+            for (int i = 1; i < 10; i += 2)
+            {
+                C[i] = B[k];
+                k++;
+            }
+
+            foreach (int x in C) Console.Write($"{x} ");
+
+            #endregion
+
+            #region algara 13
+
+            int n;
+            do
+            {
+                Console.Write("введите n: ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out n));
+
+            int m;
+            do
+            {
+                Console.Write("введите m: ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out m));
+
+
+            int[] A = new int[n];
             for (int i = 0; i < n; i++)
             {
-                a.add(Convert.ToDouble(Console.ReadLine()));
+                do
+                {
+                    Console.Write("введите число из а ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out A[i]));
             }
-            Console.WriteLine("Enter the second array: ");
+
+            int[] B = new int[m];
             for (int i = 0; i < m; i++)
             {
-                b.add(Convert.ToDouble(Console.ReadLine()));
+                do
+                {
+                    Console.Write("введите число из б");
+                }
+                while (!int.TryParse(Console.ReadLine(), out B[i]));
             }
-            while (k < n || t < m)
+
+            List<int> C = new List<int>();
+
+            int a = 0, b = 0;
+            while (a < n || b < m)
             {
-                if (k == n) { C.add(b[t]); t++; continue; }
-                if (t == m) { C.add(a[k]); k++; continue; }
-                if (a[k] >= b[t]) { C.add(a[k]); k++; }
-                else { C.add(b[t]); t++; }
+                if (a == n) { C.Add(B[b]); b++; continue; }
+                if (b == m) { C.Add(A[a]); a++; continue; }
+                if (A[a] >= B[b]) { C.Add(A[a]); a++; }
+                else { C.Add(B[b]); b++; }
             }
-            Console.WriteLine("The new array: ");
-            for (int i = 0; i < C.Count; i++)
-            {
-                Console.WriteLine(C[i]);
-            }
-            return 0;
+
+
+            Console.Write("новый массив ");
+            foreach (int x in C) Console.Write($"{x} ");
+
             #endregion
 
-            #region 14
-            Console.WriteLine("Enter the size of first array: ");
-            int n = Convert.ToInt32(Console.ReadLine());
-            var a = new List<double>();
-            double f;
-            Console.WriteLine("Enter the first array: ");
+            #region algara 14
+
+            int n;
+            do
+            {
+                Console.Write("введите n: ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out n));
+
+            int[] A = new int[n];
             for (int i = 0; i < n; i++)
             {
-                a.add(Convert.ToInt32(Console.ReadLine()));
+                do
+                {
+                    Console.Write("введите индекс числа из а ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out A[i]));
             }
+
+            Console.Write("старый массив: ");
+            foreach (int x in A) Console.Write($"{x} ");
+
+            int f;
             for (int i = 0; i < n / 2; i++)
             {
-                f = a[i];
-                a[i] = a[n - 1 - i];
-                a[n - 1 - i] = f;
+                f = A[i];
+                A[i] = A[n - 1 - i];
+                A[n - 1 - i] = f;
             }
-            Console.WriteLine("The new array: ");
-            for (int i = 0; i < n; i++)
-            {
-                Console.WriteLine(a[i]);
-            }
-            return 0;
+
+            Console.Write("новый массив: ");
+            foreach (int x in A) Console.Write($"{x} ");
+
             #endregion
 
-            #region 15
-            Console.WriteLine("Enter the size of first array: ");
-            int n = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Enter the value by which you want to shift the array elements: ");
-            int d = Convert.ToInt32(Console.ReadLine());
-            var a = new List<double>();
-            double f;
-            Console.WriteLine("Enter the first array: ");
+            #region algara 15
+
+            int n;
+            do
+            {
+                Console.Write("введите n: ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out n));
+
+            int[] A = new int[n];
             for (int i = 0; i < n; i++)
             {
-                a.add(Convert.ToDouble(Console.ReadLine()));
+                do
+                {
+                    Console.Write("ввелите индекс числа а: ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out A[i]));
             }
-            for (int i = 0; i < d; i++)
+
+            int m;
+            do
             {
-                f = a[n - 1];
+                Console.Write("номер позиции сдвига ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out m));
+
+            Console.Write("старый массив: ");
+            foreach (int x in A) Console.Write($"{x} ");
+
+            int f;
+            for (int i = 0; i < m; i++)
+            {
+                f = A[n - 1];
                 for (int j = n - 1; j > 0; j--)
                 {
-                    a[j] = a[j - 1];
+                    A[j] = A[j - 1];
                 }
-                a[0] = f;
+                A[0] = f;
             }
-            Console.WriteLine("The new array: ");
-            for (int i = 0; i < n; i++)
-            {
-                Console.WriteLine(a[i]);
-            }
-            return 0;
+
+            Console.Write("новый массив: ");
+            foreach (int x in A) Console.Write($"{x} ");
+
             #endregion
         }
     }
 }
+
