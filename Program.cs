@@ -643,7 +643,6 @@ namespace _LABA_3_
             }
             Console.WriteLine("Массив");
             foreach (int u in a)
-
             {
                 Console.WriteLine(u);
             }
@@ -651,18 +650,21 @@ namespace _LABA_3_
             int voz = 1;
             int maxvoz = 1;
             int maxub = 1;
-            for (int i = 0; i < a.Count-1; i++)
+            for (int i = 0; i < a.Count - 1; i++)
             {
-                if (a[i] < a[i + 1])
+                if (a[i] <= a[i + 1])
                 {
                     voz++;
                     if (voz > maxvoz)
                     {
                         maxvoz = voz;
                     }
-                    ub = 1;
                 }
                 else
+                {
+                    voz = 1;
+                }
+                if (a[i] >= a[i + 1])
                 {
                     ub++;
                     if (ub > maxub)
@@ -670,18 +672,19 @@ namespace _LABA_3_
                         maxub = ub;
 
                     }
-                    voz = 1;
                 }
-                
-
+                else
+                {
+                    ub = 1;
+                }
             }
-            if (maxvoz>maxub)
+            if (maxvoz > maxub)
             {
-                Console.WriteLine("Наибольшее по возрастанию "+maxvoz);
+                Console.WriteLine("Наибольшая последовательность - последовательность по возрастанию обладает длиной " + maxvoz);
             }
             else
             {
-                Console.WriteLine("Наибольшее по убыванию "+maxub);
+                Console.WriteLine("Наибольшая последовательность - последовательность по убыванию обладает длиной " + maxub);
             }
         }
         static void lvl3_12()
@@ -938,7 +941,7 @@ namespace _LABA_3_
                     fi++;
                 }
             }
-            
+            c.Sort();
             Console.WriteLine("Новый массив С");
             for (int y=0; y<c.Count; y++)
             {
@@ -1069,13 +1072,13 @@ namespace _LABA_3_
 
 
 
-            //      lvl3_9();
+             //   lvl3_9();
 
             //   lvl3_12();
 
 
 
-            //   lvl3_13();  
+            //  lvl3_13();  
 
 
             //   alkoritm_11();
@@ -1083,7 +1086,7 @@ namespace _LABA_3_
             //  alkoritm_12();
 
 
-           //   alkoritm_13();
+           //  alkoritm_13();
 
            // alkoritm_14();
 
