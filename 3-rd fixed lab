@@ -42,6 +42,41 @@
             
             
             
+              //2 часть 10 номер
+            int kol = int.Parse(Console.ReadLine());
+            int[] a = new int[kol];
+            for (int i = 0; i < kol; i++)
+            {
+                a[i] = int.Parse(Console.ReadLine());
+                if (a[i] < 0)
+                {
+                    Console.WriteLine("элементы должны быть положительными");
+                    break;
+                }
+            }
+            for (int i = 0; i < kol; i++)
+            {
+                int imax = i;
+                int amax = a[i];
+                for (int j = i + 1; j < kol; j++)
+                {
+                    if (a[j] > a[i])
+                    {
+                        amax = a[i];
+                        imax = j;
+
+                    }
+                }
+                a[imax] = a[i];
+                a[i] = amax;
+            }
+            a[a.Length - 1] = 0;
+            for (int i = 0; i < kol - 1; i++)
+                Console.Write("{0:d} ", a[i]);
+            Console.ReadLine();
+            
+            
+            
              //3 часть 9 номер
             int kol_Vo = int.Parse(Console.ReadLine());
             int[] posl = new int[kol_Vo];
