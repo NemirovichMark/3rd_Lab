@@ -1,0 +1,170 @@
+#region lvl 2 task 15
+            int n, m, k, j = 0;
+
+            Console.Write("Enter count elements of fist array ");
+            Int32.TryParse(Console.ReadLine(), out n);
+
+            Console.Write("Enter count elements of second array ");
+            Int32.TryParse(Console.ReadLine(), out m);
+
+            int[] a = new int[n];
+            int[] b = new int[m];
+
+            Console.WriteLine("Enter elements of first array ");
+            for (int i = 0; i < a.Length; i++)
+            {
+                Int32.TryParse(Console.ReadLine(), out a[i]);
+            }
+
+            Console.WriteLine("Enter elements of second array ");
+            for (int i = 0; i < b.Length; i++)
+            {
+                Int32.TryParse(Console.ReadLine(), out b[i]);
+            }
+
+            Console.WriteLine("Enter K");
+            Int32.TryParse(Console.ReadLine(), out k);
+
+            int[] c = new int[n + m];
+            if (k > 0 && k < n)
+            {
+                for (int i = 0; i < k; i++)
+                {
+                    c[j] = a[i];
+                    j++;
+                }
+
+                for (int g = 0; g < m; g++)
+                {
+                    c[j] = b[g];
+                    j++;
+                }
+
+                for (int i = k; i < n; i++)
+                {
+                    c[j] = a[i];
+                    j++;
+                }
+
+                Console.WriteLine("Final array");
+                for (int i = 0; i < c.Length; i++)
+                {
+                    Console.WriteLine(c[i]);
+                }
+            }
+            else
+            {
+                Console.WriteLine("K > 0 and k < n");
+            }
+#endregion
+
+#region lvl 3 task 12
+            int k = 0, j = 0, b_i = 0;
+            int[] a = new int[12] { 4, 8, -16, -55, 73, 41, -7, -23, 65, 7, -54, 6 };
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] > 0)
+                {
+                    k++;
+                }
+            }
+
+            int[] b = new int[k];
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] > 0)
+                {
+                    b[b_i] = a[i];
+                    b_i++;
+                }
+            }
+
+            Console.WriteLine("Final array");
+            for (int i = 0; i < k; i++)
+            {
+                Console.Write($"{b[i]}, ");
+            }
+#endregion
+
+#region 2 lvl Task 6
+            int P, summ, sr_znach, P_n, n;
+            double sr;
+
+            summ = 0;
+            sr_znach = 0;
+            P_n = 0;
+
+            Console.Write("Enter count elements of array:");
+            {
+                int[] mas6 = new int[n];
+
+                Console.WriteLine("Enter elements of array:");
+                for (int i = 0; i < mas6.Length; i++)
+                {
+                    Int32.TryParse(Console.ReadLine(), out mas6[i]);
+                }
+
+                Console.Write("Enter P:");
+                Int32.TryParse(Console.ReadLine(), out P);
+
+                for (int i = 0; i < mas6.Length; i++)
+                {
+                    if (mas6[i] == P)
+                    {
+                        P_n = i;
+                    }
+
+                    summ += mas6[i];
+                }
+
+                sr = summ / n;
+                double savenum = mas6[0];
+
+                for (int i = 0; i < n - 1; i++)
+                {
+                    double B1 = Math.Abs(sr - mas6[i]);
+
+                    for (int j = i + 1; j < n; j++)
+                    {
+                        double B2 = Math.Abs(sr - mas6[j]);
+
+                        if (B1 < B2 && B1 < savenum)
+                        {
+                            sr_znach = i;
+                            savenum = B1;
+                        }
+
+                        if (B2 < B1 && B2 < savenum)
+                        {
+                            sr_znach = j;
+                            savenum = B2;
+                        }
+
+                    }
+                }
+
+                Console.WriteLine($"Sr = {sr_znach}");
+
+                mas6[P_n] = 0;
+                int res_i = 0;
+
+                for (int i = P_n; i > sr_znach + 1; i--)
+                {
+                    mas6[i] = mas6[i - 1];
+                }
+
+                mas6[sr_znach + 1] = P;
+
+                Console.WriteLine("Final array:");
+                for (int j = 0; j < mas6.Length; j++)
+                {
+                    Console.WriteLine(mas6[j]);
+                }
+            }
+
+        }
+    }
+}
+#endregion
