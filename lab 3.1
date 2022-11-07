@@ -1,0 +1,87 @@
+﻿#region 1.11
+double[] massiv = new double[10];
+double[] positiv = new double[10];
+double n = 10;
+int k = 0;
+double lenght = 0;
+Console.WriteLine("Enter the array elements: ");
+for (int i = 0; i < n; i++)
+{
+    massiv[i] = Convert.ToDouble(Console.ReadLine());
+}
+for (int i = 0; i < n; i++)
+{
+
+    if (massiv[i] >= 0) { positiv[k] = massiv[i]; k++; }
+}
+Console.WriteLine("Positive elements of the array: ");
+for (int i = 0; i < k; i++)
+{
+    Console.Write(positiv[i] + " ");
+}
+#endregion
+#region 3.1
+Console.WriteLine("Enter the size of array: ");
+int n1 = Convert.ToInt32(Console.ReadLine());
+var array = new List<double>();
+var newArray = new List<int>();
+double sum = 0;
+double sred = 0;
+double k1 = 0;
+Console.WriteLine("Enter the array: ");
+for (int i = 0; i < n; i++)
+{
+    array.Add(Convert.ToInt32(Console.ReadLine()));
+}
+double max = array.Max();
+for (int i = 0; i < n; i++)
+{
+    if (array[i] == max) { newArray.Add(i); k++; }
+}
+Console.WriteLine("Array of index: ");
+for (int i = 0; i < k; i++)
+{
+    Console.Write(newArray[i] + " ");
+}
+#endregion
+
+#region 3.9
+Console.WriteLine("Enter the size of array: ");
+int n2 = Convert.ToInt32(Console.ReadLine());
+var Array = new List<double>();
+var NewArray = new List<double>();
+var plusArray = new List<int>();
+double summ = 0;
+double sredn = 0;
+int k2 = 0;
+bool b = false;
+int t = 0;
+Console.WriteLine("Enter the array: ");
+for (int i = 0; i < n; i++)
+{
+    array.Add(Convert.ToInt32(Console.ReadLine()));
+}
+double Max = 0;
+for (int i = 0; i < n - 1; i++)
+{
+    if (array[i] > array[i + 1]) { k++; }
+    else
+    {
+        if (k > max) { max = k; k = 1; }
+        k = 1;
+    }
+}
+if (k > max) max = k;
+k = 1;
+for (int i = 0; i < n - 1; i++)
+{
+    if (array[i] < array[i + 1]) { k++; }
+    else
+    {
+        if (k > max) { max = k; k = 1; }
+        k = 1;
+    }
+}
+if (k > max) max = k;
+Console.WriteLine("Longest sequence: " + max);
+#endregion

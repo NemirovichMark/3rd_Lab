@@ -1,0 +1,1076 @@
+﻿
+#region 1.6
+int n6;
+Console.WriteLine("enter the number of array elements: ");
+n6 = Convert.ToInt32(Console.ReadLine());
+double x6;
+double lenght = 0;
+double[] mas = new double[n6];
+for (int i = 0; i < n6; i++)
+{
+
+    Console.WriteLine(" Please enter 'x'");
+    double.TryParse(Console.ReadLine(), out x6);
+    mas[i] = x6 * x6;
+
+}
+for (int i = 0; i < n6; i++)
+{
+    lenght = lenght + mas[i];
+}
+Console.WriteLine(Math.Sqrt(lenght));
+#endregion
+#region 1.10
+double P, Q, x10;
+double nums = 0;
+double[] myArray = new double[10];
+Console.WriteLine("Enter P and Q(P < Q)");
+Console.WriteLine("Enter P:");
+double.TryParse(Console.ReadLine(), out P);
+Console.WriteLine("Enter Q:");
+double.TryParse(Console.ReadLine(), out Q);
+if (P > Q)
+{
+    Console.WriteLine("Please enter P < Q");
+}
+
+for (int i = 0; i < myArray.Length; i++)
+{
+    Console.WriteLine("Enter x:");
+    double.TryParse(Console.ReadLine(), out x10);
+    myArray[i] = x10;
+}
+for (int i = 0; i < myArray.Length; i++)
+{
+    if (myArray[i] > P && myArray[i] < Q)
+    {
+        nums++;
+    }
+}
+Console.WriteLine("there are {0} elements between P and Q", nums);
+#endregion
+#region 1.11
+//double[] aaray = new double[10];
+//double x11;
+//for (int i = 0; i < aaray.Length; i++)
+//{
+
+//    Console.WriteLine(" Please enter the positive 'X'");
+//    while(true)
+//    {
+//        if (!double.TryParse(Console.ReadLine(), out x11))
+//        {
+//            Console.WriteLine(" Please enter the correct data");
+//            continue;
+//        }
+//        if (x11 < 0)
+//        {
+//            Console.WriteLine(" Please enter the correct data | 'X' must be positive");
+//            continue;
+//        }
+//        aaray[i] = x11;
+//        break;
+//    } 
+//}
+//for (int i = 0; i < aaray.Length; i++)
+//{
+//    Console.Write(aaray[i] + " ");
+//}
+#endregion
+
+#region 1.12
+double[] array = new double[8];
+double x112;
+double min112 = 0, ix = 0;
+for (int i = 0; i < array.Length; i++)
+{
+
+    Console.WriteLine(" Please enter the 'X'");
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x112))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        array[i] = x112;
+        break;
+    }
+}
+
+for (int i = 0; i < array.Length; i++)
+{
+    if (array[i] < 0)
+    {
+        min112 = array[i];
+        ix = i;
+    }
+}
+
+Console.WriteLine("min = {0}, index = {1}", min112, ix);
+
+
+if (min112 == 0)
+{
+    Console.WriteLine(0);
+}
+#endregion
+
+#region 1.13
+int n113;
+
+Console.WriteLine(" Please enter lenght mas");
+while (true)
+{
+    if (!int.TryParse(Console.ReadLine(), out n113))
+    {
+        Console.WriteLine(" Please enter the correct lenght");
+        continue;
+    }
+    if (n113 < 0)
+    {
+        Console.WriteLine(" Please enter lenght '>0'");
+        continue;
+    }
+    break;
+}
+double P13, x113;
+Console.WriteLine(" Please enter 'P'");
+while (true)
+{
+    if (!double.TryParse(Console.ReadLine(), out P13))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    break;
+}
+
+List<double> massiv = new List<double>(n113);
+int last113 = -1;
+Console.WriteLine(" Pleas enter the 'X'");
+for (int i = 0; i < n113; i++)
+{
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x113))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        massiv.Add(x113);
+        break;
+    }
+}
+
+for (int i = 0; i < n113; i++)
+{
+    if (massiv[i] >= 0)
+    {
+        last113 = i;
+    }
+}
+massiv.Insert(last113 + 1, P13);
+
+for (int i = 0; i < n113 + 1; i++)
+{
+    Console.Write(massiv[i] + " ");
+}
+#endregion
+
+#region 2.5
+int n25;
+Console.WriteLine(" Please enter the leght mas");
+while (true)
+{
+    if (!int.TryParse(Console.ReadLine(), out n25))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (n25 < 0)
+    {
+        Console.WriteLine(" lenght mas must be positive");
+        continue;
+    }
+    break;
+}
+
+double[] arra25 = new double[n25];
+double[] arralot = new double[n25 - 2];
+double x25;
+
+for (int i = 0; i < arra25.Length; i++)
+{
+    Console.WriteLine(" Please enter the 'X'");
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x25))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        arra25[i] = x25;
+        break;
+    }
+}
+
+double max25 = arra25[0];
+double min25 = arra25[0];
+int index_max25 = 0;
+int index_min25 = 0;
+for (int i = 0; i < arra25.Length; i++)
+{
+    if (max25 < arra25[i])
+    {
+        max25 = arra25[i];
+        index_max25 = i;
+    }
+    if (min25 > arra25[i])
+    {
+        min25 = arra25[i];
+        index_min25 = i;
+    }
+}
+
+if (index_max25 > index_min25)
+{
+    for (int i = index_min25 + 1; i < index_max25; i++)
+    {
+        if (arra25[i] < 0)
+        {
+            arralot[i] = arra25[i];
+        }
+    }
+}
+
+if (index_max25 < index_min25)
+{
+    for (int i = index_max25 + 1; i < index_min25; i++)
+    {
+        if (arra25[i] < 0)
+        {
+            arralot[i] = arra25[i];
+        }
+    }
+}
+
+for (int i = 0; i < arralot.Length; i++)
+{
+    Console.Write(arralot[i] + " ");
+}
+#endregion
+
+#region 2.6
+int n26;
+
+Console.WriteLine(" Please enter lenght mas");
+while (true)
+{
+    if (!int.TryParse(Console.ReadLine(), out n26))
+    {
+        Console.WriteLine(" Please enter the correct lenght");
+        continue;
+    }
+    if (n26 < 0)
+    {
+        Console.WriteLine(" Please enter lenght '>0'");
+        continue;
+    }
+    break;
+}
+double P26, x26;
+Console.WriteLine(" Please enter 'P'");
+while (true)
+{
+    if (!double.TryParse(Console.ReadLine(), out P26))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    break;
+}
+
+double sum26 = 0;
+double mid26 = 0;
+List<double> arra26 = new List<double>(n26);
+int mid_I = 0;
+Console.WriteLine(" Pleas enter the 'X'");
+for (int i = 0; i < n26; i++)
+{
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x26))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        arra26.Add(x26);
+        sum26 += x26;
+        break;
+    }
+}
+mid26 = sum26 / n26;
+for (int i = 0; i < n26; i++)
+{
+    if (Math.Abs(mid26 - arra26[mid_I]) > Math.Abs(mid26 - arra25[i]))
+    {
+        mid_I = i;
+    }
+}
+
+arra26.Insert(mid_I + 1, P26);
+for (int i = 0; i < n26 + 1; i++)
+{
+    Console.Write(arra25[i] + " ");
+}
+#endregion
+
+#region 2.9
+int n29;
+Console.WriteLine(" Please enter the leght mas");
+while (true)
+{
+    if (!int.TryParse(Console.ReadLine(), out n29))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (n29 < 0)
+    {
+        Console.WriteLine(" lenght mas must be positive and '>0'");
+        continue;
+    }
+    break;
+}
+
+double[] arra9 = new double[n29];
+double[] arra29 = new double[n29];
+double x29;
+
+for (int i = 0; i < arra9.Length; i++)
+{
+    Console.WriteLine(" Please enter the 'X'");
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x29))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        if (x29 < 0)
+        {
+            Console.WriteLine(" 'X' must be positive");
+            continue;
+        }
+        arra9[i] = x29;
+        break;
+    }
+}
+
+double max29 = arra9[0];
+double min29 = arra9[0];
+int index_max29 = 0;
+int index_min29 = 0;
+for (int i = 0; i < arra9.Length; i++)
+{
+    if (max29 < arra9[i])
+    {
+        max29 = arra9[i];
+        index_max29 = i;
+    }
+    if (min29 > arra9[i])
+    {
+        min29 = arra9[i];
+        index_min29 = i;
+    }
+}
+
+double amount = 0;
+if (index_max29 > index_min29)
+{
+    for (int i = index_min29 + 1; i < index_max29; i++)
+    {
+        arra29[i] = arra9[i];
+        amount++;
+    }
+}
+
+if (index_max29 < index_min29)
+{
+    for (int i = index_max29 + 1; i < index_min29; i++)
+    {
+        arra29[i] = arra9[i];
+        amount++;
+    }
+}
+double sum29 = 0;
+for (int i = 0; i < arra29.Length; i++)
+{
+    sum26 = sum26 + arra29[i];
+}
+Console.WriteLine(sum26 / amount);
+#endregion
+
+#region 2.10
+int n210;
+Console.WriteLine(" Please enter the leght mas");
+while (true)
+{
+    if (!int.TryParse(Console.ReadLine(), out n210))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (n210 < 0)
+    {
+        Console.WriteLine(" lenght mas must be positive and '>0'");
+        continue;
+    }
+    break;
+}
+
+double[] arra10 = new double[n210];
+double[] arra2 = new double[n210 - 1];
+double x210;
+
+for (int i = 0; i < arra10.Length; i++)
+{
+    Console.WriteLine(" Please enter the 'X'");
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x210))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        arra10[i] = x210;
+        break;
+    }
+}
+
+double min210 = arra10[0];
+int index_min210 = 0;
+
+for (int i = 0; i < arra10.Length; i++)
+{
+    if (min210 > arra10[i])
+    {
+        min210 = arra10[i];
+        index_min210 = i;
+    }
+}
+
+for (int i = 0; i < index_min210; i++)
+    arra2[i] = arra10[i];
+for (int i = index_min210 + 1; i < arra10.Length; i++)
+    arra2[i - 1] = arra10[i];
+
+arra10 = arra2;
+
+Console.WriteLine("Mas:");
+for (int j = 0; j < arra10.Length; j++)
+    Console.Write(arra10[j] + " ");
+
+#endregion
+
+#region 2.11
+int n211;
+
+Console.WriteLine(" Please enter lenght mas");
+while (true)
+{
+    if (!int.TryParse(Console.ReadLine(), out n211))
+    {
+        Console.WriteLine(" Please enter the correct lenght");
+        continue;
+    }
+    if (n211 < 0)
+    {
+        Console.WriteLine(" Please enter lenght '>0'");
+        continue;
+    }
+    break;
+}
+double P211, x211;
+Console.WriteLine(" Please enter 'P'");
+while (true)
+{
+    if (!double.TryParse(Console.ReadLine(), out P211))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    break;
+}
+
+List<double> arra11 = new List<double>(n211);
+int last11 = -1;
+Console.WriteLine(" Pleas enter the 'X'");
+for (int i = 0; i < n211; i++)
+{
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x211))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        arra11.Add(x211);
+        break;
+    }
+}
+
+for (int i = 0; i < n211; i++)
+{
+    if (arra11[i] >= 0)
+    {
+        last11 = i;
+    }
+}
+arra11.Insert(last11 + 1, P211);
+
+for (int i = 0; i < n211 + 1; i++)
+{
+    Console.Write(arra11[i] + " ");
+}
+#endregion
+
+#region 2.13
+int n213;
+Console.WriteLine(" Please enter the leght mas");
+while (true)
+{
+    if (!int.TryParse(Console.ReadLine(), out n213))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (n213 < 0)
+    {
+        Console.WriteLine(" lenght mas must be positive");
+        continue;
+    }
+    break;
+}
+
+double[] arra13 = new double[n213];
+double x213;
+
+for (int i = 0; i < arra13.Length; i++)
+{
+    Console.WriteLine(" Please enter the 'X'");
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x213))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        arra13[i] = x213;
+        break;
+    }
+}
+
+double max213 = arra13[0]; ;
+int index_max13 = 0;
+for (int i = 0; i < arra13.Length; i++)
+{
+    if (max213 < arra13[i] && i % 2 == 0)
+    {
+        max213 = arra13[i];
+        index_max13 = i;
+    }
+}
+
+arra13[index_max13] = index_max13;
+
+for (int i = 0; i < arra13.Length; i++)
+{
+    Console.Write(arra13[i] + " ");
+}
+#endregion
+
+#region 2.15
+int n215, m215, k215;
+
+Console.WriteLine(" Please enter the lenght for mas - A");
+while (true)
+{
+    if (!int.TryParse(Console.ReadLine(), out n215))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (n215 < 0)
+    {
+        Console.WriteLine(" Lenght must be >= 0");
+        continue;
+    }
+    break;
+}
+List<double> A215 = new List<double>(n215);
+
+double x215;
+Console.WriteLine(" Please enter elements for A");
+
+for (int i = 0; i < n215; i++)
+{
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x215))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        A215.Add(x215);
+        break;
+    }
+}
+
+Console.WriteLine(" Please enter the lenght for mas - B");
+while (true)
+{
+    if (!int.TryParse(Console.ReadLine(), out m215))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (m215 < 0)
+    {
+        Console.WriteLine(" Lenght must be >= 0");
+        continue;
+    }
+    break;
+}
+
+List<double> B215 = new List<double>(m215);
+
+double y214;
+Console.WriteLine(" Please enter elements for B");
+for (int i = 0; i < m215; i++)
+{
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out y214))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        B215.Add(y214);
+        break;
+    }
+}
+
+Console.WriteLine(" Pleas enter the k");
+while (true)
+{
+    if (!int.TryParse(Console.ReadLine(), out k215))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (k215 < 0)
+    {
+        Console.WriteLine(" Data must be >= 0");
+        continue;
+    }
+    if (k215 > A215.Count)
+    {
+        Console.WriteLine(" k must be < lenght A");
+        continue;
+    }
+    break;
+}
+
+A215.InsertRange(k215, B215);
+
+for (int i = 0; i < A215.Count; i++)
+{
+    Console.Write(A215[i] + " ");
+}
+#endregion
+
+#region 3.1
+double x1;
+double len1;
+
+Console.WriteLine(" Please enter the lenght array");
+while (true)
+{
+    if (!double.TryParse(Console.ReadLine(), out len1))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (len1 < 0)
+    {
+        Console.WriteLine("Lenght array must be positive");
+        continue;
+    }
+    break;
+}
+
+var array1 = new List<double>();
+var new_array1 = new List<double>();
+
+Console.WriteLine(" Please enter elements array");
+for (int i = 0; i < len1; i++)
+{
+
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x1))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        array1.Add(x1);
+        break;
+    }
+}
+
+double element;
+element = array1.Max();
+
+for (int i = 0; i < len1; i++)
+{
+    if (array1[i] == element)
+    {
+        new_array1.Add(i);
+    }
+}
+Console.WriteLine("Array:");
+for (int i = 0; i < new_array1.Count; i++)
+    Console.Write(new_array1[i] + " ");
+#endregion
+
+#region 3.5
+double x5;
+double len5;
+
+Console.WriteLine(" Please enter the lenght array");
+while (true)
+{
+    if (!double.TryParse(Console.ReadLine(), out len5))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (len5 < 0)
+    {
+        Console.WriteLine("Lenght array must be positive");
+        continue;
+    }
+    break;
+}
+
+var array5 = new List<double>();
+var new_array5 = new List<double>();
+
+Console.WriteLine(" Please enter elements array");
+for (int i = 0; i < len5; i++)
+{
+
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x5))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        array5.Add(x5);
+        break;
+    }
+}
+
+for (int i = 0; i < len5; i = i + 2)
+{
+    new_array5.Add(array5[i]);
+}
+
+new_array5.Sort();
+
+for (int i = 0; i < len5; i++)
+{
+    if (i % 2 == 0)
+    {
+        array5[i] = new_array5[i / 2];
+    }
+}
+
+Console.WriteLine("Array");
+for (int i = 0; i < len5; i++)
+{
+    Console.Write(array5[i] + " ");
+}
+#endregion
+
+#region 3.8
+double x8;
+double len8;
+int k8 = 0;
+
+Console.WriteLine(" Please enter the lenght array");
+while (true)
+{
+    if (!double.TryParse(Console.ReadLine(), out len8))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (len8 < 0)
+    {
+        Console.WriteLine("Lenght array must be positive");
+        continue;
+    }
+    break;
+}
+
+var array8 = new List<double>();
+var array8_new = new List<double>();
+var ix8 = new List<double>();
+
+Console.WriteLine(" Please enter elements array");
+for (int i = 0; i < len8; i++)
+{
+
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x8))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        array8.Add(x8);
+        break;
+    }
+}
+
+for (int i = 0; i < len8; i++)
+{
+    if (array8[i] < 0)
+    {
+        array8_new.Add(array8[i]);
+        ix8.Add(i);
+    }
+}
+
+array8_new.Sort();
+
+for (int i = 0; i < len8; i++)
+{
+    if (ix8.Contains(i) == true)
+    {
+        array8[i] = array8_new[k8];
+        k8++;
+    }
+}
+
+Console.WriteLine("New array");
+for (int i = 0; i < len8; i++)
+    Console.Write(array8[i] + " ");
+#endregion
+
+#region 3.9
+double x9;
+double len9;
+int k9 = 1;
+int amo9 = 1;
+double max1 = -1;
+double max2 = -1;
+
+Console.WriteLine(" Please enter the lenght array");
+while (true)
+{
+    if (!double.TryParse(Console.ReadLine(), out len9))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (len9 < 0)
+    {
+        Console.WriteLine("Lenght array must be positive");
+        continue;
+    }
+    break;
+}
+
+var array9 = new List<double>();
+
+Console.WriteLine(" Please enter elements array");
+for (int i = 0; i < len9; i++)
+{
+
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x9))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        array9.Add(x9);
+        break;
+    }
+}
+
+for (int i = 0; i < len9 - 1; i++)
+{
+    if (array9[i] < array9[i + 1])
+    {
+        k9++;
+    }
+
+    else
+    {
+        if (max1 < k9)
+        {
+            max1 = k9;
+            k9 = 1;
+
+        }
+    }
+}
+
+for (int i = 0; i < len9 - 1; i++)
+{
+    if (array9[i] > array9[i + 1])
+    {
+        amo9++;
+    }
+
+    else
+    {
+        if (max2 < amo9)
+        {
+            max2 = amo9;
+            amo9 = 1;
+
+        }
+    }
+}
+
+if (k9 > amo9)
+{
+    Console.WriteLine(" Increasing sequence " + k9);
+}
+
+if (k9 < amo9)
+{
+    Console.WriteLine(" Descending Sequence " + amo9);
+}
+
+if (k9 == amo9)
+{
+    Console.WriteLine(" Sequence equal " + k9);
+}
+#endregion
+
+#region 3.12
+double x12;
+double len12 = 12;
+int k12 = 0;
+
+var array12 = new List<double>();
+
+Console.WriteLine(" Please enter elements array");
+for (int i = 0; i < len12; i++)
+{
+
+while (true)
+{
+if (!double.TryParse(Console.ReadLine(), out x112))
+{
+Console.WriteLine(" Please enter the correct data");
+continue;
+}
+array9.Add(x112);
+break;
+}
+}
+
+for (int i = 0; i < array9.Count(); i++)
+{
+if (array9[i] < 0)
+{
+array9.RemoveAt(i);
+}
+}
+
+Console.WriteLine(" Array");
+for (int i = 0; i < array9.Count(); i++)
+{
+    Console.Write(array9[i] + " ");
+}
+#endregion
+
+#region 3.13
+double x13;
+double len13 = 12;
+int k13 = 0;
+
+Console.WriteLine(" Please enter the lenght array");
+while (true)
+{
+    if (!double.TryParse(Console.ReadLine(), out len12))
+    {
+        Console.WriteLine(" Please enter the correct data");
+        continue;
+    }
+    if (len12 < 0)
+    {
+        Console.WriteLine("Lenght array must be positive");
+        continue;
+    }
+    break;
+}
+
+var array13 = new List<double>();
+var array_new = new List<double>();
+var A = new List<int>();
+
+Console.WriteLine(" Please enter elements array");
+for (int i = 0; i < len12; i++)
+{
+
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out x13))
+        {
+            Console.WriteLine(" Please enter the correct data");
+            continue;
+        }
+        array13.Add(x13);
+        break;
+    }
+}
+
+for (int i = 0; i < len12; i++)
+{
+    if (array_new.Contains(array13[i]) == true)
+    {
+        A215.Add(i);
+    }
+
+    if (array_new.Contains(array13[i]) == false)
+    {
+        array_new.Add(array13[i]);
+    }
+}
+
+for (int i = 0; i < array13.Count; i++)
+{
+    if (A215.Contains(i + k13) == true)
+    {
+        array13.RemoveAt(i);
+        i--;
+        k13++;
+    }
+}
+
+Console.WriteLine(" Array:");
+for (int i = 0; i < array13.Count; i++)
+{
+    Console.Write(array13[i] + " ");
+}
+#endregion
