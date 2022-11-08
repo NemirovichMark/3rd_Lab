@@ -1,107 +1,11 @@
 
-            //1 part task 10 исправоенный
-            int[] a = new int[10];
-
-            int count = 0;
-           
-            Console.Write(" введите индекс P: ");
-
-            int P = int.Parse(Console.ReadLine());
-            Console.Write("введите индекс Q: ");
-            int Q = int.Parse(Console.ReadLine());
-            if ((P < Q))
-            {
-
-
-
-
-                for (int i = 0; i < a.Length; i++)
-                {
-                    Console.Write($"Элемент с индексом {i} равен: ");
-                    a[i] = int.Parse(Console.ReadLine());
-                }
-                for (int i = 0; i < 10; i++)
-                {
-                    if (a[i] > P && a[i] < Q)
-                        count++;
-                }
-               
-            }
-            else
-            {
-                Console.WriteLine("неверно");
-                return;
-
-            }
-            Console.WriteLine(count);
-            Console.ReadLine();
-            
-            
-            
-             //3 часть 9 номерисправленный
-            int kol_Vo = int.Parse(Console.ReadLine());
-            int[] posl = new int[kol_Vo];
-
-            int len_posl = 1;
-            int max_len_posl = 0;
-            int ub_Posl = 0;
-            int max_ub_posl = 0;
-            for (int i = 0; i < posl.Length; i++)
-            {
-                Console.Write($"Элемент с индексом {i} равен: ");
-                posl[i] = int.Parse(Console.ReadLine());
-            }
-
-            for (int i = 0; i < posl.Length - 1; i++)
-            {
-
-                if (posl[i] < posl[i + 1])
-                {
-
-                    len_posl += 1;
-                    if (len_posl > max_len_posl)
-                    {
-                        max_len_posl = len_posl;
-
-
-                    }
-                }
-                else
-                {
-                    len_posl = 1;
-                }
-                if (posl[i] > posl[i+1])
-                {
-                    ub_Posl += 1;
-                    if (ub_Posl > max_ub_posl)
-                    {
-                        max_ub_posl = ub_Posl;
-                    }
-                }
-                else
-                {
-                    ub_Posl = 1;
-                }
-
-            }
-
-
-
-
-
-
-            Console.Write($"Самая большая последовательность:  {max_len_posl} ");
-            Console.WriteLine($"Самая большая убывающая последовательность {max_ub_posl}");
-            Console.ReadLine();
-            
-            
-            
-              //3 часть 13 номер исправленный
+            //3 часть 13 номер 
             int n = int.Parse(Console.ReadLine());
             int[] a = new int[n];
             int min;
             int i_x;
             int count = 0;
+            int count_1 = 0;
            
           
             for (int i = 0; i < n; i++)
@@ -129,6 +33,7 @@
                    
 
                 }
+                count = 0;
                
 
                
@@ -151,177 +56,21 @@
                 a[i] = min;
 
             }
-            for (int i = 0; i < a.Length ; i++)
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] != 0)
+                {
+                    count_1 += 1;
+                }
+            }
+            
+            int[] C = new int[count_1];
+            for (int i = 0; i < count_1; i++)
+            {
+                C[i] = a[i];
+            }
+            for (int i = 0; i < C.Length ; i++)
             
 
-                Console.Write("{0:d} ", a[i]);
+                Console.Write("{0:d} ", C[i]);
             Console.ReadLine();
-            
-            
-            
-            
-            
-            Исправленные алгоритмы
-            
-             //исправленный алгоритм 13
-            int kol = int.Parse(Console.ReadLine());
-            int kol_b = int.Parse(Console.ReadLine());
-            int[] a = new int[kol];
-            int[] b = new int[kol_b];
-            int[] C = new int[kol + kol_b];
-           
-            for (int l = 0; l < kol; l++)
-            {
-                a[l] = int.Parse(Console.ReadLine());
-            }
-            Console.WriteLine();
-            for (int m = 0; m < kol_b; m++)
-            {
-                b[m] = int.Parse(Console.ReadLine());
-            }
-            int i = 0, j = 0, p = 0;
-            while ((i < kol) && (kol_b < 6))
-                if (a[i] >= b[j])
-                {
-                    C[p++] = a[i++];
-                }
-                else
-                {
-                    C[p++] = b[j++];
-                }
-            while (i < kol)
-                C[p++] = a[i++];
-            while (j < kol_b)
-                C[p++] = b[j++];
-            for (int f = 0; f < C.Length; f++)
-                Console.Write($"Элемент с индексом {i} : ", C[f]);
-            Console.Read();
-                    
-            
-            
-            
-            //12 ИСПРАВЛЕННЫЙ АЛГОРИТМ
-            Console.Write("Введите размерность массива а: ");
-            int kol = int.Parse(Console.ReadLine());
-            Console.Write("Введите размерность массива b: ");
-            int kol_1 = int.Parse(Console.ReadLine());
-            int[] a = new int[kol];
-            int[] b = new int[kol_1];
-            for (int i = 0; i < kol; i++)
-            {
-                a[i] = int.Parse(Console.ReadLine());
-            }
-            for (int i = 0; i < kol_1; i++)
-            {
-                b[i] = int.Parse(Console.ReadLine());
-            }
-            int count_a = 0;
-            int count_b = 0;
-            int c;
-           
-            int index_c = 0;
-            int[] F;
-            #region 1 способо
-            if (kol > kol_1)
-            {
-                c = kol_1;
-                F = new int[kol_1 + c];
-                for (int i = 0; i < F.Length; i++)
-                {
-                    if (i % 2 == 0)
-                    {
-                        F[i] = a[count_a];
-                        count_a += 1;
-                    }
-                    if (i % 2 != 0)
-                    {
-                        F[i] = b[count_b];
-                        count_b += 1;
-                    }
-                    
-                }
-                int[] C = new int[kol + kol_1];
-                for (int i = 0; i < F.Length; i++)
-                {
-                    C[i] = F[i];
-                    index_c += 1;
-                }
-                
-                
-                for (int i = index_c; i < C.Length; i++)
-                {
-                    C[i] = a[count_a];
-                    count_a += 1;
-                }
-                foreach (int x in C)
-                    Console.Write("{0:d} ", x);
-                Console.ReadLine();
-            }
-            #endregion
-
-            #region 2 способ
-            if (kol_1 > kol)
-            {
-                c = kol;
-                F = new int[kol + c];
-                for (int i = 0; i < F.Length; i++)
-                {
-                    if (i % 2 == 0)
-                    {
-                        F[i] = a[count_a];
-                        count_a += 1;
-                    }
-                    if (i % 2 != 0)
-                    {
-                        F[i] = b[count_b];
-                        count_b += 1;
-                    }
-
-                }
-                int[] C = new int[kol + kol_1];
-                for (int i = 0; i < F.Length; i++)
-                {
-                    C[i] = F[i];
-                    index_c += 1;
-                }
-
-
-                for (int i = index_c; i < C.Length; i++)
-                {
-                    C[i] = b[count_b];
-                    count_b += 1;
-                }
-                foreach (int x in C)
-                    Console.Write("{0:d} ", x);
-                Console.ReadLine();
-            }
-            #endregion
-
-            #region 3 условие
-            if (kol == kol_1)
-            {
-               
-                F = new int[kol_1 + kol];
-                for (int i = 0; i < F.Length; i++)
-                {
-                    if (i % 2 == 0)
-                    {
-                        F[i] = a[count_a];
-                        count_a += 1;
-                    }
-                    if (i % 2 != 0)
-                    {
-                        F[i] = b[count_b];
-                        count_b += 1;
-                    }
-
-                }
-               
-
-              
-                foreach (int x in F)
-                    Console.Write("{0:d} ", x);
-                Console.ReadLine();
-            }
-
-            #endregion
