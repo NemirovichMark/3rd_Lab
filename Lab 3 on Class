@@ -641,36 +641,62 @@ namespace Lab_3
                 int.TryParse(Console.ReadLine(), out n);
                 int z = 0;
                 int.TryParse(Console.ReadLine(), out z);
-                if (n > z) n -= (n - z);
-                if (z > n) z -= (z - n);
                 double[] Arr = new double[n];
                 double[] Brr = new double[z];
                 double[] Crr = new double[n + z];
-                Console.WriteLine("Fill arrow");
+                Console.WriteLine("Fill arrow Arr");
                 for (int i = 0; i < n; i++)
                 {
                     double x = 0;
                     double.TryParse(Console.ReadLine(), out x);
                     Arr[i] = x;
                 }
-                Console.WriteLine("Fill arrow");
+                Console.WriteLine("Fill arrow Brr");
                 for (int i = 0; i < z; i++)
                 {
                     double y = 0;
                     double.TryParse(Console.ReadLine(), out y);
                     Brr[i] = y;
                 }
-                int counter = 0;
-                for (int i = 0; i < n + z; i += 2)
+                //if (n > z) n = z;
+                //else z = n;
+                int counter_Arr = 0, counter_Brr = 0;
+                for (int i = 0; i < 2*Math.Min(n, z); i++)
                 {
-                    Crr[i] = Arr[counter];
-                    counter++;
+                    if (i % 2 == 0)
+                    {
+                        if (counter_Arr < n)
+                        {
+                            Crr[i] = Arr[counter_Arr];
+                            counter_Arr++;
+                        }
+                        else break;
+                    }
+                    if (i%2!=0)
+                    {
+                        Crr[i] = Brr[counter_Brr];
+                        counter_Brr++;
+                    }                       
                 }
-                counter = 0;
-                for (int i = 1; i < n + z; i += 2)
+                for (int i = 2 * Math.Min(n, z); i<n+z;i++)
                 {
-                    Crr[i] = Brr[counter];
-                    counter++;
+                    if (n != Math.Min(n, z))
+                    {
+                        for (int j = 2*Math.Min(n, z); j < (z + n); j++)
+                        {
+                            Crr[j] = Arr[counter_Arr];
+                            counter_Arr++;
+                        }
+                    }
+                    else
+                    {
+                        //counter_Brr++;
+                        for (int j = 2*Math.Min(n, z)+1; j < (z + n)-1; j++)
+                        {
+                            Crr[j] = Brr[counter_Brr++];
+                            counter_Brr++;
+                        }
+                    }
                 }
                 Console.WriteLine("Answer for №12");
                 foreach (double x in Crr) Console.Write(x + " ");
