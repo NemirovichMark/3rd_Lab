@@ -1,0 +1,835 @@
+using System;
+using System.Collections.Generic;
+
+namespace Lab_3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            #region 1st Level
+            #region №6
+            {
+                double[] a = new double[5] { 2, 3, 4, 5, 6 };
+                double s = 0;
+                for (int i = 0; i < 5; i++)
+                {
+                    s += a[i] * a[i];
+                }
+                Console.WriteLine(Math.Sqrt(s));
+
+            }
+            #endregion
+            #region № 10
+            {
+                double[] a = new double[10] { 1, 20, 4350, 1213, 92, 11, 19, 101, 10000000, 14.5 };
+                double P = 10, Q = 250;
+                int counter = 0;
+                for (int i = 0; i < 10; i++)
+                {
+                    if (a[i] >= P && a[i] <= Q)
+                    {
+                        counter += 1;
+                    }
+                }
+                Console.WriteLine(counter);
+            }
+            #endregion
+            #region № 11
+            {
+                double[] positive = new double[10] { 10, -30, -1000, 100, 14378195165, -0.12748917465187568916, 182315187311, 0.123489174897, 94739414, 1 };
+                double[] negative = new double[10];
+                int counter = 0;
+                foreach (double x in positive)
+                {
+                    if (x > 0)
+                    {
+                        negative[counter] = x;
+                        counter++;
+                    }
+
+                }
+                Console.WriteLine("Array of positive sumbers");
+                for (int i = 0; i < counter; i++) Console.Write(negative[i] + " ");
+
+            }
+            #endregion
+            #region №12
+            {
+                int[] a = new int[8] { 1, -2, -3, -100, 10, 20, 30, 8 };
+                int n = 0, j = 0;
+
+                for (int i = 0; i < 8; i++)
+                {
+                    if (a[i] < 0)
+                    {
+                        n = a[i];
+                        j = i;
+                    }
+                }
+                Console.WriteLine("{0}, {1}", n, j);
+
+            }
+            #endregion
+            #region №13
+            {
+                int[] hard = new int[10] { 4, 5, 6, 100, 10000000, -16256554, 31048274, 23522235, 234213, 5464783 };
+                int[] medium = new int[5];
+                int[] rare = new int[5];
+                for (int i = 0; i < 10; i++)
+                {
+                    if (i % 2 == 0) medium[i / 2] = hard[i];
+                    else rare[i / 2] = hard[i];
+                }
+                Console.WriteLine("medium");
+                for (int i = 0; i < 5; i++) Console.WriteLine("{0}", medium[i]);
+                Console.WriteLine();
+                Console.WriteLine("rare");
+                for (int i = 0; i < 5; i++) Console.WriteLine("{0}", rare[i]);
+                Console.WriteLine();
+
+            }
+            #endregion
+            #endregion
+            #region 2nd Level
+            #region №5
+            {
+                Console.WriteLine("---№5 2nd Level---");
+                int n = 0;
+                Console.WriteLine("Enter length of arr");
+                int.TryParse(Console.ReadLine(), out n);
+                double[] a = new double[n];
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    a[i] = x;
+                }
+                double[] aNegative = new double[n];
+                double max = a[0];
+                double min = a[0];
+                int mini = 0, maxi = 0;
+                //Находим max и min и их индексы
+                for (int i = 0; i < n; i++)
+                {
+                    if (a[i] > max)
+                    {
+                        max = a[i];
+                        maxi = i;
+
+                    }
+                    if (a[i] < min)
+                    {
+                        min = a[i];
+                        mini = i;
+                    }
+                }
+                a[maxi] = 1;
+                a[mini] = 1;
+                int k = 1;
+                //поиск отрицательных элементов 
+                for (int i = 0; i < n; i++)
+                {
+                    if (a[i] < 0)
+                    {
+                        aNegative[k] = a[i];
+                        k++;
+                    }
+                }
+                aNegative[0] = min;
+                aNegative[k] = max;
+                Console.WriteLine("Answer №5 2nd Level");
+                for (int i = 0; i < k + 1; i++)
+                {
+                    Console.WriteLine("{0}", aNegative[i]);
+                }
+
+            }
+            #endregion
+            #region №6
+            {
+                Console.WriteLine("Task №6");
+                Console.WriteLine("Enter P");
+                double P = 0, sum = 0, Sr = 0;
+                double.TryParse(Console.ReadLine(), out P);
+                Console.WriteLine("Type length of arr");
+                int n = 0, midI = 0;
+                int.TryParse(Console.ReadLine(), out n);
+                double[] arr = new double[n + 1];
+                Console.WriteLine("Enter numbers for arr");
+                for (int i = 0; i < n; i++)
+                {
+                    double x;
+                    double.TryParse(Console.ReadLine(), out x);
+                    arr[i] = x;
+                    sum += x;
+                }
+                Sr = sum / n;
+                for (int i = 0; i < n; i++)
+                {
+                    if (Math.Abs(Sr - arr[midI]) > Math.Abs(Sr - arr[i])) midI = i;
+                }
+                for (int i = n - 1; i >= midI + 1; i--) arr[i] = arr[midI + 1];
+                arr[midI + 1] = P;
+                Console.WriteLine("Answer");
+                foreach (double x in arr) Console.Write(x + " ");
+            }
+            #endregion
+            #region №9
+            {
+                Console.WriteLine("Task №9");
+                Console.WriteLine("Type length of arr");
+                int n = 0;
+                int.TryParse(Console.ReadLine(), out n);
+                double[] arr = new double[n];
+                Console.WriteLine("Fill in the array");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    arr[i] = x;
+                }
+                double max = arr[0], min = arr[0], SUM = 0, counter = 0;
+                int maxI = 0, minI = 0, k = 0;
+                foreach (double x in arr) // убрал лишний if
+                {
+                    if (x > max)
+                    {
+                        max = x;
+                        maxI = k;
+                    }
+                    if (x < min)
+                    {
+                        min = x;
+                        minI = k;
+                    }
+                    k++;
+                }
+                if (maxI > minI)
+                {
+                    for (int i = minI; i < maxI + 1; i++)
+                    {
+                        SUM += arr[i];
+                        counter++;
+                    }
+                }
+                else if (minI > maxI) //добавил else if
+                {
+                    for (int i = maxI; i < minI + 1; i++)
+                    {
+                        SUM += arr[i];
+                        counter++;
+                    }
+                }
+                Console.WriteLine("Answer for №9");
+                if (counter != 0)
+                {
+                    Console.WriteLine(SUM / counter);
+                }
+                else Console.WriteLine(max);
+            }
+            #endregion
+            #region №10
+            {
+                Console.WriteLine("Task №10");
+                Console.WriteLine("Type length of arr");
+                int n = 0;
+                int.TryParse(Console.ReadLine(), out n);
+                double[] arr = new double[n];
+                Console.WriteLine("Fill in the array");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    arr[i] = x;
+                }
+                double min = 0;
+                if (n > 0)
+                {
+                    min = arr[0];
+                    int minI = 0;
+                    for (int i = 0; i < n; i++)
+                    {
+                        if (arr[i] > 0)
+                        {
+                            if (arr[i] < min)
+                            {
+                                min = arr[i];
+                                minI = i;
+                            }
+                        }
+                    }
+                    for (int i = minI; i < n - 1; i++)
+                        arr[i] = arr[i + 1];
+                }
+
+                Console.WriteLine("Answer for №10");
+                if (n <= 0)
+                {
+                    Console.WriteLine("Eror n <= 0");
+                }
+                else for (int i = 0; i < n - 1; i++) Console.Write(arr[i] + " ");
+                Console.WriteLine();
+            }
+            #endregion
+            #region №11
+            {
+                Console.WriteLine("Task №11");
+                Console.WriteLine("Type P");
+                double P = 0;
+                double.TryParse(Console.ReadLine(), out P);
+                Console.WriteLine("Type length of arr");
+                int n = 0;
+                int.TryParse(Console.ReadLine(), out n);
+                double[] arr = new double[n + 1];
+                Console.WriteLine("Fill in the array");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    arr[i] = x;
+                }
+                int last_positive = 0;
+                for (int i = 0; i < n - 1; i++)
+                {
+                    if (arr[i] > 0) last_positive = i;
+                }
+                for (int i = n - 2; i >= last_positive + 1; i--) arr[i + 1] = arr[i];
+                arr[last_positive + 1] = P;
+                Console.WriteLine("Answer for №11");
+                for (int i = 0; i < n; i++) Console.WriteLine(arr[i] + " ");
+                Console.WriteLine();
+            }
+            #endregion
+            #region №13
+            {
+                Console.WriteLine("Task №13");
+                Console.WriteLine("Type length of arr");
+                int n = 0;
+                int.TryParse(Console.ReadLine(), out n);
+                double[] arr = new double[n];
+                Console.WriteLine("Fill in the array");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    arr[i] = x;
+                }
+                double max = arr[0];
+                int maxI = 0;
+                for (int i = 0; i < n; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        if (arr[i] > max)
+                        {
+                            max = arr[i];
+                            maxI = i;
+                        }
+                    }
+                }
+                arr[maxI] = maxI;
+                Console.WriteLine("Answer for №13");
+                foreach (double x in arr) Console.Write(x + " ");
+            }
+            #endregion
+            #region №15
+            {
+                // Создаю A
+                Console.WriteLine("Task №15");
+                Console.WriteLine("Type length of A");
+                int n = 0;
+                int.TryParse(Console.ReadLine(), out n);
+                double[] Arr = new double[n];
+                Console.WriteLine("Fill in the array A");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    Arr[i] = x;
+                }
+                Console.WriteLine();
+                // Создаю B
+                Console.WriteLine("Type length of B");
+                int k = 0;
+                int.TryParse(Console.ReadLine(), out k);
+                double[] Brr = new double[k];
+                Console.WriteLine("Fill in the array B");
+                for (int i = 0; i < k; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    Brr[i] = x;
+                }
+                Console.WriteLine("Enter index");
+                int d = 0;
+                int.TryParse(Console.ReadLine(), out d);
+                // Создаю большой массив из A и B
+                double[] Big = new double[k + n + 5];
+                //первая часть Big = A
+                for (int i = 0; i < d + 1; i++)// до d включительно
+                {
+                    Big[i] = Arr[i];
+                }
+                int counter = 0;
+                for (int i = d + 1; i < (d + k + 1) + 1; i++)//от d на длинну Brr (не включая d+1 в Arr)
+                {
+                    Big[i] = Brr[counter];
+                    counter++;
+                }
+                counter = d + 1;
+                for (int i = d + k + 2; i < d + k + (n - d) + 2; i++)// от Brr + d на длинну остатка Arr
+                {
+                    Big[i] = Arr[counter];
+                    counter++;
+                }
+                Console.WriteLine("Answer for №15");
+                foreach (double x in Big) Console.Write(x + " ");
+
+
+            }
+            #endregion
+
+            #endregion
+            #region 3d Level
+            #region № 1
+            {
+                Console.WriteLine("---№1 Level---");
+                int n;
+                Console.WriteLine("Type length of arr");
+                int.TryParse(Console.ReadLine(), out n);
+                double[] Arr = new double[n];
+                double[] Brr = new double[n];
+                Console.WriteLine("Fill in the array");
+                int counter = 0;
+                if (n > 0)
+                {
+                    double max = -999999;
+                    for (int i = 0; i < n; i++)
+                    {
+                        double x;
+                        double.TryParse(Console.ReadLine(), out x);
+                        Arr[i] = x;
+                        if (Arr[i] > max)
+                        {
+                            max = Arr[i];
+                            counter = 0;
+                        }
+                        if (Arr[i] == max)
+                        {
+                            Brr[counter] = i;
+                            counter++;
+                        }
+                    }
+                }
+                Console.WriteLine("Answer for №1");
+                if (n <= 0) Console.WriteLine("n can't be <= 0");
+                else
+                    for (int i = 0; i < counter; i++) Console.Write(Brr[i] + " ");
+            }
+            #endregion
+            #region №5
+            {
+                Console.WriteLine("Task №5");
+                Console.WriteLine("Type length of Arr");
+                int n = 0;
+                int.TryParse(Console.ReadLine(), out n);
+                double[] Arr = new double[n];
+                Console.WriteLine("Fill in the array Arr");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    Arr[i] = x;
+                }
+                for (int i = 0; i < n - 2; i = i + 2)
+                {
+
+                    for (int j = i + 2; j < n - 1; j = j + 2)
+                    {
+                        if (Arr[j] > Arr[i])
+                        {
+                            double x = Arr[i];
+                            Arr[i] = Arr[j];
+                            Arr[j] = x;
+                        }
+                    }
+
+                }
+                Console.WriteLine("Answer for №5");
+                foreach (double x in Arr) Console.Write(x + " ");
+            }
+            #endregion
+            #region №8
+            {
+                Console.WriteLine("---8 №---");
+                int n = 0;
+                Console.WriteLine("Enter length");
+                int.TryParse(Console.ReadLine(), out n);
+                double[] Arr = new double[n];
+                Console.WriteLine("Fill in arrow");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    Arr[i] = x;
+                }
+                for (int i = 0; i < n - 1; i++)
+                {
+                    for (int j = i + 1; j < n; j++)
+                    {
+                        if (Arr[i] < 0 && Arr[j] < 0)
+                        {
+                            if (Arr[i] < Arr[j])
+                            {
+                                double x = Arr[i];
+                                Arr[i] = Arr[j];
+                                Arr[j] = x;
+
+                            }
+                        }
+                    }
+                }
+                Console.WriteLine("Answer for 8");
+                foreach (double x in Arr) Console.Write(x + " ");
+            }
+            #endregion
+            #region №9
+            {
+                Console.WriteLine("---9 №---");
+                int n = 0;
+                Console.WriteLine("Enter length");
+                int.TryParse(Console.ReadLine(), out n);
+                double[] Arr = new double[n];
+                Console.WriteLine("Fill in arrow");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    Arr[i] = x;
+                }
+                int counter = 0, max1 = 1, max2 = 1;
+                for (int i = 0; i < n - 1; i++)
+                {
+                    if (Arr[i] > Arr[i + 1])
+                    {
+                        counter++;
+                        max1 = Math.Max(max1, counter);
+                    }
+                    else
+                    {
+
+                        counter = 0;
+                    }
+                }
+                for (int i = 0; i < n - 1; i++)
+                {
+                    if (Arr[i] < Arr[i + 1])
+                    {
+                        counter++;
+                        max2 = Math.Max(max2, counter);
+
+                    }
+                    else
+                    {
+
+                        counter = 0;
+                    }
+                }
+                Console.WriteLine("Answer for 9");
+                Console.WriteLine(Math.Max(max1, max2));
+
+            }
+            #endregion
+            #region №12
+            {
+                Console.WriteLine("---12 №---");
+                int n = 12;
+
+                double[] Arr = new double[n];
+                Console.WriteLine("Fill in arrow");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    Arr[i] = x;
+                }
+                for (int i = 0; i < n; i++)
+                {
+                    if (Arr[i] < 0) Arr[i] = 0;
+                }
+                Console.WriteLine("Answer for 12");
+                for (int i = 0; i < n; i++)
+                {
+                    if (Arr[i] != 0) Console.Write(Arr[i] + " ");
+                }
+
+            }
+            #endregion
+            #region №13
+            {
+                Console.WriteLine("---13 №---");
+                int n = 0;
+                Console.WriteLine("Enter length");
+                int.TryParse(Console.ReadLine(), out n);
+                double[] Arr = new double[n];
+                double[] rr = new double[n];
+                Console.WriteLine("Fill in arrow");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    Arr[i] = x;
+                }
+                double counter = 0;
+                for (int i = 0; i < n - 1; i++)
+                {
+                    for (int j = i + 1; j < n; j++)
+                    {
+                        if (Arr[i] == Arr[j])
+                        {
+                            Arr[j] = 0;
+                            counter++;
+                        }
+                    }
+
+                    if (counter > 0) Arr[i] = 0;
+                    counter = 0;
+                }
+
+                Console.WriteLine("Answer for 13");
+                for (int i = 0; i < n; i++) Console.Write(Arr[i] + " ");
+                Console.WriteLine();
+
+            }
+            #endregion
+            #region Extra
+            #region №11
+            {
+                int[] mas = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+                int x = 0;
+                int s = 0;
+                int e = mas.Length - 1;
+                int si = 0;
+                Console.WriteLine("enter x");
+                if (Int32.TryParse(Console.ReadLine(), out x))
+                {
+                    while (e - s >= 1)
+                    {
+                        si = (e + s) / 2;
+                        if (mas[si] == x)
+                        {
+                            Console.WriteLine($"id = {si}");
+                            break;
+                        }
+                        else if (x < mas[si])
+                        {
+                            e = si;
+                        }
+                        else if (x > mas[si])
+                        {
+                            s = si;
+                        }
+                    }
+                }
+            }
+            #endregion
+            #region №12
+            {
+                Console.WriteLine("Enter length A and B");
+                int n = 0;
+                int.TryParse(Console.ReadLine(), out n);
+                int z = 0;
+                int.TryParse(Console.ReadLine(), out z);
+                double[] Arr = new double[n];
+                double[] Brr = new double[z];
+                double[] Crr = new double[n + z];
+                Console.WriteLine("Fill arrow Arr");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    Arr[i] = x;
+                }
+                Console.WriteLine("Fill arrow Brr");
+                for (int i = 0; i < z; i++)
+                {
+                    double y = 0;
+                    double.TryParse(Console.ReadLine(), out y);
+                    Brr[i] = y;
+                }
+                //if (n > z) n = z;
+                //else z = n;
+                int counter_Arr = 0, counter_Brr = 0;
+                for (int i = 0; i < 2*Math.Min(n, z); i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        if (counter_Arr < n)
+                        {
+                            Crr[i] = Arr[counter_Arr];
+                            counter_Arr++;
+                        }
+                        else break;
+                    }
+                    if (i%2!=0)
+                    {
+                        Crr[i] = Brr[counter_Brr];
+                        counter_Brr++;
+                    }                       
+                }
+                for (int i = 2 * Math.Min(n, z); i<n+z;i++)
+                {
+                    if (n != Math.Min(n, z))
+                    {
+                        for (int j = 2*Math.Min(n, z); j < (z + n); j++)
+                        {
+                            Crr[j] = Arr[counter_Arr];
+                            counter_Arr++;
+                        }
+                    }
+                    else
+                    {
+                        //counter_Brr++;
+                        for (int j = 2*Math.Min(n, z)+1; j < (z + n)-1; j++)
+                        {
+                            Crr[j] = Brr[counter_Brr++];
+                            counter_Brr++;
+                        }
+                    }
+                }
+                Console.WriteLine("Answer for №12");
+                foreach (double x in Crr) Console.Write(x + " ");
+                Console.WriteLine();
+            }
+            #endregion
+            #region №13
+            {
+                Console.WriteLine("Extra 13");
+                int n = 0, z = 0;
+                Console.WriteLine("Enter length of A");
+                int.TryParse(Console.ReadLine(), out n);
+                Console.WriteLine("Enter length of B");
+                int.TryParse(Console.ReadLine(), out z);
+                double[] Arr = new double[n];
+                double[] Brr = new double[z];
+                Console.WriteLine("Fill in Arr");
+                for (int i = 0; i < n; i++)
+                {
+                    double x;
+                    double.TryParse(Console.ReadLine(), out x);
+                    Arr[i] = x;
+                }
+
+                Console.WriteLine("Fill in Brr");
+                for (int i = 0; i < z; i++)
+                {
+                    double x;
+                    double.TryParse(Console.ReadLine(), out x);
+                    Brr[i] = x;
+                }
+
+                Array.Sort(Arr);
+                Array.Reverse(Arr);
+
+                Array.Sort(Brr);
+                Array.Reverse(Brr);
+
+                double[] Crr = new double[n + z];
+                n = 0;
+                z = 0;
+
+                for (int i = 0; i < Crr.Length; i++)
+                {
+                    if (n < Arr.Length)
+                    {
+                        if (z < Brr.Length)
+                        {
+                            if (Arr[n] > Brr[z])
+                            {
+                                Crr[i] = Brr[n];
+                                n++;
+                            }
+                            else
+                            {
+                                Crr[i] = Brr[z];
+                                z++;
+                            }
+                        }
+                        else
+                        {
+                            Crr[i] = Arr[n];
+                            n++;
+                        }
+                    }
+                    else
+                    {
+                        Crr[i] = Brr[z];
+                        n++;
+                    }
+                }
+
+                for (int i = 0; i < Crr.Length; i++) Console.Write(Crr[i] + " ");
+
+
+            }
+            #endregion
+            #region №14
+            {
+                Console.WriteLine("Extra 14");
+                int n;
+                Console.WriteLine("Enter Length arrr");
+                int.TryParse(Console.ReadLine(), out n);
+                double[] arrr = new double[n];
+                Console.WriteLine("Fill arrr");
+                for (int i = 0; i < n; i++)
+                {
+                    double x = 0;
+                    double.TryParse(Console.ReadLine(), out x);
+                    arrr[i] = x;
+                }
+                double mid_arrr;
+                for (int i = 0; i < n / 2; i++)
+                {
+                    mid_arrr = arrr[i];
+                    arrr[i] = arrr[n - i - 1];
+                    arrr[n - i - 1] = mid_arrr;
+                }
+                foreach (double x in arrr) Console.Write(x + " ");
+            }
+            #endregion
+            #region Extra 15
+            {
+                Console.WriteLine("Extra 15");
+                Console.WriteLine("Enter length bruh");
+                int n;
+                int.TryParse(Console.ReadLine(), out n);
+                double[] bruh = new double[n];
+                Console.WriteLine("Fill in bruh");
+                for (int i = 0; i < n; i++)
+                {
+                    double x;
+                    double.TryParse(Console.ReadLine(), out x);
+                    bruh[i] = x;
+                }
+                Console.WriteLine("Enter m");
+                double var, m;
+                double.TryParse(Console.ReadLine(), out m);
+                for (int i = 0; i < m; i++)
+                {
+                    var = bruh[n - 1 - i];
+
+                    for (int j = n - 2; j >= 0; j--)
+                    {
+                        bruh[j + 1] = bruh[j];
+                    }
+                    bruh[i] = var;
+                }
+                for (int i = 0; i < n; i++) Console.Write(bruh[i] + " ");
+            }
+            #endregion
+            #endregion
+            #endregion
+        }
+    }
+}               
