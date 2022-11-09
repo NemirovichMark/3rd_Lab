@@ -1,0 +1,81 @@
+#region 2 lvl task 6
+            Console.WriteLine("Task 6: ");
+            int p, summ, midnum, n;
+            double mid;
+
+            summ = 0;
+            midnum = 0;
+
+            Console.Write("Enter count elements of array");
+            if (Int32.TryParse(Console.ReadLine(), out n))
+            {
+                int[] mas6 = new int[n];
+
+                Console.WriteLine("Enter elements of array");
+                for (int i = 0; i < mas6.Length; i++)
+                {
+                    Int32.TryParse(Console.ReadLine(), out mas6[i]);
+                }
+
+                Console.Write("Enter P");
+                Int32.TryParse(Console.ReadLine(), out p);
+
+                for (int i = 0; i < mas6.Length; i++)
+                {
+                    
+                    summ += mas6[i];
+                }
+
+                mid = summ / n;
+                double savenum = mas6[0];
+
+                for (int i = 0; i < n - 1; i++)
+                {
+                    double B1 = Math.Abs(mid - mas6[i]);
+
+                    for (int j = i + 1; j < n; j++)
+                    {
+                        double B2 = Math.Abs(mid - mas6[j]);
+
+                        if (B1 < B2 && B1 < savenum)
+                        {
+                            midnum = i;
+                            savenum = B1;
+                        }
+
+                        if (B2 < B1 && B2 < savenum)
+                        {
+                            midnum = j;
+                            savenum = B2;
+                        }
+
+                    }
+                }
+
+                Console.WriteLine($"Midnum = {midnum}");
+
+                int[] mass6_2 = new int[n + 1];
+
+                for (int i = 0; i < n; i++)
+                {
+                    mass6_2[i] = mas6[i];
+                }
+
+                for (int i = n; i > midnum + 1; i--)
+                {
+                    mass6_2[i] = mass6_2[i - 1];
+                }
+
+                mass6_2[midnum + 1] = p;
+
+                Console.WriteLine("Final array");
+                for (int j = 0; j < mass6_2.Length; j++)
+                {
+                    Console.WriteLine(mass6_2[j]);
+                }
+            }
+
+        }
+    }
+}
+#endregion
