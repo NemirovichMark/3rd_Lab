@@ -1,0 +1,492 @@
+#region 2 lvl task 6
+            int n, P = 999;
+            double sr_znach = 0;
+            double currentDistance = 0; 
+            double min = 0;
+            int min_i = 0;
+            Random random = new Random();
+
+            Console.Write("Enter an array length: ");
+            if (!int.TryParse(Console.ReadLine(), out n))
+            {
+                Console.WriteLine("Value has an incorrect format!");
+                return;
+            }
+            else if (n <= 0)
+            {
+                Console.WriteLine("Array length must be greater than zero!");
+                return;
+            }
+
+            int[] numbers = new int[n];
+            Console.Write("Initial array:\t");
+            for (int i = 0; i < n; i++)
+            {
+                numbers[i] = random.Next(-10, 11);
+                Console.Write($"{numbers[i]} ");
+            }
+
+            Console.WriteLine($"\nP: {P}");
+
+            foreach (var number in numbers)
+                sr_znach += number;
+            sr_znach /= n;
+
+            Console.WriteLine($"Average value: {Math.Round(sr_znach, 3)}");
+
+            min = Math.Abs(sr_znach - numbers[0]);
+            min_i = 0;
+
+            for (int i = 1; i < n; i++)
+            {
+                currentDistance = Math.Abs(sr_znach - numbers[i]);
+                if (currentDistance < min)
+                {
+                    min = currentDistance;
+                    min_i = i;
+                }
+            }
+
+            if (min_i == n - 1)
+                numbers[0] = P;
+            else
+                numbers[min_i + 1] = P;
+
+            Console.Write("Result array:\t");
+            foreach (var number in numbers)
+                Console.Write($"{number} ");
+            Console.WriteLine();
+        }
+    }
+}
+#endregion
+ 
+#region algoritms task 11
+            int n;
+            Console.Write("Enter length of array (n): ");
+            if (Int32.TryParse(Console.ReadLine(), out n))
+            {
+                int[] a = new int[n];
+                Console.WriteLine("Enter elements of array: ");
+                for (int j = 0; j < n; j++)
+                {
+                    Int32.TryParse(Console.ReadLine(), out a[j]);
+                }
+
+                for (int j = 0; j < n - 1; j++)
+                {
+                    int min_a = a[j];
+                    int min_i = j;
+
+                    for (int q = j + 1; q < n; q++)
+                    {
+                        if (min_a > a[q])
+                        {
+                            min_a = a[q];
+                            min_i = q;
+                        }
+                    }
+
+                    a[min_i] = a[j];
+                    a[j] = min_a;
+                }
+
+                int x = 0;
+                Console.Write("Enter X: ");
+                Int32.TryParse(Console.ReadLine(), out x);
+
+                int i, i1, i2;
+                i1 = 0;
+                i2 = n - 1;
+
+                while (true)
+                {
+                    i = (i1 + i2) / 2;
+
+                    if (i2 < i1)
+                    {
+                        Console.WriteLine("Array doesn't contain X");
+                        break;
+                    }
+
+                    if (x == a[i])
+                    {
+                        Console.WriteLine($"Answer: element rqual Х is its number - {i}");
+                        break;
+                    }
+
+                    else if (x < a[i])
+                    {
+                        i2 = i - 1;
+                        continue;
+                    }
+
+                    else if (x > a[i])
+                    {
+                        i1 = i + 1;
+                        continue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#endregion
+
+#region algoritms task 12
+            int n, m;
+            Console.Write("Enter length array A");
+            Int32.TryParse(Console.ReadLine(), out n);
+
+            Console.Write("Enter length array B");
+            Int32.TryParse(Console.ReadLine(), out m);
+
+            if (n == m)
+            {
+                int[] a = new int[n];
+                int[] b = new int[m];
+
+                Console.WriteLine("Enter elements of array A");
+                for (int i = 0; i < n; i++)
+                {
+                    Int32.TryParse(Console.ReadLine(), out a[i]);
+                }
+
+                Console.WriteLine("Enter elements of array B");
+                for (int i = 0; i < m; i++)
+                {
+                    Int32.TryParse(Console.ReadLine(), out b[i]);
+                }
+
+                int[] c = new int[2 * n];
+
+                int a_i = 0;
+                int b_i = 0;
+
+                for (int i = 0; i < 2 * n; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        c[i] = a[a_i];
+                        a_i++;
+                    }
+                    else
+                    {
+                        c[i] = b[b_i];
+                        b_i++;
+                    }
+                }
+
+                Console.WriteLine("Final array C");
+                for (int i = 0; i < 2 * n; i++)
+                {
+                    Console.WriteLine(c[i]);
+                }
+            }
+
+            if (n < m)
+            {
+                int[] a = new int[n];
+                int[] b = new int[m];
+
+                Console.WriteLine("Enter elements of array A");
+                for (int i = 0; i < n; i++)
+                {
+                    Int32.TryParse(Console.ReadLine(), out a[i]);
+                }
+
+                Console.WriteLine("Enter elements of array B");
+                for (int i = 0; i < m; i++)
+                {
+                    Int32.TryParse(Console.ReadLine(), out b[i]);
+                }
+
+                int[] c = new int[n + m];
+
+                int a_i = 0;
+                int b_i = 0;
+
+                for (int i = 0; i < 2 * n; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        c[i] = a[a_i];
+                        a_i++;
+                    }
+                    else
+                    {
+                        c[i] = b[b_i];
+                        b_i++;
+                    }
+                }
+
+                b_i = n;
+                for (int i = 2 * n; i < n + m; i++)
+                {
+                    c[i] = b[b_i];
+                    b_i++;
+
+                }
+
+                Console.WriteLine("Final array C");
+                for (int i = 0; i < n + m; i++)
+                {
+                    Console.WriteLine(c[i]);
+                }
+            }
+            else
+            {
+                int[] a = new int[n];
+                int[] b = new int[m];
+
+                Console.WriteLine("Enter elements of array A");
+                for (int i = 0; i < n; i++)
+                {
+                    Int32.TryParse(Console.ReadLine(), out a[i]);
+                }
+
+                Console.WriteLine("Enter elements of array B");
+                for (int i = 0; i < m; i++)
+                {
+                    Int32.TryParse(Console.ReadLine(), out b[i]);
+                }
+
+                int[] c = new int[n + m];
+
+                int a_i = 0;
+                int b_i = 0;
+
+                for (int i = 0; i < 2 * m; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        c[i] = a[a_i];
+                        a_i++;
+                    }
+                    else
+                    {
+                        c[i] = b[b_i];
+                        b_i++;
+                    }
+                }
+
+                a_i = m;
+                for (int i = 2 * m; i < n + m; i++)
+                {
+                    c[i] = a[a_i];
+                    a_i++;
+
+                }
+
+                Console.WriteLine("Final array C");
+                for (int i = 0; i < n + m; i++)
+                {
+                    Console.WriteLine(c[i]);
+                }
+            }
+        }
+        }
+    }
+
+#endregion
+
+#region algoritms task 13
+            int n, m;
+            Console.Write("Enter length of array A: ");
+            Int32.TryParse(Console.ReadLine(), out n);
+
+            Console.Write("Enter length of array B: ");
+            Int32.TryParse(Console.ReadLine(), out m);
+
+            int[] a = new int[n];
+            int[] b = new int[m];
+            int[] c = new int[n + m];
+
+            Console.WriteLine("Enter elements of array A: ");
+            for (int i = 0; i < n; i++)
+            {
+                Int32.TryParse(Console.ReadLine(), out a[i]);
+            }
+
+            Console.WriteLine("Enter elements of array B: ");
+            for (int i = 0; i < m; i++)
+            {
+                Int32.TryParse(Console.ReadLine(), out b[i]);
+            }
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                int max_a = a[i];
+                int max_i = i;
+
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (a[j] > max_a)
+                    {
+                        max_a = a[j];
+                        max_i = j;
+                    }
+                }
+                a[max_i] = a[i];
+                a[i] = max_a;
+            }
+
+            for (int i = 0; i < m - 1; i++)
+            {
+                int max_a = b[i];
+                int max_i = i;
+
+                for (int j = i + 1; j < m; j++)
+                {
+                    if (b[j] > max_a)
+                    {
+                        max_a = b[j];
+                        max_i = j;
+                    }
+                }
+                b[max_i] = b[i];
+                b[i] = max_a;
+            }
+
+            int a_i = 0, b_i = 0, c_i = 0;
+            bool flag = true;
+
+            while (flag)
+            {
+                while (a[a_i] >= b[b_i])
+                {
+                    c[c_i] = a[a_i];
+                    a_i++;
+                    c_i++;
+
+                    if (a_i >= n)
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                if (flag == false)
+                    break;
+
+                while (a[a_i] < b[b_i])
+                {
+                    c[c_i] = b[b_i];
+                    b_i++;
+                    c_i++;
+
+                    if (b_i >= m)
+                    {
+                        flag = false;
+                        break;
+                    }
+                }
+
+                if (flag == false)
+                    break;
+
+            }
+
+            if (b_i <= m)
+            {
+                for (; b_i < m; b_i++)
+                {
+                    c[c_i] = b[b_i];
+                    c_i++;
+                }
+            }
+
+            if (a_i <= n)
+            {
+                for (; a_i < n; a_i++)
+                {
+                    c[c_i] = a[a_i];
+                    c_i++;
+                }
+            }
+
+
+            Console.WriteLine("Final array: ");
+            for (int i = 0; i < n + m; i++)
+            {
+                Console.WriteLine(c[i]);
+            }
+        }
+    }
+}
+
+#endregion
+
+#region algoritms task 14
+            int n;
+            Console.Write("Enter length of array A: ");
+            Int32.TryParse(Console.ReadLine(), out n);
+
+            int[] a = new int[n];
+            int savenum = 0;
+
+            Console.WriteLine("Enetr elements of array A: ");
+            for (int i = 0; i < n; i++)
+            {
+                Int32.TryParse(Console.ReadLine(), out a[i]);
+            }
+
+            for (int i = 0; i < n / 2; i++)
+            {
+                savenum = a[i];
+                a[i] = a[n - (i + 1)];
+                a[n - (i + 1)] = savenum;
+            }
+
+            Console.WriteLine("Final array: ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine(a[i]);
+            }
+        }
+    }
+}
+
+#endregion
+
+#region algoritms task 15
+            int n, m;
+            Console.Write("Enter length of array: ");
+            Int32.TryParse(Console.ReadLine(), out n);
+
+            int[] a = new int[n];
+
+            Console.WriteLine("Enter elements of array: ");
+            for (int i = 0; i < n; i++)
+            {
+                Int32.TryParse(Console.ReadLine(), out a[i]);
+            }
+
+            Console.Write("Enter, how much to shift right (m): ");
+            Int32.TryParse(Console.ReadLine(), out m);
+
+            int savenum = 0;
+
+            for (int i = 0; i < m; i++)
+            {
+                savenum = a[n - 1];
+                for (int j = n - 2; j >= 0; j--)
+                {
+                    a[j + 1] = a[j];
+                }
+
+                a[0] = savenum;
+
+            }
+
+            Console.WriteLine("Final array: ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.WriteLine(a[i]);
+            }
+        }
+    }
+}
+
+#endregion
