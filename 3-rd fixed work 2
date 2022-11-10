@@ -1,0 +1,76 @@
+
+            //3 часть 13 номер 
+            int n = int.Parse(Console.ReadLine());
+            int[] a = new int[n];
+            int min;
+            int i_x;
+            int count = 0;
+            int count_1 = 0;
+           
+          
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write($"Значение элемента с индексом {i}: ");
+                a[i] = int.Parse(Console.ReadLine());
+            }
+
+
+            for (int i = 0; i < a.Length; i++)
+            {
+                for (int j = i + 1; j < a.Length; j++)
+                {
+                    if (a[i] == a[j])
+                    {
+                      
+                        a[j] = 0;
+                        count += 1;
+                    }
+                }
+                if (count > 0)
+                {
+
+                    a[i] = 0;
+                   
+
+                }
+                count = 0;
+               
+
+               
+               
+            }
+            for (int i = 0; i < a.Length - 1; i++)
+            {
+                min = a[i];
+                i_x = i;
+                for (int j = i + 1; j < a.Length; j++)
+                {
+                    if (a[j] > min)
+                    {
+                        min = a[j];
+                        i_x = j;
+                    }
+
+                }
+                a[i_x] = a[i];
+                a[i] = min;
+
+            }
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] != 0)
+                {
+                    count_1 += 1;
+                }
+            }
+            
+            int[] C = new int[count_1];
+            for (int i = 0; i < count_1; i++)
+            {
+                C[i] = a[i];
+            }
+            for (int i = 0; i < C.Length ; i++)
+            
+
+                Console.Write("{0:d} ", C[i]);
+            Console.ReadLine();
