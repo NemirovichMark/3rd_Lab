@@ -1,0 +1,269 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
+using System.IO.Pipes;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Xml.Schema;
+
+class HelloWorld
+{
+    static void Main()
+    {
+        {
+            #region algara 11
+
+            int n;
+            do
+            {
+                Console.Write("введите длину ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out n));
+
+
+            int[] A = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                do
+                {
+                    Console.Write("введите число ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out A[i]));
+            }
+
+            Array.Sort(A);
+
+            Console.Write("A = ");
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write($"{A[i]} ");
+            }
+
+
+            int left = 0;
+            int right = n - 1;
+            int index = 0;
+
+            int q;
+            do
+            {
+                Console.Write("напишите число ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out q));
+
+            int res = -1;
+
+            while (left <= right)
+            {
+                index = (right + left) / 2;
+
+                if (A[index] == q)
+                {
+                    res = index;
+                    break;
+                }
+
+                if (A[index] < q)
+                {
+                    left = index + 1;
+                }
+
+                else
+                {
+                    right = index - 1;
+                }
+            }
+
+            if (res != -1)
+            {
+                Console.WriteLine(q +" " + res);
+
+            }
+            else
+            {
+                Console.WriteLine("ошибка");
+            }
+
+            #endregion
+
+            #region algara 12
+
+            int[] A = new int[5];
+            for (int i = 0; i < 5; i++)
+            {
+                do
+                {
+                    Console.Write("введите число из а ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out A[i]));
+            }
+
+
+            int[] B = new int[5];
+            for (int i = 0; i < 5; i++)
+            {
+                do
+                {
+                    Console.Write($"введите число из б ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out B[i]));
+            }
+
+            int[] C = new int[10];
+
+            int k = 0;
+            for (int i = 0; i < 10; i += 2)
+            {
+                C[i] = A[k];
+                k++;
+            }
+
+            k = 0;
+            for (int i = 1; i < 10; i += 2)
+            {
+                C[i] = B[k];
+                k++;
+            }
+
+            foreach (int x in C) Console.Write($"{x} ");
+
+            #endregion
+
+            #region algara 13
+
+            int n;
+            do
+            {
+                Console.Write("введите n: ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out n));
+
+            int m;
+            do
+            {
+                Console.Write("введите m: ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out m));
+
+
+            int[] A = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                do
+                {
+                    Console.Write("введите число из а ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out A[i]));
+            }
+
+            int[] B = new int[m];
+            for (int i = 0; i < m; i++)
+            {
+                do
+                {
+                    Console.Write("введите число из б");
+                }
+                while (!int.TryParse(Console.ReadLine(), out B[i]));
+            }
+
+            List<int> C = new List<int>();
+
+            int a = 0, b = 0;
+            while (a < n || b < m)
+            {
+                if (a == n) { C.Add(B[b]); b++; continue; }
+                if (b == m) { C.Add(A[a]); a++; continue; }
+                if (A[a] >= B[b]) { C.Add(A[a]); a++; }
+                else { C.Add(B[b]); b++; }
+            }
+
+
+            Console.Write("новый массив ");
+            foreach (int x in C) Console.Write($"{x} ");
+
+            #endregion
+
+            #region algara 14
+
+            int n;
+            do
+            {
+                Console.Write("введите n: ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out n));
+
+            int[] A = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                do
+                {
+                    Console.Write("введите индекс числа из а ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out A[i]));
+            }
+
+            Console.Write("старый массив: ");
+            foreach (int x in A) Console.Write($"{x} ");
+
+            int f;
+            for (int i = 0; i < n / 2; i++)
+            {
+                f = A[i];
+                A[i] = A[n - 1 - i];
+                A[n - 1 - i] = f;
+            }
+
+            Console.Write("новый массив: ");
+            foreach (int x in A) Console.Write($"{x} ");
+
+            #endregion
+
+            #region algara 15
+
+            int n;
+            do
+            {
+                Console.Write("введите n: ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out n));
+
+            int[] A = new int[n];
+            for (int i = 0; i < n; i++)
+            {
+                do
+                {
+                    Console.Write("ввелите индекс числа а: ");
+                }
+                while (!int.TryParse(Console.ReadLine(), out A[i]));
+            }
+
+            int m;
+            do
+            {
+                Console.Write("номер позиции сдвига ");
+            }
+            while (!int.TryParse(Console.ReadLine(), out m));
+
+            Console.Write("старый массив: ");
+            foreach (int x in A) Console.Write($"{x} ");
+
+            int f;
+            for (int i = 0; i < m; i++)
+            {
+                f = A[n - 1];
+                for (int j = n - 1; j > 0; j--)
+                {
+                    A[j] = A[j - 1];
+                }
+                A[0] = f;
+            }
+
+            Console.Write("новый массив: ");
+            foreach (int x in A) Console.Write($"{x} ");
+
+            #endregion
+        }
+    }
+}
+

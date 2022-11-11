@@ -1,125 +1,554 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading;
 
-namespace _3rd_Lab
+namespace labara3
 {
-    class Theory
+    internal class Program
     {
         static void Main(string[] args)
         {
-            #region Collections Theory
-            /* Array - static (restricted) massive of data in the memory. If we want to extend it, we should create a new array and copy existing data there.
-             * access to each number of array have static time that don't depend on size of array. So get arr[10] and arr[25426] consume equal time.
-             * use it when you have determinative amount of elements.
-             * 
-             *
-             *
-             * These more suitable collections available if you add System.Collections.Generic library
-             *
-             *
-             * Stack<type of data> - pile of elements (like a books on the table or plates in the sink) 
-             * that lay one over another and you can add new one to the top, look at the uppest one or take it
-             * 
-             * Queue<type of data> - like in the shop or on escalator in the subway. You can add to the end, look the first element or take the first element.
-             * 
-             * ArrayList - is a non-generic collection of objects whose size increases dynamically. It is the same as Array except that its size increases dynamically.
-             * It is a common array for different types. You can keep there int, double, string etc in one array.
-             *
-             * List<type of data> - a collection of strongly typed objects that can be accessed by index and having methods for sorting, searching, and modifying list. 
-             * It is the generic version of the ArrayList/ Use it when you don't know the limit of your array and ought to add or remove elements sometimes (linked array)
-             * the PC create an array and when you want to add new element, it create a new array and copy all existing elements there.
-             *
-             * LinkedList<type of data> - array with a reference to the next and previous element (twice-linked array)
-             * 
-             * Dictionary<type of key, type of data> - pair key-value. You can add new key, find key, get value by key, set value by key. 
-             * Very fast access (as simple array), but more flexible
-             * 
-             */
+            #region L1Task6
+            //double[] a = new double[5];
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    a[i] = i;
+            //}
+            //double q = 0;
+            //for (int l = 0; l < 5; l++)
+            //{
+            //    q += Math.Pow(a[l], 2);
+            //}
+            //Console.WriteLine(Math.Sqrt(q));
             #endregion
 
-            #region Arrays
+            #region L1Task10
+            //int[] aa = new int[10];
+            //int P;
+            //int Q;
+            //int k = 0;
+            //Console.WriteLine("Введите P (от 0 до 9)");
+            //P = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Введите Q (от P до 9)");
+            //Q = int.Parse(Console.ReadLine());
+            //if (Q <= P)
+            //{
+            //    Console.WriteLine("неверное значение Q");
+            //}
+            //else
+            //{
+            //    for (int i = 0; i < 10; i++)
+            //    {
+            //        aa[i] = i;
+            //        if ((aa[i] < Q) && (aa[i] > P))
+            //        {
+            //            k += 1;
+            //        }
+            //    }
 
-            //Dimensions:
-            int[] oneDimension = new int[1000000]; // row with a 1 million if zeros
-            double[] oneDimensionInitializedArray; // undefined array
-            int[,] twoDimension = new int[1000, 1000]; // matrix 1000 x 1000, filled by zeros
-            string[,,] threeDimension = new string[5, 10, 255]; 
-            // 5 rows, 10 columns and 255 elements in the column. Each element can contain a string (so it 4-th dimension array actually)
+            //}
+            //Console.WriteLine(k);
+            #endregion
 
-            int[][] notSquarMatrix = new int[15][]; // array where each element contain an array (different or equal lengths) -> [ [0,1,2,3,4] , [10,25] , [8] ];
+            #region L1Task11
+            //int[] aaa = new int[10];
+            //Console.WriteLine("Введите элементы массива через пробел");
+            //string s = Console.ReadLine();
+            //string[] c = s.Split(' ');
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    aaa[i] = int.Parse(c[i]);
 
-            //and so on
+            //}
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    if (aaa[i] > 0)
+            //    {
+            //        Console.Write($"{aaa[i]} ");
+            //    }
+            //}
+            #endregion
 
-            // Access to element:
+            #region L1Task12
+            //int[] aaaa = new int[8];
+            //Console.WriteLine(" Введите элементы массива через пробел");
+            //string ss = Console.ReadLine();
+            //string[] cc = ss.Split(' ');
+            //int index=0;
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    aaaa[i] = int.Parse(cc[i]);
+            //}
+            //int amin = a[0];
+            //for (int i = 0; i < 8; i++)
+            //{
+            //    if (aaaa[i] < amin)
+            //    {
+            //        amin = aaaa[i];
+            //        index= i;
+            //    }
+            //}
+            //Console.WriteLine($"мин значение:  {amin}; индекс:  {index}");
+            #endregion
 
-            threeDimension[threeDimension.Length-1, 0, threeDimension.GetLength(2)-1] = "I am the latest element here!"; 
-            // do not forget that start with 0 and end with Length-1!
+            #region L1Task13
+            //int[] aaaaa = new int[10];
+            //Console.WriteLine(" Введите элементы массива через пробел");
+            //string sss = Console.ReadLine();
+            //string[] ccc = sss.Split(' ');
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    aaaaa[i] = int.Parse(ccc[i]);
+            //}
+            //int k = 0;
+            //int b = 0;
+            //int[] chet = new int[5];
+            //int[] nechet = new int[5];
+            //foreach (int x in aaaaa)
+            //{
+            //    if (x / 2 == 0)
+            //    {
+            //        chet[k] = x;
+            //        k += 1;
+            //    }
+            //    else if (x / 2 == 1)
+            //    {
+            //        nechet[b] = x;
+            //        b += 1;
+            //    }
+            //}
+            //for (int i = 0; i < k; i++)
+            //    Console.Write("{0:f1}", chet[i]);
+            //Console.WriteLine();
+            //for (int i = 0; i < b; i++)
+            //    Console.Write("{0:f1}", nechet[i]);
+            //Console.WriteLine();
+            #endregion
 
+            #region L2Task5
+            //int mmin = a[0];
+            //int mmax = a[0];
+            //int z = 0;
+            //int immin = 0, immax = 0;
+            //int[] m=new int[6];
+            //int[] a = new int[6] {-45, -4, -3, 4, 7, 10};
+            //for (int i = 0; i < 6; i++)
+            //{ 
+            //    if (a[i] < mmin)
+            //    {
+            //        mmin = a[i];
+            //        immin = i;
+            //    }
+            //    if (a[i] > mmax)
+            //    {
+            //        mmax = a[i];
+            //        immax = i;
+            //    }
+            //}
+            //if (immin<immax)
+            //    for (int i = immin+1; i < immax; i++)
+            //    { 
+            //        if (a[i]<0)
+            //            m[i] = a[i];
+            //        z += a[i];
+            //    }
+            //if (immax<immin)
+            //    for (int i = immax+1; i < immin; i++)
+            //    {
+            //        if (a[i] < 0)
+            //            m[i] = a[i];
+            //        z += a[i];
+            //    }
+            //for (int i = 0; i < m.Length; i++)
+            //{
+            //    if (m[i] != 0)
+            //        Console.Write(m[i]);
+            //}
+            #endregion
 
-            double[] shortExample = new double[4] { 1.2, 0.154564, -454, 0 }; // will be crated a new massive with 4 elements
+            #region L2Task6
+            //int p = 100;
+            //double l = 0;
+            //int immin = 0;
+            //int[] a = new int[6] { 8, 2, 4, 5, 7, 10 }; //36 6/6=6
+            //double mmin = a[0];
+            //double sr = 0;
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    sr += a[i];
+            //}
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    l = Math.Abs(a[i] - (sr/6));
+            //    if (l < mmin)
+            //    {
+            //        mmin = l;
+            //        immin = i;
+            //    }
+            //}
+            //int[] b= new int[7];
+            //for (int i = 0; i < 7; i++)
+            //{
+            //    if (i<=immin)
+            //        b[i] = a[i];
+            //    else if (i ==(immin+1)) b[i] = p;
+            //    else b[i] = a[i-1];
+            //}
+            //for (int i = 0; i < 7; i++)
+            //    Console.Write(" {0:d} ", b[i]);
+            #endregion
 
-            // Use arrays for limited length. Otherwise - List.
-            // For fast search - Dictionary
-            // Efficient simple solutions usually realizing by Stack and Queue
-            // LinkedList is used seldom
+            #region L2Task9
+            //Console.WriteLine("введите размер массива");
+            //int n;
+            //int.TryParse(Console.ReadLine(), out n);
+            //Console.WriteLine("напишите массив длиной " + n);
+            //int[] a = new int[n];
+            //double sr = 0, t = 0;
+            //int count = 0;
+            //int mmin = a[0], mmax = a[0], immin = 0, immax = 0;
+            //string s = Console.ReadLine();
+            //string[] c = s.Split(' ');
+            //for (int i = 0; i < n; i++)
+            //{
+            //    a[i] = int.Parse(c[i]);
+            //    if (a[i] < mmin)
+            //    {
+            //        mmin = a[i];
+            //        immin = i;
+            //    }
+            //    if (a[i] > immax)
+            //    {
+            //        mmax = a[i];
+            //        immax = i;
+            //    }
+            //}
+            //if (immin < immax)
+            //{
+            //    for (int j = immin + 1; j < immax; j++)
+            //    {
+            //        sr += a[j];
+            //        count++;
+            //    }
+            //    t = sr / count;
+            //}
+            //if (immin > immax)
+            //{
+            //    for (int j = immax + 1; j < immin; j++)
+            //    {
+            //        sr += a[j];
+            //        count++;
+            //    }
+            //    t = sr / count;
+            //}
+            //if (count > 0)
+            //{
+            //    Console.WriteLine(t);
+            //}
+            //else
+            //{
+            //    Console.WriteLine(0);
+            //}
+            #endregion
+
+            #region L2Task10
+            //Console.WriteLine("введите размер массива ");
+            //int n;
+            //int mmin = a[0];
+            //int immin = 0;
+            //int.TryParse(Console.ReadLine(), out n);
+            //int[] a=new int[n];
+            //Console.WriteLine("введите массив ");
+            //string s=Console.ReadLine();
+            //string[] c = s.Split(' ');
+            //for (int i=0; i<n; i++)
+            //{
+            //    a[i]=int.Parse(c[i]);
+            //    if (a[i]<mmin && a[i]>0)
+            //    {
+            //        mmin=a[i];
+            //        immin=i;
+            //    }
+            //}
+            //n = n - 1;
+            //for (int i = immin; i < n; i++)
+            //    a[i] = a[i + 1];
+            //for (int i = 0; i < n; i++)
+            //    Console.Write("{0:d} ", a[i]);
+            #endregion
+
+            #region L2Task11
+            //int n;
+            //Console.WriteLine("введите размер массива ");
+            //int.TryParse(Console.ReadLine(), out n);
+            //int[] a = new int[n];
+            //int mmin = a[0];
+            //int immin= 0;
+            //Console.WriteLine("введите массив длиной " + n);
+            //string s= Console.ReadLine();
+            //string [] c = s.Split(' ');
+            //for (int i = 0; i < n; i++)
+            //{
+            //    a[i] = int.Parse(c[i]);
+            //    if (a[i]<mmin && a[i]>0)
+            //    {
+            //        mmin= a[i];
+            //        immin = i;
+            //    }
+            //}
+            //n = n - 1;
+            //for (int i = immin; i < n; i++)
+            //    a[i] = a[i + 1];
+            //for (int i = 0; i < n; i++)
+            //    Console.Write(" {0:d} ", a[i]);
+            #endregion
+
+            #region L2Task13
+            //int n;
+            //Console.WriteLine("введите размер массива ");
+            //int.TryParse(Console.ReadLine(), out n);
+            //int[] a = new int[n];
+            //int mmax = a[0];
+            //int immax = 0;
+            //Console.WriteLine("введите массив длиной " + n);
+            //string s = Console.ReadLine();
+            //string[] c = s.Split(' ');
+            //for (int i = 0; i < n; i++)
+            //{
+            //    a[i] = int.Parse(c[i]);
+            //    if (a[i] > mmax && i / 2 == 0)
+            //    {
+            //        mmax = a[i];
+            //        immax = i;
+            //    }
+            //}
+            //a[immax] = immax;
+            //for (int i = 0; i < n; i++)
+            //    Console.Write("{0:d} ", a[i]);
+            #endregion //   ..        
+
+            #region L2Task15
+            //Console.WriteLine("введите n ");
+            //int n = Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine("введите m ");
+            //int m = Convert.ToInt32(Console.ReadLine());
+            //Console.WriteLine("введике к ");
+            //int k = Convert.ToInt32(Console.ReadLine());
+            //var a = new List<int>();
+            //var b = new List<int>();
+            //double sum = 0;
+            //double sred = 0;
+            //Console.WriteLine("введите массив а ");
+            //for (int i = 0; i < n; i++)
+            //{
+            //    a.Add(Convert.ToInt32(Console.ReadLine()));
+            //}
+            //Console.WriteLine("введите массив б ");
+            //for (int i = 0; i < m; i++)
+            //{
+            //    b.Add(Convert.ToInt32(Console.ReadLine()));
+            //}
+            //a.InsertRange(k, b);
+            //Console.WriteLine("New array: ");
+            //for (int i = 0; i < n + m; i++)
+            //{
+            //    Console.Write(a[i] + " ");
+            //}
+            #endregion
+
+            #region L3Task1
+            //int n;
+            //Console.WriteLine("введите размер массива ");
+            //int.TryParse(Console.ReadLine(), out n);
+            //int[] a = new int[n];
+            //int[] b=new int[n];
+            //int mmax = a[0];
+            //int immax = 0;
+            //int count = 0;
+            //Console.WriteLine("введите массив длиной " + n);
+            //string s = Console.ReadLine();
+            //string[] c = s.Split(' ');
+            //for (int i = 0; i < a.Length; i++)
+            //{
+            //    a[i] = int.Parse(c[i]);
+            //    if (a[i] > mmax)
+            //    {
+            //        mmax = a[i];
+            //        count = 0;
+
+            //    }
+            //    if (a[i] == mmax)
+            //    {
+            //        immax = i;
+            //        b[i] = immax;
+            //        count += 1;
+            //    }
+            //}
+            //for (int f = 0; f < b.Length; f++)
+            //{
+            //    if (b[f] != 0)
+            //        Console.Write(b[f]);
+            //}
+            #endregion
+
+            #region L3Task5
+            //int n;
+            //Console.WriteLine("введите размер массива ");
+            //int.TryParse(Console.ReadLine(), out n);
+            //int[] a = new int[n];
+            //Console.WriteLine("введите массив длиной " + n);
+            //string s = Console.ReadLine();
+            //string[] c = s.Split(' ');
+            //int tmp=0;
+            //for (int i = 0; i < n; i++)
+            //{
+            //    a[i] = int.Parse(c[i]);
+            //}
+            //for (int i = 0; i < a.Length; i++)
+            //{
+            //    for (int j = 1; j < a.Length-1; j++)
+            //    {
+            //        if (a[j] < a[i])
+            //        {
+            //            if (a[j] % 2 == 1)
+            //            {
+            //                tmp = a[i];
+            //                a[i] = a[j];
+            //                a[j] = tmp;
+            //            }
+            //        }
+            //    }
+            //}
+            //for (int i = 0; i < n; i++)
+            //    Console.Write(a[i]);
+            #endregion
+
+            #region L3Task8
+            //int n;
+            //Console.WriteLine("введите размер массива ");
+            //int.TryParse(Console.ReadLine(), out n);
+            //int[] a = new int[n];
+            //Console.WriteLine("введите массив длиной " + n);
+            //string s = Console.ReadLine();
+            //string[] c = s.Split(' ');
+            //int tmp = 0;
+            //for (int i = 0; i < n; i++)
+            //{
+            //    a[i] = int.Parse(c[i]);
+            //}
+            //for (int i = 0; i < a.Length; i++)
+            //{
+            //    if (a[i] < 0)
+            //    {
+
+            //        for (int j = i + 1; j < a.Length; j++)
+            //        {
+            //            if (a[j] < 0 && a[i] < a[j])
+            //            {
+            //                tmp = a[i];
+            //                a[i] = a[j];
+            //                a[j] = tmp;
+            //            }
+            //        }
+            //    }
+            //}
+            //for (int i = 0; i < n; i++)
+            //    Console.Write(a[i]);
+            #endregion
+
+            #region L3Task9
+            //int[] a = new int[11] { 3, 6, 8, 3, 2, 1, -1, 0, 2, 1, 0 };
+            //int len = 1;
+            //int maxlen = 1;
+            //for (int i = 0; i < 10; ++i)
+            //{
+            //    if (a[i + 1] >= a[i])
+            //    {
+            //        len++;
+            //    }
+            //    else
+            //    {
+            //        if (len > maxlen)
+            //        {
+            //            maxlen = len;
+            //            len = 1;
+            //        }
+            //        len = 1;
+            //    }
+            //}
+            //if (len > maxlen)
+            //    maxlen = len;
+            //len = 1;
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    if (a[i] >= a[i + 1])
+            //    {
+            //        len++;
+            //    }
+            //    else
+            //    {
+            //        if (len > maxlen)
+            //        {
+            //            maxlen = len;
+            //            len = 1;
+            //        }
+            //        len = 1;
+            //    }
+            //}
+
+            //if (len > maxlen) maxlen = len;
+            //Console.WriteLine(maxlen);
 
             #endregion
-                
-            #region Tuples
 
-            //It is linked links to several variables in the fixed order:
-            (string name, int age, double height) student = ("Vasiliy", 20, 1.89);
-            (int[] marks, int average) table = ({1,2,3,4,5}, 3);.
-                
-            string Name = student.name; // or student.Item1
-            
-            var tuple = (count:5, sum:10);
-            Console.WriteLine(tuple.count); // 5
-            Console.WriteLine(tuple.sum); // 10
-            
-            // It is the simpliest structure of data (not an array!)
+            #region L3task12
+            //int n = 12;
+            //int[] a = new int[n];
+            //Console.WriteLine("введите массив длиной " + n);
+            //string s = Console.ReadLine();
+            //string[] c = s.Split(' ');
+            //for (int i = 0; i < n; i++)
+            //{
+            //    a[i] = int.Parse(c[i]);
+            //}
+            //for (int i = 1; i < a.Length - 1; i++)
+            //{
+            //    if (a[i] < 0)
+            //    {
+            //        a[i] = 0;
+            //    }
+            //}
+            //for (int i = 0; i < a.Length; i++)
+            //{
+            //    if (a[i] != 0)
+            //        Console.Write(a[i]);
+            //}
             #endregion
-           
-            #region Enum
 
-            //It is order of integers (Int 8 / 16 / 32 / 64) where you create a list of names and each name get the value (increment by 1 of previous):              
-            enum Marks
-            {
-                Bad = 2,
-                Nice, // auto-incremented to 3
-                Good, // 4 ...
-                Excellent // not coma at the end!
-            }
-            
-            enum Classes
-            {
-                Math = 1,
-                PhysicalCulture = 3, // Jump over
-                History = 4,
-                Dinner = 2 // Instead Informatics
-            }
-            
-            int myAvgMark = (int)Marks.Bad + (int)Marks.Excellent; // cast to int!
-            Console.WriteLine((Classes)10); // expancion to enum values
-            
-            public enum Season
-            {
-                Spring,
-                Summer,
-                Autumn,
-                Winter
-            }
-            
-            Season a = Season.Autumn;
-            Console.WriteLine($"Integral value of {a} is {(int)a}");  // output: Integral value of Autumn is 2
-
-            var b = (Season)1;
-            Console.WriteLine(b);  // output: Summer
-
-            var c = (Season)4;
-            Console.WriteLine(c);  // output: 4
-            
-            // More informative than variables, more flexible than constans, more strict than string, more effective than dictionary :) cool thing!
-            #endregion       
+            #region L3Task13
+            //Console.WriteLine("напишите размер массива ");
+            //int.TryParse(Console.ReadLine(), out int n);
+            //Console.WriteLine("напишите массив длиной " + n);
+            //int[] a = new int[n];
+            //string s = Console.ReadLine();
+            //string[] c = s.Split(' ');
+            //for (int i = 0; i < n; i++)
+            //{
+            //    a[i] = int.Parse(c[i]);
+            //}
+            //var result = a.ToArray().Distinct().ToList();
+            //foreach (var item in result)
+            //{
+            //    Console.Write($"{item} ");
+            //}
+            #endregion
         }
     }
 }
+  
+
