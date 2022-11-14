@@ -1,0 +1,1173 @@
+using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Net.Sockets;
+using System.Reflection;
+using System.Xml.Linq;
+using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Globalization;
+
+namespace ConsoleApp
+{
+    class Program89
+    {
+
+        static void Main(string[] args)
+        {
+            
+            #region part 1 task 6
+            try
+            {
+                double x = 0;
+                double l = 0;
+                for (int ii = 1; ii <= 5; ii++)
+                {
+                    try
+                    {
+                        Console.WriteLine(" Введите число:");
+                        x = int.Parse(Console.ReadLine());
+                    }
+                    catch { }
+                    
+                    l += Math.Pow(x, 2);
+                }
+                Console.WriteLine($"Ответ: {Math.Sqrt(l)}");
+            }
+            catch
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+            #endregion
+
+
+            #region part 1 task 10
+
+            int q = 0;
+            int p = 0;
+            int element = 0;
+            int k;
+            int it= 1;
+            int count = 0;
+            int[] a = new int[11];
+            do
+            {
+                try
+                {
+                    Console.WriteLine($"Введите {it} число");
+                    a[it] = int.Parse(Console.ReadLine());
+                }
+                catch { }
+               
+                it++;
+            }
+            while (it <= 10);
+            try
+            {
+                Console.WriteLine("Введите большее число");
+                q = int.Parse(Console.ReadLine());
+                Console.WriteLine("Введите меньшее число");
+                p = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+            for (element = 0; element < 11; element++)
+            {
+                if (a[element] > p && a[element] < q)
+                {
+                    count += 1;
+                }
+            }
+            Console.WriteLine("Ответ: " + count);
+
+            #endregion
+
+
+            #region part 1 task 11
+
+            int iv = 0;
+            int[] mix = new int[10];
+            int[] positive = new int[10];
+            for (iv = 0; iv < mix.Length; iv++)
+            {
+                try
+                {
+                    Console.Write($"Введите число под индексов {iv}:");
+                    mix[iv] = int.Parse(Console.ReadLine());
+
+                }
+                catch { }
+
+                if (mix[iv] < 0)
+                {
+                    mix[iv] = positive[iv];
+
+                }
+            }
+            foreach (int x in mix)
+            {
+                Console.Write(x + " ");
+            }
+
+            #endregion
+
+
+            #region part 1 task 12
+
+            int au = 0;
+            int b = 0;
+            int[] ints = new int[8];
+            for (int i = 0; i < ints.Length; i++)
+            {
+                try
+                {
+                    Console.Write("Введите число: ");
+                    ints[i] = int.Parse(Console.ReadLine());
+                }
+                catch { }
+
+            }
+            for (int i = ints.Length - 1; i >= 0; i--)
+            {
+                if (ints[i] < 0)
+                {
+                    au = ints[i];
+                    b = i;
+                    break;
+                }
+
+            }
+            Console.WriteLine($"Элемент {au} с индексом  {b}");
+
+
+            #endregion
+
+
+            #region part 1 task 13
+
+            int[] mas = new int[10];
+            int[] mas1 = new int[5];
+            int[] mas2 = new int[5];
+            int mass1 = 0;
+            int mass2 = 0;
+            for (int i = 0; i < mas.Length; i++)
+            {
+                try
+                {
+                    Console.Write($"Введите число: ");
+                    mas[i] = int.Parse(Console.ReadLine());
+                }
+                catch { }
+
+
+                if (i % 2 == 0)
+                {
+
+                    mas1[mass1] = mas[i];
+                    mass1++;
+
+                }
+                else
+                {
+
+                    mas2[mass2] = mas[i];
+                    mass2++;
+
+                }
+            }
+            foreach (int y in mas1)
+            {
+                Console.Write(y + " ");
+            }
+            Console.ReadLine();
+            foreach (int y in mas2)
+            {
+                Console.Write(y + " ");
+            }
+            Console.ReadLine();
+
+            #endregion
+
+
+            #region part 2 task 5
+
+            int minn = 10000000;
+            int mminn = 10000000;
+            int maxim = -1;
+            int schet = 0;
+            int mmaxx = -1;
+            int elemm = 0;
+            try
+            {
+                Console.WriteLine("Введите кол-во элементов массива");
+                elemm = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if (elemm > 0)
+            {
+                int[] v = new int[elemm];
+                for (int i = 0; i < v.Length; i++)
+                {
+                    try
+                    {
+                        Console.Write($"Введите число {i}: ");
+                        v[i] = int.Parse(Console.ReadLine());
+                    }
+                    catch { }
+
+
+                    if (v[i] >= maxim)
+                    {
+                        maxim = v[i];
+                        mmaxx = i;
+                    }
+
+
+                    if (v[i] <= minn)
+                    {
+                        minn = v[i];
+                        mminn = i;
+                    }
+
+
+                    if (v[i] < 0)
+                    {
+                        schet++;
+                    }
+                }
+                int z = 0;
+                int[] v1 = new int[schet];
+                for (int uq = mminn; uq < mmaxx + 1; uq++)
+                {
+                    if (v[uq] < 0)
+                    {
+                        v1[z] = v[uq];
+                        z++;
+                    }
+                }
+                for (int uq = mmaxx; uq < mminn; uq++)
+                {
+                    if (v[uq] < 0)
+                    {
+                        v1[z] = v[uq];
+                        z++;
+                    }
+                }
+                Console.WriteLine("Итак, наш новый массив: ");
+                foreach (int x in v1)
+                    Console.Write(x + " ");
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+            #endregion
+
+
+            #region part 2 task 6
+
+            int aa = 0;
+            int rr=0;
+            int elem4=0;
+            try
+            {
+                Console.WriteLine("Введите R ");
+                rr= int.Parse(Console.ReadLine());
+                Console.WriteLine("Введите кол-во элементов массива");
+                elem4 = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if(elem4>0)
+            {
+                int[] array = new int[elem4];
+                for (int i = 0; i < array.Length; i++)
+                {
+                    try
+                    {
+                        Console.Write($"Введите число {i}: ");
+                        array[i] = int.Parse(Console.ReadLine());
+                    }
+                    catch { }
+                    aa += array[i];
+                }
+                int cc = array.Last();
+                int bb1 = aa / elem4;
+                elem4 += 1;
+                for (int i = 0; i < array.Length; i++)
+                {
+                    if (Math.Abs(array[i] - bb1) < 1)
+                    {
+                        bb1= i;
+                    }
+                }
+                for (int i = array.Length - 2; i > bb1; i--)
+                {
+                    array[i + 1] = array[i];
+                }
+                array[bb1 + 1] = rr;
+                foreach (int i in array)
+                    Console.Write(i + " ");
+                Console.WriteLine(cc);
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+            #endregion
+
+
+            #region part 2 task 9
+
+            int min = 10000000;
+            int min1 = 10000000;
+            int max = -1;
+            int countt = 0;
+            int counter = 0;
+            int max1 = -1;
+            int elem5=0;
+            try
+            {
+                Console.WriteLine("Введите кол-во элементов массива");
+                elem5 = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if(elem5>0)
+            {
+                int[] arr = new int[elem5];
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    try
+                    {
+                        Console.Write($"Введите число {i}: ");
+                        arr[i] = int.Parse(Console.ReadLine());
+                    }
+                    catch { }
+                    
+                
+                    if (arr[i] >= max)
+                    {
+                        max = arr[i];
+                        max1 = i;
+                    }
+                
+                    if (arr[i] <= min)
+                    {
+                        min = arr[i];
+                        min1 = i;
+                    }
+                }
+                if (max1 > min1)
+                {
+                    for (int i = min1; i <= max1; i++, countt++)
+                    {
+                        counter = counter + arr[i];
+                    }
+                    Console.WriteLine($"Ответ: {counter / countt} ");
+                }
+                else
+                {
+                    for (int i = max1; i <= min1; i++, countt++)
+                    {
+                        counter = counter + arr[i];
+                    }
+                    Console.WriteLine($"Ответ: {counter / countt} ");
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+
+
+            #endregion
+
+            #region part 2 task 10
+
+            int bb = 0;
+            int elem11 = 0;
+            int minim = 10000000;
+            int minelem2 = 10000000;
+            int g1=0;
+            try
+            {
+                Console.WriteLine("Введите количество элементов массива ");
+                g1 = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if(g1>0)
+            {
+                int[] sa = new int[g1];
+                for (int i = 0; i < sa.Length; i++)
+                {
+                    try
+                    {
+                        Console.Write($"Введите число {i}: ");
+                        sa[i] = int.Parse(Console.ReadLine());
+                    }
+                    catch { }
+                    
+                }
+                for (g1 = 0; g1 < sa.Length; g1++)
+                {
+                    if (sa[g1] < minim)
+                    {
+                        if (sa[g1] > 0)
+                        {
+                            minim = sa[g1];
+                            minelem2 = g1;
+                        }
+                    }
+                }
+                Array.Clear(sa, minelem2, 1);
+                foreach (int i in sa)
+                    Console.WriteLine(i);
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+            #endregion
+
+
+            #region part 2 task 11
+
+            int max4 = 0;
+            int r3=0;
+            int elemz = 0;
+            try
+            {
+                Console.WriteLine("Введите R ");
+                r3 = int.Parse(Console.ReadLine());
+                Console.WriteLine("Введите кол-во элементов массива");
+                elemz = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if(elemz>0)
+            {
+                elemz += 1;
+                int[] array = new int[elemz];
+                for (int i = 0; i < array.Length - 1; i++)
+                {
+                    try
+                    {
+                        Console.Write($"Введите число {i}: ");
+                        array[i] = int.Parse(Console.ReadLine());
+                    }
+                    catch { }
+                    
+
+                }
+                int b5 = 0;
+                for (int i = 0; i < array.Length - 1; i++)
+                {
+                    if (array[i] > max4)
+                    {
+                        b5 = i;
+                    }
+                }
+                for (int i = array.Length - 2; i > b5; i--)
+                {
+                    array[i + 1] = array[i];
+                }
+                array[b5 + 1] = r3;
+                foreach (int i in array)
+                    Console.Write(i + " ");
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+
+            #endregion
+
+
+            #region part 2 task 15
+
+            int max7 = -1;
+            int maxind = 0;
+            int element7=0;
+            try
+            {
+                Console.WriteLine("Введите кол-во элементов массива");
+                element7 = int.Parse(Console.ReadLine());
+
+            }
+            catch { }
+            if(element7 > 0)
+            {
+                int[] a7 = new int[element7];
+                for (int i = 0; i < a.Length; i++)
+                {
+                    try
+                    {
+                        Console.Write($"Введите число {i}: ");
+                        a7[i] = int.Parse(Console.ReadLine());
+                    }
+                    catch { }
+                    
+                }
+                for (int i = 0; i < a7.Length; i += 2)
+                {
+                    if (a7[i] >= max7)
+                    {
+                        max7 = a7[i];
+                        maxind = i;
+                    }
+
+                }
+                a7[maxind] = maxind;
+                foreach (int i in a7)
+                    Console.Write(i + " ");
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+
+
+            #endregion
+
+
+            #region part 2 task 15
+            int kk=0;
+            int element8=0;
+            int element18=0;
+            try
+            {
+                Console.WriteLine("Введите K");
+                kk = int.Parse(Console.ReadLine());
+                Console.WriteLine("Введите кол-во элементов массива 1");
+                element8 = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Что-то пошло не так ");
+            }
+            if(kk>=0 && element8>0)
+            {
+                List<int> bn = new List<int>(element8);
+                for (int i = 0; i < element8; i++)
+                {
+                    try
+                    {
+                        Console.WriteLine($"Введите элемент с индексом {i}:");
+                        bn.Add(int.Parse(Console.ReadLine()));
+                    }
+                    catch { }
+                    
+                }
+                try
+                {
+                    Console.WriteLine("Введите кол-во элементов массива 2");
+                    element18 = int.Parse(Console.ReadLine());
+                }
+                catch { }
+                if(element18>0)
+                {
+                    List<int> b1n = new List<int>(element18);
+                    for (int i = 0; i < element18; i++)
+                    {
+                        Console.WriteLine($"Введите элемент с индексом {i}:");
+                        b1n.Add(int.Parse(Console.ReadLine()));
+                    }
+                    b1n.Reverse();
+                    for (int i = 0; i < element18; i++)
+                    {
+                        bn.Insert(kk, b1n[i]);
+                    }
+
+                    foreach (int x in bn)
+                        Console.Write(x);
+                }
+                
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+
+
+            #endregion
+
+
+            #region part 3 task 1
+
+            int max9 = -1000000000;
+            int p9 = 0;
+            try
+            {
+                Console.WriteLine("Введите кол-во элементов массива ");
+                p9 = int.Parse(Console.ReadLine());
+            }
+            catch { };
+            if (p9 > 0)
+            {
+                List<int> chisl = new List<int>(p9);
+                for (int i = 0; i < p9; i++)
+                {
+                    try
+                    {
+                        Console.WriteLine($"Введите элемент с индексом {i}:");
+                        chisl.Add(int.Parse(Console.ReadLine()));
+                    }
+                    catch { }
+                }
+                for (int i = 0; i < chisl.Count; i++)
+                {
+                    if (chisl[i] > max9)
+                    {
+                        max9 = chisl[i];
+                    }
+
+                }
+
+                List<int> chisl2 = new List<int>();
+
+                for (int i = 0; i < chisl.Count; i++)
+
+                {
+
+                    if (chisl[i] == max9)
+
+                    {
+
+                        chisl2.Add(i);
+
+                    }
+
+                }
+                Console.WriteLine(" ");
+                foreach (int i in chisl2)
+                    Console.Write(i);
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+
+            #endregion
+
+
+            #region part 3 task 5
+
+            int k11 = 0;
+            int p11 = 0;
+            try
+            {
+                Console.WriteLine("Введите кол-во элементов массива ");
+                p11 = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if (p11 > 0)
+            {
+                List<int> chislq = new List<int>(p11);
+                for (int i = 0; i < p11; i++)
+                {
+                    try
+                    {
+                        Console.WriteLine($"Введите элемент с индексом {i}:");
+                        chislq.Add(int.Parse(Console.ReadLine()));
+                    }
+                    catch { }
+
+                }
+
+                for (int i = 0; i < p11; i += 2)
+                {
+
+
+                    for (int j = 0; j < p11 - 2; j += 2)
+                    {
+
+                        if (chislq[j] > chislq[j + 2])
+                        {
+                            k11 = chislq[j];
+                            chislq[j] = chislq[j + 2];
+                            chislq[j + 2] = k11;
+                        }
+                    }
+
+                }
+                foreach (int i in chislq)
+                    Console.Write(i + " ");
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+
+
+            #endregion
+
+
+            #region part 3 task 8
+            int h2=0;
+            try
+            {
+                Console.WriteLine("Введите кол-во элементов массива ");
+                h2 = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if(h2>0)
+            {
+                List<int> gg = new List<int>(h2);
+                for (int i = 0; i < h2; i++)
+                {
+                    try
+                    {
+                        Console.WriteLine($"Введите элемент с индексом {i}:");
+                        gg.Add(int.Parse(Console.ReadLine()));
+                    }
+                    catch {}
+                    
+                }
+                var negative = gg.Where(x => x < 0).OrderByDescending(x => x).ToArray();
+                int j = 0;
+                for (int i = 0; i < gg.Count; i++)
+                {
+                    if (gg[i] < 0)
+                    {
+                        gg[i] = negative[j];
+                        j++;
+                    }
+                    Console.Write(gg[i] + " ");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+            #endregion
+
+
+
+            #region part 3 task 9
+            int hj = 0;
+            try
+            {
+                Console.WriteLine("Введите кол-во элементов");
+                hj = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if (hj > 0)
+            {
+                int[] aj = new int[hj];
+                int len = 1;
+                int maxlen = 1;
+                for (int i = 0; i < hj; i++)
+                {
+                    Console.WriteLine("Введите элемент");
+                    aj[i] = int.Parse(Console.ReadLine());
+                }
+                for (int i = 0; i < hj - 1; ++i)
+                {
+                    if (aj[i + 1] >= aj[i])
+                    {
+                        len++;
+                    }
+                    else
+                    {
+                        if (len > maxlen)
+                        {
+                            maxlen = len;
+                            len = 1;
+                        }
+                        len = 1;
+                    }
+                }
+                if (len > maxlen)
+                    maxlen = len;
+                len = 1;
+                for (int i = 0; i < hj - 1; i++)
+                {
+
+                    if (aj[i] >= aj[i + 1])
+                    {
+                        len++;
+                    }
+                    else
+                    {
+                        if (len > maxlen)
+                        {
+                            maxlen = len;
+                            len = 1;
+                        }
+                        len = 1;
+                    }
+                }
+
+
+                if (len > maxlen) maxlen = len;
+                Console.WriteLine(maxlen);
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так ");
+            }
+            #endregion
+
+
+            #region part 3 task 12
+
+            int gk = 12;
+            List<int> ok = new List<int>(gk);
+            for (int i = 0; i < gk; i++)
+            {
+                try
+                {
+                    Console.WriteLine($"Введите элемент с индексом {i}:");
+                    ok.Add(int.Parse(Console.ReadLine()));
+                }
+                catch {}
+                
+            }
+            ok.RemoveAll(x => x <= 0);
+            foreach (int x in ok)
+                Console.Write(x);
+
+            #endregion
+
+
+            #region part 3 task 13
+            int op=0;
+            try
+            {
+                Console.WriteLine("Введите кол-во элементов массива ");
+                op = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if(op > 0)
+            {
+                List<int> du = new List<int>(op);
+                for (int i = 0; i < op; i++)
+                {
+                    try
+                    {
+                        Console.WriteLine($"Введите элемент с индексом {i}:");
+                        du.Add(int.Parse(Console.ReadLine()));
+                    }
+                    catch { }
+                    
+
+
+                }
+                List<int> d1u = du.Distinct().ToList();
+                foreach (int x in d1u)
+                    Console.Write(x + " ");
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+
+            #endregion
+
+
+
+            #region algorithm 11
+            int oq=0;
+            int yq=0;
+            try
+            {
+                Console.WriteLine("Введите искомый элемент");
+                oq = int.Parse(Console.ReadLine());
+                Console.WriteLine("Введите кол-во элементов массива ");
+                yq = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if(yq>0)
+            {
+                List<int> dq = new List<int>(yq);
+                for (int i = 0; i < yq; i++)
+                {
+                    try
+                    {
+                        Console.WriteLine($"Введите элемент с индексом {i}:");
+                        dq.Add(int.Parse(Console.ReadLine()));
+                    }
+                    catch { }
+                    
+                }
+                int lq = 0;
+                int pq = dq.Count - 1;
+                bool zq = false;
+                while (lq <= pq)
+                {
+                    int i = (lq + pq) / 2;
+                    if (dq[i] == oq)
+                    {
+                        zq = true;
+                        Console.WriteLine("искомый элемент находится по индексом " + i);
+                        break;
+                    }
+                    if (dq[i] < oq)
+                    {
+                        lq = i + 1;
+                    }
+                    if (dq[i] > oq)
+                    {
+                        pq = i - 1;
+                    }
+
+                }
+                if (zq == false)
+                {
+                    Console.WriteLine("Такого элемента нет");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+
+
+
+
+            #endregion
+
+
+            #region algorithm 12
+            int mmmm = 0;
+            int nnnn = 0;
+            try
+            {
+                Console.WriteLine("Сколько элементов в массиве А?");
+                nnnn = int.Parse(Console.ReadLine());
+                Console.WriteLine("Сколько элементов в массиве B?");
+                mmmm = int.Parse(Console.ReadLine());
+
+            }
+            catch { }
+            if (nnnn > 0 && mmmm > 0)
+            {
+                int[] A = new int[nnnn];
+
+                for (int i = 0; i < A.Length; i++)
+                {
+                    Console.WriteLine("Введите элемент массива А ");
+                    A[i] = int.Parse(Console.ReadLine());
+                }
+
+
+                int[] B = new int[mmmm];
+                for (int i = 0; i < B.Length; i++)
+                {
+                    Console.WriteLine("Введите элемент массива B ");
+                    B[i] = int.Parse(Console.ReadLine());
+                }
+
+                int[] C = new int[A.Length + B.Length];
+                int aaa = 0, bbb = 0;
+                for (int i = 0; i < C.Length - 1; i += 2)
+                {
+                    if (aaa < A.Length)
+                    {
+                        C[i] = A[aaa];
+                        aaa++;
+                    }
+                    else
+                    {
+                        C[i] = B[bbb];
+                        bbb++;
+                    }
+                    if (bbb < B.Length)
+                    {
+                        C[i + 1] = B[bbb];
+                        bbb++;
+                    }
+                    else
+                    {
+                        C[i + 1] = A[aaa];
+                        aaa++;
+                    }
+                }
+                foreach (int i in C)
+                    Console.Write(i + " ");
+            }
+            else { }
+
+
+            #endregion
+
+
+            #region algorithm 13
+            int nnn = 0;
+            int mmm=0;
+            try
+            {
+                Console.WriteLine("Сколько элементов в массиве А?");
+                nnn = int.Parse(Console.ReadLine());
+                Console.WriteLine("Сколько элементов в массиве B?");
+                mmm = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if(nnn> 0 && mmm>0)
+            {
+                List<int> A = new List<int>(nnn);
+                List<int> B = new List<int>(mmm);
+                int[] C = new int[nnn + mmm];
+                for (int i = 0; i < nnn; i++)
+                {
+                    Console.WriteLine("Введите элементы массива А ");
+                    A.Add(int.Parse(Console.ReadLine()));
+                }
+                A.Sort();
+                A.Reverse();
+                for (int i = 0; i < mmm; i++)
+                {
+                    Console.WriteLine("Введите элементы массива B ");
+                    B.Add(int.Parse(Console.ReadLine()));
+                }
+                B.Sort();
+                B.Reverse();
+                int f = 0;
+                int y = 0;
+                for (int i = 0; i <= 1; i++)
+                {
+                    if (A[i] > B[i])
+                    {
+                        A.CopyTo(C, 0);
+                        B.CopyTo(C, nnn);
+                    }
+                    if (A[i] < B[i])
+                    {
+                        B.CopyTo(C, 0);
+                        A.CopyTo(C, mmm);
+                    }
+                }
+                foreach (int i in C)
+                    Console.Write(i + " ");
+            }
+            else { }
+
+
+
+            #endregion
+
+
+
+            #region algorithm 14
+            int kr = 0;
+            try
+            {
+                Console.WriteLine("Введите кол-во элементов массива ");
+                kr = int.Parse(Console.ReadLine());
+            }
+            catch
+            {
+                Console.WriteLine("Что-то пошло не так ");
+            }
+            if (kr > 0)
+            {
+                List<int> Dr = new List<int>(kr);
+                for (int i = 0; i < kr; i++)
+                {
+                    try
+                    {
+                        Console.WriteLine($"Введите элемент с индексом {i}:");
+                        Dr.Add(int.Parse(Console.ReadLine()));
+                    }
+                    catch { }
+
+                }
+                int n = 0;
+                int m = 1;
+                int t = 1;
+                int U = 0;
+                int yu = kr / 2;
+
+                for (int i = 0; i < Dr.Count - yu; i++)
+                {
+                    U = Dr[n];
+                    Dr[i] = Dr[kr - m];
+                    Dr[kr - t] = U;
+                    t++;
+                    n++;
+                    m++;
+                }
+
+
+
+                foreach (int i in Dr)
+                    Console.Write(i + " ");
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+            #endregion
+
+
+            #region algorithm 15
+            int mt=0;
+            int kt=0;
+            try
+            {
+                Console.WriteLine("Введите сдвиг ");
+                mt = int.Parse(Console.ReadLine());
+                Console.WriteLine("Введите кол-во элементов массива ");
+                kt = int.Parse(Console.ReadLine());
+            }
+            catch { }
+            if(mt>0 && kt>0)
+            {
+                int[] ut = new int[kt];
+                for (int i = 0; i < kt; i++)
+                {
+                    try
+                    {
+                        Console.WriteLine($"Введите элемент с индексом {i}:");
+                        ut[i] = int.Parse(Console.ReadLine());
+                    }
+                    catch {}
+                    
+                }
+                for (int i = 0; i < mt; ++i)
+                {
+                    int uLast = ut[kt - 1];
+                    for (int j = kt - 1; j > 0; j--)
+                    {
+                        ut[j] = ut[j - 1];
+                    }
+
+                    ut[0] = uLast;
+                }
+                foreach (int i in ut)
+                    Console.Write(i);
+            }
+            else
+            {
+                Console.WriteLine("Что-то пошло не так");
+            }
+            #endregion
+
+        }
+    }
+}
+
