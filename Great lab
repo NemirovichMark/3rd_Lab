@@ -8,16 +8,16 @@ double counter;
 double[] array = new double[5];
 double[] newarr = new double[newlen];
 double P, Q;
-int gigacounter=0;
 int[] arrayA, arrayB, arrayAB;
 int lenA, lenB, lenAB;
 int k;
-double Sol_Goodman;
+double Saul_Goodman;
 int max_pos = 0;
 int max_neg = 0;
+string s;
 #endregion
 #region 1.6
-double s = 0;
+double S = 0;
 for (int i = 0; i < 5; i++)
 {
     Console.WriteLine($"Введите {i} элемент массива");
@@ -25,9 +25,9 @@ for (int i = 0; i < 5; i++)
 }
 for (int i = 0; i < 5; i++)
 {
-    s += array[i] * array[i];
+    S += array[i] * array[i];
 }
-Console.WriteLine($"lvl1 tsk6 {Math.Sqrt(s):f3}");
+Console.WriteLine($"lvl1 tsk6 {Math.Sqrt(S):f3}");
 #endregion
 #region 1.10
 Console.WriteLine("Enter P");
@@ -265,7 +265,7 @@ for (int i = 0; i < len; i++)  //поиск положительного мин�
         }
     }
 }
-if (minin < 0)
+if (minin <= 0)
 {
     Console.WriteLine("There no positive min");
 }
@@ -301,10 +301,16 @@ for (int i = 0; i < len; i++) //поиск индекса последнего �
         minin = i;
     }
 }
-if (minin + 1 == len)
-    array[0] = P;
-else
-    array[minin + 1] = P;
+Array.Resize(ref array, len + 1);
+for (int i = len - 1; i >= minin; i--)
+{
+    array[i + 1] = array[i];
+}
+array[minin + 1] = P;
+for (int i = 0; i < len + 1; i++)
+{
+    Console.WriteLine(array[i]);
+}
 #endregion
 #region 2.13
 max = -100000000;
@@ -383,44 +389,34 @@ for (; minin < lenA; minin++)
 #endregion
 #region 3.1
 max = -100000000;
-Console.WriteLine("Enter lentgh of massive");
-len = Convert.ToInt32(Console.ReadLine());
+try { len = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
 array = new double[len];
-for (int i = 0; i < len; i++) //ввод исходного массива
-{
-    Console.WriteLine($"Enter {i} value of array");
-    array[i] = Convert.ToDouble(Console.ReadLine());
-}
+s = "";
 for (int i = 0; i < len; i++)
 {
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
     if (array[i] > max)
     {
         max = array[i];
+        s = "";
     }
-}
-for (int i = 0; i < len; i++)
-{
-    if (array[i] == max)
+    if (max == array[i])
     {
-        gigacounter++;
+        s += Convert.ToString(i);
+        s += " ";
     }
 }
-newarr = new double[gigacounter];
-gigacounter = 0;
-for (int i = 0; i < len; i++)
+string[] str = s.Split(" ");
+int[] result = new int[str.Length - 1];
+for (int i = 0; i < str.Length - 1; i++)
 {
-    if (array[i] == max)
-    {
-        newarr[gigacounter] = array[i];
-        gigacounter++;
-    }
+    result[i] = Convert.ToInt32(str[i]);
 }
-for (int i = 0; i < gigacounter; i++)
-{
-    Console.WriteLine(newarr[i]);
-}
+Console.WriteLine(string.Join("", result));
 #endregion
-#region 3.5???
+#region 3.5
 Console.WriteLine("Enter lentgh of massive");
 len = Convert.ToInt32(Console.ReadLine());
 array = new double[len];
@@ -435,14 +431,14 @@ for (int i = 0; i < len; i += 2)
     {
         if (array[j] > array[j + 2])
         {
-            Sol_Goodman = array[j];
+            Saul_Goodman = array[j];
             array[j] = array[j + 2];
-            array[j + 2] = Sol_Goodman;
+            array[j + 2] = Saul_Goodman;
         }
     }
 }
 for (int i = 0; i < len; i++)
-    Console.Write(" {array[i]} ");
+    Console.Write(array[i]);
 #endregion
 #region 3.8
 Console.WriteLine("Enter lentgh of massive");
@@ -563,7 +559,7 @@ for (int i = 0; i < n; i++)
         value += Convert.ToString(array[i]);
     }
 }
-string[] str = value.Split();
+str = value.Split();
 double[] array2 = new double[str.Length];
 for (int i = 0; i < str.Length; i++)
 {
@@ -633,65 +629,68 @@ static int[] Z12(int[] a, int[] b)
     }
     return c;
 }
-static int[] Z13(int[] a, int[] b)
+#region Z13
 {
-    int temp = 0;
-    for (int i = 0; i < a.Length; i++)
+    Console.WriteLine("Task 13");
+    Console.WriteLine("Write  size of array A");
+    if (Int32.TryParse(Console.ReadLine(), out int size_a13))
     {
-        for (int j = i + 1; j < a.Length; j++)
+        double[] a13 = new double[size_a13];
+        for (int i = 0; i < a13.Length; i++)
         {
-            if (a[i] < a[j])
+            Console.WriteLine("Write x" + i);
+            Double.TryParse(Console.ReadLine(), out a13[i]);
+        }
+        Console.WriteLine("Write  size of array B");
+        if (Int32.TryParse(Console.ReadLine(), out int size_b13))
+        {
+            double[] b13 = new double[size_b13];
+            for (int i = 0; i < b13.Length; i++)
             {
-                a[i] = a[j];
-                a[j] = temp;
+                Console.WriteLine("Write x" + i);
+                Double.TryParse(Console.ReadLine(), out b13[i]);
             }
-        }
-    }
-    temp = 0;
-    for (int i = 0; i < b.Length; i++)
-    {
-        for (int j = i + 1; j < b.Length; j++)
-        {
-            if (b[i] < b[j])
+            double[] c13 = new double[a13.Length + b13.Length];
+            Array.Sort(a13);
+            Array.Reverse(a13);
+            Array.Sort(b13);
+            Array.Reverse(b13);
+            int j_a13 = 0, j_b13 = 0;
+            for (int i = 0; i < c13.Length; i++)
             {
-                b[i] = b[j];
-                b[j] = temp;
+                if (j_a13 < a13.Length)
+                {
+                    if (j_b13 < b13.Length)
+                    {
+                        if (a13[j_a13] > b13[j_b13])
+                        {
+                            c13[i] = a13[j_a13];
+                            j_a13++;
+                        }
+                        else
+                        {
+                            c13[i] = b13[j_b13];
+                            j_b13++;
+                        }
+                    }
+                    else
+                    {
+                        c13[i] = a13[j_a13];
+                        j_a13++;
+                    }
+                }
+                else
+                {
+                    c13[i] = b13[j_b13];
+                    j_b13++;
+                }
             }
+            Console.WriteLine(String.Join(" ", c13));
         }
     }
-
-    int index_a = 0;
-    int index_b = 0;
-    int[] c = new int[a.Length + b.Length];
-
-    for (int i = 0; i < c.Length; i++)
-    {
-        if (index_a == a.Length)
-        {
-            c[i] = b[index_b];
-            index_b++;
-            continue;
-        }
-        if (index_b == b.Length)
-        {
-            c[i] = a[index_a];
-            index_a++;
-            continue;
-        }
-        if (a[index_a] > b[index_b])
-        {
-            c[i] = a[index_a];
-            index_a++;
-        }
-        else
-        {
-            c[i] = b[index_b];
-            index_b++;
-        }
-    }
-    return c;
 }
-static int[] Z14(int[] array)
+    #endregion
+    static int[] Z14(int[] array)
 
 {
 
@@ -738,6 +737,19 @@ static int[] Z15(int[] array)
 
 
     for (int i = 0; i < array.Length - (f % array.Length); i++)
+
+    {
+
+        result[count] = array[i];
+
+        count++;
+
+    }
+
+    return result;
+
+}
+#endregion
 
     {
 
