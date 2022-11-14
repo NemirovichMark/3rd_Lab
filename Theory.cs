@@ -360,3 +360,81 @@ static void Printing_List(List<double> arr) { for (int i = 0; i < arr.Count; i++
             Printing_List(Final_Nums);
 
             #endregion
+
+// I've done algorithms, which I hadn't done yet
+#region Binary_Search
+int Indexi = 0;
+            double Target = 3;
+            double[] Nums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            int Left_Index = 0;
+            int Right_Index = Nums.Length-1;
+
+            while (true)
+            {
+                Indexi = (Left_Index + Right_Index) / 2;
+                if (Target > Nums[Indexi]) Left_Index = Indexi;
+                else if (Target < Nums[Indexi]) Right_Index = Indexi;
+                    if (Target == Nums[Indexi]) break;
+            }
+
+            Console.WriteLine(Indexi);
+#endregion
+#region Arrays_Merging
+double[] A = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            double[] B = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            double[] Final_Nums = new double[A.Length + B.Length];
+
+            for(int i = 0; i < A.Length; i++)
+            {
+                Final_Nums[2*i] = A[i];
+                Final_Nums[2*i + 1] = B[i];
+            }
+
+            Printing(Final_Nums);
+#endregion
+#region Ordered_Arrays_Merging
+double[] A = {1, 2, 3, 4, 5, 9, 10};
+            double[] B = { 1, 4, 5, 6, 6, 7};
+            int A_Point = 0;
+            int B_Point = 0;
+            double[] Final_Nums = new double[A.Length + B.Length];
+
+            for(int i = 0; i < A.Length+B.Length; i++)
+            {
+                if (B_Point == B.Length) { Final_Nums[i] = A[A_Point]; A_Point++; }
+                else if (A_Point == A.Length) { Final_Nums[i] = B[B_Point]; B_Point++; }
+                else if (A[A_Point] <= B[B_Point]) { Final_Nums[i] = A[A_Point]; A_Point++; }
+                else { Final_Nums[i] = B[B_Point]; B_Point ++; }
+            }
+
+            Printing(Final_Nums);
+#endregion
+#region Reverse
+double[] Nums = {1, 2, 3, 4, 5, 9, 10};
+            double Cache = 0;
+
+            for(int i = 0; i < Nums.Length/2; i++)
+            {
+                Cache = Nums[i];
+                Nums[i] = Nums[Nums.Length - i - 1];
+                Nums[Nums.Length - i - 1] = Cache;
+            }
+
+            Printing(Nums);
+#endregion
+#region Cyclic shift
+double[] Nums = {1, 2, 3, 4, 5, 9, 10};
+            double Cache = 0;
+            int Shifts = 3;
+
+            while (Shifts != 0)
+            {
+                Cache = Nums[Nums.Length - 1];
+                for (int i = Nums.Length - 1; i > 0; i--) Nums[i] = Nums[i - 1];
+                Nums[0] = Cache;
+
+                Shifts--;
+            }
+
+            Printing(Nums);
+#endregion
