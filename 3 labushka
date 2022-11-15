@@ -114,7 +114,7 @@ class HelloWorld
             arr29[i] = Convert.ToDouble(Console.ReadLine());
         }
         double min = 1000000000, max = -11111111111,summa=0;
-        int indmax=0, indmin=0,n,cnt=0;
+        int indmax=0, indmin=0,n,cnt123=0;
         for (int i = 0; i < 10; i++) {
             if (arr29[i] < min) { 
                 min=arr29[i];
@@ -135,11 +135,11 @@ class HelloWorld
         }
         while (indmin < indmax-1) {
             summa += arr29[indmin+1];
-            cnt += 1;
+            cnt123 += 1;
             indmin += 1;
 
         }
-        Console.WriteLine(summa/cnt);
+        Console.WriteLine(summa/cnt123);
         #endregion
         
         #region 2-6
@@ -657,32 +657,32 @@ class HelloWorld
         double[] arr1 = new double[arr1n];
         double[] arr2 = new double[arr2n];
         double[] arr3 = new double[arr1n + arr2n];
-        int i = 0;
-        int j = 0;
+        int asd = 0;
+        int asd2 = 0;
         for (int k = 0; k != arr3.Length; k++)
         {
-            if (i < arr1.Length & j < arr2.Length)
+            if (asd < arr1.Length & asd2 < arr2.Length)
             {
-                if (arr1[i] > arr2[j])
+                if (arr1[asd] > arr2[asd2])
                 {
-                    arr3[k] = arr1[i];
-                    i++;
+                    arr3[k] = arr1[asd];
+                    asd++;
                 }
                 else
                 {
-                    arr3[k] = arr2[j];
+                    arr3[k] = arr2[asd2];
                     j++;
                 }
             }
-            else if (i >= arr1.Length)
+            else if (asd >= arr1.Length)
             {
-                arr3[k] = arr2[j];
-                j++;
+                arr3[k] = arr2[asd2];
+                asd2++;
             }
             else
             {
-                arr3[k] = arr1[i];
-                i++;
+                arr3[k] = arr1[asd];
+                asd++;
             }
         }
         foreach (double x in arr3)
