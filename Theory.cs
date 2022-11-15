@@ -357,6 +357,33 @@ namespace _3rd_Lab
                 Console.Write(" ");
             }
             #endregion
+            #region lvl2-15
+            double[] fred = new double[8] { -11, 7, -4, -2, 8, 9, -11, -10 };
+            double[] fred2 = new double[3] { 2, -4, 9 };
+            int q = 0;
+            double[] fred3 = new double[fred.Length + fred2.Length];
+            if (int.TryParse(Console.ReadLine(), out int t) && t >= 0)
+            {
+                for (int i = 0; i < t + 1; i++)
+                {
+                    fred3[i] = fred[i];
+                    Console.WriteLine(fred3[i]);
+                }
+                for (int je = t + 1; je < t + 1 + fred2.Length; je++)
+                {
+                    fred3[je] = fred2[q];
+                    Console.WriteLine(fred3[je]);
+                    q++;
+                }
+                q = t + 1;
+                for (int ke = t + 1 + fred2.Length; ke < fred3.Length; ke++)
+                {
+                    fred3[ke] = fred[q];
+                    Console.WriteLine(fred3[ke]);
+                    q++;
+                }
+            }
+            #endregion
             #region lvl3-1
             int[] JJ = { 1, 3, 6, 6, 5, 6};
             int maxjj = 0;
@@ -600,9 +627,9 @@ namespace _3rd_Lab
                 }
                 for (int i = 0; i < zE2; i++)
                 {
-                    double q = 0;
-                    double.TryParse(Console.ReadLine(), out q);
-                    DAD2[i] = q;
+                    double qe = 0;
+                    double.TryParse(Console.ReadLine(), out qe);
+                    DAD2[i] = qe;
                 }
                 
                 int counter_Arr = 0, counter_Brr = 0;
