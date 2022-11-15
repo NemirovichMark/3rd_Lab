@@ -501,7 +501,7 @@ class HelloWorld
             }
             if (arr39[i] <= arr39[i + 1])
             {
-                cnt392 = 1;
+                cnt391 = 1;
                 cnt392 = 1;
             }
             max39 = Math.Max(max39, cnt391);
