@@ -582,215 +582,269 @@ namespace _3rd_Lab
             #endregion
             #region Extra
             #region 11
+            double[] aaa = new double[0];
+            string arr = Console.ReadLine();
+            int co = 0;
+            int fl = 0;
+            while(arr != "")
             {
-                int[] fad = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-                int xE = 0;
-                int sE = 0;
-                int eE = fad.Length - 1;
-                int siE = 0;
-                if (int.TryParse(Console.ReadLine(), out xE))
-                {
-                    while (eE - sE >= 1)
-                    {
-                        siE = (eE + sE) / 2;
-                        if (fad[siE] == xE)
-                        {
-                            Console.WriteLine($"id = {siE}");
-                            break;
-                        }
-                        else if (xE < fad[siE])
-                        {
-                            eE = siE;
-                        }
-                        else if (xE > fad[siE])
-                        {
-                            sE = siE;
-                        }
-                    }
-                }
+                Array.Resize(ref aaa, aaa.Length + 1);
+                aaa[co] = Convert.ToDouble(arr);
+                arr = Console.ReadLine();
+                co++;
             }
-            #endregion
-            #region 12
+
+            Array.Sort(aaa);
+            Console.WriteLine("Введите искомое число");
+            double un = Convert.ToDouble(Console.ReadLine());
+
+            int left = 0, right = co;
+            if (aaa[left] == un)
             {
-                int nE2 = 0;
-                int.TryParse(Console.ReadLine(), out nE2);
-                int zE2 = 0;
-                int.TryParse(Console.ReadLine(), out zE2);
-                double[] DAD = new double[nE2];
-                double[] DAD2 = new double[zE2];
-                double[] DAD3 = new double[nE2 + zE2];
-                for (int i = 0; i < nE2; i++)
+                Console.WriteLine("Индекс искомого числа - " + left);
+                fl++ ;
+            }
+            else
+            {
+                while ((left + 1 != right) && (left != right))
                 {
-                    double x = 0;
-                    double.TryParse(Console.ReadLine(), out x);
-                    DAD[i] = x;
-                }
-                for (int i = 0; i < zE2; i++)
-                {
-                    double qe = 0;
-                    double.TryParse(Console.ReadLine(), out qe);
-                    DAD2[i] = qe;
-                }
-                
-                int counter_Arr = 0, counter_Brr = 0;
-                for (int i = 0; i < 2*Math.Min(nE2, zE2); i++)
-                {
-                    if (i % 2 == 0)
+                    if (aaa[(left + right) / 2] < un)
                     {
-                        if (counter_Arr < nE2)
-                        {
-                            DAD3[i] = DAD[counter_Arr];
-                            counter_Arr++;
-                        }
-                        else break;
-                    }
-                    if (i%2!=0)
-                    {
-                        DAD3[i] = DAD2[counter_Brr];
-                        counter_Brr++;
-                    }                       
-                }
-                for (int i = 2 * Math.Min(nE2, zE2); i<nE2+zE2;i++)
-                {
-                    if (nE2 != Math.Min(nE2, zE2))
-                    {
-                        for (int jf = 2*Math.Min(nE2, zE2); jf < (zE2 + nE2); jf++)
-                        {
-                            DAD3[jf] = DAD[counter_Arr];
-                            counter_Arr++;
-                        }
+                        left = (left + right) / 2;
                     }
                     else
                     {
-                        
-                        for (int jf = 2*Math.Min(nE2, zE2)+1; jf < (zE2 + nE2)-1; jf++)
+                        if (aaa[(left + right) / 2] > un)
                         {
-                            DAD3[jf] = DAD2[counter_Brr++];
-                            counter_Brr++;
-                        }
-                    }
-                }
-                foreach (double x in DAD3) 
-                    Console.Write(x + " ");
-                Console.WriteLine();
-            }
-            #endregion
-            #region 13
-            {
-                int nE3 = 0;
-                int zE3 = 0;
-                int.TryParse(Console.ReadLine(), out nE3);
-                int.TryParse(Console.ReadLine(), out zE3);
-                double[] DAD4 = new double[nE3];
-                double[] DAD5 = new double[zE3];
-                for (int i = 0; i < nE3; i++)
-                {
-                    double x;
-                    double.TryParse(Console.ReadLine(), out x);
-                    DAD4[i] = x;
-                }
-                for (int i = 0; i < zE3; i++)
-                {
-                    double x;
-                    double.TryParse(Console.ReadLine(), out x);
-                    DAD4[i] = x;
-                }
-
-                Array.Sort(DAD4);
-                Array.Reverse(DAD4);
-
-                Array.Sort(DAD5);
-                Array.Reverse(DAD5);
-
-                double[] DAD6 = new double[nE3 + zE3];
-                nE3 = 0;
-                zE3 = 0;
-
-                for (int i = 0; i < DAD6.Length; i++)
-                {
-                    if (nE3 < DAD4.Length)
-                    {
-                        if (zE3 < DAD5.Length)
-                        {
-                            if (DAD4[nE3] > DAD5[zE3])
-                            {
-                                DAD6[i] = DAD5[nE3];
-                                nE3++;
-                            }
-                            else
-                            {
-                                DAD6[i] = DAD5[zE3];
-                                zE3++;
-                            }
+                            right = (left + right) / 2;
                         }
                         else
                         {
-                            DAD6[i] = DAD4[nE3];
-                            nE3++;
+                            Console.WriteLine("Индекс искомого числа - " + ((left + right) / 2));
+                            fl++;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if(fl == 0)
+            {
+                Console.WriteLine("Такого числа нет в массиве");
+            }
+
+
+            #endregion
+            #region 12
+            int size = 0;
+            int sizeB = 0;
+
+            double[] arr = new double[size];
+            double[] arr_B = new double[sizeB];
+            Console.WriteLine("Введите массив А");
+            string zex = Console.ReadLine();
+
+            while (zex != "")
+            {
+                Array.Resize(ref arr, size + 1);
+                arr[size] = Convert.ToDouble(zex);
+                size++;
+                zex = Console.ReadLine();
+            }
+
+            Console.WriteLine("Введите массив B");
+            string zexb = Console.ReadLine();
+
+            while (zexb != "")
+            {
+                Array.Resize(ref arr_B, sizeB + 1);
+                arr_B[sizeB] = Convert.ToDouble(zexb);
+                sizeB++;
+                zexb = Console.ReadLine();
+            }
+
+            double[] arr_C = new double[size + sizeB];
+            if (size > sizeB) {
+
+                for(int i = 0; i < sizeB * 2; i++)
+                {
+                    if(i % 2 == 0)
+                    {
+                        arr_C[i] = arr[i / 2];
+                    }
+                    else
+                    {
+                        arr_C[i] = arr_B[i / 2];
+                    }
+                }
+
+                for (int i = sizeB; i < size; i++)
+                {
+                    arr_C[i + sizeB] = arr[i];  
+                }
+
+            }
+            else
+            {
+
+                for (int i = 0; i < size * 2; i++)
+                {
+                    if (i % 2 == 0)
+                    {
+                        arr_C[i] = arr[i / 2];
+                    }
+                    else
+                    {
+                        arr_C[i] = arr_B[i / 2];
+                    }
+                }
+
+                for (int i = size; i < sizeB; i++)
+                {
+                    arr_C[i + size] = arr_B[i];
+                }
+
+            }
+
+
+            for (int i = 0; i < arr_C.Length; i++)
+            {
+                Console.Write(arr_C[i] + " ");
+            }
+
+            #endregion
+            #region 13
+            int sizeS = 0;
+            int sizeSB = 0;
+            double[] YYY = new double[sizeS];
+            double[] UUU = new double[sizeSB];
+            Console.WriteLine("Введите массив А");
+            string arr_A_2_i = Console.ReadLine();
+
+            while (arr_A_2_i != "")
+            {
+                Array.Resize(ref YYY, YYY.Length + 1);
+                YYY[sizeS] = Convert.ToDouble(arr_A_2_i);
+                sizeS+;
+                arr_A_2_i = Console.ReadLine();
+            }
+
+            Console.WriteLine("Введите массив В");
+            string arr_B_2_i = Console.ReadLine();
+
+            while (arr_B_2_i != "")
+            {
+                Array.Resize(ref UUU, UUU.Length + 1);
+                UUU[sizeSB] = Convert.ToDouble(arr_B_2_i);
+                sizeSB++;
+                arr_B_2_i = Console.ReadLine();
+            }
+
+            Array.Sort(YYY);
+            Array.Reverse(YYY);
+
+            Array.Sort(UUU);
+            Array.Reverse(UUU);
+
+            double[] arr_C_2 = new double[sizeS + sizeSB];
+            sizeS = 0;
+            sizeSB = 0;
+
+            for(int i = 0; i < arr_C_2.Length; i++)
+            {
+                if(sizeS < YYY.Length)
+                {
+                    if(sizeSB < UUU.Length)
+                    {
+                        if(YYY[sizeS] > UUU[sizeSB])
+                        {
+                            arr_C_2[i] = YYY[sizeS];
+                            sizeS++;
+                        }
+                        else
+                        {
+                            arr_C_2[i] = UUU[sizeSB];
+                            sizeSB++;
                         }
                     }
                     else
                     {
-                        DAD6[i] = DAD5[zE3];
-                        nE3++;
+                        arr_C_2[i] = YYY[sizeS];
+                        sizeS++;
                     }
                 }
-
-                for (int i = 0; i < DAD6.Length; i++) 
+                else
                 {
-                    Console.Write(DAD6[i] + " ");
+                    arr_C_2[i] = UUU[sizeSB];
+                    sizeSB++;
                 }
+            }
 
+            for(int i = 0; i < arr_C_2.Length; i++)
+            {
+                Console.Write(arr_C_2[i] + " ");
             }
             #endregion
             #region 14
-            { 
-                int n16;
-                int.TryParse(Console.ReadLine(), out n16);
-                double[] DAD7 = new double[n16];
-                for (int i = 0; i < n16; i++)
-                {
-                    double x = 0;
-                    double.TryParse(Console.ReadLine(), out x);
-                    DAD7[i] = x;
-                }
-                double DAD7A;
-                for (int i = 0; i < n16 / 2; i++)
-                {
-                    DAD7A = DAD7[i];
-                    DAD7[i] = DAD7[n16 - i - 1];
-                    DAD7[n16 - i - 1] = DAD7A;
-                }
-                foreach (double x in DAD7) 
-                    Console.Write(x + " ");
+            double[] ggg = new double[0];
+            int count22 = 0;
+            string ggga = Console.ReadLine();
+
+            while(ggga != "")
+            {
+                Array.Resize(ref ggg, ggg.Length + 1);
+                ggg[count22] = Convert.ToDouble(ggga); 
+                count22++;
+                ggga = Console.ReadLine();
             }
+
+            double mid_num1;
+
+            for(int i = 0; i < ggg.Length / 2; i++)
+            {
+                mid_num1 = ggg[i];
+                ggg[i] = ggg[ggg.Length - i - 1];
+                ggg[ggg.Length - i - 1] = mid_num1;
+            }
+
+            for(int i = 0; i < ggg.Length; i++)
+            {
+                Console.Write(ggg[i] + " ");
+            }
+
             #endregion
             #region  15
-            {
-                int n18;
-                int.TryParse(Console.ReadLine(), out n18);
-                double[] DAD10 = new double[n18];
-                for (int i = 0; i < n18; i++)
-                {
-                    double x;
-                    double.TryParse(Console.ReadLine(), out x);
-                    DAD10[i] = x;
-                }
-                Console.WriteLine("Enter m");
-                double SD1, SD2;
-                double.TryParse(Console.ReadLine(), out SD2);
-                for (int i = 0; i < SD2; i++)
-                {
-                    SD1 = DAD10[n18 - 1 - i];
+            double[] hhh = new double[0];
+            int count23 = 0;
+            Console.WriteLine("Введите массив");
+            string hhha = Console.ReadLine();
 
-                    for (int jn = n18 - 2; jn >= 0; jn--)
-                    {
-                        DAD10[jn + 1] = DAD10[jn];
-                    }
-                    DAD10[i] = SD1;
+            while (hhha != "")
+            {
+                Array.Resize(ref hhh, hhh.Length + 1);
+                hhh[count23] = Convert.ToDouble(hhha);
+                count23++;
+                hhha = Console.ReadLine();
+            }
+
+            Console.WriteLine("Введите колличество сдвигов");
+            int m2 = Convert.ToInt32(Console.ReadLine());
+
+            double mid_num2;
+
+            for(int i = 0; i < m2; i++)
+            {
+                mid_num2 = hhh[hhh.Length - 1];
+                for(int j = hhh.Length - 1; j > 0; j--)
+                {
+                    hhh[j] = hhh[j - 1];
                 }
-                for (int i = 0; i < n18; i++) 
-                    Console.Write(DAD10[i] + " ");
+                hhh[0] = mid_num2;
+            }
+
+            foreach(double i in hhh)
+            {
+                Console.Write(i + " ");
             }
             #endregion
             #endregion
