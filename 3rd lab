@@ -1,0 +1,819 @@
+using Microsoft.Win32.SafeHandles;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using System.Runtime.Serialization.Formatters;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace LAB_3
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            LAB 3
+            //lEVEL 1 LEVEL 1 LEVEL 1 LEVEL 1 
+            //Task 1
+            #region
+            int[] a = new int[6];
+            int i = 0, s = 0, ii = 0;
+            string num;
+            Console.WriteLine("Let's start. Please, input 6 numbers");
+            for (i = 0; i < 6; i++)
+            {
+                a[i] = Convert.ToInt32(Console.ReadLine());
+                s = s + a[i];
+            }
+            Console.WriteLine(s);
+            for (ii = 0; ii < 6; ii++)
+            {
+                a[ii] = a[ii] / s;
+                Console.WriteLine(a[ii]);
+            }
+            #endregion
+
+            //Task 2 
+            #region
+            int[] b = new int[8];
+            int o = 0, sch = 0, pov = 0;
+            double sm = 0, sr = 0;
+            for (o = 0; o < 8; o++)
+            {
+                a[o] = Convert.ToInt32(Console.ReadLine());
+                if (a[o] > 0)
+                {
+                    sm = sm + a[o];//the sum itself
+                    sch = sch + 1; //only positive nums 
+                }
+                else
+                {
+                    sm = sm + 0;
+                }
+            }
+            o = 0;
+            for (o = 0; o < 8; o++)
+            {
+                a[o] = Convert.ToInt32(Console.ReadLine());
+                if (a[o] > 0)
+                {
+                    a[o] = (int)(sm / sch);
+                }
+            }
+            #endregion
+
+            //Task 6
+            #region
+            int[] c = new int[5];
+            int ind;
+            double fs = 0;
+            for (ind = 0; ind < 5; ind++)
+            {
+                c[ind] = Convert.ToInt32(Console.ReadLine());
+                fs = fs + Math.Pow(c[ind], 2);
+            }
+            fs = Math.Pow(fs, 0.5);
+            Console.WriteLine(fs);
+            #endregion
+
+            //Task 10 
+            #region
+            int[] d = new int[10];
+            int indn;
+            int P, Q;
+            int os = 0;
+            for (indn = 0; indn < 10; indn++)
+            {
+                d[indn] = Convert.ToInt32(Console.ReadLine());
+            }
+            P = Convert.ToInt32(Console.ReadLine());
+            Q = Convert.ToInt32(Console.ReadLine());
+            indn = 0;
+            if (P < Q)
+            {
+                for (indn = 0; indn < 10; indn++)
+                {
+                    if (d[indn] > P & d[indn] < Q)
+                    {
+                        os = os + 1;
+                    }
+                }
+            }
+            Console.WriteLine(os);
+            #endregion
+
+            //Task 11 
+            #region
+            int sheesh = 0, rp = 0, rp_2 = 0;
+            int[] e = new int[10];
+            for (rp = 0; rp < e.Length; rp++)
+            {
+                e[rp] = Convert.ToInt32(Console.ReadLine());
+                if (e[rp] > 0)
+                {
+                    sheesh = sheesh + 1;
+                }
+            }
+            rp = 0;
+            int[] ee = new int[sheesh];
+            rp_2 = 0;
+            for (rp = 0; rp < e.Length - 1; rp++)
+            {
+                if (e[rp] > 0)
+                {
+                    ee[rp_2] = e[rp];
+                }
+            }
+
+            #endregion
+
+            //Task 12 
+            #region 
+            int[] f = new int[8];
+            int nom, li = 0, lch = 0;
+            for (nom = 0; nom < 8; nom++)
+            {
+                f[nom] = Convert.ToInt32(Console.ReadLine());
+                if (f[nom] < 0)
+                {
+                    li = nom;
+                    lch = f[nom];
+                }
+
+            }
+            if (lch >= 0)
+            {
+                Console.WriteLine("Nothing");
+            }
+            else
+            {
+                Console.WriteLine(li);
+                Console.WriteLine(lch);
+            }
+            #endregion
+
+            //Task 13 
+            #region
+            int[] g = new int[10];
+            int[] ga = new int[5]; //chetn
+            int[] gb = new int[5]; //nechetn
+            int nomo, nomo_a = 0, nomo_b = 0;
+            for (nomo = 0; nomo < 10; nomo++)
+            {
+                g[nomo] = Convert.ToInt32(Console.ReadLine());
+                if ((g[nomo] % 2) == 0)
+                {
+                    nomo_a = nomo_a + 1;
+                    ga[nomo_a - 1] = g[nomo];
+                }
+                else
+                {
+                    nomo_b = nomo_b + 1;
+                    gb[nomo_b - 1] = g[nomo];
+                }
+            }
+            Console.WriteLine(ga);
+            Console.WriteLine(gb);
+            #endregion
+
+
+            //LEVEL 2  LEVEL 2 LEVEL 2 LEVEL 2
+            //Task 5
+            #region 
+            Console.WriteLine("Let's make an array");
+            int kolich = 0, kolichn = 0;
+            int x = Convert.ToInt32(Console.ReadLine()), jmax = 0, jmin = 0;
+            int[] j = new int[x];
+            int[] jj = new int[kolichn];
+            for (kolich = 0; kolich < x; kolich++)
+            {
+                j[kolich] = Convert.ToInt32(Console.ReadLine());
+                if (j[kolich] > jmax)
+                {
+                    jmax = j[kolich];
+                }
+                if (j[kolich] < jmin)
+                {
+                    jmin = j[kolich];
+                }
+            }
+            kolich = 0;
+            for (kolich = 0; kolich < x; kolich++)
+            {
+                if (j[kolich] < 0 & j[kolich] < jmax & j[kolich] > jmin)
+                {
+                    kolichn = kolichn + 1;
+                }
+            }
+            kolich = 0;
+            for (kolich = 0; kolich < kolichn; kolich++)
+            {
+                if (j[kolich] < 0 & j[kolich] < jmax & j[kolich] > jmin)
+                {
+                    jj[kolich] = j[kolich];
+                }
+            }
+            Console.WriteLine(jj);
+            #endregion
+
+            //Task 6 !!!
+            #region
+            Random randd = new Random();
+            int[] massiv1 = new int[5];
+            int[] massiv2 = new int[5];
+            int min_ostatok = 0, chislo = 0, P_ch = 95, summa = 0, ostatok;
+            int math;
+            for (math = 0; math < massiv1.Length; math++)
+            {
+                massiv1[math] = randd.Next(-10, 10);
+            }
+            Console.WriteLine("Here we go");
+            math = 0;
+            for (math = 0; math < massiv1.Length; math++)
+            {
+                Console.WriteLine(massiv1[math]);
+
+            }
+            math = 0;
+            for (math = 0; math < massiv1.Length; math++)
+            {
+                summa = summa + massiv1[math];
+            }
+            summa = summa / 4;
+            math = 0;
+            for (math = 0; math < massiv1.Length; math++)
+            {
+                ostatok = Math.Abs(massiv1[math] - summa);
+                if (ostatok < min_ostatok)
+                {
+                    min_ostatok = ostatok;
+                    chislo = math;
+                }
+            }
+            Console.WriteLine("Here we go again");
+            math = massiv2.Length - 2;
+            for (math = massiv2.Length - 2; math >= chislo + 1; math--)
+            {
+                massiv2[math + 1] = massiv1[math];
+                massiv2[chislo + 1] = P_ch;
+            }
+            math = 0;
+            for (math = 0; math < massiv2.Length; math++)
+            {
+                Console.WriteLine(massiv2[math]);
+            }
+            Console.ReadLine();
+            #endregion
+
+            //Task 9
+            #region
+            int sch = Convert.ToInt32(Console.ReadLine());
+            int[] l = new int[sch];
+            int l_max = 0, l_min = 0, sch_max = 0, sch_min = 0, ll = 0, vch = 0, vchk = 0;
+            for (ll = 0; ll < sch; ll++)
+            {
+                l[ll] = Convert.ToInt32(Console.ReadLine());
+                if (l[ll] > l_max)
+                {
+                    l[ll] = l_max;
+                    sch_max = ll;
+                }
+                if (l[ll] < l_min)
+                {
+                    l[ll] = l_min;
+                    sch_min = ll;
+                }
+            }
+            ll = 0;
+            for (ll = 0; ll < sch; ll++)//вычисляем срд.арифм между макс и мин 
+            {
+                if (ll > sch_min & ll < sch_max)
+                {
+                    vch = vch + l[ll];
+                    vchk = vchk + 1;
+                }
+            }
+            ll = vch / vchk;
+            Console.WriteLine(ll);
+            #endregion
+
+            //Task 10!!!
+            #region 
+            int kl = Convert.ToInt32(Console.ReadLine());
+            int mn = kl;
+            int[] m = new int[kl];
+            int[] m_2 = new int[mn];
+            int dch = 0, dch_min = 10000, dch_zpn = 0, dch_2 = 0;
+            for (dch = 0; dch < m.Length; dch++)
+            {
+                m[dch] = Convert.ToInt32(Console.ReadLine());
+                if (m[dch] < dch_min & m[dch] > 0)
+                {
+                    dch_min = m[dch];
+                    dch_zpn = dch;
+                }
+            }
+            dch = 0;
+            Console.WriteLine("here we go");
+            for (dch = 0; dch < m.Length; dch++)
+            {
+                if (m[dch] != dch_min)
+                {
+                    m_2[dch] = m[dch];
+                    Console.WriteLine(m_2[dch]);
+                }
+            }
+            #endregion
+
+            //Task 11 !!!
+            #region
+            Random randw = new Random();
+            int[] massiv3 = new int[4];
+            int[] massiv4 = new int[5];
+            int Pew = 96;
+            int schet, max3 = 0, max_inx;
+            for (schet = 0; schet < massiv3.Length; schet++)
+            {
+                massiv3[schet] = randw.Next(-5, 6);
+            }
+            schet = 0;
+            for (schet = 0; schet < massiv3.Length; schet++)
+            {
+                Console.WriteLine(massiv3[schet]);
+            }
+            Console.WriteLine("Here we go");
+            schet = 0;
+            for (schet = 0; schet < massiv3.Length; schet++)
+            {
+                if (massiv3[schet] > 0)
+                {
+                    max3 = schet;
+                    max_inx = massiv3[schet];
+                }
+            }
+            schet = 0;
+            for (schet = 0; schet < massiv4.Length - 1; schet++)
+            {
+                massiv4[schet] = massiv3[schet];
+            }
+            schet = massiv4.Length - 2;
+            for (schet = massiv4.Length - 2; schet >= max3 + 1; schet--)
+            {
+                massiv4[schet + 1] = massiv3[schet];
+                massiv4[max3 + 1] = Pew;
+            }
+            schet = 0;
+            for (schet = 0; schet < massiv4.Length; schet++)
+            {
+                Console.WriteLine(massiv4[schet]);
+            }
+            Console.ReadLine();
+            #endregion
+
+            //Task 13
+            #region 
+            int foro = Convert.ToInt32(Console.ReadLine());
+            int[] ok = new int[foro];
+            int foron = 0, foro_max = 0, foro_max_ch = 0;
+            for (foron = 0; forn_n < ok.Length; foron++)
+            {
+                ok[foron] = Convert.ToInt32(Console.ReadLine());
+                if (foron % 2 == 0 & ok[foron] > foro_max)
+                {
+                    foro_max = ok[foron];
+                    foro_max_ch = foron;
+                }
+            }
+            ok[foro_max_ch] = foro_max_ch;
+            Console.WriteLine(ok[foro_max_ch]);
+            #endregion
+
+            //Task 15 
+            #region
+            int Akl = Convert.ToInt32(Console.ReadLine());
+            int Bkl = Convert.ToInt32(Console.ReadLine());
+            int[] A = new int[Akl + Bkl];
+            int[] B = new int[Bkl];
+            int k_chl = Convert.ToInt32(Console.ReadLine());
+            int forB = 0, forA = 0;
+            if (k_chl < Akl & Bkl < Akl)
+            {
+                for (forA = 0; forA < A.Length; forA++)
+                {
+                    A[forA] = Convert.ToInt32(Console.ReadLine());
+                }
+                for (forB = 0; forB < B.Length; forA++)
+                {
+                    B[forB] = Convert.ToInt32(Console.ReadLine());
+                }
+            }
+            else
+            {
+                Console.WriteLine("That's not gonna work");
+            }
+            forB = 0;
+            for (forB = 0; forB < B.Length; forB++)
+            {
+                A[k_chl + 1] = A[k_chl + 2];
+                B[forB] = A[k_chl + 1];
+            }
+            forA = 0;
+            for (forA = 0; forA < A.Length; forA++)
+            {
+                Console.WriteLine(A[forA]);
+            }
+
+            #endregion
+
+            //LEVEL 3 LEVEL 3 LEVEL 3 LEVEL 3
+            //Task 1 проблема: при заполении 2-го массива выдает ошибку с идексами, переход за границы массива
+            #region
+            Console.WriteLine("Let's make first array");
+            int uz = Convert.ToInt32(Console.ReadLine()), uz_2 = 1;
+            int[] w = new int[uz];
+            int[] w_2 = new int[uz_2];
+            int foruz, foruz_max = 0;
+            Console.WriteLine("Put numbers");
+            for (foruz = 0; foruz < w.Length; foruz++)
+            {
+                w[foruz] = Convert.ToInt32(Console.ReadLine());
+                if (w[foruz] > foruz_max)
+                {
+                    foruz_max = w[foruz];
+                    uz_2 = 1;
+                    w_2[uz_2 - 1] = foruz;
+                }
+                else if (w[foruz] == foruz_max)
+                {
+                    uz_2 = uz_2 + 1;
+                    w_2[uz_2 - 1] = foruz;
+                }
+            }
+            foruz = 0;
+            Console.WriteLine("Here we go");
+            for (foruz = 0; foruz < uz_2; foruz++)
+            {
+                Console.WriteLine(w[foruz]);
+            }
+            #endregion
+
+            //Task 5
+            #region
+            int za = Convert.ToInt32(Console.ReadLine());
+            int[] z = new int[za];
+            int forz, forz_2;
+            for (forz = 0; forz < z.Length; forz++)
+            {
+                z[forz] = Convert.ToInt32(Console.ReadLine());
+            }
+            forz = 0;
+            for (forz = 0; forz < z.Length; forz++)
+            {
+                if (forz % 2 == 0 & z[forz] > z[forz + 2])
+                {
+                    forz_2 = z[forz];
+                    z[forz] = z[forz + 2];
+                    z[forz + 2] = forz_2;
+                }
+            }
+            forz = 0;
+            for (forz = 0; forz < z.Length; forz++)
+            {
+                Console.WriteLine(z[forz]);
+            }
+            #endregion
+
+            //Task 8 
+            #region
+            Random MmM = new Random();
+            int[] y = new int[5];
+            int forya, maxy_index, maxy = 0, jj = 0;
+            for (forya = 0; forya < y.Length; forya++)
+            {
+                y[forya] = MmM.Next(-10, 2);
+                Console.WriteLine(y[forya]);
+            }
+            Console.WriteLine("Here we go");
+            forya = 0;
+            jj = forya + 1;
+            for (forya = 0; forya < y.Length - 1; forya++)
+            {
+                if (y[forya] < 0)
+                {
+                    maxy_index = forya;
+                    maxy = y[forya];
+                    for (jj = forya + 1; jj < 5; jj++)
+                    {
+                        if (y[jj] < 0 && y[jj] > maxy)
+                        {
+                            maxy = y[jj];
+                            maxy_index = jj;
+                        }
+                    }
+                    y[maxy_index] = y[forya];
+                    y[forya] = maxy;
+                }
+
+            }
+            forya = 0;
+            for (forya = 0; forya < y.Length; forya++)
+            {
+                Console.WriteLine(y[forya]);
+            }
+            Console.ReadLine();
+            #endregion
+
+            //Task 9
+            #region
+            Random inn = new Random();
+            int[] q = new int[5];
+            int forq, forq_max = 0, forq_max_2 = 0, forq_max_ot = 0;
+            for (forq = 0; forq < q.Length; forq++)
+            {
+                q[forq] = inn.Next(-5, 5);
+            }
+            forq = 0;
+            for (forq = 0; forq < q.Length; forq++)
+            {
+                Console.WriteLine(q[forq]);
+            }
+            Console.WriteLine("That's it");
+            forq = 0;
+            for (forq = 0; forq < q.Length - 1; forq++)
+            {
+                forq_max = forq_max + 1;
+                forq_max_2 = forq_max_2 + 1;
+                if (q[forq] >= q[forq + 1])
+                {
+                    forq_max = 1;
+                }
+                if (q[forq] <= q[forq + 1])
+                {
+                    forq_max = 1;
+                    forq_max_2 = 1;
+                }
+                forq_max_ot = Math.Max(forq_max_ot, forq_max);
+                forq_max_2 = Math.Max(forq_max_2, forq_max_2);
+            }
+            Console.WriteLine("here we go");
+            Console.Write(Math.Max(forq_max_ot, forq_max_2));
+            Console.ReadLine();
+            #endregion
+
+            //Task 12
+            #region
+            int[] v = new int[12];
+            int forv, forv_2 = 0, forv_3;
+            for (forv = 0; forv < v.Length; forv++)
+            {
+                v[forv] = Convert.ToInt32(Console.ReadLine());
+                if (v[forv] < 0)
+                {
+                    forv_2 = forv_2 + 1;
+                }
+            }
+            forv = 0;
+            int[] v_2 = new int[12 - (forv_2 - 1)];
+            for (forv = 0; forv < v.Length; forv++)
+            {
+                for (forv_3 = 0; forv_3 < v_2.Length; forv_3++)
+                {
+                    if (v[forv] > 0)
+                    {
+                        v_2[forv_3] = v[forv];
+                    }
+                }
+            }
+            forv_3 = 0;
+            for (forv_3 = 0; forv_3 < v_2.Length; forv_3++)
+            {
+                Console.WriteLine(v_2[forv_3]);
+            }
+            #endregion
+
+            //Task 13
+            #region
+            int qwa = Convert.ToInt32(Console.ReadLine());
+            int[] qw = new int[qwa];
+            int forqw, forqw_2 = 0;
+            for (forqw = 0; forqw < qw.Length; forqw++)
+            {
+                qw[forqw] = Convert.ToInt32(Console.ReadLine());
+            }
+            forqw = 0;
+            for (forqw = 0; forqw < qw.Length; forqw++)
+            {
+                if (qw[forqw] == qw[forqw + 1])
+                {
+                    forqw_2 = forqw_2 + 1;
+                    qw[forqw] = 0;
+                }
+            }
+            int[] QW = new int[qwa - forqw_2];
+            forqw_2 = 0;
+            forqw = 0;
+            for (forqw = 0; forqw < qw.Length; forqw++)
+            {
+                for (forqw_2 = 0; forqw_2 < QW.Length; forqw_2++)
+                {
+                    if (qw[forqw] != 0)
+                    {
+                        QW[forqw_2] = qw[forqw];
+                    }
+                }
+            }
+            forqw_2 = 0;
+            for (forqw_2 = 0; forqw_2 < QW.Length; forqw_2++)
+            {
+                Console.WriteLine(QW[forqw_2]);
+            }
+            #endregion
+            Console.ReadKey();
+
+            //Dop. tasks
+            //TASK 11 
+            #region 
+            int[] AA = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            int x = 0;
+            int A_1 = 0, A_2 = 0;
+            int stAa = 0;
+            Console.WriteLine("write our num");
+            if (!int.TryParse(Console.ReadLine(), out x))
+            {
+                Console.WriteLine("try again");
+                return;
+            }
+            A_2 = AA.Length - 1;
+            while (true)
+            {
+                stAa = (A_1 + A_2) / 2;
+                if (x == AA[stAa])
+                {
+                    Console.WriteLine($" index = {stAa}  ");
+                    break;
+                }
+                if (x < AA[stAa])
+                {
+                    A_2 = stAa - 1;
+                }
+                if (x > AA[stAa])
+                {
+                    A_1 = stAa + 1;
+                }
+                if (A_2 < A_1)
+                {
+                    Console.WriteLine("nothing");
+                    break;
+                }
+            }
+            Console.WriteLine();
+            #endregion
+
+            //TASK 12
+            #region 
+            int[] BB = new int[5] { 1, 2, 3, 4, 5 };
+            int[] BB_2 = new int[10] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+            int[] BB_3 = new int[BB.Length + BB_2.Length];
+            int kount = 0, ustal = 0;
+            if (BB.Length >= BB_2.Length)
+                kount = BB.Length;
+            else
+                kount = BB_2.Length;
+            for (int i = 0; i < kount; i++)
+            {
+                if (i < BB.Length)
+                {
+                    BB_3[ustal] = BB[i];
+                    ustal = ustal + 1;
+                }
+                if (i < BB_2.Length)
+                {
+                    BB_3[ustal] = BB_2[i];
+                    ustal = ustal + 1;
+                }
+            }
+            foreach (int haos in BB_3)
+            {
+                Console.Write($" {haos} ");
+            }
+            Console.WriteLine();
+            Console.WriteLine("-----");
+            #endregion
+
+            //Task 14 
+            #region
+            int[] Y = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            int Yy = Y.Length, kolc = 0;
+            for (int i = 0; i < Yy / 2; i++)
+            {
+                kolc = Y[Yy - (i + 1)];
+                Y[Yy - (i + 1)] = Y[i];
+                Y[i] = kolc;
+            }
+            for (int i = 0; i < Yy; i++)
+            {
+                Console.Write($"  {Y[i]}  ");
+            }
+            Console.WriteLine();
+
+            #endregion
+
+            //Task 15 
+            #region
+            int[] SAD = new int[7] { 1, 2, 3, 4, 5, 6, 7 };
+            int gh = 0;
+            int HAP = 0;
+            if (!int.TryParse(Console.ReadLine(), out gh))
+            {
+                Console.WriteLine("IMPOSSIBLE");
+                return;
+            }
+            for (int i = 0; i < gh % SAD.Length; i++)
+            {
+                HAP = SAD[SAD.Length - 1];
+                for (int j = SAD.Length - 1; j > 0; j = j - 1)
+                {
+                    SAD[j] = SAD[j - 1];
+                }
+                SAD[0] = HAP;
+            }
+            for (int i = 0; i < SAD.Length; i++)
+            {
+                Console.Write($"  {SAD[i]}  ");
+            }
+            #endregion
+
+            //Task 13 
+            #region
+            int[] GASP = new int[5] { 15, 14, 13, 12, 11 };
+            int[] GASP_2 = new int[10] { 10, 9, 8, 7, 6, 5, 4, 3, 2, 1 };
+            int[] GASP_3 = new int[GASP.Length + GASP_2.Length];
+            int HOROSH = 0, PLOH = 0, HOHO = 0;
+            bool FUU = true;
+            while (FUU)
+            {
+                while (GASP[HOROSH] >= GASP_2[PLOH])
+                {
+                    GASP_3[HOHO] = GASP[HOROSH];
+                    HOROSH = HOROSH + 1;
+                    HOHO = HOHO + 1;
+                    if (HOROSH >= GASP.Length)
+                    {
+                        FUU = false;
+                        break;
+                    }
+                }
+                if (!FUU)
+                    break;
+                while (GASP_2[PLOH] >= GASP[HOROSH])
+                {
+                    GASP_3[HOHO] = GASP_2[PLOH];
+                    PLOH = PLOH + 1;
+                    HOHO = HOHO + 1;
+                    if (PLOH >= GASP_2.Length)
+                    {
+                        FUU = false;
+                        break;
+                    }
+                }
+            }
+            if (GASP.Length <= GASP_2.Length)
+            {
+                while (PLOH < GASP_2.Length)
+                {
+                    GASP_3[HOHO] = GASP_2[PLOH];
+                    HOHO = HOHO + 1;
+                    PLOH = PLOH + 1;
+                }
+            }
+            else
+            {
+                while (HOROSH < GASP.Length)
+                {
+                    GASP_3[HOHO] = GASP[HOROSH];
+                    HOHO = HOHO + 1;
+                    HOROSH = HOROSH + 1;
+                }
+            }
+            foreach (int llol in GASP_3)
+            {
+                Console.Write($"  {llol}  ");
+            }
+            Console.WriteLine();
+            #endregion
+
+
+            
+
+
+
+        }
+    }
+
+
+
+
