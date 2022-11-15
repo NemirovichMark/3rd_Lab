@@ -364,33 +364,55 @@ static void Printing_List(List<double> arr) { for (int i = 0; i < arr.Count; i++
 // I've done algorithms, which I hadn't done yet
 #region Binary_Search
 int Indexi = 0;
-            double Target = 3;
-            double[] Nums = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-            int Left_Index = 0;
-            int Right_Index = Nums.Length-1;
+double Target = 3;
+double[] Nums = { 1, 2, 4, 5, 6, 7, 8, 9, 10 };
+int Left_Index = 0;
+int Right_Index = Nums.Length - 1;
 
-            while (true)
-            {
-                Indexi = (Left_Index + Right_Index) / 2;
-                if (Target > Nums[Indexi]) Left_Index = Indexi;
-                else if (Target < Nums[Indexi]) Right_Index = Indexi;
-                    if (Target == Nums[Indexi]) break;
-            }
-
-            Console.WriteLine(Indexi);
+while (true)
+{
+    Indexi = (Left_Index + Right_Index) / 2;
+    if (((Left_Index == Right_Index) || (Left_Index+1 == Right_Index)) && (Target != Nums[Indexi]))
+    {
+        Indexi = -1;
+        break;
+    }
+    else if (Target > Nums[Indexi]) Left_Index = Indexi;
+    else if (Target < Nums[Indexi]) Right_Index = Indexi;
+    if (Target == Nums[Indexi]) break;
+}
+if (Indexi == -1) Console.WriteLine("There is no Targer");
+else Console.WriteLine(Indexi);
 #endregion
+
 #region Arrays_Merging
-double[] A = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-            double[] B = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-            double[] Final_Nums = new double[A.Length + B.Length];
+double[] A = { 1, 2, 3, 4, 5, 6};
+double[] B = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+double[] Final_Nums = new double[A.Length + B.Length];
+int point = 0;
 
-            for(int i = 0; i < A.Length; i++)
-            {
-                Final_Nums[2*i] = A[i];
-                Final_Nums[2*i + 1] = B[i];
-            }
+for (int i = 0; i < Math.Max(A.Length, B.Length); i++)
+{
+    if (i < Math.Min(A.Length, B.Length))
+    {
+        Final_Nums[2 * i] = A[i];
+        Final_Nums[2 * i + 1] = B[i];
+    }
+    else
+    {
+        if (A.Length > B.Length)
+        {
+            Final_Nums[2 * i - point] = A[i];
+            point++;
+        } else
+        {
+            Final_Nums[2 * i - point] = B[i];
+            point++;
+        }
+    }
+}
 
-            Printing(Final_Nums);
+Printing(Final_Nums);
 #endregion
 #region Ordered_Arrays_Merging
 double[] A = {1, 2, 3, 4, 5, 9, 10};
