@@ -386,39 +386,20 @@ namespace _3rd_Lab
             #endregion
             #region lvl3-1
             int[] JJ = { 1, 3, 6, 6, 5, 6};
-            int maxjj = 0;
-            int indexjj = 0;
-            int kJJ = 0;
-            
+            int[] indexJJ = new int[0];
+            double maxJJ = JJ.Max();
             for (int i = 0; i < JJ.Length; i++)
             {
-                if (JJ[i] > maxjj)
-                {
-                    maxjj = JJ[i];
-                    kJJ = 0;
-                }
-                if (JJ[i] == maxjj)
-                {
-                    kJJ +=1;
-                }
-                
+              if (JJ[i] == maxJJ)
+              {
+                Array.Resize(ref indexJJ, indexJJ.Length + 1);
+                indexJJ[indexJJ.Length - 1] = i;
+              }
             }
-            int kaa = 0;
-            int[] sad = new int[kJJ];
-            for (int i = 0; i < JJ.Length; i++)
+            foreach (int i in indexJJ)
             {
-                if (JJ[i] == maxjj)
-                {
-                    
-                    sad[kaa] = i;
-                    kaa += 1;
-                }
-            }
-
-            foreach (int i in sad)
-            {
-                Console.Write(i);
-                Console.Write(' ');
+              Console.Write(i);
+              Console.Write(" ");
             }
             #endregion
             #region lvl3-5
@@ -487,17 +468,8 @@ namespace _3rd_Lab
             }
             #endregion
             #region lvl3-9
-            int n = 0;
-            Console.WriteLine("Введите длину массива");
-            int.TryParse(Console.ReadLine(), out n);
-            double[] mm13 = new double[n];
-            Console.WriteLine("Введите элементы массива");
-            for (int i = 0; i < n; i++)
-            {
-                double x = 0;
-                double.TryParse(Console.ReadLine(), out x);
-                mm13[i] = x;
-            }
+            const int n = 6;
+            double[] mm13 = new double[n] {7, 1, 2, 3, 1, 1};
             int coun = 0, max1 = 1, max2 = 1;
             for (int i = 0; i < n - 1; i++)
             {
@@ -506,14 +478,6 @@ namespace _3rd_Lab
                  coun++;
                  max1 = Math.Max(max1, coun);
                }
-               else
-               {
-
-                    coun = 0;
-               }
-            }
-            for (int i = 0; i < n - 1; i++)
-            {
                if (mm13[i] < mm13[i + 1])
                {
                  coun++;
@@ -522,30 +486,30 @@ namespace _3rd_Lab
                }
                else
                {
+
                     coun = 0;
                }
             }
             Console.WriteLine(Math.Max(max1, max2));
             #endregion
             #region lvl3-12
-            int n14 = 6;
-            double[] mm14 = new double[n14];
-            Console.WriteLine("Введите элементы массива");
-            for (int i = 0; i < n14; i++)
+           int[] awe = new int[6] {1, 1, 1, -5, -5, -5};
+           int indexAwe = 0;
+           int kx = 0;
+           for (int i = 0; i < awe.Length; i++)
             {
-              double x = 0;
-              double.TryParse(Console.ReadLine(), out x);
-              mm14[i] = x;
-            }
-            for (int i = 0; i < n14; i++)
-            {
-               if (mm14[i] < 0) mm14[i] = 0;
-            }
                 
-             for (int i = 0; i < n14; i++)
-             {
-                if (mm14[i] != 0) Console.Write(mm14[i] + " ");
-             }
+                if (awe[i] <  0)
+                {
+                    kx++;
+                    indexAwe = i;
+                    for (int c = indexAwe; c < awe.Length - kx; c++)
+                        awe[c] = awe[c+1];
+                }
+            }
+           for (int i = 0; i < awe.Length - kx; i++)
+                Console.Write("{0:d} ", awe[i]);
+           Console.WriteLine();
              #endregion
             #region lvl3-13
             int n15 = 0;
@@ -687,18 +651,6 @@ namespace _3rd_Lab
             else
             {
 
-                for (int i = 0; i < size * 2; i++)
-                {
-                    if (i % 2 == 0)
-                    {
-                        arr_C[i] = arr[i / 2];
-                    }
-                    else
-                    {
-                        arr_C[i] = arr_B[i / 2];
-                    }
-                }
-
                 for (int i = size; i < sizeB; i++)
                 {
                     arr_C[i + size] = arr_B[i];
@@ -725,7 +677,7 @@ namespace _3rd_Lab
             {
                 Array.Resize(ref YYY, YYY.Length + 1);
                 YYY[sizeS] = Convert.ToDouble(arr_A_2_i);
-                sizeS+;
+                sizeS++;
                 arr_A_2_i = Console.ReadLine();
             }
 
