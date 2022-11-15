@@ -177,8 +177,9 @@ class HelloWorld
         for (int i = n26 - 1; i > recind; i--) { 
             arr261[i] = arr261[i - 1];
         }
-        arr261[recind] = p26;
-
+        arr261[recind+1] = p26;
+        foreach(double x in arr261)
+            Console.Write(x+" ");
         #endregion
         
         #region 2-5
