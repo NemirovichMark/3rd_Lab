@@ -1,0 +1,783 @@
+#region Ввод переменных
+using System.Text.Json.Serialization;
+
+int newlen = 0;
+int minin = 0, maxin = 0, len, temp, temp1;
+double max = -1000000000000, min = 100000000000, med=0;
+double counter;
+double[] array = new double[5];
+double[] newarr = new double[newlen];
+double P, Q;
+int[] arrayA, arrayB, arrayAB;
+int lenA, lenB, lenAB;
+int k;
+double Saul_Goodman;
+int max_pos = 0;
+int max_neg = 0;
+string s;
+#endregion
+#region 1.6
+double S = 0;
+for (int i = 0; i < 5; i++)
+{
+    Console.WriteLine($"Введите {i} элемент массива");
+    try { array[i] = Convert.ToInt32(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+for (int i = 0; i < 5; i++)
+{
+    S += array[i] * array[i];
+}
+Console.WriteLine($"lvl1 tsk6 {Math.Sqrt(S):f3}");
+#endregion
+#region 1.10
+Console.WriteLine("Enter P");
+try { P = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+Console.WriteLine("Enter Q");
+try { Q = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+if (P > Q)
+{
+    counter = P;
+    P = Q;
+    Q = counter;
+}
+else if (Q == P)
+{
+    Console.WriteLine("You enter the same value of P and Q. You disappointed me.");
+    return;
+}
+array = new double[10];
+counter = 0;
+for (int i = 0; i < 10; i++)
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+for (int i = 0; i < 10; i++)
+{
+    if ((array[i] > P) & (array[i] < Q))
+    {
+        counter++;
+    }
+}
+Console.WriteLine($"lvl1 tsk10 {counter}");
+#endregion
+#region 1.11
+int num = 0;
+array = new double[10];
+for (int i = 0; i < 10; i++)
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+for (int i = 0; i < 10; i++)
+{
+    if (array[i] > 0)
+    {
+        num++;
+    }
+}
+double[] temparr = new double[num];
+num = 0;
+for (int i = 0; i < 10; i++)
+{
+    if (array[i] > 0)
+    {
+        temparr[num] = array[i];
+        Console.WriteLine($"lvl1 tsk11 {num} element of new array = {temparr[num]}");
+        num++;
+    }
+}
+#endregion
+#region 1.12
+double numel = 0;
+double numnum = 0;
+array = new double[8];
+for (int i = 0; i < 8; i++)
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+for (int i = 0; i < 8; i++)
+{
+    if (array[i] < 0)
+    {
+        numel = array[i];
+        numnum = i;
+    }
+}
+Console.WriteLine($"lvl1 tsk12 number of min elem - {numnum} value of this elem - {numel}");
+#endregion
+#region 1.13
+int numc = 0, numn = 0;
+array = new double[10];
+double[] chet = new double[5];
+double[] nechet = new double[5];
+for (int i = 0; i < 10; i++)
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+for (int i = 0; i < 10; i++)
+{
+    if (i % 2 == 0)
+    {
+        chet[numc] = array[i];
+        numc++;
+    }
+    else
+    {
+        nechet[numn] = array[i];
+        numn++;
+    }
+}
+for (int i = 0; i < 5; i++) //chet massive out
+{
+    Console.WriteLine($"lvl1 tsk13 chet massive {chet[i]}");
+}
+for (int i = 0; i < 5; i++) //nechet massive out
+{
+    Console.WriteLine($"lvl1 tsk13 nechet massive {nechet[i]}");
+}
+#endregion
+#region 2.5
+Console.WriteLine("Enter lentgh of massive");
+try { len = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+array = new double[len];
+for (int i = 0; i < len; i++) //ввод исходного массива
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+
+for (int i = 0; i < len; i++) //Определние макс и мин индексов и значений массива
+{
+    if (array[i] > max)
+    {
+        max = array[i];
+        maxin = i;
+    }
+    else if (array[i] < min)
+    {
+        min = array[i];
+        minin = i;
+    }
+}
+
+if (minin > maxin)
+{
+    maxin += minin;
+    minin = maxin - minin;
+    maxin = maxin - minin;
+}
+else if (minin == maxin)
+{
+    Console.WriteLine("Massive contain the same elements");
+}
+
+newlen = Math.Abs(maxin - minin) - 1;
+if (newlen <= 0)
+    Console.WriteLine("There's no elements between min and max");
+else
+{
+    newarr = new double[newlen];
+}
+
+k = 0;
+for (int i = minin + 1; i < maxin; i++)
+{
+    if (array[i] < 0)
+    {
+        newarr[k] = array[i];
+        Console.Write($"{newarr[k]} ");
+        k++;
+    }
+}
+
+
+#endregion
+#region 2.9
+Console.WriteLine("Enter lentgh of massive");
+try { len = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+array = new double[len];
+for (int i = 0; i < len; i++) //ввод исходного массива
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+
+for (int i = 0; i < len; i++) //Определние макс и мин индексов и значений массива
+{
+    if (array[i] > max)
+    {
+        max = array[i];
+        maxin = i;
+    }
+    else if (array[i] < min)
+    {
+        min = array[i];
+        minin = i;
+    }
+
+}
+
+if (minin > maxin)
+{
+    temp = minin;
+    minin = maxin;
+    maxin = temp;
+}
+else if (minin == maxin)
+{
+    Console.WriteLine("Massive contain the same elements");
+    return;
+}
+counter = 0;
+temp = minin;
+for (; minin < maxin; minin++)
+{
+    med += array[minin];
+    counter++;
+}
+Console.WriteLine($"lvl2 tsk9 average {med = med - minin / counter}");
+#endregion
+#region 2.10
+temp = 0;
+min = 100000000000;
+minin = -1;
+Console.WriteLine("Enter lentgh of massive");
+try { len = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+array = new double[len];
+newarr = new double[len - 1];
+for (int i = 0; i < len; i++) //ввод исходного массива
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+for (int i = 0; i < len; i++)  //поиск положительного минимума
+{
+    if (array[i] > 0 & array[i] < min)
+    {
+        min = array[i];
+        minin = i;
+    }
+}
+if (min == 100000000000)
+    Console.WriteLine("Are you idiot?");
+else
+{
+    for (int i = 0; i < len; i++)  //перенос всех элементов в новый массив исключая минимум
+    {
+        if (i == minin)
+        {
+            continue;
+        }
+        newarr[temp] = array[i];
+        Console.Write($"{newarr[temp]} ");
+        temp++;
+    }
+}
+#endregion
+#region 2.11
+minin = -2;
+Console.WriteLine("Enter P");
+try { P = Convert.ToDouble(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+Console.WriteLine("Enter lentgh of massive");
+try { len = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+array = new double[len];
+for (int i = 0; i < len; i++) //ввод исходного массива
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToInt32(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+    for (int i = 0; i < len; i++) //поиск индекса последнего положительного элемента
+{
+    if (array[i] > 0)
+    {
+        minin = i;
+    }
+}
+if (minin == -2)
+    Console.WriteLine("Stop cyberbulling");
+else
+{
+    Array.Resize(ref array, len + 1);
+    for (int i = len - 1; i >= minin; i--)
+    {
+        array[i + 1] = array[i];
+    }
+    array[minin + 1] = P;
+    for (int i = 0; i < len + 1; i++)
+    {
+        Console.WriteLine(array[i]);
+    }
+}
+#endregion
+#region 2.13
+max = -100000000;
+Console.WriteLine("Enter lentgh of massive");
+try { len = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+array = new double[len];
+for (int i = 0; i < len; i++) //ввод исходного массива
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+for (int i = 0; i < len; i++)
+{
+    if ((i % 2 == 0) || (array[i] > max))
+    {
+        maxin = i;
+        max = array[i];
+    }
+}
+array[maxin] = maxin;
+for (int i = 0; i < len; i++)
+{
+    Console.WriteLine(array[i]);
+}
+#endregion
+#region 2.15
+Console.WriteLine("Enter K");
+try { k = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+
+Console.WriteLine("Enter lentgh of massive A");
+try { lenA = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+arrayA = new int[lenA];
+
+for (int i = 0; i < lenA; i++)
+{
+    Console.WriteLine($"Enter {i} value of array A");
+    try { array[i] = Convert.ToInt32(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+
+Console.WriteLine("Enter lentgh of massive B");
+try { lenB = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+arrayB = new int[lenB];
+
+for (int i = 0; i < lenB; i++)
+{
+    Console.WriteLine($"Enter {i} value of array B");
+    try { arrayB[i] = Convert.ToInt32(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+lenAB = lenA + lenB;
+arrayAB = new int[lenAB];
+minin = 0;
+maxin = 0;
+//Ввод первой половины
+for (; minin < k; minin++)
+{
+    arrayAB[maxin] = arrayA[minin];
+    Console.WriteLine($"lvl2 tsk15 {arrayAB[maxin]}");
+    maxin++;
+}
+
+//Ввод внутреннего массива
+for (int i = 0; i < lenB; i++)
+{
+    arrayAB[maxin] = arrayB[i];
+    Console.WriteLine($"lvl2 tsk15 {arrayAB[maxin]}");
+    maxin++;
+}
+
+//Ввод второй половины массива
+for (; minin < lenA; minin++)
+{
+    arrayAB[maxin] = arrayA[minin];
+    Console.WriteLine($"lvl2 tsk15 {arrayAB[maxin]}");
+    maxin++;
+}
+#endregion
+#region 3.1
+max = -100000000;
+try { len = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+array = new double[len];
+s = "";
+for (int i = 0; i < len; i++)
+{
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+    if (array[i] > max)
+    {
+        max = array[i];
+        s = "";
+    }
+    if (max == array[i])
+    {
+        s += Convert.ToString(i);
+        s += " ";
+    }
+}
+string[] str = s.Split(" ");
+int[] result = new int[str.Length - 1];
+for (int i = 0; i < str.Length - 1; i++)
+{
+    try { result[i] = Convert.ToInt32(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+Console.WriteLine(string.Join("", result));
+#endregion
+#region 3.5
+Console.WriteLine("Enter lentgh of massive");
+try { len = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+array = new double[len];
+for (int i = 0; i < len; i++) //ввод исходного массива
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToInt32(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+for (int i = 0; i < len; i += 2)
+{
+    for (int j = 0; j < len - 2; j += 2)
+    {
+        if (array[j] > array[j + 2])
+        {
+            Saul_Goodman = array[j];
+            array[j] = array[j + 2];
+            array[j + 2] = Saul_Goodman;
+        }
+    }
+}
+for (int i = 0; i < len; i++)
+    Console.Write(array[i]);
+#endregion
+#region 3.8
+Console.WriteLine("Enter lentgh of massive");
+try { len = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+array = new double[len];
+for (int i = 0; i < len; i++) //ввод исходного массива
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToInt32(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+
+for (int i = 0; i < len - 1; i++)
+{
+    if (array[i] < 0)
+    {
+        double amin = array[i];
+        int imin = i;
+        for (int j = i + 1; j < len; j++)
+        {
+            if (array[j] > amin)
+            {
+                amin = array[j];
+                imin = j;
+            }
+        }
+        array[imin] = array[i];
+        array[i] = amin;
+    }
+}
+for (int i = 0; i < len; i++)
+    Console.Write($" {array[i]} ");
+#endregion
+#region 3.12
+len = 0;
+array = new double[12];
+for (int i = 0; i < 12; i++) //ввод исходного массива
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+for (int i = 0; i < 12; i++)
+{
+    if (array[i] < 0)
+        len++;
+}
+newarr = new double[12 - len];
+k = 0;
+for (int i = 0; i < 12; i++)
+{
+    if (array[i] >= 0)
+    {
+        newarr[k] = array[i];
+        k++;
+    }
+
+}
+for (int i = 0; i < 12 - len; i++)
+{
+    Console.WriteLine($" {newarr[i]} ");
+}
+#endregion
+#region 3.9
+Console.WriteLine("Enter lentgh of massive");
+try { len = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+array = new double[len];
+for (int i = 0; i < len; i++) //ввод исходного массива
+{
+    Console.WriteLine($"Enter {i} value of array");
+    try { array[i] = Convert.ToInt32(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+temp = 0;
+temp1 = 0;
+for (int i = 0; i < len - 1; i++)
+{
+    if (array[i] < array[i + 1])
+    {
+        temp++;
+        max_pos = Math.Max(max_pos, temp);
+    }
+    else
+    {
+        temp = 1;
+    }
+    if (array[i] > array[i + 1])
+    {
+        temp1++;
+        max_neg = Math.Max(max_neg, temp1);
+    }
+    else
+    {
+        temp1 = 1;
+    }
+}
+max = Math.Max(max_pos, max_neg);
+Console.WriteLine(max);
+#endregion
+#region 3.13
+Console.WriteLine("Enter count values");
+int n = 0;
+try { n = Convert.ToInt32(Console.ReadLine()); }
+catch { Console.WriteLine("Error"); return; }
+array = new double[n];
+Console.WriteLine("---------");
+for (int i = 0; i < n; i++)
+{
+    try { array[i] = Convert.ToDouble(Console.ReadLine()); }
+    catch { Console.WriteLine("Error"); return; }
+}
+string value = "";
+for (int i = 0; i < n; i++)
+{
+    if (value.Contains(Convert.ToString(array[i])))
+    {
+        continue;
+    }
+    else
+    {
+        value += Convert.ToString(array[i]);
+    }
+}
+str = value.Split();
+double[] array2 = new double[str.Length];
+for (int i = 0; i < str.Length; i++)
+{
+    array2[i] = Convert.ToDouble(str[i]);
+}
+array = array2;
+Console.WriteLine(string.Join(" ", array2));
+#endregion
+#region alg
+static int Z11(double[] array, double x)
+{
+    int i1 = 0;
+    int i2 = array.Length - 1;
+    int i = (i1 + i2) / 2;
+    while (i2 > i1)
+    {
+        if (array[i] == x)
+        {
+            return i;
+        }
+        else
+        {
+            if (array[i] > x)
+            {
+                i2 = i + 1;
+                i = (i1 + i2) / 2;
+            }
+            else
+            {
+                i1 = i + 1;
+                i = (i1 + i2) / 2;
+            }
+        }
+    }
+    return -1;
+}
+
+static int[] Z12(int[] a, int[] b)
+{
+    int[] c = new int[a.Length + b.Length];
+
+    int min = Math.Min(a.Length, b.Length);
+    for (int i = 0; i < min; i++)
+    {
+        c[2 * i] = a[i];
+        c[2 * i + 1] = b[i];
+    }
+    if (a.Length != b.Length)
+    {
+        int count = min * 2;
+        if (a.Length > b.Length)
+        {
+            for (int i = min; i < a.Length; i++)
+            {
+                c[count] = a[i];
+                count++;
+            }
+        }
+        else
+        {
+            for (int i = min; i < b.Length; i++)
+            {
+                c[count] = b[i];
+                count++;
+            }
+        }
+    }
+    return c;
+}
+#region Z13
+{
+    Console.WriteLine("Task 13");
+    Console.WriteLine("Write  size of array A");
+    if (Int32.TryParse(Console.ReadLine(), out int size_a13))
+    {
+        double[] a13 = new double[size_a13];
+        for (int i = 0; i < a13.Length; i++)
+        {
+            Console.WriteLine("Write x" + i);
+            Double.TryParse(Console.ReadLine(), out a13[i]);
+        }
+        Console.WriteLine("Write  size of array B");
+        if (Int32.TryParse(Console.ReadLine(), out int size_b13))
+        {
+            double[] b13 = new double[size_b13];
+            for (int i = 0; i < b13.Length; i++)
+            {
+                Console.WriteLine("Write x" + i);
+                Double.TryParse(Console.ReadLine(), out b13[i]);
+            }
+            double[] c13 = new double[a13.Length + b13.Length];
+            Array.Sort(a13);
+            Array.Reverse(a13);
+            Array.Sort(b13);
+            Array.Reverse(b13);
+            int j_a13 = 0, j_b13 = 0;
+            for (int i = 0; i < c13.Length; i++)
+            {
+                if (j_a13 < a13.Length)
+                {
+                    if (j_b13 < b13.Length)
+                    {
+                        if (a13[j_a13] > b13[j_b13])
+                        {
+                            c13[i] = a13[j_a13];
+                            j_a13++;
+                        }
+                        else
+                        {
+                            c13[i] = b13[j_b13];
+                            j_b13++;
+                        }
+                    }
+                    else
+                    {
+                        c13[i] = a13[j_a13];
+                        j_a13++;
+                    }
+                }
+                else
+                {
+                    c13[i] = b13[j_b13];
+                    j_b13++;
+                }
+            }
+            Console.WriteLine(String.Join(" ", c13));
+        }
+    }
+}
+    #endregion
+    static int[] Z14(int[] array)
+
+{
+
+    for (int i = 0; i < array.Length / 2; i++)
+
+    {
+
+        int temp = array[i];
+
+        array[i] = array[array.Length - i - 1];
+
+        array[array.Length - i - 1] = temp;
+
+    }
+
+    return array;
+
+}
+
+
+
+
+static int[] Z15(int[] array)
+
+{
+
+    int[] result = new int[array.Length];
+
+    int count = 0;
+
+    int f = Convert.ToInt32(Console.ReadLine());
+
+    for (int i = array.Length - (f % array.Length); i < array.Length; i++)
+
+    {
+
+        result[count] = array[i];
+
+        count++;
+
+    }
+
+
+
+
+    for (int i = 0; i < array.Length - (f % array.Length); i++)
+
+    {
+
+        result[count] = array[i];
+
+        count++;
+
+    }
+
+    return result;
+
+}
+#endregion
