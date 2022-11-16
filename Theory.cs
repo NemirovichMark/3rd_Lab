@@ -385,21 +385,33 @@ namespace _3rd_Lab
             }
             #endregion
             #region lvl3-1
-            int[] JJ = { 1, 3, 6, 6, 5, 6};
-            int[] indexJJ = new int[0];
-            double maxJJ = JJ.Max();
-            for (int i = 0; i < JJ.Length; i++)
+            int n;
+            int.TryParse(Console.ReadLine(), out n);
+            double[] JJ = new double[n];
+            double[] JJa = new double[n];
+            double maxxxxqwe = -1000000000;
+            int kx = 0;
+            for (int i = 0; i < n; i++)
             {
-              if (JJ[i] == maxJJ)
-              {
-                Array.Resize(ref indexJJ, indexJJ.Length + 1);
-                indexJJ[indexJJ.Length - 1] = i;
-              }
+                double x;
+                double.TryParse(Console.ReadLine(), out x);
+                JJ[i] = x;
+                if (x > maxxxxqwe)
+                {
+                    maxxxxqwe = x;
+                    kx = 0;
+                    JJa[kx] = x;
+                }
+                else if (x == maxxxxqwe)
+                {
+                    kx++;
+                    JJa[kx] = x;
+                }
             }
-            foreach (int i in indexJJ)
+            for (int i = 0; i<=kx; i++)
             {
-              Console.Write(i);
-              Console.Write(" ");
+                Console.Write(JJa[i]);
+                Console.Write(" ");
             }
             #endregion
             #region lvl3-5
@@ -468,48 +480,64 @@ namespace _3rd_Lab
             }
             #endregion
             #region lvl3-9
-            const int n = 6;
-            double[] mm13 = new double[n] {7, 1, 2, 3, 1, 1};
-            int coun = 0, max1 = 1, max2 = 1;
-            for (int i = 0; i < n - 1; i++)
+            Console.WriteLine("Введите размер массива");
+            int n;
+            int.TryParse(Console.ReadLine(), out n);
+            double[] sas = new double[n];
+            Console.WriteLine("Введите элементы массива");
+            for (int i = 0; i < n; i++)
             {
-               if (mm13[i] > mm13[i + 1])
-               {
-                 coun++;
-                 max1 = Math.Max(max1, coun);
-               }
-               if (mm13[i] < mm13[i + 1])
-               {
-                 coun++;
-                 max2 = Math.Max(max2, coun);
-
-               }
-               else
-               {
-
-                    coun = 0;
-               }
+                double x;
+                double.TryParse(Console.ReadLine(), out x);
+                sas[i] = x;
             }
-            Console.WriteLine(Math.Max(max1, max2));
+            int maxsas = 1;
+            int minsas = 1;
+            for (int i = 1; i < n; i++)
+            {
+                if (sas[i] < sas[i - 1])
+                {
+                    minsas+=1;
+                }
+                else if (sas[i] > sas[i - 1])
+                { 
+                    maxsas+=1;
+                }
+                
+            }
+            if (maxsas > minsas)
+                Console.WriteLine(maxsas);
+            else
+                Console.WriteLine(minsas);
             #endregion
             #region lvl3-12
-           int[] awe = new int[6] {1, 1, 1, -5, -5, -5};
-           int indexAwe = 0;
-           int kx = 0;
-           for (int i = 0; i < awe.Length; i++)
+            int n = 12;
+            double[] awe = new double[n];
+            for (int i = 0; i < n; i++)
             {
-                
-                if (awe[i] <  0)
+                double x;
+                double.TryParse(Console.ReadLine(), out x);
+                awe[i] = x;
+            }
+            
+            for (int i = 0; i < n; i++)
+            {
+                if (awe[i] < 0)
                 {
-                    kx++;
-                    indexAwe = i;
-                    for (int c = indexAwe; c < awe.Length - kx; c++)
-                        awe[c] = awe[c+1];
+                    for (int h = i; h < n - 1; h++)
+                    {
+                        awe[h] = awe[h + 1];
+
+                    }
+                    n--;
+                    i--;
                 }
             }
-           for (int i = 0; i < awe.Length - kx; i++)
-                Console.Write("{0:d} ", awe[i]);
-           Console.WriteLine();
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write(awe[i]);
+                Console.Write(" ");
+            }
              #endregion
             #region lvl3-13
             int n15 = 0;
