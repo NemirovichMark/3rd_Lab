@@ -1,0 +1,67 @@
+int nnn = 0;
+int mmm = 0;
+try
+{
+    Console.WriteLine("Сколько элементов в массиве А?");
+    nnn = int.Parse(Console.ReadLine());
+    Console.WriteLine("Сколько элементов в массиве B?");
+    mmm = int.Parse(Console.ReadLine());
+}
+catch { }
+if (nnn > 0 && mmm > 0)
+{
+    List<int> A = new List<int>(nnn);
+    List<int> B = new List<int>(mmm);
+    int[]C=new int[nnn + mmm];
+    for (int i = 0; i < nnn; i++)
+    {
+        Console.WriteLine("Введите элементы массива А ");
+        A.Add(int.Parse(Console.ReadLine()));
+    }
+    A.Sort();
+    A.Reverse();
+    
+    for (int i = 0; i < mmm; i++)
+    {
+        Console.WriteLine("Введите элементы массива B ");
+        B.Add(int.Parse(Console.ReadLine()));
+    }
+    B.Sort();
+    B.Reverse();
+    
+    int f = 0;
+    int y = 0;
+    int ss = 0;
+    int rrr = 0;
+    int j=0;
+    for (int i = 0; i < nnn+mmm; i++)
+    {
+        if(j==nnn)
+        {
+            B.CopyTo(C, nnn);
+            break;
+        }
+        if(rrr==mmm)
+        {
+            A.CopyTo(C, mmm);
+            break;
+        }
+        if (A[j] > B[rrr] && j< nnn && rrr < mmm)
+        {
+            C[i]=A[j];
+            j++;
+        }
+        
+        if ( A[j] < B[rrr] && j < nnn && rrr<mmm )
+        {
+            C[i] = B[rrr];
+            rrr++;
+        }
+        
+        
+    }
+
+    foreach (int i in C)
+        Console.Write(i + " ");
+}
+else { }
