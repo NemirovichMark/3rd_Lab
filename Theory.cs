@@ -400,12 +400,12 @@ namespace _3rd_Lab
                 {
                     maxxxxqwe = x;
                     kx = 0;
-                    JJa[kx] = x;
+                    JJa[kx] = i;
                 }
                 else if (x == maxxxxqwe)
                 {
                     kx++;
-                    JJa[kx] = x;
+                    JJa[kx] = i;
                 }
             }
             for (int i = 0; i<=kx; i++)
@@ -480,35 +480,28 @@ namespace _3rd_Lab
             }
             #endregion
             #region lvl3-9
-            Console.WriteLine("Введите размер массива");
-            int n;
-            int.TryParse(Console.ReadLine(), out n);
-            double[] sas = new double[n];
-            Console.WriteLine("Введите элементы массива");
-            for (int i = 0; i < n; i++)
+            int[] dad = new int[8] {1, 2, 3, 4, 3, 2, 1, 0};
+            int k = 0;
+            int k2 = 0;
+            for (int i = 1; i < 8; i++)
             {
-                double x;
-                double.TryParse(Console.ReadLine(), out x);
-                sas[i] = x;
-            }
-            int maxsas = 1;
-            int minsas = 1;
-            for (int i = 1; i < n; i++)
-            {
-                if (sas[i] < sas[i - 1])
+                if (dad[i] < dad[i - 1])
                 {
-                    minsas+=1;
+                    k += 1;
                 }
-                else if (sas[i] > sas[i - 1])
-                { 
-                    maxsas+=1;
+                else if (dad[i] > dad[i - 1])
+                {
+                    k2 += 1;
                 }
-                
             }
-            if (maxsas > minsas)
-                Console.WriteLine(maxsas);
+            if (k > k2)
+            {
+                Console.WriteLine(k+1);
+            }
             else
-                Console.WriteLine(minsas);
+            {
+                Console.WriteLine(k2+1);
+            }
             #endregion
             #region lvl3-12
             int n = 12;
