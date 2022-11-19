@@ -480,27 +480,32 @@ namespace _3rd_Lab
             }
             #endregion
             #region lvl3-9
-            int[] dad = new int[8] {1, 2, 3, 4, 3, 2, 1, 0};
-            int k = 0;
-            int k2 = 0;
-            for (int i = 1; i < 8; i++)
-            {
-                if (dad[i] < dad[i - 1])
-                {
-                    k += 1;
+            int[] dad = new int[15] {1, 2, 3, 4, 0, -2, 3, 4, 4, 6, 3, 1, -1, -3, 3};
+            int k = 1;
+            int k2 = 1;
+            for (int i = 0; i < dad.Length - 1; i++)
+            { 
+                if (dad[i] < dad[i + 1])
+                { 
+                 k2 += 1;
                 }
-                else if (dad[i] > dad[i - 1])
+                if (dad[i] > dad[i + 1])
                 {
-                    k2 += 1;
+                k += 1;
+                }
+                if (dad[i] == dad[i + 1])
+                {
+                    k = 1;
+                    k2 = 1;
                 }
             }
             if (k > k2)
             {
-                Console.WriteLine(k+1);
+                Console.WriteLine(k);
             }
             else
             {
-                Console.WriteLine(k2+1);
+                Console.WriteLine(k2);
             }
             #endregion
             #region lvl3-12
