@@ -11,10 +11,9 @@ namespace ConsoleApp1
         static List<double> inputLists() //Method for entering simbols in list
         {
             var A = new List<double>();
-            Int16 ok;
+            Int16 ok = 0;
             int n = 0;
 
-            ok = 0;
             while (ok == 0)
             {
                 try
@@ -53,10 +52,9 @@ namespace ConsoleApp1
         static double[] inputArrays() //Method for entering simbols in array
         {
             double[] A;
-            Int16 ok;
+            Int16 ok = 0;
             int n = 0;
 
-            ok = 0;
             while (ok == 0)
             {
                 try
