@@ -95,20 +95,9 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-
-            /*int[] a;
-              a = new int[] { 1, 2, 3 };
-              Console.WriteLine(a);*/
-            /*
-             * q = Console.ReadLine();
-             * float user_input = q == null ? 0 : float.Parse(q);
-            */
-
             //TASKS
 
-
-
-
+            
             //part 1
             /*#region 6
                 double number, summ;
@@ -152,10 +141,10 @@ namespace ConsoleApp1
                         indQ = i;
                 }
                 Console.WriteLine(Math.Abs(indQ - indP - 1));   
-                #endregion
+            #endregion
 
 
-                #region 11
+            #region 11
                 int[] ints, plusints;
                 ints = new int[] { 32, -54, 8, -65, -125, -4, 0, 96, 10, 1 };
                 plusints = new int[5];
@@ -187,10 +176,10 @@ namespace ConsoleApp1
                     }
                 }
                 Console.WriteLine("index = {0}, number = {1}", count, last);
-                #endregion
+            #endregion
 
 
-                #region 13
+            #region 13
                 int[] ints, ints1, ints2;
                 ints = new int[] { 32, -54, 9, 2, -125, -4, 77, 8, 25, 99 };
                 ints1 = new int[5];
