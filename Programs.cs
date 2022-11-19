@@ -25,7 +25,7 @@ namespace ConsoleApp1
                 }
                 catch
                 {
-                    Console.WriteLine("Enter a right simbol");
+                    Console.WriteLine("Enter right simbols");
                 }
             }
 
@@ -41,7 +41,7 @@ namespace ConsoleApp1
                     }
                     catch
                     {
-                        Console.WriteLine("Enter a right simbol");
+                        Console.WriteLine("Enter right simbols");
                     }
                 }
             }
@@ -67,7 +67,7 @@ namespace ConsoleApp1
                 }
                 catch
                 {
-                    Console.WriteLine("Enter a right simbol");
+                    Console.WriteLine("Enter right simbols");
                 }
             }
 
@@ -84,7 +84,7 @@ namespace ConsoleApp1
                     }
                     catch
                     {
-                        Console.WriteLine("Enter a right simbol");
+                        Console.WriteLine("Enter right simbols");
                     }
                 }
             }
