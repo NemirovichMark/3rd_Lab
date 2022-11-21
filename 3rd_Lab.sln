@@ -1,25 +1,112 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32630.194
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3rd_Lab", "3rd_Lab.csproj", "{9D986EC4-2E4B-4FCE-84C6-9501CE396F60}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{9D986EC4-2E4B-4FCE-84C6-9501CE396F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D986EC4-2E4B-4FCE-84C6-9501CE396F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D986EC4-2E4B-4FCE-84C6-9501CE396F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D986EC4-2E4B-4FCE-84C6-9501CE396F60}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {81830C5F-B9BF-4AFB-AF7C-20645099C2E5}
-	EndGlobalSection
-EndGlobal
+//Task 10 Level 1
+int j = 1, k = 1, kol = 0;
+double[] a = new double[10];
+double s, P, Q = 0;
+Console.WriteLine("Enter array: ");
+for (int i = 0; i < a.Length; i++)
+{
+    double.TryParse(Console.ReadLine(), out s);
+    a[i] = s;
+}
+Console.WriteLine("Enter P: ");
+double.TryParse(Console.ReadLine(), out P);
+Console.WriteLine("Enter Q: ");
+double.TryParse(Console.ReadLine(), out Q);
+if (P < Q)
+{
+    for (int i = 0; i < a.Length; i++)
+    {
+        if (a[i] == P)
+            j = i;
+        if (a[i] == Q)
+            k = i;
+        kol = Math.Abs(k - j + 1);
+    }
+}
+else Console.WriteLine("error");
+Console.WriteLine($"The amount: {kol}");
+
+
+//Task 6 level 2 sorry, i didn't add all program
+double sum = 0;
+double sr = 0;
+Console.WriteLine("Enter amount of elements:");
+int n = 0;
+int.TryParse(Console.ReadLine(), out n);
+double[] a = new double[n];
+double s = 0;
+Console.WriteLine("Enter array a:");
+for (int i = 0; i < n; i++)
+{
+    double.TryParse(Console.ReadLine(), out s);
+    a[i] = s;
+}
+Console.WriteLine("Enter P: ");
+double p = 0;
+double.TryParse(Console.ReadLine(), out p);
+for (int i = 0; i < n; i++)
+    sum += a[i];
+sr = sum / n;
+double x = 0;
+int xi = 0;
+for (int i = 0; i < n; i++)
+{
+    if (a[i] - 1 == sr)
+    {
+        x = a[i];
+        xi = i;
+    }
+}
+double ch = 99999;
+int index = 0;
+for (int i = 0; i < n; i++)
+{
+    if (Math.Abs(a[i] - sr) < ch)
+    {
+        ch = Math.Abs(a[i] - sr);
+        index = i;
+    }
+}
+for (int i = n - 2; i >= index + 1; i--)
+{
+    a[i + 1] = a[i];
+}
+a[index + 1] = p;
+Console.WriteLine("Array:");
+for (int i = 0; i < n; i++)
+    Console.WriteLine("{0} ", a[i]);
+
+//Task 1 level 3
+Console.WriteLine("Enter amount of elements:");
+int n = 0;
+int.TryParse(Console.ReadLine(), out n);
+double[] a = new double[n];
+double s = 0;
+Console.WriteLine("Enter array a:");
+for (int i = 0; i < n; i++)
+{
+    double.TryParse(Console.ReadLine(), out s);
+    a[i] = s;
+}
+
+double max = -999999999;
+double[] maxarr = new double[n];
+int j = 0;
+for (int i = 0; i < a.Length; i++)
+{
+    if (a[i] > max)
+    {
+        max = a[i];
+        j = 0;
+        maxarr[j] = i;
+    }
+    else if (a[i] == max)
+    {
+        j++;
+        maxarr[j] = i;
+    }
+
+}
+Console.WriteLine("New array:");
+for (int i = 0; i <= j; i++)
+    Console.Write("{0} ", maxarr[i]);
