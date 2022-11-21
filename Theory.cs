@@ -487,11 +487,13 @@ namespace _3rd_Lab
             { 
                 if (dad[i] < dad[i + 1])
                 { 
-                 k2 += 1;
+                  
+                  k += 1; 
                 }
-                if (dad[i] > dad[i + 1])
-                {
-                k += 1;
+                else if (dad[i] > dad[i + 1])
+                {   
+                    k2 += 1;
+                    k = 1;
                 }
                 if (dad[i] == dad[i + 1])
                 {
