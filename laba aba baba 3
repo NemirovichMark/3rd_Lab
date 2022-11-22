@@ -1,0 +1,867 @@
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
+using System.Runtime.Intrinsics.X86;
+using System.Text.RegularExpressions;
+
+class HelloWorld
+{
+    static void Main()
+
+    {
+        
+        #region 6-1
+        int lengh =5;
+        double[] len = new double[5];
+        double ol=0;
+        for (int i = 0; i < lengh; i++) {
+            len[i]=Convert.ToDouble(Console.ReadLine());
+            len[i] *= len[i];
+
+        }
+        for (int i = 0; i < lengh; i++) { 
+            ol+=len[i];
+        }
+        ol=Math.Sqrt(ol);
+        Console.WriteLine(ol);
+        #endregion
+        #region 10-1
+        int lengh1 = 10;
+        double[] ch = new double[10];
+        int cnt = 0;
+        for (int i = 0; i < lengh1; i++)
+        {
+            ch[i] = Convert.ToDouble(Console.ReadLine());
+           
+        }
+        double CH1, CH2;
+        CH1=Convert.ToDouble(Console.ReadLine());
+        CH2= Convert.ToDouble(Console.ReadLine());
+        for (int i = 0; i < lengh1; i++) {
+            if (ch[i] <= CH2 && ch[i] >= CH1)
+            {
+                cnt += 1;
+            }
+        
+        }
+        Console.WriteLine(cnt);
+        #endregion
+        #region 11-1
+        double[] arr1=new double[10];
+        int ll = 0;
+        int cnter = 0;
+        for (int i = 0; i < 10; i++) {
+            if (arr1[i] > 0) {
+                ll++;
+            }
+        }
+        double[] arr2=new double[ll];
+        for (int i = 0; i < 10; i++) {
+            if (arr1[i] > 0)
+            {
+                arr2[cnter]=arr1[i];
+                cnter++;
+            }
+        }
+        Console.WriteLine(arr2);
+        #endregion
+        #region 12-1
+        int numb=0;
+        double zn=999999999;
+        double[] arr8= new double[8];
+        for (int i = 0; i < 8; i++) { 
+            arr8[i]=Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < 8; i++) {
+            if (arr8[i]<0) { 
+                zn= arr8[i];
+                numb = i;
+            }
+        }
+        Console.WriteLine(zn+" "+numb);
+        #endregion
+        
+        #region 13-1
+        int nom1=1, nom2=0;
+        double[] arr10= new double[10];
+        double[] arr51= new double[5];
+        double[] arr52= new double[5];
+        for (int i = 0; i < 10; i++)
+        {
+            arr10[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        arr51[0]=arr10[0];
+        Console.WriteLine(arr10);
+        for (int i = 1; i < 10; i++) {
+            if (i % 2 == 1)
+            {
+                arr52[nom2] = arr10[i];
+                nom2++;
+            }
+            else {
+                arr51[nom1]=arr10[i];
+                nom1++;
+            }
+        }
+        Console.WriteLine(arr51[0]+" "+arr51[1]+" "+ arr51[2] + " " + arr51[3]+" "+arr51[4]);
+        Console.WriteLine(arr52[0]+" " + arr52[1]+ " " + arr52[2] + " " + arr52[3]+ " " + arr52[4]);
+
+        #endregion
+        
+        #region 2-9
+        double[] arr29 = new double[10];
+        for (int i = 0; i < 10; i++)
+        {
+            arr29[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        double min = 1000000000, max = -11111111111,summa=0;
+        int indmax=0, indmin=0,n,cnt123=0;
+        for (int i = 0; i < 10; i++) {
+            if (arr29[i] < min) { 
+                min=arr29[i];
+                indmin=i;
+            }
+        }
+        for (int i = 0; i < 10; i++) {
+            if (arr29[i] > max) { 
+                max=arr29[i];
+                indmax=i;
+            }
+        }
+        if (indmax < indmin) {
+            n=indmin;
+            indmin=indmax;
+            indmax = n;
+
+        }
+        while (indmin < indmax-1) {
+            summa += arr29[indmin+1];
+            cnt123 += 1;
+            indmin += 1;
+
+        }
+        Console.WriteLine(summa/cnt123);
+        #endregion
+        
+        #region 2-6
+        int n26, recind=0;
+        double p26, rec = 10000000000,sred26=0;
+        n26 = Convert.ToInt32(Console.ReadLine());
+        double[] arr26 = new double[n26];
+        double[] arr261 = new double[n26+1];
+        for (int i = 0; i < n26; i++)
+        {
+            arr26[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        arr261[n26] = 0;
+        for (int i = 0; i < n26; i++){
+            arr261[i] = arr26[i];
+        }
+        p26=Convert.ToDouble(Console.ReadLine());   
+        for (int i = 0; i < n26; i++) {
+            sred26 += arr26[i];
+            
+        }
+        sred26/=n26;
+        for (int i = 0; i < n26; i++) {
+            if (Math.Abs(arr26[i] - sred26) < rec || Math.Abs(arr26[i] + sred26) < rec) {
+                if (Math.Abs(arr26[i] - sred26) > Math.Abs(arr26[i] + sred26))
+                {
+                    rec = Math.Abs(arr26[i] + sred26);
+                }
+                else {
+                    rec= Math.Abs(arr26[i] - sred26);
+                }
+                recind = i;
+            }
+        }
+        for (int i = n26 - 1; i > recind; i--) { 
+            arr261[i+1] = arr261[i];
+        }
+        arr261[recind] = p26;
+
+        #endregion
+        
+        #region 2-5
+        int n25,number=0;
+        n25 = Convert.ToInt32(Console.ReadLine());
+        double[] arr25 = new double[n25];
+        for (int i = 0; i < n25; i++) { 
+            arr25[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        int min=0, max=0,sr=0;
+        double mini=10000000000000, maxi=-10000000000000;
+        for (int i = 0; i < n25; i++) {
+            if (arr25[i] < mini) { 
+                mini=arr25[i];
+                min=i;
+            }
+            if (arr25[i] > maxi) { 
+                maxi=arr25[i];
+                max = i;
+            }
+        }
+        if (max < min) {
+            sr = max;
+            max = min;
+            min = sr;
+
+        }
+        sr = 0;
+        for (int i = min + 1; i < max; i++) {
+            if (arr25[i] < 0) {
+                sr++;
+            }            
+        }
+        double[] arr251=new double[sr];
+        for (int i = min + 1; i < max; i++) {
+            if (arr25[i] < 0)
+            {
+                arr251[number]=arr25[i];
+                number++;
+            }
+        }
+        for (int i = 0; i < sr; i++) {
+            Console.WriteLine(arr251[i] + " ");
+        }
+        #endregion
+        #region 2-10
+        int n102,delite=0;
+        double minplus = 10000000000;
+        n102 = Convert.ToInt32(Console.ReadLine());
+        double[] arr102=new double[n102];
+        for (int i = 0; i < n102; i++)
+        {
+            arr102[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < n102; i++) {
+            if (arr102[i] < minplus && arr102[i] > 0) { 
+                minplus = arr102[i];
+                delite = i;
+            }
+        }
+        double[] arr1021 = new double[n102-1];
+        if (delite == 0) {
+            for (int i = 1; i < n102;i++) {
+                arr1021[i-1]=arr102[i];
+            }
+        }
+        if (delite == (n102 - 1)) {
+            for (int i = 0; i < n102 - 1;i++) {
+                arr1021[i]=arr102[i];
+
+            }
+        }
+        if (delite != 0 && delite < n102 - 1) {
+            for (int i = 0; i < delite; i++) {
+                arr1021[i] = arr102[i];
+            }
+            for (int i = delite + 1; i < n102; i++) { 
+                arr1021[i-1] = arr102[i]; 
+            }
+        }
+        for (int i = 0; i < n102; i++) { 
+            Console.WriteLine(arr1021[i]);
+        }
+        #endregion
+        
+        #region 2-11
+        int n112,place=0 ;
+        n112 = Convert.ToInt32(Console.ReadLine());
+        double[] arr112= new double[n112];
+        double P112;
+        P112 = Convert.ToDouble(Console.ReadLine());
+        double[] arr1121= new double[n112+1];
+        for (int i = 0; i < n112; i++)
+        {
+            arr112[i]=Convert.ToDouble(Console.ReadLine());       
+        }
+        for (int i = n112 - 1; i >= 0; i--) {
+            if (arr112[i] > 0) {
+                place = i;
+                break;
+            }
+        }
+        if (place == 0)
+        {
+            for (int i = 2; i < n112+1; i++)
+            {
+                arr1121[i] = arr112[i-1];
+            }
+            arr1121[1] = P112;
+            arr1121[0] = arr112[0];
+        }
+        if (place == (n112 - 1))
+        {
+            for (int i = 0; i < n112; i++)
+            {
+                arr1121[i] = arr112[i];
+
+            }
+            arr1121[n112] = P112;
+        }
+        if (place != 0 && place < n112 - 1)
+        {
+            for (int i = 0; i <= place; i++)
+            {
+                arr1121[i] = arr112[i];
+            }
+            arr1121[place+1] = P112;
+            for (int i = place + 2; i < n112+1; i++)
+            {
+                arr1121[i] = arr112[i-1];
+            }
+        }
+        for (int i = 0; i < n112 + 1; i++) {
+            Console.WriteLine(arr1121[i]);
+        }
+
+        #endregion
+        
+        #region 13-2
+        int n132;
+        n132 = Convert.ToInt32(Console.ReadLine());
+        double[] arr132 = new double[n132];
+        int p = 0;
+        double c;
+        Console.WriteLine("Type the array:");
+        for (int i = 0; i < n132; i++)
+        {
+            arr132[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        c = arr132[0];
+        for (int i = 0; i < n132; i += 2)
+        {
+            if (arr132[i] > c)
+            {
+                c = arr132[i];
+                p = i;
+            }
+        }
+        for (int i = 0; i < n132; i++)
+        {
+            if (i == p)
+            {
+                Console.Write(p + " ");
+            }
+            else
+            {
+                Console.Write(arr132[i] + " ");
+            }
+        }
+        #endregion
+        #region 15-2
+        int n152 = Convert.ToInt32(Console.ReadLine());
+        double[] arr152 = new double[n152];
+        Console.WriteLine("Type the A array:");
+        for (int i = 0; i < n152; i++)
+        {
+            arr152[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        int n1521 = Convert.ToInt32(Console.ReadLine());
+        double[] arr1521 = new double[n1521];
+        for (int i = 0; i < n1521; i++)
+        {
+            arr1521[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        int n1522;
+        n1522 = Convert.ToInt32(Console.ReadLine());
+        if (n1522 >= n152)
+        {
+            Console.WriteLine("Nope");
+        }
+        else
+        {
+            for (int i = 0; i < n152; i++)
+            {
+                if (i == n1522)
+                {
+                    for (int j = 0; j < n1521; j++)
+                    {
+                        Console.Write(arr1521[j] + " ");
+                    }
+                    Console.Write(arr152[i] + " ");
+                }
+                else
+                {
+                    Console.Write(arr152[i] + " ");
+                }
+            }
+        }
+
+        #endregion
+        #region 1-3
+        int n13;
+        n13 = Convert.ToInt32(Console.ReadLine());
+        double[] arr13 = new double[n13];
+        List<int> l13 = new List<int>();
+        double maxo;
+        for (int i = 0; i < n13; i++)
+        {
+            arr13[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        maxo = arr13[0];
+        for (int i = 0; i < n13; i++)
+        {
+            if (maxo < arr13[i])
+            {
+                maxo = arr13[i];
+                l13.Clear();
+            }
+            if (maxo == arr13[i])
+            {
+                l13.Add(i);
+            }
+        }
+        for (int i = 0; i < l13.Count; i++)
+        {
+            Console.Write(l13[i] + " ");
+        }
+        #endregion
+        #region 5-3
+        int n35;
+        n35= Convert.ToInt32(Console.ReadLine());
+        double[] arr35 = new double[n35];
+        double mino;
+        int minoi;
+      
+        for (int i = 0; i < n35; i++)
+        {
+            arr35[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < n35 - 1; i += 2)
+        {
+            mino = arr35[i];
+            minoi = i;
+            for (int j = i + 2; j < n35; j += 2)
+            {
+                if (arr35[j] < mino)
+                {
+                    mino = arr35[j];
+                    minoi = j;
+                }
+            }
+            arr35[minoi] = arr35[i];
+            arr35[i] = mino;
+        }
+        for (int i = 0; i < n35; i++)
+        {
+            Console.Write(arr35[i] + " ");
+        }
+        #endregion
+        #region 8-3
+        int n38;
+        n38= Convert.ToInt32(Console.ReadLine());
+        double[] arr38 = new double[n38];
+        double max38;
+        int maxi1;
+        for (int i = 0; i < n38; i++)
+        {
+            arr38[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < 12 - 1; i++)
+        {
+            if (arr38[i] < 0)
+            {
+                max38 = arr38[i];
+                maxi1 = i;
+                for (int j = i + 1; j < 12; j++)
+                {
+                    if (arr38[j] < 0 && arr38[j] > max38)
+                    {
+                        max38 = arr38[j];
+                        maxi1 = j;
+                    }
+                }
+                arr38[maxi1] = arr38[i];
+                arr38[i] = max38;
+            }
+        }
+        for (int i = 0; i < n38; i++)
+        {
+            Console.Write(arr38[i] + " ");
+        }
+
+        #endregion
+        #region 9-3
+        int n39;
+        n39 = Convert.ToInt32(Console.ReadLine());
+        double[] arr39 = new double[n39];
+        int cnt391 = 0, cnt392 = 0, max39 = 0, max392 = 0;
+        for (int i = 0; i < n39; i++)
+        {
+            arr39[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < n39 - 1; i++)
+        {
+            cnt391 += 1;
+            cnt392 += 1;
+            if (arr39[i] >= arr39[i + 1])
+            {
+                cnt391 = 1;
+            }
+            if (arr39[i] <= arr39[i + 1])
+            {
+                cnt391 = 1;
+                cnt392 = 1;
+            }
+            max39 = Math.Max(max39, cnt391);
+            max392 = Math.Max(max392, cnt392);
+        }
+
+        Console.Write(Math.Max(max39, max392));
+        #endregion
+       
+        #region 12-3
+        double[] arr312  = new double[12];
+        int cnt312 = 0;
+        for (int i = 0; i < 12; i++)
+        {
+            arr312[i] = Convert.ToDouble(Console.ReadLine());
+        }
+
+        for (int i = 0; i < 12; i++)
+        {
+            if (arr312[i] > 0) { 
+                cnt312++;
+            }
+            
+        }
+        double[] arr3122 = new double[cnt312];
+        cnt312 = 0;
+        for (int i = 0; i < 12; i++)
+        {
+            if (arr312[i] > 0)
+            {
+                arr3122[cnt312] = arr312[i];
+                cnt312 += 1;
+            }
+        }
+        for (int i = 0; i < cnt312; i++)
+        {
+            Console.Write(arr3122[i] + " ");
+        }
+        #endregion
+        
+        #region 13-3
+        int n313;
+        n313= Convert.ToInt32(Console.ReadLine());
+        double[] arr313 = new double[n313];
+        double[] arrp = new double[n313];
+        for (int i = 0; i < n313; i++)
+        {
+            arr313[i] = Convert.ToDouble(Console.ReadLine());
+            arrp[i]=arr313[i];
+        }
+        double wtf=-845.2308509425;
+        bool flag=false;
+        int wtfcnt=0;
+        while (flag == false)
+        {
+            wtfcnt = 0;
+            for(int i = 0; i < arrp.Length; i++)
+            {
+                if(arrp[i] == wtf) {
+                    wtfcnt++;
+                    break;
+                }
+                
+            }
+            if(wtfcnt == 0)
+            {
+                flag = true;
+            }
+            if (wtfcnt != 0)
+            {
+                wtf += 0.0000001;
+            }
+
+        }
+        for (int i = 0; i < arrp.Length; i++) {
+            for (int j = i + 1; j < arrp.Length; j++) {
+                if (arrp[i] == arrp[j]) { 
+                    arrp[j] = wtf;
+                }
+            }
+        }
+        int cntrazn = 0;
+        for (int j = 0; j < arrp.Length; j++) {
+            if (arrp[j] != wtf)
+            {
+                cntrazn++;
+            }
+        }
+        double[] arrex= new double[cntrazn];
+        int lastarr = 0;
+        for (int i = 0; i < arrp.Length; i++) {
+            if (arrp[i] != wtf) { 
+                arrex[lastarr] = arrp[i];
+                lastarr++;
+            }
+        }
+        foreach (double x in arrex)
+            Console.Write(x+" ");
+
+
+        #endregion
+        
+        #region 11
+        int n111;
+        while(!int.TryParse(Console.ReadLine(), out n111))
+        {
+            Console.WriteLine("Error");
+        }
+        double[] arr11 = new double[n111];
+        for (int i = 0; i < n111; i++)
+        {
+            arr11[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        int x11,i1=0, i2;
+        int srindex = 0;
+        if (!int.TryParse(Console.ReadLine(), out x11))
+        {
+            Console.WriteLine("Error");
+            return;
+        }
+        i2 = arr11.Length - 1;
+        while (true)
+        {
+            srindex = (i1 + i2) / 2;
+            if (x11 == arr11[srindex])
+            {
+                Console.WriteLine(srindex);
+                break;
+            }
+            if (x11 < arr11[srindex])
+            {
+                i2 = srindex - 1;
+            }
+            if (x11 > arr11[srindex])
+            {
+                i1 = srindex + 1;
+            }
+            if (i2 < i1)
+            {
+                Console.WriteLine("Такого элемента нет");
+                break;
+            }
+        }
+        
+        Console.WriteLine();
+        #endregion
+        
+        #region 12
+        int n11, n12;
+        while (!int.TryParse(Console.ReadLine(), out n11))
+        {
+            Console.WriteLine("Error");
+        }
+        int np14;
+        while (!int.TryParse(Console.ReadLine(), out n12))
+        {
+            Console.WriteLine("Error");
+        }
+        int iter;
+        if (n11 != n12)
+        {
+            iter = Math.Min(n11, n12);
+        }
+        else
+        {
+            iter = n11;
+        }
+        double[] arr1 = new double[n11];
+        double[] arr2 = new double[n12];
+        double[] arr3 = new double[iter * 2];
+        for (int i = 0; i < n11; i++)
+        {
+            arr1[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < n12; i++)
+        {
+            arr2[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < iter * 2; i++)
+        {
+            if (i % 2 == 0)
+            {
+                arr3[i] = arr1[i / 2];
+            }
+            else
+            {
+                arr3[i] = arr2[(i - 1) / 2];
+            }
+        }
+        for (int i = 0; i < iter * 2; i++)
+        {
+            Console.Write(arr3[i] + " ");
+
+        }
+        #endregion
+        
+        #region 13
+        
+        int rtyw;
+        while (!int.TryParse(Console.ReadLine(), out rtyw))
+        {
+            Console.WriteLine("Error");
+        }
+        int[] S8 = new int[rtyw];
+        int ind2, min6;
+        for (int i = 0; i < S8.Length; i++)
+        {
+            S8[i] = Convert.ToInt32(Console.ReadLine());
+        }
+        for (int i = 0; i < S8.Length; i++)
+        {
+            min6 = S8[i];
+            ind2 = i;
+            for (int j = i + 1; j < S8.Length; j++)
+            {
+                if (S8[j] > min6)
+                {
+                    min6 = S8[j];
+                    ind2 = j;
+                }
+            }
+            S8[ind2] = S8[i];
+            S8[i] = min6;
+        }
+
+        int rtywe;
+        while (!int.TryParse(Console.ReadLine(), out rtywe))
+        {
+            Console.WriteLine("Error");
+        }
+        int[] S9 = new int[rtywe];
+        int ind3, min7;
+        for (int i = 0; i < S9.Length; i++)
+        {
+            S9[i] = Convert.ToInt32(Console.ReadLine());
+        }
+        for (int i = 0; i < S9.Length; i++)
+        {
+            min7 = S9[i];
+            ind3 = i;
+            for (int j = i + 1; j < S9.Length; j++)
+            {
+                if (S9[j] > min7)
+                {
+                    min7 = S9[j];
+                    ind3 = j;
+                }
+            }
+            S9[ind3] = S9[i];
+            S9[i] = min7;
+        }
+
+        int[] S10 = new int[rtywe + rtyw];
+        int ind4 = 0, ind5 = 0, f1 = 0, f2 = 0;
+        for (int i = 0; i < S10.Length; i++)
+        {
+            if (ind4 >= rtyw)
+            {
+                f2 = 1;
+                break;
+            }
+            if (ind5 >= rtywe)
+            {
+                f1 = 1;
+                break;
+            }
+            if (S8[ind4] >= S9[ind5])
+            {
+                S10[i] = S8[ind4];
+                ind4 += 1;
+            }
+            if (S8[ind4] < S9[ind5])
+            {
+                S10[i] = S9[ind5];
+                ind5 += 1;
+            }
+        }
+        if (f1 == 1)
+        {
+            for (int i = ind5; i < S10.Length; i++)
+            {
+                S10[i] = S8[ind4];
+                ind4 += 1;
+            }
+        }
+        if (f2 == 1)
+        {
+            for (int i = ind4; i < S10.Length; i++)
+            {
+                S10[i] = S9[ind5];
+                ind5 += 1;
+            }
+        }
+        for (int i = 0; i < S10.Length; i++)
+        {
+            Console.Write(S10[i] + " ");
+        }
+        #endregion
+        
+        #region 14
+        int np14;
+        while(!int.TryParse(Console.ReadLine(), out np14))
+        {
+            Console.WriteLine("Error");
+        }
+        double[] arr14 = new double[np14] ;
+        for(int k = 0; k != arr14.Length; k++)
+        {
+            double np141;
+            if(!double.TryParse(Console.ReadLine(), out np141)){
+                Console.WriteLine("Error");
+                return;
+            }
+            arr14[k] = np141;
+
+        }
+        for (int i = 0; i != arr14.Length / 2; i++)
+        {
+            double t = arr14[i];
+            arr14[i] = arr14[arr14.Length - 1 - i];
+            arr14[arr14.Length - 1 - i] = t;
+        }
+        foreach (double x in arr14)
+            Console.Write(x+" ");
+        #endregion
+        
+        #region 15
+        int n15;
+        while (!int.TryParse(Console.ReadLine(), out n15))
+        {
+            Console.WriteLine("Error");
+        }
+        int[] arr15 = new int[n15];
+        int num2;
+        for (int i = 0; i < arr15.Length; i++)
+        {
+            int np15;
+            if (!int.TryParse(Console.ReadLine(), out np15)){
+                Console.WriteLine("Error");
+                return;
+            }
+            arr15[i] = np15;
+        }
+        Console.WriteLine("Enter the m:");
+        int num3 = Convert.ToInt32(Console.ReadLine());
+
+        for (int i = 0; i < num3 % n15; i++)
+        {
+            num2 = arr15[arr15.Length - 1];
+            for (int j = arr15.Length - 1; j > 0; j--)
+            {
+                arr15[j] = arr15[j - 1];
+            }
+            arr15[0] = num2;
+        }
+        foreach(double x in arr15)
+            Console.Write(x+" ");
+        
+        #endregion 
+        
+    }
+}
