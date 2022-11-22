@@ -1,0 +1,146 @@
+using System;
+class HelloWorld
+{
+    static void Main()
+    {
+        int n313;
+        n313 = Convert.ToInt32(Console.ReadLine());
+        double[] arr313 = new double[n313];
+        double[] arrp = new double[n313];
+        for (int i = 0; i < n313; i++)
+        {
+            arr313[i] = Convert.ToDouble(Console.ReadLine());
+            arrp[i] = arr313[i];
+        }
+        double wtf = -845.2308509425;
+        bool flag = false;
+        int wtfcnt = 0;
+        int cntafhdsf = 0;
+        while (flag == false)
+        {
+            wtfcnt = 0;
+            for (int i = 0; i < arrp.Length; i++)
+            {
+                if (arrp[i] == wtf)
+                {
+                    wtfcnt++;
+                    break;
+                }
+
+            }
+            if (wtfcnt == 0)
+            {
+                flag = true;
+            }
+            if (wtfcnt != 0)
+            {
+                wtf += 0.0000001;
+            }
+
+        }
+        for (int i = 0; i < arrp.Length; i++)
+        {
+            for (int j = i + 1; j < arrp.Length; j++)
+            {
+                if (arrp[i] == arrp[j])
+                {
+                    arrp[j] = wtf;
+                    cntafhdsf++;
+                }
+            }
+            if(cntafhdsf != 0)
+            {
+                arrp[i] = wtf;
+            }
+            cntafhdsf = 0;
+        }
+        int cntrazn = 0;
+        for (int j = 0; j < arrp.Length; j++)
+        {
+            if (arrp[j] != wtf)
+            {
+                cntrazn++;
+            }
+        }
+        double[] arrex = new double[cntrazn];
+        int lastarr = 0;
+        for (int i = 0; i < arrp.Length; i++)
+        {
+            if (arrp[i] != wtf)
+            {
+                arrex[lastarr] = arrp[i];
+                lastarr++;
+            }
+        }
+        foreach (double x in arrex)
+            Console.Write(x + " ");
+    }
+}
+using System;
+class HelloWorld
+{
+    static void Main()
+    {
+        int n11, n12;
+        while (!int.TryParse(Console.ReadLine(), out n11))
+        {
+            Console.WriteLine("Error");
+        }
+        int cntr=1;
+        while (!int.TryParse(Console.ReadLine(), out n12))
+        {
+            Console.WriteLine("Error");
+        }
+        int iter;
+        if (n11 != n12)
+        {
+            iter = Math.Min(n11, n12);
+        }
+        else
+        {
+            iter = n11;
+        }
+        double[] arr1 = new double[n11];
+        double[] arr2 = new double[n12];
+        double[] arr3 = new double[n11+n12];
+        for (int i = 0; i < n11; i++)
+        {
+            arr1[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < n12; i++)
+        {
+            arr2[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < iter * 2; i++)
+        {
+            if (i % 2 == 0)
+            {
+                arr3[i] = arr1[i / 2];
+            }
+            else
+            {
+                arr3[i] = arr2[(i - 1) / 2];
+            }
+        }
+        if (n11 > n12) {
+            for (int i = iter*2; i < n11 + n12; i++)
+            {
+                arr3[i] = arr1[iter-1 + cntr];
+                cntr++;
+            }
+        }
+        if (n12 > n11)
+        {
+            for (int i = iter * 2; i < n11 + n12; i++)
+            {
+                arr3[i] = arr2[iter-1 + cntr];
+                cntr++;
+            }
+        }
+        for (int i = 0; i < n11+n12; i++)
+        {
+            Console.Write(arr3[i] + " ");
+
+        }
+    }
+}
