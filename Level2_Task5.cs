@@ -22,9 +22,9 @@ public class HelloWorld
                     b[b.Length-1]=a[i];
                 }
             }
-            Console.Write("This is an answer array: ");
+            Console.Write("This is the answer array: ");
             foreach(var i in b)
-                Console.Write("{0}",i);
+                Console.Write("{0} ",i);
         }
         catch{
             Console.WriteLine("Wrong input error");
