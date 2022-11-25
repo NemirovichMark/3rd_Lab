@@ -8,6 +8,30 @@ namespace ConsoleApp1
 {
     class Program
     {
+        
+        
+        static double inputDouble() //Method for entering double numbers
+        {
+            double simbol = 0;
+            Int16 ok = 0;
+
+            while (ok == 0)
+            {
+                try
+                {
+                    simbol = Convert.ToDouble(Console.ReadLine());
+                    ok = 1;
+                }
+                catch
+                {
+                    Console.WriteLine("Enter right simbols");
+                }
+            }
+
+            return simbol;
+        }
+        
+        
         static List<double> inputLists() //Method for entering simbols in list
         {
             var A = new List<double>();
@@ -574,7 +598,93 @@ namespace ConsoleApp1
 
 
             //algorithms
-            //coming soon...
+            #region 11
+            double[] A = inputArrays();
+            double x = inputDouble();
+            int ind = A.Length / 2;
+            if (x == A[ind])
+                Console.WriteLine("index: {0}", ind);
+            else if (x < A[ind])
+            {
+                for (int i = 0; i < ind; i++)
+                {
+                    if (x == A[i])
+                    {
+                        Console.WriteLine("index: {0}", i);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = ind; i < A.Length; i++)
+                {
+                    if (x == A[i])
+                    {
+                        Console.WriteLine("index: {0}", i);
+                        break;
+                    }
+                }
+            }
+            #endregion
+            
+            #region 12
+            double[] A = inputArrays();
+            double[] B = inputArrays();
+            int lenght = A.Length + B.Length;
+            double[] C = new double[lenght];
+            int count1 = 0, count2 = 0;
+
+            for (int i = 0; i < lenght; i+= 2)
+            {
+                C[i] = A[count1];
+                count1++;
+            }
+
+            for (int i = 1; i < lenght; i+= 2)
+            {
+                C[i] = B[count2];
+                count2++;
+            }
+            #endregion
+            
+
+            #region 13
+            double[] A = inputArrays(); // 4 4 7
+            double[] B = inputArrays(); // 3 4 5
+            int lenght = A.Length + B.Length;
+            double[] C = new double[lenght];
+            int count1 = 0, count2 = 0;
+
+            for (int i = 0; i < lenght; i ++)
+            {
+
+                if (count1 > A.Length)
+                    count1--;
+                if (count2 > B.Length)
+                    count2--;
+                if (A[count1] < B[count2])
+                {
+                    C[i] = A[count1];
+                    count1++;
+                }
+                else if(B[count2] < A[count1])
+                {
+                    C[i] = B[count2];
+                    count2++;
+                }
+                else
+                {
+                    C[i] = A[count1];
+                    C[i+1] = B[count2];
+                    count1++;
+                    count2++;
+                    i++;
+                }
+            }
+            foreach (int i in C)
+                Console.WriteLine(i);
+            #endregion
         }
     }
 }
