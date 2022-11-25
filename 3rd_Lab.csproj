@@ -72,21 +72,36 @@ public class HelloWorld
         
         // # 12
         Console.WriteLine("# 12");
-        double[] f = new double[] {4, 7, 10, 3, 13, 2, 8};
-        double[] g = new double[] {7, 3, 23, -2, 56, 3, 9, 20, 23};
-        List<double> fg = new List<double>() {};
-        int min_i = Math.Min(f.Length, g.Length);
+        double[] f = new double[] { 4, 7, 10, 3, 13, 2, 8};
+        double[] g = new double[] { 7, 3, 23, -2, 56, 3, 9, 20, 23 };
+        List<double> fg = new List<double>() { };
+        int f_i = f.Length;
+        int g_i = g.Length;
+        int min_i = Math.Min(f_i, g_i);
         for (int i = 0; i < min_i; i++)
         {
             fg.Add(f[i]);
             fg.Add(g[i]);
         }
-        for (int i = 0; i < min_i * 2; i = i + 1)
+
+        int max_i = Math.Max(f_i, g_i);
+        for (int i = min_i; i < max_i; i++)
+        {
+            if (f_i < g_i)
+            {
+                fg.Add(g[i]);
+            }
+            if (f_i > g_i)
+            {
+                fg.Add(f[i]);
+            }
+        }
+
+        for (int i = 0; i < f_i + g_i; i = i + 1)
         {
             Console.Write("{0:f} ", fg[i]);
         }
         Console.WriteLine("");
-        
         
  
         // # 13
@@ -372,27 +387,33 @@ public class HelloWorld
 
         // #6
         Console.WriteLine("#6");
-        List<double> b2 = new List<double>() {14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53};
+        List<double> b2 = new List<double>() { 14, 10, 1.6, -12.4, 100, 12, -4.4, 23, -23, 53 };
         int len_b2 = b2.Count;
-        
+
         Console.WriteLine("Введите P");
         double PP = 0;
         try
         {
             PP = double.Parse(Console.ReadLine());
         }
-        catch { Console.WriteLine("Впихиваем 0");}
-        
+        catch { Console.WriteLine("Впихиваем 0"); }
+
         double sr_zn = 0;
         double poxog = 0;
         double poxog_min;
         int n_poxog = 0;
-        
-        foreach(double ii in b2) sr_zn += ii;
-        
+
+        foreach (double ii in b2) sr_zn += ii;
+
         sr_zn = sr_zn / len_b2;
-        
-        poxog_min = (b2[0] - sr_zn) * (b2[0] - sr_zn);
+
+        poxog_min = (b2[0] - sr_zn);
+        if (poxog_min < 0)
+        {
+            poxog_min = 0 - poxog_min;
+        }
+
+
         for (int i = 0; i < len_b2; i++)
         {
             poxog = b2[i] - sr_zn;
@@ -400,14 +421,14 @@ public class HelloWorld
             {
                 poxog = 0 - poxog;
             }
-            
-            if (poxog < poxog_min) 
+
+            if (poxog < poxog_min)
             {
                 poxog_min = poxog;
                 n_poxog = i;
             }
         }
-        
+
         b2.Add(b2[len_b2 - 1]);
         len_b2 = b2.Count;
         for (int i = len_b2 - 1; i > n_poxog; i--)
@@ -416,12 +437,12 @@ public class HelloWorld
         }
         b2[n_poxog + 1] = PP;
         
+
         len_b2 = b2.Count;
         for (int i = 0; i < len_b2; i = i + 1)
         {
             Console.Write("{0:f} ", b2[i]);
         }
-        Console.WriteLine("");
 
         // #9
         Console.WriteLine("#9");
