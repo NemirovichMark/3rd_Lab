@@ -1,0 +1,101 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+class HelloWorld {
+  static void Main() {
+    
+        int rtyw;
+        while (!int.TryParse(Console.ReadLine(), out rtyw))
+        {
+            Console.WriteLine("Error");
+        }
+        double[] S8 = new double[rtyw];
+        int ind2;
+        double min6;
+        for (int i = 0; i < S8.Length; i++)
+        {
+            S8[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < S8.Length; i++)
+        {
+            min6 = S8[i];
+            ind2 = i;
+            for (int j = i + 1; j < S8.Length; j++)
+            {
+                if (S8[j] > min6)
+                {
+                    min6 = S8[j];
+                    ind2 = j;
+                }
+            }
+            S8[ind2] = S8[i];
+            S8[i] = min6;
+        }
+        int rtywe;
+        while (!int.TryParse(Console.ReadLine(), out rtywe))
+        {
+            Console.WriteLine("Error");
+        }
+        double[] S9 = new double[rtywe];
+        int ind3;
+        double min7;
+        for (int i = 0; i < S9.Length; i++)
+        {
+            S9[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < S9.Length; i++)
+        {
+            min7 = S9[i];
+            ind3 = i;
+            for (int j = i + 1; j < S9.Length; j++)
+            {
+                if (S9[j] > min7)
+                {
+                    min7 = S9[j];
+                    ind3 = j;
+                }
+            }
+            S9[ind3] = S9[i];
+            S9[i] = min7;
+        }
+    List<double> A = new List<double>();
+    for(int i = 0;i<S8.Length;i++){
+        A.Add(S8[i]);
+    }
+    List<double> B = new List<double>();
+    for(int i=0;i<S9.Length;i++){
+        B.Add(S9[i]);
+    }
+    List<double> C = new List<double>();
+    int x = 0;
+    int y = 0;
+    while (x < A.Count || y < B.Count)
+    {
+        if (x == A.Count)
+        {
+            C.Add(B[y]);
+            y++;
+            continue;
+        }
+        if (y == B.Count)
+        {
+            C.Add(A[x]);
+            x++;
+            continue;
+        }
+        if (A[x] >= B[y])
+        {
+            C.Add(A[x]);
+            x++;
+        }
+        else if (B[y] > A[x])
+        {
+            C.Add(B[y]);
+            y++;
+        }
+    }
+    foreach (int h in C)
+        Console.Write(h + " ");
+    
+  }
+}
