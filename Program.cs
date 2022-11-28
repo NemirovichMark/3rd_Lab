@@ -445,20 +445,36 @@ namespace lab_3
             #region III|9
             Console.WriteLine("III №9");
 
-            array = new double[] { 0.0, 1.5, 3.3, -1.2, 3.3, 0.0 };
+            array = new double[] { 0.0, 1.5, 3.3, 3.3, -1.2, -1.5, -1.6, 3.3, 0.0 };
             max = 1;
             cnt = 1;
+            x = 0;
 
             for (int i = 0; i < array.Length - 1; i++)
             {
-                if (array[i] < array[i+1])
+                if (max < cnt) max = cnt;
+                if (array[i] < array[i + 1])
                 {
-                    cnt++;
+                    if (x > 0) cnt++;
+                    else
+                    { 
+                        cnt = 2;
+                        x = 1;
+                    }
+                }
+                else if (array[i] > array[i + 1])
+                {
+                    if (x < 0) cnt++;
+                    else
+                    {
+                        cnt = 2;
+                        x = -1;
+                    }
                 }
                 else
                 {
-                    if (max < cnt) max = cnt;
                     cnt = 1;
+                    x = 0;
                 }
             }
 
@@ -539,10 +555,14 @@ namespace lab_3
             Console.WriteLine("--- 12 ---");
 
             array_1 = new double[n] { 0.0, 1.5, 3.3, -1.2, 3.3, 0.0 };
-            array_2 = new double[n] { 0.0, 1.5, 3.3, -1.2, 3.3, 0.0 };
-            array = new double[n * 2];
+            array_2 = new double[n+1] { 0.0, 1.5, 3.3, -1.2, 3.3, 0.0, 4};
+            
+            if (array_1.Length < array_2.Length) cnt = array_1.Length;
+            else cnt = array_2.Length;
+            
+            array = new double[cnt*2];
 
-            for (int i = 0; i < n * 2; i++)
+            for (int i = 0; i < cnt * 2; i++)
             {
                 if (i % 2 == 0) array[i] = array_1[i / 2];
                 else array[i] = array_2[i / 2];
@@ -558,14 +578,19 @@ namespace lab_3
             Console.WriteLine("--- 13 ---");
 
             array_1 = new double[n] { 3.3, 3.3, 1.5, 0.0, 0.0, -1.2 };
-            array_2 = new double[n] { 3.3, 3.3, 1.5, 0.0, 0.0, -1.2 };
-            array = new double[n * 2];
+            array_2 = new double[n + 1] { 3.3, 3.3, 1.5, 0.0, 0.0, -1.2, -1.5};
+
+            if (array_1.Length < array_2.Length) cnt = array_1.Length;
+            else cnt = array_2.Length;
+
+            array = new double[cnt * 2];
+
             int q1 = 0, q2 = 0;
 
-            for (int i = 0; i < n*2; i++)
+            for (int i = 0; i < cnt*2; i++)
             {
-                if (q1 < n)
-                    if (array_1[q1] >= array_2[q2])
+                if (q1 < cnt)
+                    if (array_1[q1] >= array_2[q2] && q2 < cnt)
                     {
                         array[i] = array_1[q1];
                         q1++;
