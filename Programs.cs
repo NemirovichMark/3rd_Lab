@@ -119,7 +119,7 @@ namespace ConsoleApp1
         {
             //TASKS
 
-            
+
             //part 1
             /*#region 6
                 double number, summ;
@@ -147,25 +147,25 @@ namespace ConsoleApp1
                     summ += a[i] * a[i];
                 Console.WriteLine(Math.Sqrt(summ));
             #endregion
-
-
             #region 10
-                int[] ints = new int[] { 32, 54, 8, 65, 125, 4, 78, 96, 10, 1};
+                var ints = new List<double> { 32, 54, 8, 65, 125, 4, 78, 96, 10, 1 };
                 int P, Q, indP, indQ;
-                P = 8;
+                ints.Sort();
+                P = 7;
                 Q = 96;
                 indP = indQ = 0;
                 for (int i = 0; i < 10; i++)
                 {
-                    if (P == ints[i])
+                    if (P >= ints[i])
                         indP = i;
-                    if (Q == ints[i])
+                    if (Q <= ints[i])
                         indQ = i;
                 }
-                Console.WriteLine(Math.Abs(indQ - indP - 1));   
+                foreach(double el in ints)
+                    Console.Write(el + " ");
+                Console.WriteLine(" ");
+                Console.WriteLine(Math.Abs(indP - indQ) - 1);   
             #endregion
-
-
             #region 11
                 int[] ints, plusints;
                 ints = new int[] { 32, -54, 8, -65, -125, -4, 0, 96, 10, 1 };
@@ -179,11 +179,9 @@ namespace ConsoleApp1
                         count++;
                     }
                 }
-                for (int i = 0; i < 5; i++)
-                Console.Write(plusints[i] + " ");
+                for (int i = 0; i < plusints.Length; i++)
+                    Console.Write(plusints[i] + " ");
             #endregion
-
-
             #region 12
                 int[] ints = new int[] { 32, -54, 8, 0, -125, -4, 78, 8 };
                 int count, last;
@@ -198,9 +196,7 @@ namespace ConsoleApp1
                     }
                 }
                 Console.WriteLine("index = {0}, number = {1}", count, last);
-            #endregion
-
-
+            #endregion   
             #region 13
                 int[] ints, ints1, ints2;
                 ints = new int[] { 32, -54, 9, 2, -125, -4, 77, 8, 25, 99 };
@@ -224,8 +220,6 @@ namespace ConsoleApp1
                 for (int i = 0; i < 5; i++)
                     Console.WriteLine("even = {0}, odd = {1}", ints2[i], ints1[i]);
             #endregion
-
-
             //part 2
             #region 5
                 int[] mass = new int[] { 32, -54, 9, 2, 125, -4, -77, -8, 25, 99, -5 };
@@ -245,15 +239,12 @@ namespace ConsoleApp1
                         indmin = i;
                     }
                 }
-
                 int length = Math.Abs(indmax - indmin) - 1;
                 int first_index_in_list = 0;
-
                 if (indmax > indmin)
                     first_index_in_list = indmin;
                 else if (indmax < indmin)
                     first_index_in_list = indmax;
-
                 int count = 0;
                 for (int i = 1; i <= length; i++)
                 {
@@ -262,7 +253,6 @@ namespace ConsoleApp1
                         count++;
                     }
                 }
-
                 int[] negative = new int[count];
                 count = 0;
                 for (int i = 1; i <= length; i++)
@@ -276,43 +266,38 @@ namespace ConsoleApp1
                 for (int i = 0; i < negative.Length; i++)
                     Console.WriteLine(negative[i]);
             #endregion
-
-
             #region 6
-                int[] ints = new int[] { 32, -54, 9, 2, 125, -4, -77, -8, 25, 99, -5 };
-                int P = 34;
-                int sum, srsum;
-                sum = 0;
+                double[] ints = new double[] { 32, -54, 9, 2, 125, -4, -77, -8, 25, 99, -5 };
+                double P = 34, sum = 0, srsum;
+
                 for (int i = 0; i < ints.Length; i++)
                     sum += ints[i];
                 srsum = sum / ints.Length;
-
-                int[] proximity_degree = new int[ints.Length];
-                for (int i = 0; i < ints.Length; i++)
+                double[] proximity_degree = new double[ints.Length];
+                for (int i = 0; i < ints.Length; i++) //создание массива со значениями "близости" элементов массива к средней сумме
                     proximity_degree[i] = Math.Abs(ints[i] - srsum);
 
-                int proxmin, indmin;
+                double proxmin;
+                int indmin;
                 indmin = 0;
                 proxmin = proximity_degree[0];
-                for (int i = 0; i < proximity_degree.Length; i++)
+                for (int i = 1; i < proximity_degree.Length; i++)//поиск самой маленькой разницы со средним и соответственно индекса этого элемента
                     if (proximity_degree[i] < proxmin)
                     {
                         proxmin = proximity_degree[i];
                         indmin = i;
                     }
-                int[] newints = new int[ints.Length + 1];
-                for (int i = 0; i <= indmin; i++)
-                    newints[i] = ints[i];
 
+                double[] newints = new double[ints.Length + 1];
+                for (int i = 0; i <= indmin; i++) //формирование массива
+                    newints[i] = ints[i];
                 newints[indmin + 1] = P;
-
-                for (int i = indmin + 1; i <= ints.Length; i++)
-                    newints[i] = ints[i];
-
+                for (int i = indmin + 2; i <= ints.Length; i++)
+                    newints[i] = ints[i - 1];
+                Console.WriteLine(srsum);
                 for (int i = 0; i < newints.Length; i++)
-                    Console.WriteLine(newints[i]);
+                        Console.WriteLine(newints[i]);
             #endregion
-
             #region 9
                 int maxi = 0, mini = 0;
                 var a = inputLists();
@@ -353,8 +338,6 @@ namespace ConsoleApp1
                     Console.WriteLine(sum / count);
                 }
             #endregion
-
-
             #region 10
                 var a = inputLists();
                 double min = 1000000000;
@@ -369,7 +352,6 @@ namespace ConsoleApp1
                 }
                 a.RemoveAt(a.IndexOf(k));
             #endregion
-
             #region 11
                 Int16 ok = 0;
                 int P = 0;
@@ -397,7 +379,6 @@ namespace ConsoleApp1
                     Console.Write(a[i] + " ");
                 }
             #endregion
-
             #region 13
                 var a = inputLists();
                 int p = 0;
@@ -417,7 +398,6 @@ namespace ConsoleApp1
                     Console.Write(a[i] + " ");
                 }
             #endregion
-
             #region 15
                 int k = Convert.ToInt32(Console.ReadLine());
                 var A = inputLists();
@@ -428,25 +408,29 @@ namespace ConsoleApp1
                     Console.Write(A[i] + " ");
                 }
             #endregion
-
-
-            //part 3
+            //part 3*/
             #region 1
                 var A = inputLists();
                 var B = new List<int>();
-                double k = 0;
-                double max = A.Max();
-                for (int i = 0; i < n; i++)
+                double max = A[0];
+                Int16 ok = 1;
+
+                for (int i = 0; i < A.Count; i++)
                 {
-                    if (A[i] == max) 
+                    if (ok == 1)
+                    {
+                        for (int i1 = 1; i1 < A.Count; i++)
+                            if (A[i1] > max)
+                                max = A[i1];
+                        ok = 0;
+                    }
+                    if (A[i] == max)
                         B.Add(i);
                 }
                 for (int i = 0; i < B.Count; i++)
-                {
                     Console.Write(B[i] + " ");
-                }
             #endregion
- 
+ /*
             #region 5
                 var A = inputLists();
                 var B = new List<double>();
@@ -530,7 +514,6 @@ namespace ConsoleApp1
  
                 Console.WriteLine(B.Max());
             #endregion
-
             #region 12
                 int[] original = new int[12] { 32, -54, 9, 2, 125, -4, -77, -8, 25, 99, -5, 0 };
                 int[] non_negative;
@@ -553,7 +536,6 @@ namespace ConsoleApp1
                 for (int i = 0; i < non_negative.Length; i++)
                     Console.Write(non_negative[i] + " ");
             #endregion
-
             #region 13
                 double[] original = inputArrays();
                 var indexes = new List<int>();
@@ -574,7 +556,6 @@ namespace ConsoleApp1
                                 indexes.Add(j);
                     }
                 }
-
                 double[] new_array = new double[original.Length - indexes.Count];
                 Int16 count = 0;
                 for (int i = 0; i < original.Length; i++) //перебираем все индексы исходного массива
@@ -598,7 +579,7 @@ namespace ConsoleApp1
 
 
             //algorithms
-            #region 11
+            /*#region 11
             double[] A = inputArrays();
             double x = inputDouble();
             int ind = A.Length / 2;
@@ -627,7 +608,7 @@ namespace ConsoleApp1
                 }
             }
             #endregion
-            
+
             #region 12
             double[] A = inputArrays();
             double[] B = inputArrays();
@@ -635,19 +616,19 @@ namespace ConsoleApp1
             double[] C = new double[lenght];
             int count1 = 0, count2 = 0;
 
-            for (int i = 0; i < lenght; i+= 2)
+            for (int i = 0; i < lenght; i += 2)
             {
                 C[i] = A[count1];
                 count1++;
             }
 
-            for (int i = 1; i < lenght; i+= 2)
+            for (int i = 1; i < lenght; i += 2)
             {
                 C[i] = B[count2];
                 count2++;
             }
             #endregion
-            
+
 
             #region 13
             double[] A = inputArrays(); // 4 4 7
@@ -656,35 +637,35 @@ namespace ConsoleApp1
             double[] C = new double[lenght];
             int count1 = 0, count2 = 0;
 
-            for (int i = 0; i < lenght; i ++)
+            for (int i = 0; i < lenght; i++)
             {
-
-                if (count1 > A.Length)
-                    count1--;
-                if (count2 > B.Length)
-                    count2--;
                 if (A[count1] < B[count2])
                 {
                     C[i] = A[count1];
-                    count1++;
+                    if (count1 <= A.Length)
+                        count1++;
                 }
-                else if(B[count2] < A[count1])
+                else if (B[count2] < A[count1])
                 {
                     C[i] = B[count2];
-                    count2++;
+                    if (count2 <= B.Length)
+                        count2++;
                 }
                 else
                 {
                     C[i] = A[count1];
-                    C[i+1] = B[count2];
-                    count1++;
-                    count2++;
-                    i++;
+                    C[i + 1] = B[count2];
+                    if (count1 <= A.Length)
+                        count1++;
+                    if (count2 <= B.Length)
+                        count2++;
+                    if (i <= C.Length)
+                        i++;
                 }
             }
             foreach (int i in C)
                 Console.WriteLine(i);
-            #endregion
+            #endregion*/
         }
     }
 }
