@@ -117,9 +117,6 @@ namespace ConsoleApp1
 
         static void Main(string[] args)
         {
-            //TASKS
-
-
             //part 1
             /*#region 6
                 double number, summ;
@@ -269,14 +266,12 @@ namespace ConsoleApp1
             #region 6
                 double[] ints = new double[] { 32, -54, 9, 2, 125, -4, -77, -8, 25, 99, -5 };
                 double P = 34, sum = 0, srsum;
-
                 for (int i = 0; i < ints.Length; i++)
                     sum += ints[i];
                 srsum = sum / ints.Length;
                 double[] proximity_degree = new double[ints.Length];
                 for (int i = 0; i < ints.Length; i++) //создание массива со значениями "близости" элементов массива к средней сумме
                     proximity_degree[i] = Math.Abs(ints[i] - srsum);
-
                 double proxmin;
                 int indmin;
                 indmin = 0;
@@ -287,7 +282,6 @@ namespace ConsoleApp1
                         proxmin = proximity_degree[i];
                         indmin = i;
                     }
-
                 double[] newints = new double[ints.Length + 1];
                 for (int i = 0; i <= indmin; i++) //формирование массива
                     newints[i] = ints[i];
@@ -408,35 +402,42 @@ namespace ConsoleApp1
                     Console.Write(A[i] + " ");
                 }
             #endregion
-            //part 3*/
+            //part 3
             #region 1
-                var A = inputLists();
-                var B = new List<int>();
-                double max = A[0];
-                Int16 ok = 1;
+            var A = inputLists();
+            var B = new List<int>();
+            double max = A[0];
+            Int16 count = 0;
 
-                for (int i = 0; i < A.Count; i++)
+            for (int i = 0; i < A.Count; i++)
+            {
+                if (A[i] == max)
                 {
-                    if (ok == 1)
-                    {
-                        for (int i1 = 1; i1 < A.Count; i++)
-                            if (A[i1] > max)
-                                max = A[i1];
-                        ok = 0;
-                    }
-                    if (A[i] == max)
-                        B.Add(i);
+                    B.Add(i);
+                    count++;
                 }
-                for (int i = 0; i < B.Count; i++)
-                    Console.Write(B[i] + " ");
+                else if (A[i] > max)
+                {
+                    count = 1;
+                    max = A[i];
+                    B.Add(i);
+                }    
+            }
+
+            Int16 check = 0;
+            for (int i = B.Count - 1; check < count; i--)
+            {
+                Console.Write(B[i] + " ");
+                check++;
+            }
             #endregion
- /*
+
             #region 5
                 var A = inputLists();
                 var B = new List<double>();
                 for (int i = 0; i < A.Count; i++)
                     Console.Write(A[i] + " ");
- 
+
                 for (int i = 0; i < A.Count; i++)
                     if (i % 2 == 0)
                         B.Add(A[i]);
@@ -450,13 +451,13 @@ namespace ConsoleApp1
                         count += 1;
                     }
                 }
- 
+
                 Console.WriteLine(" ");
- 
+
                 for (int i = 0; i < A.Count; i++)
                     Console.Write(A[i] + " ");
             #endregion
- 
+
             #region 8
                 var A = inputLists();
                 var B = new List<double>();
@@ -480,38 +481,33 @@ namespace ConsoleApp1
                 for (int i = 0; i < A.Count; i++)
                     Console.Write(A[i] + " ");
             #endregion
- 
+            
             #region 9
                 var A = inputLists();
                 var B = new List<double>();
-                int count = 1;
- 
+                int count1 = 1, count2 = 1;
+
                 for (int i = 0; i < A.Count - 1; i++)
                 {
                     if (A[i] > A[i + 1])
-                        count++;
+                        count1++;
                     else
                     {
-                        B.Add(count);
-                        count = 1;
+                        B.Add(count1);
+                        count1 = 1;
                     }
-                }
-                B.Add(count);
- 
-                count = 1;
- 
-                for (int i = 0; i < A.Count - 1; i++)
-                {
+
                     if (A[i] < A[i + 1])
-                        count++;
+                        count2++;
                     else
                     {
-                        B.Add(count);
-                        count = 1;
+                        B.Add(count2);
+                        count2 = 1;
                     }
                 }
-                B.Add(count);
- 
+                B.Add(count1);
+                B.Add(count2);
+
                 Console.WriteLine(B.Max());
             #endregion
             #region 12
@@ -575,11 +571,11 @@ namespace ConsoleApp1
                 }
                 for (int i = 0; i < new_array.Length; i++)
                     Console.Write(new_array[i] + " ");
-            #endregion*/
+            #endregion
 
-
+            
             //algorithms
-            /*#region 11
+            #region 11
             double[] A = inputArrays();
             double x = inputDouble();
             int ind = A.Length / 2;
@@ -612,23 +608,72 @@ namespace ConsoleApp1
             #region 12
             double[] A = inputArrays();
             double[] B = inputArrays();
-            int lenght = A.Length + B.Length;
-            double[] C = new double[lenght];
-            int count1 = 0, count2 = 0;
+            double[] C;
+            int lenght, maxlen, count1 = 0, count2 = 0;
 
-            for (int i = 0; i < lenght; i += 2)
+            if (A.Length == B.Length)
             {
-                C[i] = A[count1];
-                count1++;
-            }
+                lenght = A.Length + B.Length;
+                C = new double[lenght];
+                for (int i = 0; i < lenght; i += 2)
+                {
+                    C[i] = A[count1];
+                    count1++;
 
-            for (int i = 1; i < lenght; i += 2)
-            {
-                C[i] = B[count2];
-                count2++;
+                    C[i + 1] = B[count2];
+                    count2++;
+                }
             }
+            else
+            {
+                maxlen = A.Length + B.Length;
+                C = new double[maxlen];
+
+                if (A.Length > B.Length)
+                {
+                    lenght = 2 * B.Length;
+
+                    for (int i = 0; i < lenght; i += 2)
+                    {
+                        C[i] = A[count1];
+                        count1++;
+
+                        C[i + 1] = B[count2];
+                        count2++;
+                    }
+
+                    count1 = 0;
+                    for (int i = lenght; i < maxlen; i ++)
+                    {
+                        C[i] = A[count1];
+                        count1++;
+                    }
+                }
+                else
+                {
+                    lenght = 2 * A.Length;
+
+                    for (int i = 0; i < lenght; i += 2)
+                    {
+                        C[i] = A[count1];
+                        count1++;
+
+                        C[i + 1] = B[count2];
+                        count2++;
+                    }
+
+                    count1 = 0;
+                    for (int i = lenght; i < maxlen; i++)
+                    {
+                        C[i] = B[count1];
+                        count1++;
+                    }
+                }
+
+            }
+            for (int i = 0; i < C.Length; i++)
+                Console.Write(C[i] + " ");
             #endregion
-
 
             #region 13
             double[] A = inputArrays(); // 4 4 7
@@ -636,7 +681,6 @@ namespace ConsoleApp1
             int lenght = A.Length + B.Length;
             double[] C = new double[lenght];
             int count1 = 0, count2 = 0;
-
             for (int i = 0; i < lenght; i++)
             {
                 if (A[count1] < B[count2])
@@ -665,7 +709,24 @@ namespace ConsoleApp1
             }
             foreach (int i in C)
                 Console.WriteLine(i);
+            #endregion
+        
+            #region 14
+            double[] A = inputArrays();
+            double[] B = new double[A.Length];
+            int i1 = 0;
+            for (int i = A.Length - 1; i >= 0; i--)
+            {
+                B[i1] = A[i];
+                i1++;
+            }
+            for (int i = 0; i < B.Length; i++)
+                Console.WriteLine(B[i]);
             #endregion*/
+
+            #region 15
+
+            #endregion
         }
     }
 }
