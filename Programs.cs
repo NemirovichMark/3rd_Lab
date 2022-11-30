@@ -641,8 +641,7 @@ namespace ConsoleApp1
                         C[i + 1] = B[count2];
                         count2++;
                     }
-
-                    count1 = 0;
+                    
                     for (int i = lenght; i < maxlen; i ++)
                     {
                         C[i] = A[count1];
@@ -662,7 +661,6 @@ namespace ConsoleApp1
                         count2++;
                     }
 
-                    count1 = 0;
                     for (int i = lenght; i < maxlen; i++)
                     {
                         C[i] = B[count1];
