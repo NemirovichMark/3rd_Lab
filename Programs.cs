@@ -670,39 +670,39 @@ namespace ConsoleApp1
             #endregion
 
             #region 13
-            double[] A = inputArrays(); // 4 4 7
-            double[] B = inputArrays(); // 3 4 5
-            int lenght = A.Length + B.Length;
-            double[] C = new double[lenght];
-            int count1 = 0, count2 = 0;
-            for (int i = 0; i < lenght; i++)
+            var A = inputLists();
+            var B = inputLists();
+            var C = new List<double>();
+            int k = 0, t = 0, Alent = A.Count, Blent = B.Count;
+
+            while (k < Alent || t < Blent)
             {
-                if (A[count1] < B[count2])
+                if (k == Alent) 
                 {
-                    C[i] = A[count1];
-                    if (count1 <= A.Length)
-                        count1++;
+                    C.Add(B[t]);
+                    t++;
+                    continue;
                 }
-                else if (B[count2] < A[count1])
+                if (t == Blent) 
                 {
-                    C[i] = B[count2];
-                    if (count2 <= B.Length)
-                        count2++;
+                    C.Add(A[k]);
+                    k++;
+                    continue;
                 }
-                else
+                if (A[k] >= B[t]) 
+                { 
+                    C.Add(A[k]); 
+                    k++;
+                }
+                else 
                 {
-                    C[i] = A[count1];
-                    C[i + 1] = B[count2];
-                    if (count1 <= A.Length)
-                        count1++;
-                    if (count2 <= B.Length)
-                        count2++;
-                    if (i <= C.Length)
-                        i++;
+                    C.Add(B[t]);
+                    t++;
                 }
             }
-            foreach (int i in C)
-                Console.WriteLine(i);
+
+            for (int i = 0; i < C.Count; i++)
+                Console.WriteLine(C[i]);
             #endregion
         
             #region 14
