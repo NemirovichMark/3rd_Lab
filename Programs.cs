@@ -578,31 +578,27 @@ namespace ConsoleApp1
             #region 11
             double[] A = inputArrays();
             double x = inputDouble();
-            int ind = A.Length / 2;
-            if (x == A[ind])
-                Console.WriteLine("index: {0}", ind);
-            else if (x < A[ind])
+            int avg = A.Length / 2, max = A.Length, min = 0;
+
+            while (true)
             {
-                for (int i = 0; i < ind; i++)
+                if (max < min)
+                    break;
+
+                else if (x < A[avg])
                 {
-                    if (x == A[i])
-                    {
-                        Console.WriteLine("index: {0}", i);
-                        break;
-                    }
+                    max = avg;
+                    avg = avg / 2;
                 }
-            }
-            else
-            {
-                for (int i = ind; i < A.Length; i++)
+
+                else if (x > A[avg])
                 {
-                    if (x == A[i])
-                    {
-                        Console.WriteLine("index: {0}", i);
-                        break;
-                    }
+                    min = avg;
+                    avg = (max - min) / 2;
                 }
-            }
+
+                else if (x == A[avg])
+                    Console.WriteLine("index: {0}", avg);
             #endregion
 
             #region 12
