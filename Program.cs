@@ -67,7 +67,7 @@ namespace _3rd_Lab
             }
             else
             {
-                Console.WriteLine(Math.Abs(firstIndex - secondIndex));
+                Console.WriteLine(Math.Abs(firstIndex - secondIndex) - 1);
             }
         }
         #endregion
