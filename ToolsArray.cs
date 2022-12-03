@@ -329,14 +329,13 @@ namespace _3rd_Lab
                 if (element > array[middle])
                 {
                     lowBound = middle + 1;
-                    middle = (lowBound + upBound) / 2;
                 }
 
                 if (element < array[middle])
                 {
                     upBound = middle - 1;
-                    middle = (lowBound + upBound) / 2;
                 }
+                middle = (lowBound + upBound) / 2;
             }
 
             return sourceIndex;
