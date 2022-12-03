@@ -428,41 +428,53 @@ namespace _3rd_Lab
         static void Task3_9()
         {
             int n = ToolsArray.InitLength();
-            double[] array = new double[n];
-            Console.WriteLine("Fill array: ");
+            int[] array = new int[n];
             ToolsArray.Fill(array);
 
+            Console.WriteLine("The length of the decreasing or increasing sequence? 0 or 1 (default 1)");
+            int.TryParse(Console.ReadLine(), out int answer);
+            
+            int maxLength = GetLength(array, ref answer);
+            string message = answer == 1 ? "increasing" : "decreasing";
+            Console.WriteLine($"maximum length of {message} progression = {maxLength}");
+        }
+        
+        static int GetLength(int[] array, ref int answer)
+        {
             int maxLength = 0;
             int currentLength = 1;
-            for (int i = 0; i < array.Length - 1; i++)
+            if(answer != 1 || answer != 0)
             {
-                if (array[i] < array[i + 1])
-                    currentLength++;
-                else
+                answer = 1;
+            }
+
+            if (answer == 1)
+            {
+                for (int i = 0; i < array.Length - 1; i++)
                 {
-                    maxLength = currentLength > maxLength ? currentLength : maxLength;
-                    currentLength = 1;
+                    if (array[i] < array[i + 1])
+                        currentLength++;
+                    else
+                    {
+                        maxLength = currentLength > maxLength ? currentLength : maxLength;
+                        currentLength = 1;
+                    }
                 }
             }
-            maxLength = currentLength > maxLength ? currentLength : maxLength;
-
-            Console.WriteLine($"max length = {maxLength}");
-
-            maxLength = 0;
-            currentLength = 1;
-            for (int i = 0; i < array.Length - 1; i++)
+            else
             {
-                if (array[i] > array[i + 1])
-                    currentLength++;
-                else
+                for (int i = 0; i < array.Length - 1; i++)
                 {
-                    maxLength = currentLength > maxLength ? currentLength : maxLength;
-                    currentLength = 1;
+                    if (array[i] > array[i + 1])
+                        currentLength++;
+                    else
+                    {
+                        maxLength = currentLength > maxLength ? currentLength : maxLength;
+                        currentLength = 1;
+                    }
                 }
             }
-            maxLength = currentLength > maxLength ? currentLength : maxLength;
-
-            Console.WriteLine($"max length = {maxLength}");
+            return maxLength;
         }
         #endregion
 
