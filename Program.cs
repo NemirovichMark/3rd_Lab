@@ -555,73 +555,41 @@ namespace _3rd_Lab
             ToolsArray.Fill(array2);
 
             int[] array3 = new int[n + m];
-            if (n == m)
-            {
-                int external = 0;
-                for (int i = 0; i < array3.Length; i += 2)
-                {
-                    array3[i] = array1[external];
-                    external++;
-                }
-
-                external = 0;
-                for (int i = 1; i < array3.Length; i += 2)
-                {
-                    array3[i] = array2[external];
-                    external++;
-                }
-            }
-
-            if (n > m)
-            {
-                int external = 0;
-                for (int i = 0; i < array3.Length; i += 2)
-                {
-                    array3[i] = array1[external];
-                    external++;
-                    if (external == m) break;
-                }
-
-                external = 0;
-                for (int i = 1; external < array2.Length; i += 2)
-                {
-                    array3[i] = array2[external];
-                    external++;
-                }
-
-                external = m;
-                for (int i = 2 * m; i < array3.Length; i++)
-                {
-                    array3[i] = array1[external];
-                    external++;
-                }
-            }
-
-            if (m > n)
-            {
-                int external = 0;
-                for (int i = 0; external < array1.Length; i += 2)
-                {
-                    array3[i] = array1[external];
-                    external++;
-                }
-
-                external = 0;
-                for (int i = 1; external < array3.Length; i += 2)
-                {
-                    array3[i] = array2[external];
-                    external++;
-                    if (external == n) break;
-                }
-
-                external = n;
-                for (int i = 2 * n; i < array3.Length; i++)
-                {
-                    array3[i] = array2[external];
-                    external++;
-                }
-            }
+            Concate(array1, array2, array3);
             ToolsArray.Print(array3);
+        }
+        
+        static void Concate(int[] a, int[] b, int[] c)
+        {
+            int external = 0;
+            for(int i = 0; i < c.Length && external < a.Length; i += 2, external++)
+            {
+                c[i] = a[external];
+            }
+
+            if(a.Length > b.Length)
+            {
+                external = b.Length;
+                for(int i = external * 2; i < c.Length; i++, external++)
+                {
+                    c[i] = a[external];
+                }
+            }
+
+            external = 0;
+            for(int i = 1; i < c.Length && external < b.Length; i += 2, external++)
+            {
+                c[i] = b[external];
+            }
+
+            if (b.Length > a.Length)
+            {
+                external = a.Length;
+                for (int i = external * 2; i < c.Length; i++, external++)
+                {
+                    c[i] = b[external];
+                }
+            }
         }
 
         static void Task13_14()
