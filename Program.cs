@@ -342,15 +342,21 @@ namespace _3rd_Lab
 
             int n = ToolsArray.InitLength();
             double[] array = new double[n];
-            Console.WriteLine("Fill array: ");
             ToolsArray.Fill(array);
 
-            int index = ToolsArray.FindMax(array);
-            double max = array[index];
-
+            
             int[] indexes = new int[0];
+            double max = array[0];
             for (int i = 0; i < array.Length; i++)
             {
+                if(max < array[i])
+                {
+                    max = array[i];
+                    indexes = new int[0];
+                    indexes = ToolsArray.Add(indexes, i);
+                    continue;
+                }
+
                 if (Math.Abs(max - array[i]) <= epsilon)
                     indexes = ToolsArray.Add(indexes, i);
             }
