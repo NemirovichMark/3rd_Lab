@@ -23,3 +23,917 @@ Global
 		SolutionGuid = {81830C5F-B9BF-4AFB-AF7C-20645099C2E5}
 	EndGlobalSection
 EndGlobal
+using System;
+using System.Collections;
+using System;
+using System.Collections;
+
+#region 1_6
+int[] a = new int[5];
+double Sum = 0;
+Console.WriteLine("Введите x1-x5,разделяя значение эллементов пробелом" );
+string s = Console.ReadLine();
+string[] c = s.Split(' ');
+for (int i = 0; i < 5; i = i + 1)
+{
+    a[i] = int.Parse(c[i]);
+}
+    for (int ii = 0; ii < 5; ii++)
+    {
+        Sum = Sum + Math.Pow(a[ii], 2);
+    }
+double L = Math.Sqrt(Sum);
+Console.WriteLine(L);
+#endregion
+#region 1_11
+int[] a3 = new int[10] { -3, 0, -4, 5, 7, -700, 56, -54, 32, 10 };
+int[] b = new int[10];
+int k = 0;
+for (int i = 0; i < 10; i++)
+{
+    if (a3[i] > 0) { b[k] = a3[i]; k += 1; }
+}
+Console.WriteLine("исходный массив а");
+for (int i = 0; i < 10; i++)
+{
+    Console.Write("{0:d}", a3[i] + " ");
+}
+Console.Write("\n");
+Console.WriteLine("массив из положительных чисел b");
+for (int i = 0; i < k; i++)
+{
+    Console.Write("{0:d}", b[i] + " ");
+}
+#endregion
+#region 1_12
+int[] x = new int[8] { 1, 5, 6, 3, -77, 3, -5, 34 };
+Console.WriteLine ("исходный массив");
+for (int i = 0; i < 8; i++)
+{
+    Console.Write("{0:d}", x[i] + " ");
+}
+Console.Write("\n");
+for (int i = 7; i > 0; i--)
+{
+    if (x[i] < 0)
+    {
+        Console.WriteLine("значение последнего " + "отрицательного элемента " + x[i] + " " + "его номер " + (i + 1));
+        break;
+    }
+}
+
+#endregion
+#region 1_13
+int[] nums = new int[10] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+// нечет
+int[] odd = new int[5];
+// чет
+int[] even = new int[5];
+
+int odd_idx = 0, even_idx = 0;
+
+for (int i = 0; i < nums.Length; i++)
+{
+    if (i % 2 == 0)
+    {
+        even[even_idx] = nums[i];
+        even_idx++;
+    }
+    else
+    {
+        odd[odd_idx] = nums[i];
+        odd_idx++;
+    }
+}
+Console.WriteLine("нечетные элементы массива");
+for (int i = 0; i < odd.Length; i++)
+{
+    Console.WriteLine(odd[i]);
+}
+Console.WriteLine("четные элементы массива");
+for (int i = 0; i < even.Length; i++)
+{
+    Console.WriteLine(even[i]);
+}
+#endregion
+#region 2_5
+{
+    int n22;
+
+    while (true)
+    {
+        Console.WriteLine("     enter length of the array");
+        if (!int.TryParse(Console.ReadLine(), out n22) || n22 <= 0)
+        {
+            Console.WriteLine("     incorrect format or n is not positive, try again");
+            continue;
+        }
+        break;
+    }
+
+    List<double> input_data = new List<double>();
+    List<double> answer = new List<double>();
+    int idx_max = 0, idx_min = 0;
+
+    Console.WriteLine("     Plese enter n values");
+
+    for (int i = 0; i < n22; i++)
+    {
+        double value;
+
+        if (!double.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("     Incorrect format");
+            return;
+        }
+
+        input_data.Add(value);
+
+        if (value > input_data[idx_max])
+        {
+            idx_max = i;
+        }
+
+        if (value < input_data[idx_min])
+        {
+            idx_min = i;
+        }
+    }
+
+    int start = Math.Min(idx_min, idx_max), end = Math.Max(idx_min, idx_max);
+
+    for (int i = start; i < end; i++)
+    {
+        double val = input_data[i];
+        if (val < 0)
+        {
+            answer.Add(val);
+        }
+    }
+
+    string ans = "   answer:";
+    foreach (double v in answer)
+    {
+        ans += v.ToString();
+        ans += " ";
+    }
+    Console.WriteLine(ans);
+
+}
+#endregion
+#region 2_6
+int n = 0;
+List<int> array = new List<int>();
+int numberP = 0;
+try
+{
+    Console.Write("Enter the number of elements in an array:");
+    n = int.Parse(Console.ReadLine());
+    if (n > 0)
+    {
+        Console.WriteLine("Fill the array with nums: ");
+        for (int i = 0; i < n; i++)
+        {
+            int element = int.Parse(Console.ReadLine());
+            array.Add(element);
+        }
+        Console.Write("Enter the P number: ");
+        numberP = int.Parse(Console.ReadLine());
+    }
+    else Console.WriteLine("List's range can't be negative");
+}
+catch (Exception)
+{
+    Console.WriteLine("Program supports only integers!");
+}
+if (n > 0)
+{
+    double sum = 0;
+    foreach (double i in array)
+    {
+        sum += i;
+    }
+    double sr = sum / array.Count;
+    double min = Math.Abs(sr - array[0]);
+    int index = 0;
+    for (int i = 0; i < n; i++)
+    {
+        double difference = Math.Abs(sr - array[i]);
+        if (difference < min)
+        {
+            min = difference;
+            index = i;
+        }
+    }
+    array.Insert(index + 1, numberP);
+    foreach (int i in array)
+    {
+        Console.Write(i + "; ");
+    }
+    Console.WriteLine();
+}
+#endregion
+#region 2_9
+{
+    Console.WriteLine("     please enter the length of the array n");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out n))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+
+        if (n <= 0)
+        {
+            Console.WriteLine("     n must be positive, enter again");
+            continue;
+        }
+        break;
+    }
+
+    List<double>xx  = new List<double>();
+
+    Console.WriteLine("     enter n values");
+
+    int idx_max = 0, idx_min = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        double value;
+
+        if (!double.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+
+        xx.Add(value);
+
+        if (value > xx[idx_max])
+        {
+            idx_max = i;
+        }
+
+        if (value < x[idx_min])
+        {
+            idx_min = i;
+        }
+    }
+
+    double ans = 0;
+
+    for (int i = Math.Min(idx_max, idx_min); i <= Math.Max(idx_max, idx_min); i++)
+    {
+        ans += xx[i];
+    }
+    ans = ans / (Math.Abs(idx_min - idx_max) + 1);
+    Console.WriteLine($"    answer: {ans}");
+}
+#endregion
+#region 2_10
+{
+    int n1 = 0;
+
+    Console.WriteLine("     please enter the length of the array n");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out n1))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+
+        if (n1 <= 0)
+        {
+            Console.WriteLine("     n must be positive, enter again");
+            continue;
+        }
+        break;
+    }
+
+    double min_el = double.PositiveInfinity;
+    List<double> x1 = new List<double>();
+
+    Console.WriteLine("     enter n values");
+
+    for (int i = 0; i < n1; i++)
+    {
+        double value;
+
+        if (!double.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+
+        x1.Add(value);
+
+        if (value > 0 && value < min_el)
+        {
+            min_el = value;
+        }
+    }
+
+    x1.Remove(min_el);
+    string answer = "   answer: ";
+    foreach (double v in x1)
+    {
+        answer += v.ToString();
+        answer += " ";
+    }
+    Console.WriteLine(answer);
+
+}
+#endregion
+
+#region 2_11
+{
+    int n2;
+
+    Console.WriteLine("     please enter the length of the array n");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out n2))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+
+        if (n2 <= 0)
+        {
+            Console.WriteLine("     n must be positive, enter again");
+            continue;
+        }
+        break;
+    }
+
+    int last_positive = 0;
+    List<double> x2 = new List<double>();
+
+    Console.WriteLine("     enter n values");
+
+    for (int i = 0; i < n2; i++)
+    {
+        double value;
+
+        if (!double.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+
+        x2.Add(value);
+
+        if (value > 0)
+        {
+            last_positive = i;
+        }
+    }
+
+    double p;
+    Console.WriteLine("     enter p");
+    while (true)
+    {
+        if (!double.TryParse(Console.ReadLine(), out p))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+        break;
+    }
+
+    x2.Insert(last_positive + 1, p);
+    string answer = "   answer: ";
+    foreach (double v in x2)
+    {
+        answer += v.ToString();
+        answer += " ";
+    }
+    Console.WriteLine(answer);
+}
+
+#endregion
+
+#region 2_13
+{
+    int n3;
+    double x4;
+
+    Console.WriteLine("     please enter the length of the array n");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out n3))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+
+        if (n3 <= 0)
+        {
+            Console.WriteLine("     n must be positive, enter again");
+            continue;
+        }
+        break;
+    }
+
+    double[] x3 = new double[n3];
+    double max_elem = double.NegativeInfinity;
+    int idx_max = 0;
+
+    Console.WriteLine("     enter n values");
+
+    for (int i = 0; i < n3; i++)
+    {
+        double value;
+
+        if (!double.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+
+        x3[i] = value;
+
+        if (value > max_elem)
+        {
+            max_elem = value;
+            idx_max = i;
+        }
+    }
+    x[idx_max] = idx_max;
+
+    string answer = "   answer: ";
+    foreach (double v in x)
+    {
+        answer += v.ToString();
+        answer += " ";
+    }
+    Console.WriteLine(answer);
+
+}
+#endregion
+
+#region 2_15
+{
+    int n4 = 0;
+    int m;
+
+    Console.WriteLine("     please enter n");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out n4))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+
+        if (n4 <= 0)
+        {
+            Console.WriteLine("     n must be positive, enter again");
+            continue;
+        }
+        break;
+    }
+
+    Console.WriteLine("     please enter m");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out m))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+
+        if (m <= 0)
+        {
+            Console.WriteLine("     m must be positive, enter again");
+            continue;
+        }
+        break;
+    }
+
+    List<double> a1 = new List<double>();
+    double[] b1 = new double[m];
+
+    Console.WriteLine("     enter n values for A array");
+
+    for (int i = 0; i < n4; i++)
+    {
+        double v;
+
+        if (!double.TryParse(Console.ReadLine(), out v))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+        a1.Add(v);
+    }
+
+    Console.WriteLine("     enter m values for B array");
+    for (int i = 0; i < m; i++)
+    {
+        double v;
+
+        if (!double.TryParse(Console.ReadLine(), out v))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+        b1[i] = v;
+    }
+
+    int k1;
+    Console.WriteLine("     please enter k");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out k1))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+
+        if (k1 < 0 || k >= n)
+        {
+            Console.WriteLine("     k must be in range [0; n - 1] , enter again");
+            continue;
+        }
+        break;
+    }
+
+    a1.InsertRange(k1, b1);
+
+    string answer = "   answer: ";
+    foreach (double v in a)
+    {
+        answer += v.ToString();
+        answer += " ";
+    }
+    Console.WriteLine(answer);
+}
+#endregion
+#region 1ex
+{
+    int n5;
+
+    Console.WriteLine("     enter the length of the array");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out n5))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+        if (n5 <= 0)
+        {
+            Console.WriteLine("     n > 0, try again");
+            continue;
+        }
+        break;
+    }
+
+    Console.WriteLine("     enter n values");
+    double[] x6 = new double[n5];
+    List<int> indices = new List<int>();
+    double max_elem = double.NegativeInfinity;
+
+    for (int i = 0; i <= n5; i++)
+    {
+        double value;
+
+        if (!double.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+
+        x6[i] = value;
+        if (value > max_elem)
+        {
+            max_elem = value;
+            indices.Clear();
+        }
+
+        if (value == max_elem)
+        {
+            indices.Add(i);
+        }
+    }
+
+    string answer = "   answer: ";
+    foreach (int idx in indices)
+    {
+        answer += idx.ToString();
+        answer += " ";
+    }
+    Console.WriteLine(answer);
+}
+#endregion
+
+#region 5ex
+{
+    int n7;
+
+    Console.WriteLine("     enter n");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out n7))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+        if (n7 <= 0)
+        {
+            Console.WriteLine("     n > 0, try again");
+            continue;
+        }
+        break;
+    }
+
+    double[] x7 = new double[n];
+
+    Console.WriteLine("     enter n values");
+
+    for (int i = 0; i <= n7; i++)
+    {
+        double value;
+
+        if (!double.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+
+        x7[i] = value;
+    }
+
+    /*
+        * bubble sort
+        */
+    for (int i = 0; i < n7 - 1; i += 2)
+    {
+        for (int j5 = i + 2; j5 < n7 - 1; j5 += 2)
+        {
+            if (x7[i] > x7[j5])
+            {
+                (x7[i], x7[j5]) = (x7[j5], x7[i]);
+            }
+        }
+    }
+
+    string answer = "   answer: ";
+    foreach (double elem in x7)
+    {
+        answer += elem.ToString();
+        answer += " ";
+    }
+    Console.WriteLine(answer);
+}
+#endregion
+
+#region 8ex
+{
+    int n8;
+
+    Console.WriteLine("     enter n");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out n8))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+        if (n8 <= 0)
+        {
+            Console.WriteLine("     n > 0, try again");
+            continue;
+        }
+        break;
+    }
+
+    double[] x8 = new double[n8];
+    List<int> indexes_negative = new List<int>();
+
+    Console.WriteLine("     enter n values");
+
+    for (int i = 0; i <= n8; i++)
+    {
+        double value;
+
+        if (!double.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+
+        x8[i] = value;
+
+        if (value < 0)
+        {
+            indexes_negative.Add(i);
+        }
+    }
+
+    foreach (int i in indexes_negative)
+    {
+        foreach (int j6 in indexes_negative)
+        {
+            if (x8[i] > x8[j6])
+            {
+                (x8[i], x8[j6]) = (x8[j6], x8[i]);
+            }
+        }
+    }
+
+    string answer = "   answer: ";
+    foreach (double elem in x8)
+    {
+        answer += elem.ToString();
+        answer += " ";
+    }
+    Console.WriteLine(answer);
+}
+#endregion
+
+#region 9ex
+{
+    int n9;
+
+    Console.WriteLine("     enter n");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out n9))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+        if (n9 <= 0)
+        {
+            Console.WriteLine("     n > 0, try again");
+            continue;
+        }
+        break;
+    }
+
+    double[] x9 = new double[n9];
+
+    Console.WriteLine("     enter n values");
+
+    for (int i = 0; i <= n9; i++)
+    {
+        double value;
+
+        if (!double.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+
+        x9[i] = value;
+    }
+
+    int max_dec = 1, max_inc = 1, running_counter_dec = 0, running_counter_inc = 0;
+
+    for (int i = 0; i < n9 - 1; i++)
+    {
+        if (x9[i] > x9[i + 1])
+        {
+            running_counter_inc++;
+            max_inc = Math.Max(max_inc, running_counter_inc);
+            running_counter_dec = 1;
+            continue;
+        }
+
+        if (x9[i] < x9[i + 1])
+        {
+            running_counter_dec++;
+            max_dec = Math.Max(max_dec, running_counter_dec);
+            running_counter_inc = 1;
+        }
+        max_dec = Math.Max(max_dec, running_counter_dec);
+        max_inc = Math.Max(max_inc, running_counter_inc);
+        running_counter_inc = 1;
+        running_counter_dec = 1;
+    }
+
+    Console.WriteLine($"    answer: {Math.Max(max_inc, max_dec)}");
+}
+#endregion
+
+#region 12ex
+{
+    int n0;
+
+    Console.WriteLine("     enter n");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out n0))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+        if (n0 <= 0)
+        {
+            Console.WriteLine("     n > 0, try again");
+            continue;
+        }
+        break;
+    }
+
+    List<double> x0 = new List<double>();
+
+    Console.WriteLine("     enter n values");
+
+    for (int i = 0; i <= n0; i++)
+    {
+        double value;
+
+        if (!double.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+
+        x0[i] = value;
+    }
+
+    string answer = "   answer: ";
+
+    foreach (double v in x0)
+    {
+        if (v < 0)
+        {
+            x0.Remove(v);
+        }
+        else
+        {
+            answer += v.ToString();
+            answer += " ";
+        }
+    }
+    Console.WriteLine(answer);
+
+
+}
+#endregion
+
+#region 13ex
+{
+    int n11;
+
+    Console.WriteLine("     enter n");
+
+    while (true)
+    {
+        if (!int.TryParse(Console.ReadLine(), out n11))
+        {
+            Console.WriteLine("     incorrect format, try again");
+            continue;
+        }
+        if (n11 <= 0)
+        {
+            Console.WriteLine("     n > 0, try again");
+            continue;
+        }
+        break;
+    }
+
+    List<double> x11 = new List<double>();
+    Dictionary<double, bool> cache = new Dictionary<double, bool>();
+    string answer = "   answer: ";
+
+    Console.WriteLine("     enter n values");
+
+    for (int i = 0; i < n11; i++)
+    {
+        double value;
+
+        if (!double.TryParse(Console.ReadLine(), out value))
+        {
+            Console.WriteLine("     incorrect format");
+            return;
+        }
+
+        if (!cache.ContainsKey(value))
+        {
+            x11.Add(value);
+            cache.Add(value, true);
+            answer += value.ToString();
+            answer += " ";
+        }
+    }
+    Console.WriteLine(answer);
+}
+#endregion
