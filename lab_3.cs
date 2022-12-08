@@ -637,43 +637,40 @@ for (int i = 0; i < g.Length; i += 1)
         Console.WriteLine("Неверный ввод");
     }
 }
-int len=1;
+int len1=1;
 maxi = 0;
+int len2 = 1;
+mini = 0;
 for (int i = 0; i < a.Length; i += 1)
 {
     if(i>0)
     {
         if (a[i] > a[i-1])
         {
-            len++;
-            if(len>maxi)
+            len1++;
+            if(len1>maxi)
             {
                 maxi = len;
             }
         }
         else
         {
-            len = 1;
+            len1 = 1;
         }
     }
-}
-len = 1;
-mini = 0;
-for (int i = 0; i < a.Length; i += 1)
-{
     if (i > 0)
     {
         if (a[i] < a[i - 1])
         {
-            len++;
-            if (len > mini)
+            len2++;
+            if (len2 > mini)
             {
                 mini = len;
             }
         }
         else
         {
-            len = 1;
+            len2 = 1;
         }
     }
 }
@@ -908,6 +905,7 @@ for (int i = 0; i < c.Length; i += 1)
 
 // Task 13
 Console.WriteLine("Task 13");
+g = Console.ReadLine().Split();
 a = new double[g.Length];
 for (int i = 0; i < g.Length; i += 1)
 {
@@ -934,49 +932,41 @@ for (int i = 0; i < g.Length; i += 1)
         Console.WriteLine("Неверный ввод");
     }
 }
-c = new double[a.Length + b.Length - 1];
-if (a.Length > b.Length)
+c = new double[a.Length + b.Length];
+//k=i z=j
+k = 0;
+z = 0;
+int r = 0;
+while (k < a.Length & z < b.Length)
 {
-    k = b.Length;
-}
-else
-{
-    k = a.Length;
-}
-for (int i = 0; i < k * 2; i += 1)
-{
-    if (i % 2 == 0)
+    if (a[k] >= b[z])
     {
-        c[i] = a[i / 2];
+        c[r] = a[k];
+        k++;
+        r++;
     }
     else
     {
-        c[i] = b[i / 2];
+        c[r] = b[z];
+        z++;
+        r++;
     }
 }
-if (a.Length > b.Length)
+while (k < a.Length)
 {
-    for (int i = 0; i < a.Length - b.Length; i += 1)
-    {
-        c[i + 2 * k] = a[i + k];
-    }
+    c[r] = a[k];
+    k++;
+    r++;
 }
-if (a.Length < b.Length)
+while (z < b.Length)
 {
-    for (int i = 0; i < b.Length - a.Length; i += 1)
-    {
-        c[i + 2 * k - 1] = b[i + k];
-    }
+    c[r] = b[z];
+    z++;
+    r++;
 }
-Array.Sort(c);
-b = new double[c.Length];
 for (int i = 0; i < c.Length; i += 1)
 {
-    b[i] = c[c.Length - 1 - i];
-}
-for (int i = 0; i < b.Length; i += 1)
-{
-    Console.WriteLine($"b[{i}]={b[i]}");
+    Console.WriteLine($"c[{i}]={c[i]}");
 }
 
 // Task 14
