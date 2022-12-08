@@ -1,4 +1,4 @@
-﻿using System;
+using System;
         #region 1task6
         Console.WriteLine("task 1");
         Console.WriteLine("ввод массива: ");
@@ -44,7 +44,7 @@
                 Console.Write("Q=");
             }
         }
-        foreach (double neww in mass)//и так ясно что 10 элементов
+        foreach (double neww in mass)//хотя я и так знаю что там 10 элементов
         {
             if (neww > P && neww < Q)
             {
@@ -273,6 +273,7 @@
         #endregion
 
         #region 2task10
+        //1-первое в 2-ом уровне массивы должны быть произвольного размера 
         int n10;
         Console.Write("Введите длину массива:");
         while (!int.TryParse(Console.ReadLine(), out n10))
@@ -283,17 +284,17 @@
         double[] massiv10;
         double min10 = 0;//значение минимального положительного
         int i_min10 = 0;//индекс минимального положительного 
-        massiv10 = new double[n10];// массив длиной n
+        massiv10 = new double[n10];//создание массива длиной n
         int t;
         for (t = 0; t < n10; t++)
         {
-            Console.Write($"{t + 1})");
+            Console.Write($"{t + 1})");//это я выебываюсь чтобы было красиво можно и без этой хуйни
             while (!double.TryParse(Console.ReadLine(), out massiv10[t]))
             {
                 Console.WriteLine("Неверные входные данные");
                 Console.Write($"{t + 1}");
             }
-        }
+        }//все ввела массив теперь найдем первый положительный 
         bool flag = true;
         t = 0;
         while (t < n10 && flag)
@@ -308,7 +309,7 @@
         }
         if (!flag)// вдруг нет положительных элементов в массиве 
         {
-            for (int i10 = t + 1; i10 < n10; i10++)// минимальный 
+            for (int i10 = t + 1; i10 < n10; i10++)//находим минимальный 
             {
                 if ((massiv10[i10] > 0) & (massiv10[i10] < min10))
                 {
@@ -324,63 +325,169 @@
                 }
 
             }
-            Array.Resize(ref massiv10, n10 - 1);
-            for (int i10 = 0; i10 < massiv10.Length; i10++)
+            Array.Resize(ref massiv10, n10 - 1);//тут перевыделяется память на массив без одного элемента при этом сохраняет элементы массива ну наверно можно и без этого хз
+            for (int i10 = 0; i10 < massiv10.Length; i10++)//тут мы используем не n-1 а massiv10.lentgth потому что перевыделили память
             {
                 Console.WriteLine(massiv10[i10]);
             }
         }
         else Console.WriteLine("В массиве нет положительных элементов");
-        #endregion
+#endregion
 
 
-        #region 2task11
-
-        Console.WriteLine("2.11");
-        int n11=0;
-        double[] massiv11;
-        create(ref n11, out massiv11);
-        int new11 = 0;
-        maksim(massiv11,ref new11,n11);
-        if (new11 == -1)
-        {
-            Console.WriteLine("Введите положительное число пж");
-
-        }
-        else
-        {
-            if (double.TryParse(Console.ReadLine(), out double P11))
-            {
-                task2_11(ref massiv11, n11, new11, P11);
-                foreach (double e in massiv11)
-                {
-                    Console.WriteLine(e);
-                }
-            }
-        }
-        #endregion
-        #region 2task13
-        Console.WriteLine("2.13");
-    int n13 = 0, n133 = 0;
-    double[] bigmassiv13;
-    double[] massiv13;
-    int t133 = 0;
-    create_for_task2_13(ref n13, out massiv13, out bigmassiv13, ref t133, ref n133);
-    complete_t213(ref bigmassiv13, ref massiv13, n13);
-    foreach (double all in massiv13)
-        Console.WriteLine(all);
-    #endregion
-    #region 2task15
-    Console.WriteLine("2.15");
-    int n15;
+#region 2task11
+Console.WriteLine("2.11");
+int n11;
+Console.WriteLine("Введите длину массива:");
+while (!int.TryParse(Console.ReadLine(), out n11))
+{
+    Console.WriteLine("Введите длину массива:");
+}
+n11++;
+Console.WriteLine("Введите число P11");
+int p11;
+while (!int.TryParse(Console.ReadLine(), out p11))
+{
+    Console.WriteLine("Неверные входные данные");
+    Console.WriteLine("Введите число P11");
+}
+double[] massiv21;
+massiv21 = new double[n11];
+Console.WriteLine("Введите элементы массива");
+int k = -1;
+for (int i21 = 0; i21 < n11 - 1; i21++)
+{
+    Console.Write($"{i21 + 1})");
+    while (!double.TryParse(Console.ReadLine(), out massiv21[i21]))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write($"{i21 + 1})");
+    }
+    if (massiv21[i21] > 0)
+        k = i21;
+}
+if (k != -1)
+{
+    for (int i21 = n11 - 2; i21 >= k + 1; i21--)
+    {
+        massiv21[i21 + 1] = massiv21[i21];
+    }
+    massiv21[k + 1] = p11;
+    for (int i21 = 0; i21 < n11; i21++)
+        Console.Write($"{massiv21[i21]} ");
+    Console.WriteLine();
+}
+else
+    Console.WriteLine("В массиве нет положительнх элементов");
+#endregion
+#region 2task13
+Console.WriteLine("2.13");
+int n13 = 0;
+double[] massiv13;
+int t21;
+Console.Write("Введите длину массива:");
+while (!int.TryParse(Console.ReadLine(), out n13))
+{
+    Console.WriteLine("Неверные входные данные");
+    Console.Write("Введите длину массива:");
+}
+massiv13 = new double[n13];
+int[] im = new int[n13];
+for (t21 = 0; t21 < n13; t21++)
+{
+    Console.Write($"{t21 + 1})");
+    while (!double.TryParse(Console.ReadLine(), out massiv13[t21]))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write($"{t21 + 1})");
+    }
+}
+double amax = massiv13[1];
+int k13 = 1;
+for (int i13 = 0; i13 < n13; i13++)
+{
+    if (massiv13[i13] > amax)
+    {
+        amax = massiv13[i13];
+        k13 = 0;
+        im[k13] = i13;
+    }
+    else if (massiv13[i13] == amax)
+    {
+        k13 = k13 + 1;
+        im[k13] = i13;
+    }
+}
+for (int i13 = 0; i13 <= k13; i13++)
+{
+    massiv13[im[i13]] = im[i13];
+}
+for (int i13 = 0; i13 < n13; i13++)
+    Console.WriteLine($"{massiv13[i13]} ");
+Console.WriteLine();
+#endregion
+#region 2task15
+Console.WriteLine("2.15");
+int n15;
 int n16;
 double[] mas2;
 double[] mas1;
 int K;
-create_t215(out mas1, out mas2, out n15, out n16, out K);
-    #endregion
+Console.Write("Введите длину массива A:");
+while (!int.TryParse(Console.ReadLine(), out n15))
+{
+    Console.WriteLine("Неверные входные данные");
+    Console.Write("Введите длину массива:");
+}
+
+
+Console.Write("Введите длину массива B:");
+while (!int.TryParse(Console.ReadLine(), out n16))
+{
+    Console.WriteLine("Неверные входные данные");
+    Console.Write("Введите длину массива:");
+}
+mas2 = new double[n16];
+int ii25;
+mas1 = new double[n15 + n16];
+Console.Write("Введите K");
+while (!int.TryParse(Console.ReadLine(), out K) & K > 0 & K < (mas1.Length - 1))
+{
+    Console.WriteLine("Неверные входные данные");
+    Console.Write("Введите K");
+}
+Console.WriteLine("Введите массив А");
+for (ii25 = 0; ii25 < n15; ii25++)
+{
+    Console.Write($"{ii25 + 1})");
+    while (!double.TryParse(Console.ReadLine(), out mas1[ii25]))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write($"{ii25 + 1})");
+    }
+}
+Console.WriteLine("Введите массив B");
+for (ii25 = 0; ii25 < n16; ii25++)
+{
+    Console.Write($"{ii25 + 1})");
+    while (!double.TryParse(Console.ReadLine(), out mas2[ii25]))
+    {
+        Console.WriteLine("Неверные входные данные");
+        Console.Write($"{ii25 + 1})");
+    }
+}
+for (ii25 = n16 + n15 - 1; ii25 >= n16; ii25--)
+{
+    mas1[ii25] = mas1[ii25 - n16];
+}
+for (ii25 = K; ii25 <= n16; ii25++)
+    mas1[ii25] = mas2[ii25 - K];
+for (ii25 = 0; ii25 < n16 + n15; ii25++)
+    Console.Write($"{mas1[ii25]} ");
+Console.WriteLine();
+#endregion
 #region 3task_1
-    int n31;
+int n31;
     int c31 = 0;
     Console.Write("Введите длину массива:");
     while (!int.TryParse(Console.ReadLine(), out n31))
@@ -469,7 +576,8 @@ create_t215(out mas1, out mas2, out n15, out n16, out K);
             Console.WriteLine("Неверные входные данные");
         }
     }
-    bool flag38 = true
+    bool flag38 = true;
+    //[0,2,3,4,5,6,7,8] пусть будет сортировка ..... пузырёк
     i38 = 0;
     int j38, d38;
     double dop38;
@@ -550,141 +658,3 @@ create_t215(out mas1, out mas2, out n15, out n16, out K);
     }
     Array.Resize(ref mas312, 12 - k312);
     #endregion
-    static void create(ref int n, out double[] massiv1)
-    {
-        Console.Write("Введите длину массива:");
-        while (!int.TryParse(Console.ReadLine(), out n))
-        {
-            Console.WriteLine("Неверные входные данные");
-            Console.Write("Введите длину массива:");
-        }
-        massiv1 = new double[n];
-        int t;
-        for (t = 0; t < n; t++)
-        {
-            Console.Write($"{t + 1})");
-            while (!double.TryParse(Console.ReadLine(), out massiv1[t]))
-            {
-                Console.WriteLine("Неверные входные данные");
-                Console.Write($"{t + 1}");
-            }
-        }
-        return;
-    }
-    static void maksim(double[] massiv11, ref int new11, int n11)
-    {
-        for (int i_11 = 1; i_11 < n11; i_11++)
-        {
-            if (massiv11[i_11] > 0)
-            {
-                new11 = i_11;
-            }
-        }
-    }
-    static void task2_11(ref double[] massiv11, int n11, int new11, double P11)
-    {
-        int r11 = 0;
-        Array.Resize(ref massiv11, massiv11.Length + 1);
-        for (int i_11 = (massiv11.Length - 1); (i_11 - 1) != new11; i_11--)
-        {
-            massiv11[i_11] = massiv11[i_11 - 1];
-            r11 = i_11;
-        }
-        for (r11 = 0; r11 < n11; r11++)
-        {
-            Console.Write($"{r11 + 1})");
-            while (!double.TryParse(Console.ReadLine(), out massiv11[r11]))
-            {
-                Console.WriteLine("Неверные входные данные");
-                Console.Write($"{r11 + 1}");
-            }
-        }
-        massiv11[(r11 - 1)] = P11;
-    }
-    static void create_for_task2_13(ref int n13, out double[] massiv13, out double[] bigmassiv13, ref int t133, ref int n133)
-    {
-        Console.Write("Введите длину массива:");
-        while (!int.TryParse(Console.ReadLine(), out n13))
-        {
-            Console.WriteLine("Неверные входные данные");
-            Console.Write("Введите длину массива:");
-        }
-        massiv13 = new double[n13];
-
-        Console.Write("Введите длину массива:");
-        while (!int.TryParse(Console.ReadLine(), out n133))
-        {
-            Console.WriteLine("Неверные входные данные");
-            Console.Write("Введите длину массива:");
-        }
-        while (!int.TryParse(Console.ReadLine(), out t133))
-        {
-            Console.WriteLine("Неверные входные данные");
-            Console.Write("Введите длину массива:");
-        }
-        bigmassiv13 = new double[t133];
-        for (t133 = 0; t133 < n13; t133++)
-        {
-            Console.Write($"{t133 + 1})");
-            while (!double.TryParse(Console.ReadLine(), out bigmassiv13[n133]))
-            {
-                Console.WriteLine("Неверные входные данные");
-                Console.Write($"{t133 + 1}");
-            }
-        }
-    }
-    static void complete_t213(ref double[] bigmassiv13, ref double[] massiv13, int n13)
-    {
-        for (int i13 = 0; i13 < n13; i13++)
-        {
-            if (massiv13[i13] == bigmassiv13[0])
-                massiv13[i13] = i13;
-        }
-    }
-static void create_t215(out double[] mas1, out double[] mas2, out int n15, out int n16, out int K)
-{
-    Console.Write("Введите длину массива:");
-    while (!int.TryParse(Console.ReadLine(), out n15))
-    {
-        Console.WriteLine("Неверные входные данные");
-        Console.Write("Введите длину массива:");
-    }
-
-
-    Console.Write("Введите длину массива:");
-    while (!int.TryParse(Console.ReadLine(), out n16))
-    {
-        Console.WriteLine("Неверные входные данные");
-        Console.Write("Введите длину массива:");
-    }
-    mas2 = new double[n16];
-    int i;
-    mas1 = new double[n15 + n16];
-    while (int.TryParse(Console.ReadLine(), out K) & K >= 0 & K < (mas1.Length - 1))
-    {
-        Console.WriteLine("Неверные входные данные");
-        Console.Write("Введите K");
-    }
-    for (i = 0; i < K; i++)
-    {
-        Console.Write($"{i + 1})");
-        while (!double.TryParse(Console.ReadLine(), out mas1[i]))
-        {
-            Console.WriteLine("Неверные входные данные");
-            Console.Write($"{i + 1}");
-        }
-    }
-    for (i = K + 1; i < n15 + n16; i++)
-    {
-        Console.Write($"{i + 1})");
-        while (!double.TryParse(Console.ReadLine(), out mas1[i]))
-        {
-            Console.WriteLine("Неверные входные данные");
-            Console.Write($"{i + 1}");
-        }
-    }
-    for (i = K; i < n16 + K; i++)
-    {
-        mas1[i] = mas2[i];
-    }
-}
