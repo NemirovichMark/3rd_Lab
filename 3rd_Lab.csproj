@@ -6,4 +6,12 @@
     <RootNamespace>_3rd_Lab</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="firstL_10Ex.cs" />
+    <Compile Remove="firstL_11Ex.cs" />
+    <Compile Remove="firstL_12Ex.cs" />
+    <Compile Remove="firstL_13Ex.cs" />
+    <Compile Remove="firstL_6Ex.cs" />
+  </ItemGroup>
+
 </Project>
