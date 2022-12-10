@@ -719,7 +719,17 @@ namespace ConsoleApp1
             #endregion*/
 
             #region 15
-
+            int[] ints = new int[] { 1, 2, 3, 4, 5 };
+            int m = 3, x = 0, length = ints.Length - 1;
+            for (int i = 0; i < m; i++)
+            {
+                x = ints[0];
+                for (int i1 = 0; i1 < length; i1++)
+                {
+                    ints[i1] = ints[i1 + 1];
+                }
+                ints[length] = x;    
+            }
             #endregion
         }
     }
