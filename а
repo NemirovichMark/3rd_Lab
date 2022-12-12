@@ -1,0 +1,258 @@
+using System;
+#region 10
+    class Program
+{
+    static void Main(string[] args)
+    {
+        int[] a = new int[10] { 1, 4, 7, 10, 24, 28, 29, 30, 49, 77 };
+        int p = Convert.ToInt32(Console.ReadLine());
+        int q = Convert.ToInt32(Console.ReadLine());
+        int s = 0;
+        for (int i = 0; i <= 9; i++)
+        {
+            if (a[i] > p && a[i] < q) s += 1;
+        }
+        Console.WriteLine("Исходный масссив");
+        for (int i = 0; i <= 9; i++)
+        {
+            Console.Write("(0:d}", a[i] + " ");
+        }
+        Console.WriteLine($"переменная р={p} переменная q={q}");
+        Console.WriteLine($"количество элементов между р и q = {s}");
+    }
+}
+#endregion
+#region algorithm11
+
+                Console.Write("Input array: ");
+                input = Console.ReadLine().Split();
+                n = input.Length;
+                arr = new List<int>(n);
+                Console.Write("Enter X: ");
+                var x = int.Parse(Console.ReadLine());
+                foreach (var s in input)
+                {
+                    var elem = int.Parse(s);
+                    arr.Add(elem);
+                }
+
+                int left = 0;
+                int right = n - 1;
+                var ans = 0;
+                while (right - left > 1)
+                {
+                    var middle = (int)((r + l) / 2);
+                    if (arr[middle] == 1)
+                    {
+                        ans = middle;
+                        break;
+                    }
+
+                    if (arr[middle] < x)
+                    {
+                        l = middle;
+                    }
+                    else
+                    {
+                        r = middle;
+                    }
+                }
+
+                if (arr[left] == x)
+                {
+                    ans = left;
+                }
+                else if (arr[right] == x)
+                {
+                    ans = right;
+                }
+                else if (arr[ans] == x)
+                {
+                    Console.WriteLine("Answer: " + ans);
+                }
+                else
+                {
+                    Console.WriteLine("Element not exists");
+                }
+
+                #endregion
+
+                #region algorithm12
+
+                Console.Write("Input array (A): ");
+                inputA = Console.ReadLine().Split();
+                n = inputA.Length;
+                arrA = new List<int>(n);
+                foreach (var s in inputA)
+                {
+                    var elem = int.Parse(s);
+                    arrA.Add(elem);
+                }
+
+                Console.Write("Input array (B): ");
+                inputB = Console.ReadLine().Split();
+                m = inputB.Length;
+                arrB = new List<int>(m);
+                foreach (var s in inputB)
+                {
+                    var elem = int.Parse(s);
+                    arrB.Add(elem);
+                }
+
+                List<int> outp = new List<int>(n + m);
+                for (i = 0; i < Math.Min(m, n); i++)
+                {
+                    outp.Add(arrA[i]);
+                    outp.Add(arrB[i]);
+                }
+
+                if (n > m)
+                {
+                    for (i = m; i < n; i++)
+                    {
+                        outp.Add(arrA[i]);
+                    }
+                }
+                else
+                {
+                    for (i = n; i < m; i++)
+                    {
+                        outp.Add(arrB[i]);
+                    }
+                }
+
+                Console.WriteLine("Output array: ");
+                foreach (var elem in outp)
+                {
+                    Console.Write(elem + " ");
+                }
+
+                Console.WriteLine();
+
+                #endregion
+
+                #region algorithm13
+
+                Console.Write("Input array (A): ");
+                inputA = Console.ReadLine().Split();
+                n = inputA.Length;
+                arrA = new List<int>(n);
+                foreach (var s in inputA)
+                {
+                    var elem = int.Parse(s);
+                    arrA.Add(elem);
+                }
+
+                Console.Write("Input array (B): ");
+                inputB = Console.ReadLine().Split();
+                m = inputB.Length;
+                arrB = new List<int>(m);
+                foreach (var s in inputB)
+                {
+                    var elem = int.Parse(s);
+                    arrB.Add(elem);
+                }
+
+                outp = new List<int>(n + m);
+                j = 0;
+                i = 0;
+                while (i < n || j < m)
+                {
+                    if (i == n)
+                    {
+                        outp.Add(arrB[j]);
+                        j++;
+                        continue;
+                    }
+
+                    if (j == m)
+                    {
+                        outp.Add(arrA[i]);
+                        i++;
+                        continue;
+                    }
+
+                    if (arrA[i] <= arrB[j])
+                    {
+                        outp.Add(arrA[i]);
+                        i++;
+                    }
+                    else
+                    {
+                        outp.Add(arrB[j]);
+                        j++;
+                    }
+                }
+
+                Console.Write("Output array: ");
+                foreach (var elem in outp)
+                {
+                    Console.Write(elem + " ");
+                }
+
+                Console.WriteLine();
+
+                #endregion
+
+                #region algorithm14
+
+                Console.Write("Input array: ");
+                input = Console.ReadLine().Split();
+                n = input.Length;
+                arr = new List<int>(n);
+                foreach (var s in input)
+                {
+                    var elem = int.Parse(s);
+                    arr.Add(elem);
+                }
+
+                outp = new List<int>(n);
+                for (i = n - 1; i > -1; i--)
+                {
+                    outp.Add(arr[i]);
+                }
+
+                Console.Write("Output array: ");
+                foreach (var elem in outp)
+                {
+                    Console.Write(elem + " ");
+                }
+
+                Console.WriteLine();
+
+                #endregion
+
+
+                #region algorithm15
+
+                Console.Write("Input array: ");
+                input = Console.ReadLine().Split();
+                n = input.Length;
+                Console.Write("Enter K: ");
+                k = int.Parse(Console.ReadLine());
+                Queue<int> que = new Queue<int>(n);
+
+                for (i = n - 1; i > -1; i--)
+                {
+                    var elem = int.Parse(input[i]);
+                    que.Enqueue(elem);
+                }
+
+                for (i = 0; i < k; i++)
+                {
+                    que.Enqueue(que.Dequeue());
+                }
+
+                outp = new List<int>(n);
+                foreach (var elem in que)
+                {
+                    outp.Add(elem);
+                }
+
+                Console.Write("Output array: ");
+                for (i = n - 1; i > -1; i--)
+                {
+                    Console.Write(outp[i] + " ");
+                }
+
+                #endregion
