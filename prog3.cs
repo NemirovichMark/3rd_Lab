@@ -1,5 +1,5 @@
 using System;
-        #region 1task6
+               #region 1task6
         Console.WriteLine("task 1");
         Console.WriteLine("ввод массива: ");
         double[] mas = new double[] { 8, 38, 58, 80, 88 };
@@ -229,8 +229,8 @@ while (!double.TryParse(Console.ReadLine(), out p))
 double summa = mas6.Sum();
 double schet = mas6.Length;
 double malraznost;
-double srednee = summa / schet;
-malraznost = srednee - mas6[0];
+double srednee = summa / n6;
+malraznost = Math.Abs(srednee - mas6[0]);
 int raznost = 0;
 for (int i6 = 1; i6 < n6; i6++)
 {
