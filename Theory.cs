@@ -31,7 +31,7 @@ Console.Write("Enter the P value ");
 double.TryParse(Console.ReadLine(), out P);
 Console.Write("Enter the Q value ");
 double.TryParse(Console.ReadLine(), out Q);
-if (P < Q && P != Q)
+if (P < Q & P != Q)
 {
     for (int i = 0; i < a2.Length; i++)
     {
@@ -357,33 +357,62 @@ foreach (int i in array213)
 }
 #endregion 
 #region task 15
-ble[] array215 = new double[12] { -12, 7, -4, -2, 8, 29, -11, -10 ,51,22,74,81};
-double[] array2152 = new double[5] { 2, -4, 9,11,-17 };
-double[] array2153 = new double[array215.Length + array2152.Length];
-int q = 0,t,jj,kk;
-Console.WriteLine("Enter the k value ");
-int.TryParse(Console.ReadLine(), out t);
-if ( t >= 0)
+Console.WriteLine("Enter the size of your A array:");
+int ee;
+if (!int.TryParse(Console.ReadLine(), out ee))
 {
-    for (int i = 0; i < t + 1; i++)
+    Console.WriteLine("incorrect");
+    return;
+}
+double[] a7 = new double[ee];
+Console.WriteLine("Type the A array:");
+for (int i = 0; i < a7.Length; i++)
+{
+    a7[i] = Convert.ToDouble(Console.ReadLine());
+}
+Console.WriteLine("Enter the size of your B array:");
+int nn;
+if (!int.TryParse(Console.ReadLine(), out nn))
+{
+    Console.WriteLine("incorrect");
+    return;
+}
+double[] BB = new double[nn];
+Console.WriteLine("Type the B array:");
+for (int i = 0; i < BB.Length; i++)
+{
+    BB[i] = Convert.ToDouble(Console.ReadLine());
+}
+Console.WriteLine("Enter the k:");
+int kk;
+if (!int.TryParse(Console.ReadLine(), out kk))
+{
+    Console.WriteLine("incorrect");
+    return;
+}
+if (kk >= ee)
+{
+    Console.WriteLine("khm...");
+}
+else
+{
+    for (int i = 0; i < a7.Length; i++)
     {
-        array2153[i] = array215[i];
-        Console.WriteLine(array2153[i]);
-    }
-    for (jj = t + 1; jj < t + 1 + array2152.Length; jj++)
-    {
-        array2153[jj] = array2152[q];
-        Console.WriteLine(array2153[jj]);
-        q++;
-    }
-    q = t + 1;
-    for ( kk = t + 1 + array2152.Length; kk < array2153.Length; kk++)
-    {
-        array2153[kk] = array215[q];
-        Console.WriteLine(array2153[kk]);
-        q++;
+        if (i == kk)
+        {
+            for (int j = 0; j < BB.Length; j++)
+            {
+                Console.Write(BB[j] + " ");
+            }
+            Console.Write(a7[i] + " ");
+        }
+        else
+        {
+            Console.Write(a7[i] + " ");
+        }
     }
 }
+
 #endregion
 #endregion
 #region Level 3
@@ -564,32 +593,34 @@ for (int j = 0; j < d312; j++)
 }
 #endregion
 #region Task 13
-onsole.WriteLine("Enter the amount of members of array ");
-int d313,r313;
-int.TryParse(Console.ReadLine(), out d313);
-int[] array313 = new int[d313];
-for (int i = 0; i < d313; i++)
+Console.WriteLine("Enter the size of your array:");
+int asdasdas;
+int.TryParse(Console.ReadLine(), out asdasdas);
+double[] S3 = new double[asdasdas];
+int lol;
+Console.WriteLine("Eneter the array:");
+for (int i = 0; i < S3.Length; i++)
 {
-    Console.WriteLine($"Enter the  {i}  memeber ");
-    int t313;
-    int.TryParse(Console.ReadLine(), out t313);
-    array313[i] = t313;
+    S3[i] = Convert.ToDouble(Console.ReadLine());
 }
-for(int i = 0; i < d313-1; i++)
+for (int i = 0; i < S3.Length; i++)
 {
-    r313=array313[i];
-    for(int j = i+1; j < d313; j++)
+    lol = 0;
+    for (int j = 0; j < S3.Length; j++)
     {
-        if(array313[j] == r313)
+        if (i > j && S3[i] == S3[j])
         {
-            array313[i] = 0;
-            array313[j] = 0;
-        }    
+            lol = 1;
+        }
+        if (lol == 1)
+        {
+            break;
+        }
     }
-}
-for(int i = 0; i < d313; i++)
-{
-    Console.Write(array313[i] + " ");
+    if (lol == 0)
+    {
+        Console.Write(S3[i] + " ");
+    }
 }
 #endregion
 #endregion
@@ -663,155 +694,62 @@ if (int.TryParse(Console.ReadLine(), out n))
 }
 #endregion
 #region 12
-int n, m;
-Console.Write("Enter length array A");
-int.TryParse(Console.ReadLine(), out n);
-
-Console.Write("Enter length array B");
-int.TryParse(Console.ReadLine(), out m);
-
-if (n == m)
+int size = 0;
+int sizeB = 0;
+double[] arr = new double[size];
+double[] arr_B = new double[sizeB];
+Console.WriteLine("Введите массив А");
+string zex = Console.ReadLine();
+while (zex != "")
 {
-    int[] a = new int[n];
-    int[] b = new int[m];
-
-    Console.WriteLine("Enter elements of array A");
-    for (int i = 0; i < n; i++)
-    {
-        int.TryParse(Console.ReadLine(), out a[i]);
-    }
-
-    Console.WriteLine("Enter elements of array B");
-    for (int i = 0; i < m; i++)
-    {
-        int.TryParse(Console.ReadLine(), out b[i]);
-    }
-
-    int[] c = new int[2 * n];
-
-    int a_i = 0;
-    int b_i = 0;
-
-    for (int i = 0; i < 2 * n; i++)
-    {
-        if (i % 2 == 0)
-        {
-            c[i] = a[a_i];
-            a_i++;
-        }
-        else
-        {
-            c[i] = b[b_i];
-            b_i++;
-        }
-    }
-
-    Console.WriteLine("Final array C");
-    for (int i = 0; i < 2 * n; i++)
-    {
-        Console.WriteLine(c[i]);
-    }
+    Array.Resize(ref arr, size + 1);
+    arr[size] = Convert.ToDouble(zex);
+    size++;
+    zex = Console.ReadLine();
 }
-
-if (n < m)
+Console.WriteLine("Введите массив B");
+string zexb = Console.ReadLine();
+while (zexb != "")
 {
-    int[] a = new int[n];
-    int[] b = new int[m];
+    Array.Resize(ref arr_B, sizeB + 1);
+    arr_B[sizeB] = Convert.ToDouble(zexb);
+    sizeB++;
+    zexb = Console.ReadLine();
+}
+double[] arr_C = new double[size + sizeB];
+if (size > sizeB)
+{
 
-    Console.WriteLine("Enter elements of array A");
-    for (int i = 0; i < n; i++)
-    {
-        int.TryParse(Console.ReadLine(), out a[i]);
-    }
-
-    Console.WriteLine("Enter elements of array B");
-    for (int i = 0; i < m; i++)
-    {
-        int.TryParse(Console.ReadLine(), out b[i]);
-    }
-
-    int[] c = new int[n + m];
-
-    int a_i = 0;
-    int b_i = 0;
-
-    for (int i = 0; i < 2 * n; i++)
+    for (int i = 0; i < sizeB * 2; i++)
     {
         if (i % 2 == 0)
         {
-            c[i] = a[a_i];
-            a_i++;
+            arr_C[i] = arr[i / 2];
         }
         else
         {
-            c[i] = b[b_i];
-            b_i++;
+            arr_C[i] = arr_B[i / 2];
         }
     }
 
-    b_i = n;
-    for (int i = 2 * n; i < n + m; i++)
+    for (int i = sizeB; i < size; i++)
     {
-        c[i] = b[b_i];
-        b_i++;
-
+        arr_C[i + sizeB] = arr[i];
     }
 
-    Console.WriteLine("Final array C");
-    for (int i = 0; i < n + m; i++)
-    {
-        Console.WriteLine(c[i]);
-    }
 }
 else
 {
-    int[] a = new int[n];
-    int[] b = new int[m];
 
-    Console.WriteLine("Enter elements of array A");
-    for (int i = 0; i < n; i++)
+    for (int i = size; i < sizeB; i++)
     {
-        int.TryParse(Console.ReadLine(), out a[i]);
+        arr_C[i + size] = arr_B[i];
     }
 
-    Console.WriteLine("Enter elements of array B");
-    for (int i = 0; i < m; i++)
-    {
-        int.TryParse(Console.ReadLine(), out b[i]);
-    }
-
-    int[] c = new int[n + m];
-
-    int a_i = 0;
-    int b_i = 0;
-
-    for (int i = 0; i < 2 * m; i++)
-    {
-        if (i % 2 == 0)
-        {
-            c[i] = a[a_i];
-            a_i++;
-        }
-        else
-        {
-            c[i] = b[b_i];
-            b_i++;
-        }
-    }
-
-    a_i = m;
-    for (int i = 2 * m; i < n + m; i++)
-    {
-        c[i] = a[a_i];
-        a_i++;
-
-    }
-
-    Console.WriteLine("Final array C");
-    for (int i = 0; i < n + m; i++)
-    {
-        Console.WriteLine(c[i]);
-    }
+}
+for (int i = 0; i < arr_C.Length; i++)
+{
+    Console.Write(arr_C[i] + " ");
 }
 #endregion
 #region 13
