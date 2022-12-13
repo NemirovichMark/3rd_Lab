@@ -241,7 +241,7 @@ class homew4lvl2
             {
                 Console.WriteLine("введите элемент Р");
                 double P1 = Convert.ToDouble(Console.ReadLine());
-                int ix1 = 0;
+                int ix1 = -1;
                 for (int i1 = (l1 - 1); i1 > 0; i1--)
                 {
                     if (ma1[i1] > 0)
@@ -250,6 +250,8 @@ class homew4lvl2
                         break;
                     }
                 }
+                if (ix1!=-1)
+                {
                 double tempx = ma1[ix1 + 1]; //конструкция замены значений элементов для сдввига массива
                 double tempx1;
                 ma1[ix1 + 1] = P1;
@@ -261,8 +263,9 @@ class homew4lvl2
                     tempx = tempx1;
                     ix1++;
                 }
-
-                for (int z1 = 0; z1 < l1 + 1; z1++) Console.WriteLine(ma1[z1]);
+                l1+=1;
+}
+                for (int z1 = 0; z1 < l1; z1++) Console.WriteLine(ma1[z1]);
             }
             #endregion
         }
