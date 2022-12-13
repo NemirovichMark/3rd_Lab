@@ -8,7 +8,7 @@ class homew4_algorithms
     static void Main()
     {
         Console.WriteLine("введите массив для проверки");
-        
+
         string[] temp1 = (Console.ReadLine()).Split(' ');
         int l = temp1.Length;
         double[] ma = new double[l];
@@ -90,7 +90,7 @@ class homew4_algorithms
                     }
 
                 }
-                if (v== true)
+                if (v == true)
                 {
                     int c1 = 0;
                     int c2 = 0;
@@ -101,12 +101,11 @@ class homew4_algorithms
                     if (l == m) z = l;
                     else if (l > m) { z = m; d = 1; }
                     else { z = l; d = 2; }
-
-                        for (int ix = 0; ix < (2 * z); ix++)
-                        {
-                            if (ix % 2 == 0) { ma3[ix] = ma[c1]; c1++; }
-                            else { ma3[ix] = ma2[c2]; c2++; }
-                        }
+for (int ix = 0; ix < (2 * z); ix++)
+                    {
+                        if (ix % 2 == 0) { ma3[ix] = ma[c1]; c1++; }
+                        else { ma3[ix] = ma2[c2]; c2++; }
+                    }
                     if (d == 1)
                     {
                         int t = 0;
@@ -125,11 +124,11 @@ class homew4_algorithms
                             t++;
                         }
                     }
-                        for (int ixx = 0; ixx < (l+m); ixx++)
-                            Console.WriteLine(ma3[ixx]);
-                    }
-                
-             
+                    for (int ixx = 0; ixx < (l + m); ixx++)
+                        Console.WriteLine(ma3[ixx]);
+                }
+
+
             }
             else if (numb == 3)
             {
@@ -154,13 +153,13 @@ class homew4_algorithms
                 }
                 if (v == true)
                 {
-                    
+
                     double[] ma3 = new double[l + m];
                     int i = 0;
                     int j = 0;
                     int c = 0;
 
-                    while (c<(l+m))
+                    while (c < (l + m))
                     {
                         //Console.WriteLine('-');
                         if ((i < l) && (j < m))
@@ -171,14 +170,17 @@ class homew4_algorithms
                                 //Console.WriteLine($"ma3[c] -> {ma3[c]}, c -> {c}, ma[i] -> {ma[i]}, i -> {i}");
                                 i++;
                                 c++;
-                                while ((ma[i] > b[j]))
-                                {
-                                    ma3[c] = ma[i];
-                                    //Console.WriteLine($"ma3[c] -> {ma3[c]}, c -> {c}, ma[i] -> {ma[i]}, i -> {i}");
-                                    i++;
-                                    c++;
-                                    if (i == l) break;
+                                if (l > 1)
+                                { 
+                                    while ((ma[i] > b[j]))
+                                    {
+                                        ma3[c] = ma[i];
+                                        //Console.WriteLine($"ma3[c] -> {ma3[c]}, c -> {c}, ma[i] -> {ma[i]}, i -> {i}");
+                                        i++;
+                                        c++;
+                                        if (i == l) break;
 
+                                    }
                                 }
                             }
                             else
@@ -187,18 +189,20 @@ class homew4_algorithms
                                 j++;
                                 c++;
                                 //Console.WriteLine(ma3[c]);
-                                while ((ma[i] < b[j]))
+                                if (m > 1)
                                 {
-                                    ma3[c] = b[j];
-                                    j++;
-                                    c++;
-                                    //Console.WriteLine(ma3[c]);
-                                    if (j == m) break;
+                                    while ((ma[i] < b[j]))
+                                    {
+                                        ma3[c] = b[j];
+                                        j++;
+                                        c++;
+                                        //Console.WriteLine(ma3[c]);
+                                        if (j == m) break;
+                                    }
                                 }
                             }
                         }
-
-                        else 
+else
                         {
                             int q = 0;
                             int r = 0;
@@ -219,19 +223,19 @@ class homew4_algorithms
                                 temp = ma;
                             }
                             while (q < r)
-                                {
-                                    ma3[c] = temp[q];
-                                    q++;
-                                    c++;
-                                }
-                           
+                            {
+                                ma3[c] = temp[q];
+                                q++;
+                                c++;
+                            }
+
                         }
 
                     }
 
 
 
-                    for (int ixx = 0; ixx < (l+m); ixx++)
+                    for (int ixx = 0; ixx < (l + m); ixx++)
                         Console.WriteLine(ma3[ixx]);
                 }
 
@@ -239,9 +243,9 @@ class homew4_algorithms
             else if (numb == 4)
             {
                 int i = 0;
-                int j = l-1;
-                
-                while ((j - i )>= 1)
+                int j = l - 1;
+
+                while ((j - i) >= 1)
                 {
                     double t = ma[i];
                     ma[i] = ma[j];
@@ -259,23 +263,25 @@ class homew4_algorithms
                 if (m > 0)
                 {
                     double[] temp = new double[m];
-                    double[] temp2 = new double[l-m];
-                    
+                    double[] temp2 = new double[l - m];
+
                     int c = 0;
                     int c2 = 0;
                     for (int i = 0; i < l; i++)
                     {
                         if (i < (l - m)) { temp2[c] = ma[i]; c++; }
-                        else {
-                            temp[c2] = ma[i]; c2++; }
+                        else
+                        {
+                            temp[c2] = ma[i]; c2++;
+                        }
                     }
                     c = 0;
                     c2 = 0;
                     for (int j = 0; j < l; j++)
-                        {
-                            if (j < m) { ma[j] = temp[c];c++; }
-                            else { ma[j] = temp2[c2];c2++; }
-                        }
+                    {
+                        if (j < m) { ma[j] = temp[c]; c++; }
+                        else { ma[j] = temp2[c2]; c2++; }
+                    }
 
 
 
