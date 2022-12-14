@@ -130,114 +130,60 @@ for (int ix = 0; ix < (2 * z); ix++)
 
 
             }
-            else if (numb == 3)
+            else if (numb == 3) 
             {
-                Console.WriteLine("введите массив второй");
-                string[] temp2 = (Console.ReadLine()).Split(' ');
-                int m = temp2.Length;
-                double[] b = new double[m];
-                bool v = true;
-                for (int i = 0; i < m; i++)
-                {
-                    v = double.TryParse(temp2[i], out double xx);
-                    if (v == true)
-                    {
-                        b[i] = xx;
-                    }
-                    else
-                    {
-                        Console.WriteLine("введите заново");
-                        break;
-                    }
 
-                }
-                if (v == true)
-                {
+int n;
+do
+{
+    Console.Write("enter n: ");
+}
+while (!int.TryParse(Console.ReadLine(), out n));
 
-                    double[] ma3 = new double[l + m];
-                    int i = 0;
-                    int j = 0;
-                    int c = 0;
-
-                    while (c < (l + m))
-                    {
-                        //Console.WriteLine('-');
-                        if ((i < l) && (j < m))
-                        {
-                            if (ma[i] >= b[j])
-                            {
-                                ma3[c] = ma[i];
-                                //Console.WriteLine($"ma3[c] -> {ma3[c]}, c -> {c}, ma[i] -> {ma[i]}, i -> {i}");
-                                i++;
-                                c++;
-                                if (l > 1)
-                                { 
-                                    while ((ma[i] > b[j]))
-                                    {
-                                        ma3[c] = ma[i];
-                                        //Console.WriteLine($"ma3[c] -> {ma3[c]}, c -> {c}, ma[i] -> {ma[i]}, i -> {i}");
-                                        i++;
-                                        c++;
-                                        if (i == l) break;
-
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                ma3[c] = b[j];
-                                j++;
-                                c++;
-                                //Console.WriteLine(ma3[c]);
-                                if (m > 1)
-                                {
-                                    while ((ma[i] < b[j]))
-                                    {
-                                        ma3[c] = b[j];
-                                        j++;
-                                        c++;
-                                        //Console.WriteLine(ma3[c]);
-                                        if (j == m) break;
-                                    }
-                                }
-                            }
-                        }
-else
-                        {
-                            int q = 0;
-                            int r = 0;
-                            int y = 0;
-                            if (l > m) y = l;
-                            else y = m;
-                            double[] temp = new double[y];
-                            if (i == l)
-                            {
-                                q = j;
-                                r = m;
-                                temp = b;
-                            }
-                            else
-                            {
-                                q = i;
-                                r = l;
-                                temp = ma;
-                            }
-                            while (q < r)
-                            {
-                                ma3[c] = temp[q];
-                                q++;
-                                c++;
-                            }
-
-                        }
-
-                    }
+int m;
+do
+{
+    Console.Write("enter m: ");
+}
+while (!int.TryParse(Console.ReadLine(), out m));
 
 
+int [] A = new int [n];
+for (int i = 0; i < n; i++) 
+{ 
+    do 
+    { 
+        Console.Write($"enter the {i+1} value of array A: "); 
+    } 
+    while (!int.TryParse(Console.ReadLine(), out A[i]));
+}
 
-                    for (int ixx = 0; ixx < (l + m); ixx++)
-                        Console.WriteLine(ma3[ixx]);
-                }
+int [] B = new int [m];
+for (int i = 0; i < m; i++) 
+{ 
+    do 
+    { 
+        Console.Write($"enter the {i+1} value of array B: "); 
+    } 
+    while (!int.TryParse(Console.ReadLine(), out B[i]));
+}
+
+List<int> C = new List<int>();
+
+int a = 0, b = 0;
+while (a < n || b < m)
+{
+    if (a == n) { C.Add(B[b]); b++; continue; }
+    if (b == m) { C.Add(A[a]); a++; continue; }
+    if (A[a] >= B[b]) { C.Add(A[a]); a++; }
+    else { C.Add(B[b]); b++; }
+}
+
+
+Console.Write("The new array: ");
+foreach (int x in C) Console.Write($"{x} ");
+
+#endregion
 
             }
             else if (numb == 4)
