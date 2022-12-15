@@ -7,7 +7,7 @@ namespace _3rd_Lab
     {
         static void Main(string[] args)
         {
-            int size;
+                        int size;
             Console.Write("Introduce the size of the matriz: ");
             if (!int.TryParse(Console.ReadLine(), out size))
                 return;
@@ -22,7 +22,7 @@ namespace _3rd_Lab
             int MaxElementIndex = 0 , MinElementIndex = 0;
             int index = 0;
             foreach (int element in x) {
-                if (element > MaxElement) {
+                if (element > MaxElement){
                     MaxElement = element;
                     MaxElementIndex = index;
                 }
@@ -32,10 +32,21 @@ namespace _3rd_Lab
                 }
                 index++;
             }
-            double[] y = new double[];
-            Console.WriteLine($"{MaxElement}, {MaxElementIndex}");
-            Console.WriteLine($"{MinElement}, {MinElementIndex}");
-            //double[] y = new double[size];
+            index = 0;
+            int indexOfY = 0;
+            double[] y = new double[MaxElementIndex - MinElementIndex - 1];
+            foreach(int element in x){
+                if(index > MinElementIndex && index < MaxElementIndex){
+                    if(element < 0){
+                    y[indexOfY] = element;
+                    indexOfY++;
+                    }
+                }
+                index++;   
+            }
+            foreach(int element in y){
+                Console.WriteLine(element);
+            }
         }
     }
 }
