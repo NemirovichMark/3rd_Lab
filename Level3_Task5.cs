@@ -22,6 +22,7 @@ public class HelloWorld
     public static void Main(string[] args)
     {
         try{
+            Console.Write("Write your array in a row: ");
             var a = Console.ReadLine().Split(' ').Select(n => double.Parse(n)).ToArray();
             Qsort(0,a.Length,a);
             foreach(var i in a) Console.Write($"{i} ");
