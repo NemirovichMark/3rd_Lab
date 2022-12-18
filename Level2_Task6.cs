@@ -8,7 +8,6 @@ public class HelloWorld
         try{
             Console.Write("Enter an array in a row: ");
             var a = Console.ReadLine().Split(' ').Select(n => double.Parse(n)).ToArray();
-            double[] b = new double[a.Length+1];
             double average=0;
             foreach(var i in a)
                 average+=i;
@@ -20,13 +19,12 @@ public class HelloWorld
             }
             Console.WriteLine($"The average value is: {average}");
             int counter=0;
-            for(int i=0; i<a.Length; i++){
-                b[counter++]=a[i];
-                if(i==precise)
-                    b[counter++]=average;
-            }
+            Array.Resize(ref a, a.Length+1);
+            for(int i=a.Length-1; i>precise+1; i--)
+                a[i]=a[i-1];
+            a[precise+1]=average;
             Console.Write("There is the answer array: ");
-            foreach(var i in b)
+            foreach(var i in a)
                 Console.Write("{0} ",i);
         }
         catch{
