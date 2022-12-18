@@ -20,7 +20,7 @@ public class HelloWorld
     public static void Main(string[] args)
     {
         try{
-            Console.Write("Enter your array in a row: ");
+            Console.Write("Write your array in a row: ");
             var a = Console.ReadLine().Split(' ').Select(n => double.Parse(n)).ToArray();
             double[] b = new double[a.Count(n => n<0)];
             int m=0;
