@@ -40,13 +40,11 @@ namespace _3rd_Lab
                         k = 0;
                     }
                 }
-                if (maxK > maxJ)
-                {
+                if (maxK > maxJ){
                     Console.WriteLine($"Max legnth by increasing is {maxK}");
                 }
-                else
-                {
-                    Console.WriteLine($"Max legnth by decreasing is {maxJ}");
+                else{
+                    Console.WriteLine($"Max legnth by decreasing is {maxJ} ");
                 }
             }
             catch

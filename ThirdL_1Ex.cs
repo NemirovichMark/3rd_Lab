@@ -19,32 +19,22 @@ namespace _3rd_Lab
                     Console.Write($"Enter the {i + 1} element of the array: ");
                     if (!double.TryParse(Console.ReadLine(), out x[i])) return;
                 }
-                int index = 0;
+                int index = -1;
+                double [] y = new double[size];
                 double MaxElement = x[0];
-                foreach (int element in x)
-                {
-                    if (element > MaxElement)
-                    {
-                        MaxElement = element;
-                    }
-                    index++;
-                }
-                int sizeY = 0;
-                foreach (int element in x)
-                {
-                    if (MaxElement == element) sizeY++;
-                }
-                double[] y = new double[sizeY];
-                index = 0;
-                for (int i = 0; i < size; i++)
-                {
-                    if (x[i] == MaxElement)
-                    {
-                        y[index] = i;
+                for(int i = 0; i < size; i++){
+                    if(x[i] > MaxElement){
+                        MaxElement = x[i];
+                        y[0] = i;
+                        index = 0;
+                    }else if(x[i] == MaxElement ){
                         index++;
+                        y[index] = i;
                     }
                 }
-                foreach (int element in y) Console.WriteLine($"{element} ");
+                for(int i = 0; i <= index; i++){
+                    Console.WriteLine($"{y[i]}");
+                } 
             }
             catch
             {

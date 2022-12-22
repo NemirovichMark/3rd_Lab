@@ -19,17 +19,24 @@ namespace _3rd_Lab
                     Console.Write($"Enter the {i + 1} element of the array: ");
                     if (!double.TryParse(Console.ReadLine(), out x[i])) return;
                 }
-                double MinElement = x[0];
-                foreach (int element in x)
-                {
-                    if (element < MinElement && element > 0)
+                double MinElement = 0;
+                int indexMinElement = 0;
+                double [] y = new double[size - 1];
+                for(int i = 0; i < size; i++){
+                    if (x[i] < MinElement && x[i] > 0)
                     {
-                        MinElement = element;
+                        MinElement = x[i];
+                        indexMinElement = i;
                     }
                 }
-
-                x = x.Where(val => val != MinElement).ToArray();
-                foreach (int element in x) Console.Write($"{element} ");
+                if(x[indexMinElement] > 0){
+                    for(int i = indexMinElement + 1; i < size; i++){    
+                        x[ i - 1] = x[i]; 
+                    }
+                for(int i = 0; i < size - 1; i++) Console.WriteLine(x[i]);
+                }else{
+                    Console.WriteLine("There are not positive elements in the array");
+                }
             }
             catch
             {

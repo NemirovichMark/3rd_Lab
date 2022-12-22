@@ -361,3 +361,22 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/firstL_6Ex.cs
+/firstL_10Ex.cs
+/firstL_11Ex.cs
+/firstL_12Ex.cs
+/firstL_13Ex.cs
+/SecondL_5Ex.cs
+/SecondL_6Ex.cs
+/SecondL_9Ex.cs
+/SecondL_10Ex.cs
+/SecondL_11Ex.cs
+/SecondL_13Ex.cs
+/SecondL_15Ex.cs
+/ThirdL_5Ex.cs
+/ThirdL_8Ex.cs
+/ThirdL_9Ex.cs
+/ThirdL_12Ex.cs
+/ThirdL_13Ex.cs
+/ThirdL_14Ex.cs
+/ThirdL_15Ex.cs

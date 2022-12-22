@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace _3rd_Lab
 {
-    class ThirdL_15Ex
+    class ThirdL_88Ex
     {
         static void Main(string[] args)
         {
@@ -45,7 +45,8 @@ namespace _3rd_Lab
                     }
                 }
                 Console.Write(String.Join(" ", y));
-        catch
+            }
+            catch
             {
                 Console.WriteLine("Wrong input error");
             }
