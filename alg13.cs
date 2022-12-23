@@ -11,7 +11,7 @@ class HelloWorld {
             double[] c = new double[a.Length+b.Length];
             int p=0,q=0;
             for(int i=0; i<c.Length; i++){
-                c[i]=(a[p]<b[q])?a[p++]:b[q++];
+                c[i]=(a[p]>b[q])?a[p++]:b[q++];
                 if(p==a.Length){
                     for(int j=i+1; j<c.Length; j++) c[j]=b[q++];
                     break;
