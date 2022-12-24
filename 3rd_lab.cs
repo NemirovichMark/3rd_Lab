@@ -682,72 +682,51 @@ namespace _3rd_lab
             #endregion
 
             #region 3.12
-            Console.WriteLine("Enter the size of your A array:");
-            int ty;
-            if (!int.TryParse(Console.ReadLine(), out ty))
+            int[] a = { 3, 2 };
+            int[] b = { 6 };
+            for (int i = 0; i < a.Length; i++)
             {
-                Console.WriteLine("Nope");
-                return;
+                Console.Write(a[i]);
+                Console.Write(' ');
             }
-            else if (ty <= 0)
+            Console.WriteLine();
+            for (int i = 0; i < b.Length; i++)
             {
-                Console.WriteLine("Nope");
-                return;
+                Console.Write(b[i]);
+                Console.Write(' ');
             }
-            int[] S5 = new int[ty];
-            Console.WriteLine("Type the A array:");
-            for (int i = 0; i < S5.Length; i++)
+            Console.WriteLine();
+
+            int[] c = new int[a.Length + b.Length];
+            for (int i = 0; i < Math.Min(a.Length, b.Length); i++)
             {
-                S5[i] = Convert.ToInt32(Console.ReadLine());
+                c[2 * i] = a[i];
+                c[2 * i + 1] = b[i];
             }
-            Console.WriteLine("Enter the size of your B array:");
-            int ti;
-            if (!int.TryParse(Console.ReadLine(), out ti))
+
+            if (a.Length > b.Length)
             {
-                Console.WriteLine("Nope");
-                return;
-            }
-            else if (ti <= 0)
-            {
-                Console.WriteLine("Nope");
-                return;
-            }
-            int[] S6 = new int[ti];
-            Console.WriteLine("Type the B array:");
-            for (int i = 0; i < S6.Length; i++)
-            {
-                S6[i] = Convert.ToInt32(Console.ReadLine());
-            }
-            int[] S7 = new int[S6.Length + S5.Length];
-            int c10 = 0, c11 = 0;
-            for (int i = 0; i < S7.Length - 1; i += 2)
-            {
-                if (c10 < S5.Length)
+                for (int i = 0; i < a.Length - b.Length; i++)
                 {
-                    S7[i] = S5[c10];
-                    c10 += 1;
-                }
-                else
-                {
-                    S7[i] = S6[c11];
-                    c11 += 1;
-                }
-                if (c11 < S6.Length)
-                {
-                    S7[i + 1] = S6[c11];
-                    c11 += 1;
-                }
-                else
-                {
-                    S7[i + 1] = S5[c10];
-                    c10 += 1;
+                    c[2 * b.Length + i] = a[b.Length + i];
                 }
             }
-            for (int i = 0; i < S7.Length; i++)
+            if (b.Length > a.Length)
             {
-                Console.Write(S7[i] + " ");
+                for (int i = 0; i < b.Length - a.Length; i++)
+                {
+                    c[2 * a.Length + i] = b[a.Length + i];
+                }
             }
-            Console.ReadLine();
+
+
+
+
+            for (int i = 0; i < c.Length; i++)
+            {
+                Console.Write(c[i]);
+                Console.Write(' ');
+            }
             #endregion
 
             #region 3.13
