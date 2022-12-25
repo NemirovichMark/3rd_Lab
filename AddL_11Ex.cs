@@ -1,20 +1,28 @@
 using System;
-class AddL_11Ex {
-  static void Main() {
-            const int indexA = 10;
-            bool flag = false; 
-            double[] a = new double[indexA] { 1,2,3,4,5,6,7,8,9,10 };
-            double x;
-            Console.Write("Introduce the element that you want to find in the array: ");
-            double.TryParse(Console.ReadLine(), out x);
-            Console.Write("array: ");
-            foreach(int element in a) Console.Write($"{element} ");
-            Console.WriteLine();
-            foreach(int element in a) if( element == x) flag = true; 
-            if(flag){
-                Console.WriteLine("The element that you introduced is in the array");
-            }else{
-                Console.WriteLine("The element that you introduced is not in the array");
+namespace _4rd_Lab
+{
+    class AddL_11Ex
+    {
+        static void Main(string[] args){
+            int [] a = {1 , 4 , 6 , 2 , 80 , 100 , 13 , 241};
+            int target = -11;
+            Array.Sort(a);
+            if(BinarySearch(a,0,a.Length - 1,target))
+                Console.WriteLine($"The element {target} belongs to the array a");
+            else
+                Console.WriteLine($"The element {target} does not belong to the array a");
+        }
+        static bool BinarySearch(int[] a,int left,int right, int target){
+            while(left <= right){
+                int mid = left + (right - left) / 2;
+                if(a[mid] == target)
+                    return true;
+                if(a[mid] < target)
+                    left = mid + 1;
+                else
+                    right = mid - 1;
             }
-  }
+            return false;
+        }
+    }
 }

@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace _3rd_Lab
 {
-    class SecondL_10Ex
+    class SecondL_5Ex
     {
         static void Main(string[] args)
         {

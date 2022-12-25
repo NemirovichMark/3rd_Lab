@@ -1,23 +1,30 @@
 using System;
 class AddL_12Ex {
   static void Main() {
-            const int indexA = 5, indexB = 3;
-            int indexC = indexA + indexB;
-            double[] a = new double[indexA] { 6, 4, 2, 3, 1 };
-            double[] b = new double[indexB] {8, 7, 5 };
-            double[] c = new double[indexC];
-            int j = 0;
-            for(int i = 0; i < indexC; i++){
-                if(i < indexA){
-                    c[i] = a[i];
-                }else{
-                    c[i] = b[j]; 
-                    j++;
+    double[] a = {1,3};
+            double[] b = {2,4,6};
+            int k = 0;
+            Console.Write("Array a : ");
+            Console.WriteLine(string.Join(", ", a));
+            Console.Write("Array b: ");
+            Console.WriteLine(string.Join(", ", b));
+            double [] c = new double[a.Length + b.Length];
+            k = a.Length;
+            if(a.Length >= b.Length) k = b.Length;
+            for(int i = 0; i < k ; i++){
+                c[i * 2] = a[i];
+                c[i * 2 + 1] = b[i];
+            }
+            if( a.Length > b.Length ){
+                for(int i = k; i < a.Length; i++){
+                    c[i + k ] = a[i];
+                }
+            }else if ( a.Length < b.Length ){
+                for(int i = k; i < b.Length; i++){
+                    c[i + k ] = b[i];
                 }
             }
-            Array.Sort(c);
-            foreach(int elements in c){
-                Console.WriteLine(elements);
-            }
+            Console.Write("New array: ");
+            Console.WriteLine(string.Join(", ", c));
   }
 }
