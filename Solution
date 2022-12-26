@@ -65,11 +65,11 @@ class HelloWorld
                 nu11++;
         }
         double[] b = new double[nu11];
-        foreach (double x in a)
+        foreach (double xxx in a)
         {
-            if (x > 0)
+            if (xxx > 0)
             {
-                b[kk] = x;
+                b[kk] = xxx;
                 kk += 1;
             }
         }
@@ -244,8 +244,8 @@ class HelloWorld
                         a25[i + 1] = a25[i];
                     }
                     a25[i25 + 1] = p26;
-                    foreach (double x in a25)
-                        Console.Write("{0:} ", x);
+                    foreach (double xxxx in a25)
+                        Console.Write("{0:} ", xxxx);
                     Console.WriteLine();
                 }
                 else
@@ -402,8 +402,8 @@ class HelloWorld
                                 }
 
                             }
-                            foreach (double x in a211)
-                                Console.Write("{0} ", x);
+                            foreach (double jks in a211)
+                                Console.Write("{0} ", jks);
                             Console.WriteLine();
                         }
                         else
@@ -447,8 +447,8 @@ class HelloWorld
                         }
                     }
                     a213[k213] = k213;
-                    foreach (double x in a213)
-                        Console.Write("{0:} ", x);
+                    foreach (double ark in a213)
+                        Console.Write("{0:} ", ark);
                 }
                 else
                     Console.WriteLine("Incorrect value");
@@ -457,58 +457,46 @@ class HelloWorld
             
             
             #region 15-2
-            Console.WriteLine("Level 2 number 15");
+         Console.WriteLine("Level 2 number 15");
+         int n215, k215, m215;
+         double x;
+         Console.WriteLine("Enter n");
+         int.TryParse(Console.ReadLine(), out n215);
+         double[] arrayFIR = new double[n215];
+         Console.WriteLine("Enter m");
+         int.TryParse(Console.ReadLine(), out m215);
+         double[] arraySEC = new double[m215];
+         Console.WriteLine("Enter {0} elements of 1st array:", n215);
+         for (int i = 0; i < n215; i++)
+         {
+           double.TryParse(Console.ReadLine(), out x);
+           arrayFIR[i] = x;
+         }
+         Console.WriteLine("Enter {0} elements of 2nd array:", m215);
+         for (int i = 0; i < m215; i++)
+         {
+            double.TryParse(Console.ReadLine(), out x);
+            arraySEC[i] = x;
+         }
+         Console.WriteLine("Enter k");
+         int.TryParse(Console.ReadLine(), out k215);
+         Console.WriteLine("Array:");
+         for (int i = 0; i < n215; i++)
+         {
+            if (i == k215 + 1)
             {
-                int k215,l215,n215;
-                Console.WriteLine("Enter k215");
-                bool success215=int.TryParse(Console.ReadLine(), out k215);
-                if(success215)
+                for (int j = 0; j < m215; j++)
                 {
-                    Console.WriteLine("Enter n215 lenght of B");
-                    bool succes215=int.TryParse(Console.ReadLine(), out n215);
-                    if(succes215)
-                    {
-                        Console.WriteLine("Enter length of a215");
-                        bool suces215=int.TryParse(Console.ReadLine(), out l215);
-                        if(suces215)
-                        {
-                            double[] a215 = new double[n215 + l215];
-                            double[] b215 = new double[n215];
-                            for (int i = 0; i < l215; i++)
-                            {
-                                double el215;
-                                Console.WriteLine($"Enter {i} element of A massive");
-                                double.TryParse(Console.ReadLine(), out el215);
-                                a215[i] = el215;
-                            }
-                            for (int i = 0; i < n215; i++)
-                            {
-                                double e215;
-                                Console.WriteLine($"Enter {i} element of B massive");
-                                double.TryParse(Console.ReadLine(), out e215);
-                                b215[i] = e215;
-                            }
-                            for (int i = n215 - 1; i >= 0; i--)
-                            {
-                                double nd = b215[i];
-                                double p215 = 0;
-                                for (int j = n215 + l215 - 2; j >= k215; j--)
-                                {
-                                    a215[j + 1] = a215[j];
-                                }
-                                a215[k215 + 1] = nd;
-                            }
-                            foreach (int x in a215)
-                                Console.Write("{0:} ", x);
-                            Console.WriteLine();
-                        }
-                    }
+                    Console.Write("{0} ", arraySEC[j]);
                 }
             }
-            #endregion
+            Console.Write("{0} ", arrayFIR[i]);
+            }
+         Console.WriteLine();
+         #endregion
             
             
-            #region 3-1
+        #region 3-1
         Console.WriteLine("Level 3 number 1");
             {
                 int l31;
@@ -540,7 +528,7 @@ class HelloWorld
                             n31[k31] = i;
                         }
                     }
-                    for (int i = 0; i < k31; i++)
+                    for (int i = 0; i <= k31; i++)
                         Console.Write("{0:} ", n31[i]);
                     Console.WriteLine();
                 }
@@ -657,27 +645,23 @@ class HelloWorld
         {
             arr312[i] = Convert.ToDouble(Console.ReadLine());
         }
-        for (int i = 0; i < 12; i++)
+        int nname = 12;
+        for (int i = 0; i < n; i++)
         {
-            if (arr312[i] > 0) { 
-                cnt312++;
-            }
-            
-        }
-        double[] arr3122 = new double[cnt312];
-        cnt312 = 0;
-        for (int i = 0; i < 12; i++)
-        {
-            if (arr312[i] >= 0)
-            {
-                arr3122[cnt312] = arr312[i];
-                cnt312 += 1;
+            if (arr312[i] < 0)
+            { 
+                for (int j = i; j < 11; j++)
+                {
+                    arr312[j] = arr312[j + 1];
+                }
+                nname--;
+                i--;
             }
         }
-        for (int i = 0; i < cnt312; i++)
-        {
-            Console.Write(arr3122[i] + " ");
+        for (int i = 0; i < nname; i++){
+            Console.Write("{0} ", arr312[i]);
         }
+        Console.WriteLine();
         #endregion
         
         #region 13-3
@@ -736,8 +720,8 @@ class HelloWorld
                 lastarr++;
             }
         }
-        foreach (double x in arrex)
-            Console.Write(x+" ");
+        foreach (double rrr in arrex)
+            Console.Write(rrr + " ");
         #endregion
         
         #region Task 1
@@ -803,8 +787,8 @@ class HelloWorld
                             double.TryParse(Console.ReadLine(), out el2);
                             a2[i] = el2;
                         }
-                        foreach (double x in a2)
-                            Console.Write("{0:} ", x);
+                        foreach (double hoxx in a2)
+                            Console.Write("{0:} ", hoxx);
                         Console.WriteLine();
                         for (int i = 0; i < n2; i++)
                         {
@@ -813,54 +797,28 @@ class HelloWorld
                             double.TryParse(Console.ReadLine(), out en2);
                             b2[i] = en2;
                         }
-                        foreach (double x in b2)
-                            Console.Write("{0:} ", x);
                         Console.WriteLine();
-                        if (l2 > n2)
+                        int tt = l2;
+                        if (l2 >= n2)
                         {
-                            for (int i = 0; i < n2 * 2; i++)
-                            {
-                                if (i % 2 == 0)
-                                {
-                                    c2[i] = a2[j];
-                                    j++;
-                                }
-                                else if (i % 2 != 0)
-                                {
-                                    c2[i] = b2[k];
-                                    k++;
-                                }
-                            }
-                            for (int i = n2 * 2, j1 = n2; (i < n2 + l2 && j1 < l2); i++, j1++)
-                            {
-                                c2[i] = a2[j1];
+                            tt = n2;
+                        }
+                        for (int i = 0; i < tt; i++){
+                            c2[i * 2] = a2[i];
+                            c2[i * 2 + 1] = b2[i];
+                        }
+                        if (l2 > n2){
+                            for (int i = tt; i < l2; i++){
+                                c2[i + tt] = a2[i];
                             }
                         }
-                        else
-                        {
-                            for (int i = 0; i < l2 * 2; i++)
-                            {
-                                if (i % 2 == 0)
-                                {
-                                    c2[i] = a2[j];
-                                    j++;
-                                }
-                                else if (i % 2 != 0)
-                                {
-                                    c2[i] = b2[k];
-                                    k++;
-                                }
-                            }
-                            if (k + j < l2 + n2)
-                            {
-                                for (int i = l2 * 2, j1 = l2; (i <= n2 + l2 && j1 <= l2); i++, j1++)
-                                {
-                                    c2[i] = b2[j];
-                                }
+                        else if (l2 < n2){
+                            for (int i = tt; i < n2; i++){
+                                c2[i + tt] = b2[i];
                             }
                         }
-                        foreach (int x in c2)
-                            Console.Write("{0:} ", x);
+                        foreach (int cheer in c2)
+                            Console.Write("{0:} ", cheer);
                         Console.WriteLine();
                     }
                 }
@@ -903,11 +861,11 @@ class HelloWorld
                         Array.Sort(b3);
                         Array.Reverse(a3);
                         Array.Reverse(b3);
-                        foreach (int x in a3)
-                            Console.Write("{0:} ", x);
+                        foreach (int rag in a3)
+                            Console.Write("{0:} ", rag);
                         Console.WriteLine();
-                        foreach (int x in b3)
-                            Console.Write("{0:} ", x);
+                        foreach (int ops in b3)
+                            Console.Write("{0:} ", ops);
                         Console.WriteLine();
                         for (int i = 0; i < l3 + n3; i++)
                         {
@@ -938,8 +896,8 @@ class HelloWorld
                                 }
                             }
                         }
-                        foreach (double x in c3)
-                            Console.Write("{0:} ", x);
+                        foreach (double kner in c3)
+                            Console.Write("{0:} ", kner);
                         Console.WriteLine();
                     }
                 }
@@ -963,8 +921,8 @@ class HelloWorld
                         double.TryParse(Console.ReadLine(), out el4);
                         a4[i] = el4;
                     }
-                    foreach (double x in a4)
-                        Console.Write("{0:} ", x);
+                    foreach (double bivt in a4)
+                        Console.Write("{0:} ", bivt);
                     Console.WriteLine("1st Massive");
                     for (int i = 0,j=n4-1; i < j ; i++,j--)
                     {
@@ -972,8 +930,8 @@ class HelloWorld
                         a4[i] = a4[j];
                         a4[j] = p4;
                     }
-                    foreach (double x in a4)
-                        Console.Write("{0:} ", x);
+                    foreach (double bmt in a4)
+                        Console.Write("{0:} ", bmt);
                     Console.WriteLine("2nd Massive");
                 }
             }
@@ -1008,8 +966,8 @@ class HelloWorld
                             b5[k5] = a5[i];
                             k5--;
                         }
-                        foreach (int x in b5)
-                            Console.Write("{0:} ", x);
+                        foreach (int pop in b5)
+                            Console.Write("{0:} ", pop);
                         Console.WriteLine();
                         int counter = 0;
                         for (int j = 0; j < m5; j++)
@@ -1024,8 +982,8 @@ class HelloWorld
                         {
                             a5[k] = b5[i];
                         }
-                        foreach (int x in a5)
-                            Console.Write("{0:} ", x);
+                        foreach (int klin in a5)
+                            Console.Write("{0:} ", klin);
                         Console.WriteLine();
                     }
                 }
