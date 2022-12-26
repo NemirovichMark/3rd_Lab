@@ -1,0 +1,995 @@
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Net;
+using System.Text.RegularExpressions;
+
+class HelloWorld
+{
+    static void Main()
+
+    {
+        
+        #region 6-1
+        Console.WriteLine("Level 1 number 6");
+        int lengh = 5;
+        double[] len = new double[5];
+        double ol = 0;
+        for (int i = 0; i < lengh; i++) {
+            len[i] = Convert.ToDouble(Console.ReadLine());
+            len[i] *= len[i];
+
+        }
+        for (int i = 0; i < lengh; i++) { 
+            ol+=len[i];
+        }
+        ol = Math.Sqrt(ol);
+        Console.WriteLine(ol);
+        #endregion
+        
+        
+        #region 10-1
+        Console.WriteLine("Level 1 number 10");
+        int lengh1 = 10;
+        double[] ch = new double[10];
+        int cnt = 0;
+        for (int i = 0; i < lengh1; i++)
+        {
+            ch[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        double p, q;
+        p = Convert.ToDouble(Console.ReadLine());
+        q = Convert.ToDouble(Console.ReadLine());
+        for (int i = 0; i < lengh1; i++) {
+            if (ch[i] <= q && ch[i] >= p)
+            {
+                cnt += 1;
+            }
+        
+        }
+        Console.WriteLine(cnt);
+        #endregion
+        
+        
+        #region 11-1
+        Console.WriteLine("Level 1 number 11");
+        const int n = 10;
+        int nu11=0;
+        double[] a = new double[n];
+        int kk = 0;
+        for (int i = 0; i < n; i++)
+        {
+            double elem;
+            double.TryParse(Console.ReadLine(), out elem);
+            a[i] = elem;
+            if (elem > 0)
+                nu11++;
+        }
+        double[] b = new double[nu11];
+        foreach (double xxx in a)
+        {
+            if (xxx > 0)
+            {
+                b[kk] = xxx;
+                kk += 1;
+            }
+        }
+        for (int i1 = 0; i1 < nu11; i1++)
+        {
+            Console.Write("{0:f0} ", b[i1]);
+        }
+        #endregion
+        
+        
+        #region 12-1
+        Console.WriteLine("Level 1 number 12");
+        const int m = 8;
+        double val = -10;
+        int iel = 0;
+        double[] c = new double[m];
+        for (int i = 0; i < m; i++)
+        {
+            double el = 0;
+            double.TryParse(Console.ReadLine(), out el);
+            c[i] = el;
+        }
+        for (int i1 = m - 1; i1 >= 0; i1--)
+        {
+            if (c[i1] < 0)
+            {
+                iel = i1;
+                val = c[i1];
+                break;
+            }            
+        }
+        if (val != -10)
+            Console.WriteLine($"Number of el is {iel}, value is {val}");
+        if (val == -10)
+            Console.WriteLine("No negative number");
+        #endregion
+        
+        #region 13-1
+        Console.WriteLine("Level 1 number 13");
+        int nom1 = 1, nom2 = 0;
+        double[] arr10= new double[10];
+        double[] arr51= new double[5];
+        double[] arr52= new double[5];
+        for (int i = 0; i < 10; i++)
+        {
+            arr10[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        arr51[0] = arr10[0];
+        for (int i = 1; i < 10; i++) {
+            if (i % 2 == 1)
+            {
+                arr52[nom2] = arr10[i];
+                nom2++;
+            }
+            else {
+                arr51[nom1]=arr10[i];
+                nom1++;
+            }
+        }
+        Console.WriteLine(arr51[0]+" "+arr51[1]+" "+ arr51[2] + " " + arr51[3]+" "+arr51[4]);
+        Console.WriteLine(arr52[0]+" " + arr52[1]+ " " + arr52[2] + " " + arr52[3]+ " " + arr52[4]);
+        #endregion
+        
+        
+        #region 5-2
+        Console.WriteLine("Level 2 number 5");
+            {
+                Console.WriteLine("Enter length of massive");
+                int l26;
+                bool success26 = int.TryParse(Console.ReadLine(), out l26);
+                if (success26)
+                {
+                    double[] a26 = new double[l26];
+                    double[] b26 = new double[l26];
+                    for (int i = 0; i < l26; i++)
+                    {
+                        double el26;
+                        double.TryParse(Console.ReadLine(), out el26);
+                        a26[i] = el26;
+                    }
+                    int a26maxi = 0;
+                    int a26mini = 0;
+                    double a26max = a26[0];
+                    double a26min = a26[0];
+                    for (int i1 = 0; i1 < l26; i1++)
+                    {
+                        if (a26[i1] > a26max)
+                        {
+                            a26max = a26[i1];
+                            a26maxi = i1;
+                        }
+                        if (a26[i1] < a26min)
+                        {
+                            a26min = a26[i1];
+                            a26mini = i1;
+                        }
+                    }
+                    int k26 = Math.Abs(a26mini - a26maxi);
+                    int kf26 = 0;
+                    if (a26mini > a26maxi)
+                    {
+                        for (int i = a26maxi + 1; i < a26mini; i++)
+                        {
+                            if (a26[i] < 0)
+                            {
+                                b26[kf26] = a26[i];
+                                kf26 += 1;
+                            }
+                        }
+                    }
+                    if (a26mini < a26maxi)
+                    {
+                        for (int i = a26mini + 1; i < a26maxi; i++)
+                        {
+                            if (a26[i] < 0)
+                            {
+                                b26[kf26] = a26[i];
+                                kf26 += 1;
+                            }
+                        }
+                    }
+                    for (int i = 0; i < kf26; i++)
+                        Console.Write("{0:} ", b26[i]);
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect length");
+                }
+            }
+            #endregion
+            
+            
+            #region 6-2
+            Console.WriteLine("Level 2 number 6");
+            {
+                double p26;
+                Console.WriteLine("Enter p26");
+                bool success25 = double.TryParse(Console.ReadLine(), out p26);
+                if (success25)
+                {
+                    int l25;
+                    Console.WriteLine("Enter lenght of massive");
+                    int.TryParse(Console.ReadLine(), out l25);
+                    double[] a25 = new double[l25+1];
+                    for(int i=0;i<l25;i++)
+                    {
+                        double el25;
+                        double.TryParse(Console.ReadLine(), out el25);
+                        a25[i] = el25;
+                    }
+                    double sm25 = 0;
+                    int c25 = 0;
+                    for(int i=0;i<l25;i++)
+                    {
+                        sm25 += a25[i];
+                        c25 += 1;
+                    }
+                    double sr25 = sm25 / c25;
+                    double k25 = Math.Abs(a25[0]-sr25);
+                    int i25 = 0;
+                    for(int i=0;i<l25;i++)
+                    {
+                        if ((Math.Abs(a25[i]-sr25)<k25))
+                        {
+                            k25 = Math.Abs(a25[i] - sr25);
+                            i25 = i;
+                        }
+                    }
+                    for(int i=l25-1;i>i25;i--)
+                    {
+                        a25[i + 1] = a25[i];
+                    }
+                    a25[i25 + 1] = p26;
+                    foreach (double xxxx in a25)
+                        Console.Write("{0:} ", xxxx);
+                    Console.WriteLine();
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect Value");
+                }
+            }
+            #endregion
+        
+        #region 9-2
+        Console.WriteLine("Level 2 number 9");
+            {
+                int l29;
+                Console.WriteLine("Enter lenght of massive");
+                bool success29=int.TryParse(Console.ReadLine(), out l29);
+                if(success29)
+                {
+                    double[] a29 = new double[l29];
+                    for (int i1 = 0; i1 < l29; i1++)
+                    {
+                        double el29;
+                        double.TryParse(Console.ReadLine(), out el29);
+                        a29[i1] = el29;
+                    }
+                    double amx29 = a29[0], amn29 = a29[0];
+                    int amxi29 = 0, amni29 = 0;
+                    for (int i = 0; i < l29; i++)
+                    {
+                        if (a29[i] > amx29)
+                        {
+                            amx29 = a29[i];
+                            amxi29 = i;
+                        }
+                        if (a29[i] < amn29)
+                        {
+                            amn29 = a29[i];
+                            amni29 = i;
+                        }
+                    }
+                    double sm29 = 0;
+                    int c29 = 0;
+                    if ((Math.Abs(amni29 - amxi29) - 1) > 0)
+                    {
+                        if (amni29 > amxi29)
+                        {
+                            for (int i = amxi29 + 1; i < amni29; i++)
+                            {
+                                sm29 += a29[i];
+                                c29 += 1;
+                            }
+                        }
+                        else if (amni29 < amxi29)
+                        {
+                            for (int i = amni29 + 1; i < amxi29; i++)
+                            {
+                                sm29 += a29[i];
+                                c29 += 1;
+                            }
+                        }
+                        double ans29 = sm29 / c29;
+                        Console.WriteLine($"Answer for 2.9 is {ans29}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Answer is 0");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect value");
+                }
+            }
+            #endregion
+            
+            
+        #region 10-2
+        Console.WriteLine("Level 2 number 10");
+            {
+                int l210;
+                Console.WriteLine("Enter Lenght of massive 2.10");
+                bool success210 = int.TryParse(Console.ReadLine(), out l210);
+                if (success210)
+                {
+                    double[] a210 = new double[l210];
+                    int n210 = l210 - 1;
+                    for (int i = 0; i < l210; i++)
+                    {
+                        double el210;
+                        double.TryParse(Console.ReadLine(), out el210);
+                        a210[i] = el210;
+                    }
+                    double a210min = Math.Abs(a210[0]);
+                    int i210min = 0;
+                    for (int i = 0; i < l210; i++)
+                    {
+                        if (a210min > a210[i] && a210[i] > 0)
+                        {
+                            a210min = a210[i];
+                            i210min = i;
+                        }
+                    }
+                    for (int i = i210min; i < n210; i++)
+                    {
+                        a210[i] = a210[i + 1];
+                    }
+                    for (int i = 0; i < n210; i++)
+                        Console.Write("{0:} ", a210[i]);
+                    Console.WriteLine();
+                }
+                else
+                    Console.WriteLine("Incorrect value");
+            }
+            #endregion
+            
+            
+            #region 11-2
+            Console.WriteLine("Level 2 number 11");
+            {
+                double p211;
+                int count211 = 0;
+                Console.WriteLine("Enter P");
+                bool success211=double.TryParse(Console.ReadLine(), out p211);
+                if(success211)
+                {
+                    int l211;
+                    Console.WriteLine("Enter lenght of massive");
+                    bool sucess211=int.TryParse(Console.ReadLine(), out l211);
+                    if(sucess211)
+                    {
+                        double[] a211 = new double[l211 + 1];
+                        for (int i = 0; i < l211; i++)
+                        {
+                            double el211;
+                            Console.WriteLine($"Enter {i} element");
+                            double.TryParse(Console.ReadLine(), out el211);
+                            if (el211>0)
+                            {
+                                count211++;
+                            }
+                            a211[i] = el211;
+                        }
+                        if(count211>0)
+                        {
+                            for (int i = l211 - 1; i >= 0; i--)
+                            {
+                                if (a211[i] <= 0)
+                                {
+                                    a211[i + 1] = a211[i];
+                                }
+                                else if (a211[i] > 0)
+                                {
+                                    a211[i + 1] = p211;
+                                    break;
+                                }
+
+                            }
+                            foreach (double jks in a211)
+                                Console.Write("{0} ", jks);
+                            Console.WriteLine();
+                        }
+                        else
+                            Console.WriteLine("You havent mentioned positive number");
+
+                    }
+                    else
+                        Console.WriteLine("Incorrect value");
+                }
+                else
+                {
+                    Console.WriteLine("Incorrect P");
+                }
+            }
+            #endregion
+            
+            
+            #region Task 13-2
+            Console.WriteLine("Level 2 number 13");
+            {
+                int l213;
+                Console.WriteLine("Enter lenght of massive");
+                bool sucess213=int.TryParse(Console.ReadLine(),out l213);
+                if(sucess213)
+                {
+                    double[] a213 = new double[l213];
+                    for (int i = 0; i < l213; i++)
+                    {
+                        double el213;
+                        double.TryParse(Console.ReadLine(), out el213);
+                        a213[i] = el213;
+                    }
+                    double amx213 = a213[0];
+                    int k213 = 0;
+                    for (int i = 0; i < l213; i += 2)
+                    {
+                        if (a213[i] > amx213)
+                        {
+                            amx213 = a213[i];
+                            k213 = i;
+                        }
+                    }
+                    a213[k213] = k213;
+                    foreach (double ark in a213)
+                        Console.Write("{0:} ", ark);
+                }
+                else
+                    Console.WriteLine("Incorrect value");
+            }
+            #endregion
+            
+            
+            #region 15-2
+         Console.WriteLine("Level 2 number 15");
+         int n215, k215, m215;
+         double x;
+         Console.WriteLine("Enter n");
+         int.TryParse(Console.ReadLine(), out n215);
+         double[] arrayFIR = new double[n215];
+         Console.WriteLine("Enter m");
+         int.TryParse(Console.ReadLine(), out m215);
+         double[] arraySEC = new double[m215];
+         Console.WriteLine("Enter {0} elements of 1st array:", n215);
+         for (int i = 0; i < n215; i++)
+         {
+           double.TryParse(Console.ReadLine(), out x);
+           arrayFIR[i] = x;
+         }
+         Console.WriteLine("Enter {0} elements of 2nd array:", m215);
+         for (int i = 0; i < m215; i++)
+         {
+            double.TryParse(Console.ReadLine(), out x);
+            arraySEC[i] = x;
+         }
+         Console.WriteLine("Enter k");
+         int.TryParse(Console.ReadLine(), out k215);
+         Console.WriteLine("Array:");
+         for (int i = 0; i < n215; i++)
+         {
+            if (i == k215 + 1)
+            {
+                for (int j = 0; j < m215; j++)
+                {
+                    Console.Write("{0} ", arraySEC[j]);
+                }
+            }
+            Console.Write("{0} ", arrayFIR[i]);
+            }
+         Console.WriteLine();
+         #endregion
+            
+            
+        #region 3-1
+        Console.WriteLine("Level 3 number 1");
+            {
+                int l31;
+                Console.WriteLine("Enter l31 of massive");
+                bool success31=int.TryParse(Console.ReadLine(), out l31);
+                if(success31)
+                {
+                    double[] a31 = new double[l31];
+                    double[] n31 = new double[l31];
+                    for (int i = 0; i < l31; i++)
+                    {
+                        double el31;
+                        double.TryParse(Console.ReadLine(), out el31);
+                        a31[i] = el31;
+                    }
+                    double mx31 = a31[0];
+                    int k31 = 0;
+                    for (int i = 0; i < l31; i++)
+                    {
+                        if (a31[i] > mx31)
+                        {
+                            mx31 = a31[i];
+                            k31 = 0;
+                            n31[k31] = i;
+                        }
+                        else if (a31[i] == mx31)
+                        {
+                            k31 += 1;
+                            n31[k31] = i;
+                        }
+                    }
+                    for (int i = 0; i <= k31; i++)
+                        Console.Write("{0:} ", n31[i]);
+                    Console.WriteLine();
+                }
+                else
+                    Console.WriteLine("Incorrect value");
+            }
+            #endregion
+            
+            
+            #region 5-3
+        Console.WriteLine("Level 3 number 5");
+        int n35;
+        n35= Convert.ToInt32(Console.ReadLine());
+        double[] arr35 = new double[n35];
+        double mino;
+        int minoi;
+      
+        for (int i = 0; i < n35; i++)
+        {
+            arr35[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < n35 - 1; i += 2)
+        {
+            mino = arr35[i];
+            minoi = i;
+            for (int j = i + 2; j < n35; j += 2)
+            {
+                if (arr35[j] < mino)
+                {
+                    mino = arr35[j];
+                    minoi = j;
+                }
+            }
+            arr35[minoi] = arr35[i];
+            arr35[i] = mino;
+        }
+        for (int i = 0; i < n35; i++)
+        {
+            Console.Write(arr35[i] + " ");
+        }
+        #endregion
+        
+        
+        #region 8-3
+        Console.WriteLine("Level 3 number 8");
+        int n38;
+        n38= Convert.ToInt32(Console.ReadLine());
+        double[] arr38 = new double[n38];
+        double max38;
+        int maxi1;
+        for (int i = 0; i < n38; i++)
+        {
+            arr38[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < 12 - 1; i++)
+        {
+            if (arr38[i] < 0)
+            {
+                max38 = arr38[i];
+                maxi1 = i;
+                for (int j = i + 1; j < 12; j++)
+                {
+                    if (arr38[j] < 0 && arr38[j] > max38)
+                    {
+                        max38 = arr38[j];
+                        maxi1 = j;
+                    }
+                }
+                arr38[maxi1] = arr38[i];
+                arr38[i] = max38;
+            }
+        }
+        for (int i = 0; i < n38; i++)
+        {
+            Console.Write(arr38[i] + " ");
+        }
+        #endregion
+        
+        
+        #region 9-3
+        Console.WriteLine("Level 3 number 9");
+        int n39;
+        n39 = Convert.ToInt32(Console.ReadLine());
+        double[] arr39 = new double[n39];
+        int cnt391 = 0, cnt392 = 0, max39 = 0, max392 = 0;
+        for (int i = 0; i < n39; i++)
+        {
+            arr39[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        for (int i = 0; i < n39 - 1; i++)
+        {
+            cnt391 += 1;
+            cnt392 += 1;
+            if (arr39[i] >= arr39[i + 1])
+            {
+                cnt391 = 1;
+            }
+            if (arr39[i] <= arr39[i + 1])
+            {
+                cnt391 = 1;
+                cnt392 = 1;
+            }
+            max39 = Math.Max(max39, cnt391);
+            max392 = Math.Max(max392, cnt392);
+        }
+        Console.Write(Math.Max(max39, max392));
+        #endregion
+       
+        #region 12-3
+        Console.WriteLine("Level 3 number 12");
+        const int sizee = 12;
+        double cnt312;
+        double[] arr312  = new double[sizee];
+        for (int i = 0; i < sizee; i++)
+        {
+            double.TryParse(Console.ReadLine(), out cnt312);
+            arr312[i] = cnt312;
+        }
+        int nname = 12;
+        for (int i = 0; i < nname; i++)
+        {
+            if (arr312[i] < 0)
+            { 
+                for (int j = i; j < sizee - 1; j++)
+                {
+                    arr312[j] = arr312[j + 1];
+                }
+                nname--;
+                i--;
+            }
+        }
+        for (int i = 0; i < nname; i++){
+            Console.Write("{0} ", arr312[i]);
+        }
+        Console.WriteLine();
+        #endregion
+        
+        #region 13-3
+        Console.WriteLine("Level 3 number 13");
+        int n313;
+        n313= Convert.ToInt32(Console.ReadLine());
+        double[] arr313 = new double[n313];
+        double[] arrp = new double[n313];
+        for (int i = 0; i < n313; i++)
+        {
+            arr313[i] = Convert.ToDouble(Console.ReadLine());
+            arrp[i]=arr313[i];
+        }
+        double wtf=-845.2308509425;
+        bool flag=false;
+        int wtfcnt=0;
+        while (flag == false)
+        {
+            wtfcnt = 0;
+            for(int i = 0; i < arrp.Length; i++)
+            {
+                if(arrp[i] == wtf) {
+                    wtfcnt++;
+                    break;
+                }
+                
+            }
+            if(wtfcnt == 0)
+            {
+                flag = true;
+            }
+            if (wtfcnt != 0)
+            {
+                wtf += 0.0000001;
+            }
+        }
+        for (int i = 0; i < arrp.Length; i++) {
+            for (int j = i + 1; j < arrp.Length; j++) {
+                if (arrp[i] == arrp[j]) { 
+                    arrp[j] = wtf;
+                }
+            }
+        }
+        int cntrazn = 0;
+        for (int j = 0; j < arrp.Length; j++) {
+            if (arrp[j] != wtf)
+            {
+                cntrazn++;
+            }
+        }
+        double[] arrex= new double[cntrazn];
+        int lastarr = 0;
+        for (int i = 0; i < arrp.Length; i++) {
+            if (arrp[i] != wtf) { 
+                arrex[lastarr] = arrp[i];
+                lastarr++;
+            }
+        }
+        foreach (double rrr in arrex)
+            Console.Write(rrr + " ");
+        #endregion
+        
+        #region Task 1
+        Console.WriteLine("Ad task 11");
+            {
+                int x1;
+                Console.WriteLine("Enter el which I need to find");
+                bool succes1 = int.TryParse(Console.ReadLine(), out x1);
+                if (succes1)
+                {
+                    int l1;
+                    Console.WriteLine("Enter lenght ");
+                    bool success1 = int.TryParse(Console.ReadLine(), out l1);
+                    if (success1)
+                    {
+                        int[] a1 = new int[l1];
+                        for (int i = 0; i < l1; i++)
+                        {
+                            int el1;
+                            Console.WriteLine($"Enter {i} element");
+                            int.TryParse(Console.ReadLine(), out el1);
+                            a1[i] = el1;
+                        }
+                        Array.Sort(a1);
+                        int i1 = 0, i2 = l1 - 1;
+                        int k = (i1 + i2) / 2;
+                        while (a1[k] != x1)
+                        {
+                            if (x1 < a1[k]) i2 = k - 1;
+                            else i1 = k + 1;
+                            k = (i1 + i2) / 2;
+                            if (i1 > i2) break;
+                        }
+                        if (i1 > i2) Console.WriteLine("Unlucky");
+                        else Console.WriteLine("Lucky");
+                    }
+                }
+            }
+            #endregion
+            
+            
+            #region Task 2
+            Console.WriteLine("Ad task 12");
+            {
+                int l2;
+                int k = 0, j = 0;
+                Console.WriteLine("Enter lenght of A massive");
+                bool success2 = int.TryParse(Console.ReadLine(), out l2);
+                if (success2)
+                {
+                    int n2;
+                    Console.WriteLine("Enter lenght of B massive");
+                    bool succes2 = int.TryParse(Console.ReadLine(), out n2);
+                    if (success2)
+                    {
+                        double[] a2 = new double[l2];
+                        double[] b2 = new double[n2];
+                        double[] c2 = new double[n2 + l2];
+                        for (int i = 0; i < l2; i++)
+                        {
+                            double el2;
+                            Console.WriteLine($"Enter {i} el of a massive");
+                            double.TryParse(Console.ReadLine(), out el2);
+                            a2[i] = el2;
+                        }
+                        foreach (double hoxx in a2)
+                            Console.Write("{0:} ", hoxx);
+                        Console.WriteLine();
+                        for (int i = 0; i < n2; i++)
+                        {
+                            double en2;
+                            Console.WriteLine($"Enter {i} el of b massive");
+                            double.TryParse(Console.ReadLine(), out en2);
+                            b2[i] = en2;
+                        }
+                        Console.WriteLine();
+                        int tt = l2;
+                        if (l2 >= n2)
+                        {
+                            tt = n2;
+                        }
+                        for (int i = 0; i < tt; i++){
+                            c2[i * 2] = a2[i];
+                            c2[i * 2 + 1] = b2[i];
+                        }
+                        if (l2 > n2){
+                            for (int i = tt; i < l2; i++){
+                                c2[i + tt] = a2[i];
+                            }
+                        }
+                        else if (l2 < n2){
+                            for (int i = tt; i < n2; i++){
+                                c2[i + tt] = b2[i];
+                            }
+                        }
+                        foreach (int cheer in c2)
+                            Console.Write("{0:} ", cheer);
+                        Console.WriteLine();
+                    }
+                }
+            }
+            #endregion
+            
+            
+            #region Task 3
+            Console.WriteLine("Ad task 13");
+            {
+                int k3 = 0, j3 = 0;
+                int l3;
+                Console.WriteLine("Enter lenght of massive a");
+                bool success3 = int.TryParse(Console.ReadLine(), out l3);
+                if (success3)
+                {
+                    int n3;
+                    Console.WriteLine("Enter lenght of massive b");
+                    bool succes3 = int.TryParse(Console.ReadLine(), out n3);
+                    if (succes3)
+                    {
+                        double[] a3 = new double[l3];
+                        double[] b3 = new double[n3];
+                        double[] c3 = new double[n3 + l3];
+                        for (int i = 0; i < l3; i++)
+                        {
+                            double el3;
+                            Console.WriteLine($"Enter {i} for a");
+                            double.TryParse(Console.ReadLine(), out el3);
+                            a3[i] = el3;
+                        }
+                        for (int i = 0; i < n3; i++)
+                        {
+                            double el3;
+                            Console.WriteLine($"Enter {i} for b");
+                            double.TryParse(Console.ReadLine(), out el3);
+                            b3[i] = el3;
+                        }
+                        Array.Sort(a3);
+                        Array.Sort(b3);
+                        Array.Reverse(a3);
+                        Array.Reverse(b3);
+                        foreach (int rag in a3)
+                            Console.Write("{0:} ", rag);
+                        Console.WriteLine();
+                        foreach (int ops in b3)
+                            Console.Write("{0:} ", ops);
+                        Console.WriteLine();
+                        for (int i = 0; i < l3 + n3; i++)
+                        {
+                            if (k3 < l3 && j3 < n3)
+                            {
+                                if (a3[k3] >= b3[j3])
+                                {
+                                    c3[i] = a3[k3];
+                                    k3++;
+                                }
+                                else
+                                {
+                                    c3[i] = b3[j3];
+                                    j3++;
+                                }
+                            }
+                            else
+                            {
+                                if (k3 >= l3)
+                                {
+                                    c3[i] = b3[j3];
+                                    j3++;
+                                }
+                                else if (j3 >= n3)
+                                {
+                                    c3[i] = a3[k3];
+                                    k3++;
+                                }
+                            }
+                        }
+                        foreach (double kner in c3)
+                            Console.Write("{0:} ", kner);
+                        Console.WriteLine();
+                    }
+                }
+            }
+            #endregion
+            
+            
+            #region Task 4
+            Console.WriteLine("Ad task 14");
+            {
+                int n4;
+                Console.WriteLine("Enter lenght of massive a");
+                bool succes4 = int.TryParse(Console.ReadLine(), out n4);
+                if (succes4)
+                {
+                    double[] a4 = new double[n4];
+                    for (int i = 0; i < n4; i++)
+                    {
+                        double el4;
+                        Console.WriteLine($"Enter {i} el");
+                        double.TryParse(Console.ReadLine(), out el4);
+                        a4[i] = el4;
+                    }
+                    foreach (double bivt in a4)
+                        Console.Write("{0:} ", bivt);
+                    Console.WriteLine("1st Massive");
+                    for (int i = 0,j=n4-1; i < j ; i++,j--)
+                    {
+                        double p4 = a4[i];
+                        a4[i] = a4[j];
+                        a4[j] = p4;
+                    }
+                    foreach (double bmt in a4)
+                        Console.Write("{0:} ", bmt);
+                    Console.WriteLine("2nd Massive");
+                }
+            }
+            #endregion
+            
+            
+            #region Task 5
+            Console.WriteLine("Ad task 15");
+            {
+                int n5, k5;
+                Console.WriteLine("Enter lenght of massive n");
+                bool success5 = int.TryParse(Console.ReadLine(), out n5);
+                if (success5)
+                {
+                    double[] a5 = new double[n5];
+                    int m5;
+                    Console.WriteLine("Enter on how many possitions u'd like to move massive m");
+                    bool sucess5 = int.TryParse(Console.ReadLine(), out m5);
+                    double[] b5 = new double[m5];
+                    if (sucess5)
+                    {
+                        for (int i = 0; i < n5; i++)
+                        {
+                            double el5;
+                            Console.WriteLine($"Enter {i} el");
+                            double.TryParse(Console.ReadLine(), out el5);
+                            a5[i] = el5;
+                        }
+                        k5 = m5 - 1;
+                        for (int i = n5 - 1; i > n5 - 1 - m5; i--)
+                        {
+                            b5[k5] = a5[i];
+                            k5--;
+                        }
+                        foreach (int pop in b5)
+                            Console.Write("{0:} ", pop);
+                        Console.WriteLine();
+                        int counter = 0;
+                        for (int j = 0; j < m5; j++)
+                        {
+                            for (int i = n5 - m5 - 1 + counter; i >= counter; i--)
+                            {
+                                a5[i + 1] = a5[i];
+                            }
+                            counter++;
+                        }
+                        for (int i = 0, k = 0; i < m5 && k < m5; i++, k++)
+                        {
+                            a5[k] = b5[i];
+                        }
+                        foreach (int klin in a5)
+                            Console.Write("{0:} ", klin);
+                        Console.WriteLine();
+                    }
+                }
+            }
+            #endregion
+    }
+}
