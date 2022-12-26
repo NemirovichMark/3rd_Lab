@@ -639,18 +639,20 @@ class HelloWorld
        
         #region 12-3
         Console.WriteLine("Level 3 number 12");
-        double[] arr312  = new double[12];
-        int cnt312 = 0;
-        for (int i = 0; i < 12; i++)
+        const int sizee = 12;
+        double cnt312;
+        double[] arr312  = new double[sizee];
+        for (int i = 0; i < sizee; i++)
         {
-            arr312[i] = Convert.ToDouble(Console.ReadLine());
+            double.TryParse(Console.ReadLine(), out cnt312);
+            arr312[i] = cnt312;
         }
         int nname = 12;
-        for (int i = 0; i < n; i++)
+        for (int i = 0; i < nname; i++)
         {
             if (arr312[i] < 0)
             { 
-                for (int j = i; j < 11; j++)
+                for (int j = i; j < sizee - 1; j++)
                 {
                     arr312[j] = arr312[j + 1];
                 }
