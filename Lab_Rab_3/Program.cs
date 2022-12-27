@@ -308,71 +308,75 @@ if (Int32.TryParse(Console.ReadLine(), out n))
 #region Task 10
 
 Console.WriteLine("Level 2 Task 10: \n");
-int[] array_2_10 = { -7, -8, -9, 1, 2, 3, 4, 5, };
-int index_2_10 = 0;
-int min_2_10 = 10000;
-for (int i = 0; i < array_2_10.Length; i++)
+int x_2_10, n_2_10;
+Console.Write("Введите длину массива");
+int.TryParse(Console.ReadLine(), out n_2_10);
+double[] array_2_10 = new double[n_2_10];
+
+Console.Write("Введите числа:", n_2_10);
+int indexMin_2_10 = -1;
+int mini_2_10 = 999999;
+for (int i = 0; i < n_2_10; i++)
 {
-    if (array_2_10[i] > 0)
-    {
-        if (array_2_10[i] < min_2_10)
-        {
-            min_2_10 = array_2_10[i];
-            index_2_10 = i;
-        }
-    }
+	int.TryParse(Console.ReadLine(), out x_2_10);
+	array_2_10[i] = x_2_10;
+	if (x_2_10 > 0 && x_2_10 < mini_2_10)
+	{
+		mini_2_10 = x_2_10;
+		indexMin_2_10 = i;
+	}
 
 }
-int n_2_10 = array_2_10.Length - 1;
-for (int i = index_2_10; i < n_2_10; i++)
+if (indexMin_2_10 == -1) Console.WriteLine("Нет положительных чисел");
+else
 {
-    array_2_10[i] = array_2_10[i + 1];
-}
-for (int i = 0; i < array_2_10.Length - 1; i++)
-{
-    Console.Write(array_2_10[i]);
-    Console.Write(" ");
+	for (int i = 0; i < n_2_10; i++)
+	{
+		if (array_2_10[i] != array_2_10[indexMin_2_10]) Console.Write("{0} ", array_2_10[i]);
+	}
 }
 
 #endregion
 
+
 #region Task 11
+    
 Console.WriteLine("Level 2 Task 11: \n");
-int n_2_11;
-Console.Write("Введите длину массива:");
+int x_2_11, n_2_11, P_2_11;
+Console.Write("Введите длину массива: ");
 int.TryParse(Console.ReadLine(), out n_2_11);
-int[] array_2_11 = new int[n_2_11];
-Console.WriteLine("Введите число P");
-int P_2_11;
+double[] array_2_11 = new double[n_2_11];
+Console.Write("Введите P: ");
 int.TryParse(Console.ReadLine(), out P_2_11);
-for (int i = 0; i < n_2_11 - 1; i++)
+Console.Write("Введите числа: ", n_2_11);
+int indexMax_2_11 = 0;
+int maxi_2_11 = -1;
+for (int i = 0; i < n_2_11; i++)
 {
-    Console.WriteLine($"Введите {i} элемент массива");
-    int lk;
-    int.TryParse(Console.ReadLine(), out lk);
-    array_2_11[i] = lk;
-}
-int indexn_2_11 = 0;
-int maxn_2_11 = 0;
-for (int i = 0; i < array_2_11.Length; i++)
-{
-
-    if (array_2_11[i] > 0 & array_2_11[i] > maxn_2_11)
-    {
-        maxn_2_11 = array_2_11[i];
-        indexn_2_11 = i;
-    }
-}
-for (int i = n_2_11 - 2; i >= indexn_2_11 + 1; i--)
-{
-    array_2_11[i + 1] = array_2_11[i];
+	int.TryParse(Console.ReadLine(), out x_2_11);
+	array_2_11[i] = x_2_11;
+	if (x_2_11 > 0)
+	{
+		maxi_2_11 = x_2_11;
+		indexMax_2_11 = i;
+	}
 
 }
-array_2_11[indexn_2_11 + 1] = P_2_11;
-foreach (int i in array_2_11)
+if (maxi_2_11 == -1) Console.WriteLine("Нет положительных чисел");
+else
 {
-    Console.Write(i);
-    Console.Write(" ");
+	for (int i = n_2_11 - 1; i > indexMax_2_11; i--)
+	{
+		array_2_11[i] = array_2_11[i - 1];
+
+	}
+
+	Console.WriteLine("Массив:");
+	array_2_11[indexMax_2_11 + 1] = P_2_11;
+	for (int i = 0; i < n_2_11; i++)
+	{
+		Console.WriteLine("{0} ", array_2_11[i]);
+	}
 }
 
 #endregion
