@@ -1,4 +1,4 @@
-﻿#region Task 6
+#region Task 6
 
 Console.WriteLine("Level 1 Task 6: \n");
 int[] vector = new int[5];
@@ -308,79 +308,71 @@ if (Int32.TryParse(Console.ReadLine(), out n))
 #region Task 10
 
 Console.WriteLine("Level 2 Task 10: \n");
-int min_2_10, min_i_2_10 = 0;
-Console.Write("Введите количество элементов массива: \t");
-if (Int32.TryParse(Console.ReadLine(), out n))
+int[] array_2_10 = { -7, -8, -9, 1, 2, 3, 4, 5, };
+int index_2_10 = 0;
+int min_2_10 = 10000;
+for (int i = 0; i < array_2_10.Length; i++)
 {
-    int[] mas10 = new int[n];
-    Console.WriteLine("Введите элементы массива:");
-    for (int i = 0; i < n; i++)
+    if (array_2_10[i] > 0)
     {
-        Int32.TryParse(Console.ReadLine(), out mas10[i]);
-    }
-    min_2_10 = mas10[0];
-    for (int i = 0; i < n; i++)
-    {
-        if (mas10[i] > 0 && min_2_10 > mas10[i])
+        if (array_2_10[i] < min_2_10)
         {
-            min_2_10 = mas10[i];
-            min_i_2_10 = i;
+            min_2_10 = array_2_10[i];
+            index_2_10 = i;
         }
     }
-    int[] mas10_2 = new int[n - 1];
-    for (int i = 1; i < n; i++)
-    {
-        mas10_2[i - 1] = mas10[i - 1];
-        if ((i - 1) >= min_i_2_10)
-        {
-            mas10_2[i - 1] = mas10[i];
-        }
-    }
-    Console.WriteLine($"Task 10: получившийся массив");
-    for (int i = 0; i < n; i++)
-    {
-        Console.WriteLine(mas10_2[i]);
-    }
+
+}
+int n_2_10 = array_2_10.Length - 1;
+for (int i = index_2_10; i < n_2_10; i++)
+{
+    array_2_10[i] = array_2_10[i + 1];
+}
+for (int i = 0; i < array_2_10.Length - 1; i++)
+{
+    Console.Write(array_2_10[i]);
+    Console.Write(" ");
 }
 
 #endregion
 
 #region Task 11
 Console.WriteLine("Level 2 Task 11: \n");
-int last_i = 0;
-Console.Write("Введите количество элементов массива: \t");
-if (Int32.TryParse(Console.ReadLine(), out n))
+int n_2_11;
+Console.Write("Введите длину массива:");
+int.TryParse(Console.ReadLine(), out n_2_11);
+int[] array_2_11 = new int[n_2_11];
+Console.WriteLine("Введите число P");
+int P_2_11;
+int.TryParse(Console.ReadLine(), out P_2_11);
+for (int i = 0; i < n_2_11 - 1; i++)
 {
-    int[] mas11 = new int[n];
+    Console.WriteLine($"Введите {i} элемент массива");
+    int lk;
+    int.TryParse(Console.ReadLine(), out lk);
+    array_2_11[i] = lk;
+}
+int indexn_2_11 = 0;
+int maxn_2_11 = 0;
+for (int i = 0; i < array_2_11.Length; i++)
+{
 
-    Console.WriteLine("Введите элементы массива:");
-    for (int i = 0; i < n; i++)
+    if (array_2_11[i] > 0 & array_2_11[i] > maxn_2_11)
     {
-        Int32.TryParse(Console.ReadLine(), out mas11[i]);
+        maxn_2_11 = array_2_11[i];
+        indexn_2_11 = i;
     }
-    Console.Write("Введите P: \t");
-    Int32.TryParse(Console.ReadLine(), out p_2_6);
+}
+for (int i = n_2_11 - 2; i >= indexn_2_11 + 1; i--)
+{
+    array_2_11[i + 1] = array_2_11[i];
 
-    for (int i = 0; i < n; i++)
-    {
-        if (mas11[i] > 0)
-        {
-            last_i = i;
-        }
-    }
-    if (last_i + 1 == n)
-    {
-        mas11[0] = p_2_6;
-    }
-    else
-    {
-        mas11[last_i + 1] = p_2_6;
-    }
-    Console.WriteLine("Task 11: получившийся массив");
-    for (int i = 0; i < n; i++)
-    {
-        Console.WriteLine(mas11[i]);
-    }
+}
+array_2_11[indexn_2_11 + 1] = P_2_11;
+foreach (int i in array_2_11)
+{
+    Console.Write(i);
+    Console.Write(" ");
 }
 
 #endregion
@@ -628,18 +620,32 @@ Console.WriteLine($"Длина самой упорядоченной после�
 #region Task 12
 
 Console.WriteLine("Level 3 Task 12: \n");
-int[] a_3_12 = new int[] { -9, 11, 83, -32, -5, -2, -1, 22, 44, 2, 101, 204 };
-for (int i = 0; i < 12; i++)
+int n_3_12 = 12;
+double[] array_3_12 = new double[n_3_12];
+for (int i = 0; i < n_3_12; i++)
 {
-    if (a_3_12[i] < 0)
+    double x;
+    double.TryParse(Console.ReadLine(), out x);
+    array_3_12[i] = x;
+}
+
+for (int i = 0; i < n_3_12; i++)
+{
+    if (array_3_12[i] < 0)
     {
-        a_3_12[i] = 0;
+        for (int h = i; h < n_3_12 - 1; h++)
+        {
+            array_3_12[h] = array_3_12[h + 1];
+
+        }
+        n_3_12--;
+        i--;
     }
 }
-Console.Write("Получившийся массив: ");
-for (int i = 0; i < 12; i++)
+for (int i = 0; i < n_3_12; i++)
 {
-    Console.Write($"{a_3_12[i]}, ");
+    Console.Write(array_3_12[i]);
+    Console.Write(" ");
 }
 
 #endregion
@@ -745,24 +751,25 @@ if (Int32.TryParse(Console.ReadLine(), out n))
 #region Task 12
 
 Console.WriteLine("Task 12: \n");
+int n, m;
 Console.Write("Введите длину массива A: \t");
 Int32.TryParse(Console.ReadLine(), out n);
 Console.Write("Введите длину массива B: \t");
 Int32.TryParse(Console.ReadLine(), out m);
+int[] A_12 = new int[n];
+int[] B_12 = new int[m];
+Console.WriteLine("Введите элементы массива А:");
+for (int i = 0; i < n; i++)
+{
+    Int32.TryParse(Console.ReadLine(), out A_12[i]);
+}
+Console.WriteLine("Введите элементы массива B:");
+for (int i = 0; i < m; i++)
+{
+    Int32.TryParse(Console.ReadLine(), out B_12[i]);
+}
 if (n == m)
 {
-    int[] A_12 = new int[n];
-    int[] B_12 = new int[m];
-    Console.WriteLine("Введите элементы массива А:");
-    for (int i = 0; i < n; i++)
-    {
-        Int32.TryParse(Console.ReadLine(), out A_12[i]);
-    }
-    Console.WriteLine("Введите элементы массива B:");
-    for (int i = 0; i < m; i++)
-    {
-        Int32.TryParse(Console.ReadLine(), out B_12[i]);
-    }
     int[] C_12 = new int[2 * n];
     int i_A = 0;
     int i_B = 0;
@@ -787,18 +794,6 @@ if (n == m)
 }
 if (n < m)
 {
-    int[] A_12 = new int[n];
-    int[] B_12 = new int[m];
-    Console.WriteLine("Введите элементы массива А:");
-    for (int i = 0; i < n; i++)
-    {
-        Int32.TryParse(Console.ReadLine(), out A_12[i]);
-    }
-    Console.WriteLine("Введите элементы массива B:");
-    for (int i = 0; i < m; i++)
-    {
-        Int32.TryParse(Console.ReadLine(), out B_12[i]);
-    }
     int[] C_12 = new int[n + m];
     int i_A = 0;
     int i_B = 0;
@@ -829,18 +824,6 @@ if (n < m)
 }
 else
 {
-    int[] A_12 = new int[n];
-    int[] B_12 = new int[m];
-    Console.WriteLine("Введите элементы массива А:");
-    for (int i = 0; i < n; i++)
-    {
-        Int32.TryParse(Console.ReadLine(), out A_12[i]);
-    }
-    Console.WriteLine("Введите элементы массива B:");
-    for (int i = 0; i < m; i++)
-    {
-        Int32.TryParse(Console.ReadLine(), out B_12[i]);
-    }
     int[] C_12 = new int[n + m];
     int i_A = 0;
     int i_B = 0;
